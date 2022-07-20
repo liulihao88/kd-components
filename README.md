@@ -1,4 +1,4 @@
-# kj-components1
+# @kj/components
 
 ## Project setup
 ```
