@@ -5,12 +5,12 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 查看examples,或测试组件
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译组件到dist
 ```
 npm run build
 ```

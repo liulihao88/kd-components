@@ -1,0 +1,92 @@
+@use "var";
+.task-step {
+  width: 100%;
+  height: 64px;
+  padding: 20px 0;
+  background-color: var(--step-bg);
+  border-radius: 1px;
+  min-width: 720px;
+  box-sizing: border-box;
+  .step-container {
+    min-width: 700px;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    li {
+      min-width: fit-content;
+      em {
+        display: inline-block;
+        margin: 0 16px;
+        // width: 150px;
+        height: 1px;
+        vertical-align: middle;
+        background: var(--line-color);
+      }
+      &:last-child {
+        em {
+          display: none;
+        }
+      }
+      .li-span {
+        i {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          margin-right: 16px;
+          line-height: 22px;
+          border-radius: 50%;
+          font-style: normal;
+          color: var(--step-color);
+          border: 1px solid var(--step-color);
+          text-align: center;
+        }
+        span {
+          color: var(--step-color);
+          white-space: nowrap;
+        }
+      }
+      &.finished {
+        i {
+          color: var(--text-fff);
+          background: var(--primary-color);
+          border: 0 none;
+          &.el-icon-circle-check {
+            display: inline-block;
+            background: var(--bg-color);
+            color: var(--primary-color);
+            font-size: 0;
+            vertical-align: middle;
+            margin-top: -2px;
+            &:before {
+              font-size: 24px;
+            }
+          }
+        }
+        span {
+          color: var(--step-text-finished);
+        }
+        em {
+          background: var(--primary-color);
+          height: 2px;
+        }
+      }
+      &.active {
+        .li-span {
+          i {
+            color: var(--text-fff);
+            background: var(--primary-color);
+            border: 0 none;
+            line-height: 24px;
+          }
+          span {
+            color: var(--primary-color);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
