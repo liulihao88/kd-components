@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,8 +11,8 @@
     "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit"
   },
-  "main": "dist/kj-components.umd.js",
-  "module": "dist/kj-components.esm.js",
+  "main": "dist/kd-components.umd.js",
+  "module": "dist/kd-components.esm.js",
   "files": [
     "dist"
   ],

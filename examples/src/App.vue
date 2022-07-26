@@ -31,9 +31,13 @@ export default {
   methods: {
     lang() {
       this.$i18n.locale = 'ja'
+      localStorage.setItem('lang','ja')
+      location.reload();
     },
     langen() {
       this.$i18n.locale = 'en'
+      localStorage.setItem('lang','en')
+      location.reload();
     }
   }
 };

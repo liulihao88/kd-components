@@ -28,7 +28,7 @@ const messages = {
 }
 
 const i18n = new VueI18n({
-  locale: 'en', // 设置地区
+  locale: localStorage.getItem('lang') || 'en', // 设置地区
   messages, // 设置地区信息
 })
 
