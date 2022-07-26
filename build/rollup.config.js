@@ -11,7 +11,6 @@ import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import strip from "@rollup/plugin-strip";
-import "./copy.config"
 import fs from "fs";
 
 const file = (type) => `dist/${name}.${type}.js`;
