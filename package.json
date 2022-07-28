@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,15 +12,12 @@
     "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit"
   },
-  "main": "dist/kd-components.umd.js",
-  "module": "dist/kd-components.esm.js",
+  "main": "dist/lib/components/index.mjs",
+  "module": "dist/es/components/index.mjs",
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "fast-glob": "^3.2.11",
-    "rollup-plugin-node-resolve": "^5.2.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "element-ui": "^2.15.9",
     "core-js": "^3.8.3",
@@ -55,7 +52,8 @@
     "unplugin-vue-define-options": "^0.6.2",
     "vue": "^2.6.0",
     "vue-i18n": "8.25.1",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "fast-glob": "^3.2.11"
   },
   "browserslist": [
     "> 1%",

@@ -1,6 +1,5 @@
 import path from 'path';
-// import { nodeResolve } from "@rollup/plugin-node-resolve";
-import nodeResolve from 'rollup-plugin-node-resolve';
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import vuePlugin from "rollup-plugin-vue";
 import commonjs from "rollup-plugin-commonjs";
 import glob from 'fast-glob'
