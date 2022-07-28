@@ -1,6 +1,6 @@
 <template>
   <div class="text-box">
-    <el-button @click="init">{{$t("kd.detailBtn.hl")}}</el-button>
+    <el-button @click="init">{{$t("kd.detailBtn.hl")}}8989</el-button>
     <div class="demo">{{ list }}</div>
   </div>
 </template>
