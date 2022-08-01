@@ -109,11 +109,12 @@ export default {
 ```
 
 ### 组件更新
+##### 1.可以安装最新版本或指定版本安装
 
 ```npm
 
-npm install @kd/components
+npm install @kd/components@XXX
 或
-npm install @kd/components@next
+npm install @kd/components@latest
 
 ```

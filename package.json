@@ -3,6 +3,7 @@
   "alias": "kd-components",
   "version": "0.1.5",
   "private": false,
+  "description": "科杰大数据组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:es && npm run build:umd && npm run subBuild",
@@ -17,6 +18,11 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "keendata",
+    "components"
+  ],
+  "author": "hrr",
   "dependencies": {},
   "peerDependencies": {
     "element-ui": "^2.15.9",
