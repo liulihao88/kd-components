@@ -8,7 +8,7 @@ import { alias as name } from "../package.json";
 import css from "rollup-plugin-css-only";
 import CleanCSS from "clean-css";
 import babel from "rollup-plugin-babel";
-import { terser } from "rollup-plugin-terser";
+// import { terser } from "rollup-plugin-terser";
 import strip from "@rollup/plugin-strip";
 
 // 用于文件查找 https://www.cnblogs.com/goloving/p/13096867.html
@@ -86,7 +86,7 @@ export const buildModules = async () => {
                 include: ["node_modules/**", "node_modules/**/*"],
             }),
             // // 压缩代码
-            terser(),
+            // terser(),
             // // 剔除debugger、assert.equal和 console.log 类似的函数
             strip({
                 labels: ["unittest"],
