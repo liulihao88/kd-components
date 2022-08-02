@@ -3,6 +3,7 @@
   "alias": "kd-components",
   "version": "0.1.0",
   "private": false,
+  "description": "科杰大数据组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:es && npm run build:umd && npm run subBuild",
@@ -21,15 +22,11 @@
   "files": [
     "dist"
   ],
-<<<<<<< HEAD
   "keywords": [
     "keendata",
     "components"
   ],
   "author": "hrr",
-  "dependencies": {
-    "shelljs": "^0.8.5"
-  },
   "dependencies": {},
   "peerDependencies": {
     "element-ui": "^2.15.9",
@@ -48,6 +45,7 @@
     "@vue/vue2-jest": "^27.0.0-alpha.2",
     "babel-jest": "^27.0.6",
     "element-ui": "^2.15.9",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
     "jest": "^27.0.5",
     "node-sass": "^7.0.1",
@@ -62,11 +60,11 @@
     "rollup-plugin-vue": "5.1.9",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
+    "shelljs": "^0.8.5",
     "unplugin-vue-define-options": "^0.6.2",
     "vue": "^2.6.0",
     "vue-i18n": "8.25.1",
-    "vue-template-compiler": "^2.6.14",
-    "fast-glob": "^3.2.11"
+    "vue-template-compiler": "^2.6.14"
   },
   "browserslist": [
     "> 1%",
