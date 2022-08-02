@@ -19,7 +19,8 @@ if(!chmodComponent) {
 } else if(chmodComponent === "B") {
     shell.exec('npm version minor');
 }
-shell.exec('npm publish');
+console.log(8888888888)
+// shell.exec('npm publish');
 
 shell.cd(utilsRoot);
 if(!chmodUtils) {
@@ -29,3 +30,4 @@ if(!chmodUtils) {
 } else if(chmodComponent === "B") {
     shell.exec('npm version minor');
 }
+// shell.exec('npm publish');
