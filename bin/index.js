@@ -22,14 +22,14 @@ if(!chmodComponent) {
     shell.exec('npm version minor');
     shell.exec('npm publish');
 }
-shell.cd(utilsRoot);
-if(!chmodUtils) {
-    shell.exec('npm version patch');
-    shell.exec('npm publish');
-} else if(chmodComponent === "A") {
-    shell.exec('npm version major');
-    shell.exec('npm publish');
-} else if(chmodComponent === "B") {
-    shell.exec('npm version minor');
-    shell.exec('npm publish');
-}
+// shell.cd(utilsRoot);
+// if(!chmodUtils) {
+//     shell.exec('npm version patch');
+//     shell.exec('npm publish');
+// } else if(chmodComponent === "A") {
+//     shell.exec('npm version major');
+//     shell.exec('npm publish');
+// } else if(chmodComponent === "B") {
+//     shell.exec('npm version minor');
+//     shell.exec('npm publish');
+// }
