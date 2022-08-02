@@ -15,6 +15,16 @@ npm run serve
 npm run build
 ```
 
+### 打包构建工具库
+```
+npm run build:utils
+```
+
+### 打包构建组件库和工具库
+```
+npm run all
+```
+
 ### Run your unit tests
 ```
 npm run test:unit
@@ -118,3 +128,4 @@ npm install @kd/components@XXX
 npm install @kd/components@latest
 
 ```
+
