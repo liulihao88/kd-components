@@ -6,6 +6,7 @@ let chmodComponent = process.argv[2]
 let chmodUtils = process.argv[3]
 let cwd = process.cwd();
 const utilsRoot = path.join(cwd, '/packages/utils')
+console.log(123,chmodComponent,chmodUtils);
 /**
  * A 升级主版本号
  * B 升级此版号
