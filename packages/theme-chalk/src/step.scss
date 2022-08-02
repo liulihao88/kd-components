@@ -7,6 +7,9 @@
   border-radius: 1px;
   min-width: 720px;
   box-sizing: border-box;
+  li {
+    list-style: none;
+  }
   .step-container {
     min-width: 700px;
     width: 60%;

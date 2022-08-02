@@ -1,32 +1,57 @@
 <template>
   <div id="app">
-    <p>{{ $t("message.hello") }}</p>
-    <Kj2Step></Kj2Step>
-    <el-button @click="lang">切换ja</el-button>
-    <el-button @click="langen">切换en</el-button>
-    <el-select v-model="value">
-      <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-      </el-option>
-    </el-select>
-    <el-input v-model="input"></el-input>
-    <detail-btn></detail-btn>
+    <ul class="nav">
+      <li v-for="item in comArr" :key="item">
+        <a :href="`#${item}`">{{item.replace('test','')}}</a>
+      </li>
+    </ul>
+    <section class="container">
+      <div>
+        <div v-for="item in comArr" :id="item" :key="item">
+          <h5 class="title">{{item.replace('test','')}}</h5>
+          <component :is="item"></component>
+        </div>
+        <!--    国际化demo    -->
+        <div>
+          <p>{{ $t("message.hello") }}</p>
+          <el-button @click="lang">切换ja</el-button>
+          <el-button @click="langen">切换en</el-button>
+          <detail-btn></detail-btn>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import testStep from "./views/step";
+import testAffixFooter from "./views/affixFooter";
+import testOwner from "./views/owner/index"
+import testTreeMultiple from "./views/treeMultiple";
+import testSelectMultiple from "./views/selectMultiple";
+let com = ['testStep',
+  'testAffixFooter',
+  'testOwner',
+  'testTreeMultiple',
+  'testSelectMultiple']
 export default {
   name: "App",
-  components: {},
+  components: {
+    testStep,
+    testAffixFooter,
+    testOwner,
+    testTreeMultiple,
+    testSelectMultiple
+  },
   data() {
     return {
-      options: [],
-      value: "",
-      input: ""
+      comArr: com
     }
+  },
+  computed: {
+
+  },
+  mounted() {
   },
   methods: {
     lang() {
@@ -43,13 +68,57 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.nav {
+  box-sizing: border-box;
+  width: 175px;
+  border-right: 1px solid #d8d8d8;
+  padding: 20px 0 30px;
+  height: calc(100vh - 1px);
+  li {
+    line-height: 40px;
+  }
+  a {
+    text-decoration:none;
+    color:#333333;
+    text-align: left;
+    font-size: 20px;
+    &:hover {
+      color: #409eff;
+    }
+  }
+}
+.container {
+  box-sizing: border-box;
+  padding: 30px 30px 60px 30px;
+  flex: 1;
+  height: calc(100vh - 1px);
+  overflow: auto;
+  > div > div {
+    box-shadow: #d9d9d9ab 0 1px 3px;
+    margin: 20px 0;
+    padding: 10px 20px 20px;
+    border-radius: 10px;
+    text-align: left;
+  }
+  .title {
+    text-align: left;
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 500;
+    color: #333333;
+  }
 }
 </style>

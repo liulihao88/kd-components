@@ -49,6 +49,7 @@
     "fs-extra": "^10.1.0",
     "jest": "^27.0.5",
     "node-sass": "^7.0.1",
+    "normalize.css": "^8.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.77.2",
     "rollup-plugin-babel": "^4.4.0",

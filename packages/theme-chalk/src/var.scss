@@ -1,11 +1,67 @@
 :root {
+--bg-color: #FFFFFF;// 页面主背景
+--box-bg: #FFFFFF;//模块背景
+--primary-color: #365edf; //主色调
+--primary-bg: #f5f7fd; //主色调背景色，即比较浅的主色调
+--step-color: rgba(39,48,75,0.45);
+--btn-info: #ebedf0; // info按钮颜色
+  // 文本颜色从深到浅
+--text-important-color: rgba(39,48,75,0.90); // 区别不大，个别样式在css中用weight区分吧
+--text-color: rgba(39,48,75,0.85);
+--text-color-secondary: rgba(39,48,75,0.65);
+--disabled-color: rgba(39,48,75,0.45);
+--tiny-color: rgba(39,48,75,0.15);
+  // 边框和线条颜色
+--line-color: #e3e6eb; //分割线
+  // 面包屑title
+--breadtitle-color: #4C4E58;
+  // menu
+--menu-text: rgba(39,48,75,0.85);
+--menu-active-text: #2B4BB2;
+--submenu-active-text: #365edf;
+--menu-bg: #FFFFFF;
+--menu-hover: #f5f7fd;
+--submenu-bg: #FFFFFF;
+--submenu-hover: #f5f7fd;
+  // 表格颜色
+--table-border: #ebedf0;
+--table-th-bg: #f7f8fa;
+--table-th-color: #333;
+--table-td-bg: #FFFFFF;
+--table-td-stripe-bg: #FAFAFA;
+--table-tr-hover-bg: #f5f7fa;
+--table-td-color: #666666;
+--table-td-bottom-line: rgba(25,39,62,0.09);
+--table-th-split-line: rgba(25,39,62,0.08);
+--table-row-hover: #f3f5f9;
+  // 表单颜色
+--form-item-bg: #FFFFFF;//表单项框内背景色
+--form-item-border: #ebedf0;//表单项的外框，比如input、textarea外框
+--form-item-border-hover: #0068FF;
+  // 弹框颜色
+--dialog-bg: #FFFFFF;
+--dialog-mask: rgba(0,0,0,.3);
+--dialog-border: #eaeaea;
+--dialog-title-bg: #F5F5F5;
+--ok-btn-bg: #0068FF;
+--ok-btn-border: #0068FF;
+--ok-btn-color: #FFFFFF;
+--cancel-btn-bg: #FFFFFF;
+--cancel-btn-border: #dcdfe6;
+--cancel-btn-color: #606266;
+  // 删除红色
+--shanchu-icon: #FF0000;
+  // 提示信息icon颜色:icon-zhushi
+--tip-color: #B3B8BF;
+  // 图标-folder
+--icon-folder: #e0a909;
+  // 筛选tag的 hover
+--tag-hover: #3480EE;
   // step
 --text-fff: #FFFFFF;
 --step-text-finished: rgba(39,48,75,0.85);
 --bg-fff: #FFFFFF;
 --step-bg: #f7f8fa;
---line-color: #e3e6eb;
---primary-color: #365edf;
 }
 
 //:root[theme="light"] {
