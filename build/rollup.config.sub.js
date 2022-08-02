@@ -104,7 +104,6 @@ export const buildModules = async () => {
                 preserveModules: true,
                 preserveModulesRoot: epRoot,
                 sourcemap: false,
-                sideEffects: false,
                 // manualChunks: id => path.parse(id).name,
                 entryFileNames(chunkInfo) {
                     let name = chunkInfo.name.replace('.vue_rollup-plugin-vue_script','_script');

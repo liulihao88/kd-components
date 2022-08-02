@@ -11,9 +11,11 @@
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "subBuild": "rollup --c build/rollup.config.sub.js",
     "clean": "rimraf ./dist",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "clean:utils": "rimraf ./kd-utils",
+    "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js"
   },
-  "main": "dist/lib/components/index.mjs",
+  "main": "dist/lib/components/index.js",
   "module": "dist/es/components/index.mjs",
   "files": [
     "dist"

@@ -3,11 +3,8 @@ export default {
   ...basicConfig,
   output: {
     name: "kjComponents",
-    file: file("umd"),
-    format: "umd",
-    globals: {
-      vue: "Vue",
-    },
+    file: file("cjs"),
+    format: "cjs",
     exports: "named",
   },
 };

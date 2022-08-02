@@ -1,0 +1,12 @@
+{
+  "name": "@kd/utils",
+  "alias": "kd-utils",
+  "version": "0.1.1",
+  "private": false,
+  "description": "科杰大数据工具库",
+  "license": "MIT",
+  "main": "kd-utils.cjs.js",
+  "module": "kd-utils.esm.js",
+  "peerDependencies": {
+  }
+}
