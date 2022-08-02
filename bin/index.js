@@ -6,12 +6,6 @@ let chmodComponent = process.argv[2]
 let chmodUtils = process.argv[3]
 let cwd = process.cwd();
 const utilsRoot = path.join(cwd, '/packages/utils')
-// 如果没有输入就走升级修订号
-if(!chmodComponent) {
-    shell.exec('npm version patch');
-    shell.exec('npm publish');
-}
-
 /**
  * A 升级主版本号
  * B 升级此版号
@@ -29,6 +23,7 @@ switch (chmodComponent) {
     default:
         shell.exec('npm version patch');
         shell.exec('npm publish');
+        break;
 }
 
 shell.cd(utilsRoot);
@@ -44,4 +39,5 @@ switch (chmodUtils) {
     default:
         shell.exec('npm version patch');
         shell.exec('npm publish');
+        break;
 }
