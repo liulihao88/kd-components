@@ -11,33 +11,21 @@ const utilsRoot = path.join(cwd, '/packages/utils')
  * B 升级此版号
  * C 升级修订号
  */
-switch (chmodComponent) {
-    case "A":
-        shell.exec('npm version major');
-        shell.exec('npm publish');
-        break;
-    case "B":
-        shell.exec('npm version minor');
-        shell.exec('npm publish');
-        break;
-    default:
-        shell.exec('npm version patch');
-        shell.exec('npm publish');
-        break;
+
+if(!chmodComponent) {
+    shell.exec('npm version patch');
+} else if(chmodComponent === "A") {
+    shell.exec('npm version major');
+} else if(chmodComponent === "B") {
+    shell.exec('npm version minor');
 }
+shell.exec('npm publish');
 
 shell.cd(utilsRoot);
-switch (chmodUtils) {
-    case "A":
-        shell.exec('npm version major');
-        shell.exec('npm publish');
-        break;
-    case "B":
-        shell.exec('npm version minor');
-        shell.exec('npm publish');
-        break;
-    default:
-        shell.exec('npm version patch');
-        shell.exec('npm publish');
-        break;
+if(!chmodUtils) {
+    shell.exec('npm version patch');
+} else if(chmodComponent === "A") {
+    shell.exec('npm version major');
+} else if(chmodComponent === "B") {
+    shell.exec('npm version minor');
 }
