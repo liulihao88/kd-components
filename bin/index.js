@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 const process = require("process")
 const path = require("path")
 const shell = require('shelljs')
@@ -15,22 +15,18 @@ console.log(123,chmodComponent,chmodUtils);
 
 if(!chmodComponent) {
     shell.exec('npm version patch');
-    shell.exec('npm publish');
 } else if(chmodComponent === "A") {
     shell.exec('npm version major');
-    shell.exec('npm publish');
 } else if(chmodComponent === "B") {
     shell.exec('npm version minor');
-    shell.exec('npm publish');
 }
-// shell.cd(utilsRoot);
-// if(!chmodUtils) {
-//     shell.exec('npm version patch');
-//     shell.exec('npm publish');
-// } else if(chmodComponent === "A") {
-//     shell.exec('npm version major');
-//     shell.exec('npm publish');
-// } else if(chmodComponent === "B") {
-//     shell.exec('npm version minor');
-//     shell.exec('npm publish');
-// }
+shell.exec('npm publish');
+shell.cd(utilsRoot);
+if(!chmodUtils) {
+    shell.exec('npm version patch');
+} else if(chmodComponent === "A") {
+    shell.exec('npm version major');
+} else if(chmodComponent === "B") {
+    shell.exec('npm version minor');
+}
+shell.exec('npm publish');

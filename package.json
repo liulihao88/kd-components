@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.46",
+  "version": "0.1.47",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
@@ -15,7 +15,7 @@
     "clean:utils": "rimraf ./kd-utils",
     "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js",
     "all": "npm run build && npm run build:utils",
-    "publish": "node ./bin/index.js"
+    "pub": "node ./bin/index.js"
   },
   "main": "dist/lib/components/index.js",
   "module": "dist/es/components/index.mjs",
