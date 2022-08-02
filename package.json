@@ -13,7 +13,9 @@
     "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit",
     "clean:utils": "rimraf ./kd-utils",
-    "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js"
+    "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js",
+    "all": "npm run build && npm run build:utils",
+    "pub": "npm version patch && npm publish && cd /kd-utils npm version patch && npm publish"
   },
   "main": "dist/lib/components/index.js",
   "module": "dist/es/components/index.mjs",
