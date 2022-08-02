@@ -15,6 +15,16 @@ npm run serve
 npm run build
 ```
 
+### 打包构建工具库
+```
+npm run build:utils
+```
+
+### 打包构建组件库和工具库
+```
+npm run all
+```
+
 ### Run your unit tests
 ```
 npm run test:unit
@@ -109,12 +119,12 @@ export default {
 ```
 
 ### 组件更新
-##### 1.可以安装最新版本或指定版本安装
 
 ```npm
 
-npm install @kd/components@XXX
+npm install @kd/components
 或
-npm install @kd/components@latest
+npm install @kd/components@next
 
 ```
+

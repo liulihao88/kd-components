@@ -15,14 +15,9 @@ export const excludeFiles = (files) => {
 
 
 export const projRoot = resolve(__dirname, '..',)
-console.log(projRoot,'projRoot');
 export const pkgRoot = resolve(projRoot, 'packages/')
-console.log(pkgRoot,'pkgRoot')
 export const epRoot = resolve(pkgRoot, '')
-console.log(epRoot,'epRoot');
 
 
-/** `/dist` */
 export const buildOutput = resolve(projRoot, 'dist')
-/** `/dist` */
 export const epOutput = resolve(buildOutput, '')
