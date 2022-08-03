@@ -5,7 +5,7 @@
     :placeholder="handlePlaceholder()"
     :size="$attrs.size || 'small'"
     class="kd-ipt"
-    :clearable="$attrs.clearable === false ? false : true"
+    :clearable="$attrs.clearable !== false"
     :class="{'kd-textarea':$attrs.type ==='textarea'}"
     :style="{...mHandleWidth()}"
     :maxlength="handleMaxLength"
