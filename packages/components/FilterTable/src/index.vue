@@ -738,6 +738,8 @@ export default {
     rowKey(row) {
       if (this.rowKeys && this.rowKeys !== '') {
         return row[this.rowKeys]
+      } else if (this.rowKeys && Array.isArray(this.rowKeys)) {
+        return this.rowKeys.map(key => row[key]).join('')
       } else {
         return row.id
       }
