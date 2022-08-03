@@ -55,86 +55,86 @@ export default {
       default: () => []
     }
   },
-    data () {
-        return {
-            expandFlag: true, // 是否展开了高级筛选
-            activeData: {}, // 选中的筛选项
-            newData: [],
-            showAllFlag: false // 切换显示/隐藏更多面板
-        }
-    },
-    watch: {
-        data: {
-          handler() {
-            this.newData = this.data.map(item => {
-                item.expFlag = false;
-                return item;
-            });
-            this.resetMoreFlag();
-          },
-          immediate: true
-        }
-    },
-    components: {
-
-    },
-    mounted () {
-        // this.resetHeight();
-    },
-    methods: {
-        /**
-         * 展开/收起高级搜索
-         */
-        toggleSearch() {
-            this.expandFlag = !this.expandFlag;
-        },
-        /**
-         * 点击搜索
-         */
-        clickItem(it1, it2) {
-            if (!this.activeData[it1.type]) {
-                this.$set(this.activeData, it1.type, [it2.value]);
-            } else {
-                const index = this.activeData[it1.type].indexOf(it2.value);
-                if (index > -1) {
-                    this.activeData[it1.type].splice(index, 1);
-                } else {
-                    this.activeData[it1.type].push(it2.value);
-                }
-            }
-            this.$emit('clickItem', this.activeData);
-        },
-        /**
-         * 点击/收起更多显示全部小标签
-         */
-        clickMoreLabels(item, index) {
-            item.expFlag = !item.expFlag;
-            this.newData = [...this.newData];
-        },
-        /**
-         * newData变化后，需要重新设置里面的moreFlag
-         */
-        resetMoreFlag() {
-            this.$nextTick(() => {
-                let arr = [];
-                this.newData.forEach((item, index) => {
-                    let cur = this.$refs['lblsRef' + index];
-                    if (cur) {
-                        item.moreFlag = cur[0].clientHeight > 40;
-                    } else {
-                        item.moreFlag = false;
-                    }
-                    arr.push(item);
-                });
-                this.newData = arr;
-                console.log('this.newData', this.newData)
-            });
-        },
-        /**超过5个大搜索项，则隐藏后面的选项，通过此按钮显示更多或者隐藏 */
-        togglePanel() {
-            this.showAllFlag = !this.showAllFlag;
-        }
+  data () {
+    return {
+      expandFlag: true, // 是否展开了高级筛选
+      activeData: {}, // 选中的筛选项
+      newData: [],
+      showAllFlag: false // 切换显示/隐藏更多面板
     }
+  },
+  watch: {
+    data: {
+      handler() {
+        this.newData = this.data.map(item => {
+          item.expFlag = false;
+          return item;
+        });
+        this.resetMoreFlag();
+      },
+      immediate: true
+    }
+  },
+  components: {
+
+  },
+  mounted () {
+    // this.resetHeight();
+  },
+  methods: {
+    /**
+      * 展开/收起高级搜索
+      */
+    toggleSearch() {
+      this.expandFlag = !this.expandFlag;
+    },
+    /**
+      * 点击搜索
+      */
+    clickItem(it1, it2) {
+      if (!this.activeData[it1.type]) {
+          this.$set(this.activeData, it1.type, [it2.value]);
+      } else {
+        const index = this.activeData[it1.type].indexOf(it2.value);
+        if (index > -1) {
+          this.activeData[it1.type].splice(index, 1);
+        } else {
+          this.activeData[it1.type].push(it2.value);
+        }
+      }
+      this.$emit('clickItem', this.activeData);
+    },
+    /**
+      * 点击/收起更多显示全部小标签
+      */
+    clickMoreLabels(item, index) {
+      item.expFlag = !item.expFlag;
+      this.newData = [...this.newData];
+    },
+    /**
+      * newData变化后，需要重新设置里面的moreFlag
+      */
+    resetMoreFlag() {
+      this.$nextTick(() => {
+        let arr = [];
+        this.newData.forEach((item, index) => {
+          let cur = this.$refs['lblsRef' + index];
+          if (cur) {
+            item.moreFlag = cur[0].clientHeight > 40;
+          } else {
+            item.moreFlag = false;
+          }
+          arr.push(item);
+        });
+        this.newData = arr;
+        console.log('this.newData', this.newData)
+      });
+    },
+    /**超过5个大搜索项，则隐藏后面的选项，通过此按钮显示更多或者隐藏 */
+    togglePanel() {
+      this.showAllFlag = !this.showAllFlag;
+    }
+  }
 };
 </script>
 <style lang="scss" src="./index.scss"></style>
