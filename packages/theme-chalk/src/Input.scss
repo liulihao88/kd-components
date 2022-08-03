@@ -1,0 +1,9 @@
+.kd-ipt {
+  width: 316px;
+}
+.kd-textarea {
+  width: 424px;
+}
+.kd-ipt ::v-deep .el-textarea__inner {
+  padding: 8px 8px 16px 8px;
+}

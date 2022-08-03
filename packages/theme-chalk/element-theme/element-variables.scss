@@ -1,0 +1,339 @@
+// cover some element-ui styles
+.el-input-group__append {
+}
+.el-input-group__prepend {
+  border-radius: 1px;
+  padding: 0 8px;
+  background: #fff;
+  box-sizing: border-box;
+  color: rgba(39,48,75,0.85);
+  border: 1px solid #e3e6eb;
+  border-right: none;
+}
+.el-input__inner {
+  border-radius: 1px;
+}
+.el-textarea__inner {
+  border-radius: 1px;
+}
+.el-button {
+  border-radius: 1px !important;
+}
+.el-input--small {
+  font-size: 12px;
+}
+.el-form-item__label {
+  font-size: 12px;
+}
+// form行间距24px
+.el-form-item--small.el-form-item {
+  margin-bottom: 24px;
+}
+.el-button--text {
+  color: var(--primary-color);
+}
+
+.el-descriptions-item__label:not(.is-bordered-label) {
+  margin-right: 0;
+}
+.el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
+  padding-bottom: 16px;
+}
+
+// 带时分秒格式日期样式重置
+.kj-datepicker {
+  .el-time-spinner__item.active:not(.disabled) {
+    background: #365edf;
+    border-radius: 3px;
+    margin: 0 8px;
+    color: #ffffff;
+  }
+  .el-time-panel__content::before {
+    border-bottom: none;
+    border-top: none;
+  }
+  .el-date-table td.today::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #0052d9;
+    border-radius: 50%;
+  }
+  .el-picker-panel__footer {
+    > button:first-child {
+      float: left;
+      margin-left: 24px;
+    }
+    > button:last-child,
+    > button:last-child:hover {
+      background: #365edf;
+      border-radius: 1px;
+      color: #ffffff;
+    }
+  }
+}
+
+// el描述
+.el-descriptions-item__container {
+  width: 90%;
+  .el-descriptions-item__content {
+    width: 80%;
+  }
+}
+
+// ElForm样式
+.el-form {
+  // radio
+  .el-radio__inner {
+    width: 16px;
+    height: 16px;
+  }
+  .el-radio__input.is-checked .el-radio__inner {
+    background: var(--form-item-bg);
+  }
+  .el-radio__input.is-checked .el-radio__inner::after {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+  }
+  // 重置label
+  .el-form-item__label {
+    font-weight: 400;
+    color: var(--text-color);
+    font-size: 12px;
+  }
+  // 重置input
+  .el-input-number:not .el-input {
+    width: auto;
+    max-width: 316px;
+  }
+  .el-textarea {
+    width: auto;
+    max-width: 424px;
+  }
+  .el-select {
+    .el-input {
+      width: 208px;
+    }
+  }
+}
+
+// Popover 弹出框
+.el-popover__title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.el-table--border .el-table__cell:first-child .cell {
+  padding-left: 16px;
+}
+.el-popover {
+  min-width: 100px;
+}
+
+// cover some element-ui styles
+.el-input-group__append {
+}
+.el-input-group__prepend {
+  border-radius: 1px;
+  padding: 0 8px;
+  background: #fff;
+  box-sizing: border-box;
+  color: rgba(39, 48, 75, 0.85);
+  border: 1px solid #e3e6eb;
+  border-right: none;
+}
+.el-input__inner {
+  border-radius: 1px;
+}
+.el-textarea__inner {
+  border-radius: 1px;
+}
+.el-button {
+  border-radius: 1px !important;
+}
+.el-input--small {
+  font-size: 12px;
+}
+.el-form-item__label {
+  font-size: 12px;
+}
+// form行间距24px
+.el-form-item--small.el-form-item {
+  margin-bottom: 24px;
+}
+.el-button--text {
+  color: var(--primary-color);
+}
+
+.el-descriptions-item__label:not(.is-bordered-label) {
+  margin-right: 0;
+}
+.el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
+  padding-bottom: 16px;
+}
+
+// 带时分秒格式日期样式重置
+.kj-datepicker {
+  .el-time-spinner__item.active:not(.disabled) {
+    background: #365edf;
+    border-radius: 3px;
+    margin: 0 8px;
+    color: #ffffff;
+  }
+  .el-time-panel__content::before {
+    border-bottom: none;
+    border-top: none;
+  }
+  .el-date-table td.today::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #0052d9;
+    border-radius: 50%;
+  }
+  .el-picker-panel__footer {
+    > button:first-child {
+      float: left;
+      margin-left: 24px;
+    }
+    > button:last-child,
+    > button:last-child:hover {
+      background: #365edf;
+      border-radius: 1px;
+      color: #ffffff;
+    }
+  }
+}
+
+// el描述
+.el-descriptions-item__container {
+  width: 90%;
+  .el-descriptions-item__content {
+    width: 80%;
+  }
+}
+
+//// 表格按钮
+.btnlist button:first-child {
+  margin-left: 0 !important;
+}
+
+// ElForm样式
+.el-form {
+  // radio
+  .el-radio__inner {
+    width: 16px;
+    height: 16px;
+  }
+  .el-radio__input.is-checked .el-radio__inner {
+    background: var(--form-item-bg);
+  }
+  .el-radio__input.is-checked .el-radio__inner::after {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+  }
+  // 重置label
+  .el-form-item__label {
+    font-weight: 400;
+    color: var(--text-color);
+    font-size: 12px;
+  }
+  // 重置input
+  .el-input {
+    width: 316px;
+  }
+  .el-input-number .el-input {
+    width: 100%;
+  }
+  .el-textarea {
+    width: 424px;
+  }
+  .el-select {
+    .el-input {
+      width: 208px;
+    }
+  }
+}
+
+// Popover 弹出框
+.el-popover__title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+// 离线开发element-ui样式
+.offline_form_main {
+  .el-form {
+    // 重置input
+    .el-input,
+    .kj-owner .el-select .el-input {
+      width: 100%;
+    }
+    .el-select {
+      width: 100%;
+    }
+    .el-form-item--small.el-form-item {
+      flex: 1;
+    }
+  }
+}
+
+// 离线开发检查节点form
+.inspect_form{
+  .el-input,
+  .kj-owner .el-select .el-input {
+    width: 316px;
+  }
+  .el-select {
+  }
+  .kj-owner {
+    .el-select {
+      width: 208px !important;
+    }
+    .el-input {
+      width: 208px !important;
+    }
+  }
+}
+
+// 下拉字号
+.el-select-dropdown{
+    .el-select-dropdown__item{
+        span{
+            font-size: 12px;
+        }
+    }
+    
+}
+// 修改下拉选择字号
+.el-checkbox__label{
+    font-size: 12px;
+}
+// 修改全局message样式
+.el-message{
+    min-width: 0px;
+    padding-right: 20px;
+    background: #fff;
+    border-color: #fff;
+    box-shadow: 0px 2px 8px 0px rgba(197,197,197,0.50);
+    .el-message__content{
+        font-size: 12px;
+        font-family: PingFangSC, PingFangSC-Regular;
+        font-weight: 400;
+        color: rgba(39,48,75,0.85);
+        line-height: 18px;
+    }
+}
+
+.test-blue{
+  background: blue;
+}

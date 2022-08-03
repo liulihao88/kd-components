@@ -29,11 +29,21 @@ import testAffixFooter from "./views/affixFooter";
 import testOwner from "./views/owner/index"
 import testTreeMultiple from "./views/treeMultiple";
 import testSelectMultiple from "./views/selectMultiple";
+import testFilterTable from "./views/filterTable";
+import testInput from "./views/input";
+import testDateRange from "./views/dateRange";
+import testAdvancedSearch from "./views/advancedSearch";
+
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
   'testTreeMultiple',
-  'testSelectMultiple']
+  'testSelectMultiple',
+  'testFilterTable',
+  'testInput',
+  'testDateRange',
+  'testAdvancedSearch'
+  ]
 export default {
   name: "App",
   components: {
@@ -41,7 +51,11 @@ export default {
     testAffixFooter,
     testOwner,
     testTreeMultiple,
-    testSelectMultiple
+    testSelectMultiple,
+    testFilterTable,
+    testInput,
+    testDateRange,
+    testAdvancedSearch
   },
   data() {
     return {

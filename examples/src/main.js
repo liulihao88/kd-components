@@ -3,7 +3,8 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import VueI18n from 'vue-i18n'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-import "element-ui/lib/theme-chalk/index.css";
+// import "element-ui/lib/theme-chalk/index.css";
+import '../../packages/theme-chalk/element-theme/index.css'
 import "../../dist/kd-components.css";
 import "./assets/styles/var.css";
 import kjComponents from "../../packages/components/index";

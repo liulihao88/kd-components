@@ -1,0 +1,20 @@
+.kd-daterange {
+  font-size: 0;
+  .title {
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    vertical-align: top;
+    border-radius: 1px;
+    padding: 0 8px;
+    background: #fff;
+    color: rgba(39, 48, 75, 0.85);
+    border: 1px solid #e3e6eb;
+    border-right: 0 none;
+    box-sizing: border-box;
+  }
+  .el-date-editor {
+    border-radius: 0 1px 1px 0;
+  }
+}

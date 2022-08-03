@@ -1,0 +1,146 @@
+.kd-advancedsearch {
+  position: relative;
+  margin: 16px 16px 0;
+  background: var(--box-bg);
+  // height: 48px;
+  overflow: hidden;
+  transition: height 0.3s ease-in;
+  &.foldsearch {
+    height: 48px;
+    overflow: hidden;
+  }
+  .adtitle {
+    padding: 0 16px;
+    height: 48px;
+    line-height: 48px;
+    border-bottom: 1px solid var(--line-color);
+    .addtitle_txt {
+      font-size: 16px;
+      color: var(--text-important-color);
+    }
+    .adexpand {
+      float: right;
+      margin-top: 4px;
+      font-size: 14px;
+      .adfold {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .adcontent {
+    position: relative;
+    padding-bottom: 16px;
+    .adul {
+      padding: 16px 16px 0;
+      &.showall {
+        li.hideli {
+          display: flex;
+        }
+      }
+      li {
+        display: flex;
+        font-size: 0;
+        &.hideli {
+          display: none;
+        }
+        label {
+          margin-right: 8px;
+          width: 100px;
+          height: 24px;
+          line-height: 24px;
+          text-align: right;
+          font-size: 14px;
+          color: var(--text-important-color);
+        }
+        .adlist {
+          flex: 1;
+          overflow: hidden;
+          &.fold {
+            height: 40px;
+          }
+          .lbls {
+            display: inline-block;
+          }
+          span {
+            display: inline-block;
+            margin: 0 16px 16px 0;
+            padding: 0 5px;
+            min-width: 64px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-important-color);
+            vertical-align: top;
+            &:hover {
+              background: var(--tag-hover);
+              color: var(--box-bg);
+            }
+            &.active {
+              background: var(--primary-color);
+              color: var(--box-bg);
+            }
+          }
+        }
+        .morebtn {
+          padding: 0;
+          line-height: 28px;
+          height: 28px;
+          margin-top: -3px;
+          .adfold {
+            transform: rotate(180deg);
+          }
+        }
+        // em {
+        //     display: inline-block;
+        //     width: 80px;
+        // }
+      }
+    }
+    .adbtn {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -24px;
+      display: inline-block;
+      width: 48px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      background: var(--bg-color);
+      cursor: pointer;
+      overflow: hidden;
+      .el-icon-d-arrow-right {
+        transform: rotate(90deg);
+        color: var(--primary-color);
+        &.showallbtn {
+          transform: rotate(270deg);
+        }
+      }
+      &:before, &:after {
+        position: absolute;
+        content: '\20';
+        display: inline-block;
+        width: 0;
+        height: 0;
+      }
+      &:before {
+        left: -14px;
+        bottom: 3px;
+        transform: rotate(25deg);
+        border-top: 10px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 20px solid var(--box-bg);
+      }
+      &:after {
+        right: -11px;
+        bottom: -2px;
+        transform: rotate(-90deg);
+        border-top: 10px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 20px solid var(--box-bg);
+      }
+    }
+  }
+}
