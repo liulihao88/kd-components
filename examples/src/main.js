@@ -7,7 +7,8 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import '../../packages/theme-chalk/element-theme/index.css'
 import "../../dist/kd-components.css";
 // import "./assets/styles/var.css";
-import kjComponents from "../../dist/es/components/index.mjs";
+// import kjComponents from "../../dist/es/components/index.mjs";
+import kjComponents from "../../packages/components/index";
 import {zhCn,ja} from "../../packages/locale/index"
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

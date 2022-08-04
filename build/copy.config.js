@@ -9,7 +9,7 @@ export const copyLocale = copyFile('packages/locale', 'dist/locale','locale succ
 
 export const copyUtilPkg = copyFile('packages/utils/package.json','kd-utils/package.json','utilsPkg success!')
 
-export const copyIcon = copyFile('packages/theme-chalk/element-theme/fonts','dist/fonts', 'dist/locale','font success!')
+export const copyElementUIReset = copyFile('packages/theme-chalk/element-theme','dist/element-theme','element-theme success!')
 
 export const copyCmpPkg = copyFile('package.json','dist/package.json', 'dist/locale','cmpPkg success!')
 

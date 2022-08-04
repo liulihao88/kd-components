@@ -49,6 +49,7 @@ import VueI18n from 'vue-i18n'
 // 组件库
 import KdComponents from '@kd/components'
 // css
+import '@kd/components/dist/element-theme/index.css' // 重置el 的样式
 import '@kd/components/dist/kd-components.css'
 import {zhCn,ja} from "@kd/components/dist/locale/index"
 
@@ -126,5 +127,23 @@ npm install @kd/components
 或
 npm install @kd/components@next
 
+```
+
+### 注意事项 lodash 引入会报错,需要在vue.config.js 配置以下文件
+
+```js
+
+configureWebpack: {
+    module: {
+        rules: [
+            {
+                test: /\.mjs$/,
+                include: /node_modules/,
+                type: "javascript/auto"
+            },
+        ]
+    }
+}
+    
 ```
 
