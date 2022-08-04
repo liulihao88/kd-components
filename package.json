@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
@@ -27,8 +27,7 @@
     "components"
   ],
   "author": "hrr",
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "element-ui": "2.15.8",
     "core-js": "^3.8.3",
