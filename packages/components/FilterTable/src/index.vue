@@ -552,7 +552,7 @@ let exSlot = {
     return data.props.render(h, params);
   }
 }
-import { cloneDeep } from 'lodash/cloneDeep'
+import { cloneDeep } from 'lodash'
 export default {
   name: "KdFilterTable",
   components: {
