@@ -9,48 +9,58 @@
   >
     <span
       class="hide-text"
+      v-if="!slotShow"
       :style="{ maxWidth: width }"
       @mouseover="onMouseOver('str')"
     >
       <span ref="str">{{ text }}</span>
     </span>
+    <slot></slot>
+
   </el-tooltip>
 </template>
 
 <script>
-// <TextTooltip width="380px" class="right_bg" :text="activeEntity.name" />
+// <kd-tooltip width="380px" class="right_bg" :text="activeEntity.name" />
 export default {
-  name: "TextTooltip",
+  name: "KdTooltip",
   components: {},
   props: {
-    text: {
+    text: { // 浮框显示的问题
       type: String,
       default: () => {
         return "";
       },
     },
-    width: {
+    width: { // 超过此宽度省略号显示
       type: String,
       default: () => {
         return "100%";
       },
     },
-    kdPlacement:{
+    kdPlacement:{ // 浮框显示的位置
       type: String,
       default: () => {
         return "top";
+      },
+    },
+    slotShow: { // 是否显示插槽
+      type: Boolean,
+      default: () => {
+        return false;
       },
     }
   },
   data() {
     return {
-      isShowTooltip: true,
+      isShowTooltip: false,
     };
   },
   created() {},
   mounted() {},
   methods: {
     onMouseOver(str) {
+      if(this.slotShow) return
       // 内容超出，显示文字提示内容
       const tag = this.$refs[str];
       const parentWidth = tag.parentNode.offsetWidth; // 获取元素父级可视宽度
@@ -68,4 +78,5 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 </style>

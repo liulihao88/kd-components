@@ -33,9 +33,7 @@ import testFilterTable from "./views/filterTable";
 import testInput from "./views/input";
 import testDateRange from "./views/dateRange";
 import testAdvancedSearch from "./views/advancedSearch";
-// import testCron from "./views/cron";
-import testTextTooltip from "./views/textTooltip";
-
+import KdTooltip from "./views/KdTooltip";
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
@@ -45,8 +43,7 @@ let com = ['testStep',
   'testInput',
   'testDateRange',
   'testAdvancedSearch',
-  // 'testCron'
-  'testTextTooltip'
+  'KdTooltip'
   ]
 export default {
   name: "App",
@@ -60,8 +57,7 @@ export default {
     testInput,
     testDateRange,
     testAdvancedSearch,
-    // testCron
-    testTextTooltip
+    KdTooltip
   },
   data() {
     return {
