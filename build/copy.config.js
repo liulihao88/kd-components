@@ -7,6 +7,9 @@ export const copyFile = (inputPath , targetPath , message = 'success!') =>{
 }
 export const copyLocale = copyFile('packages/locale', 'dist/locale','locale success!')
 
+
+export const copyComponents = copyFile('packages/components', 'dist/packages','packages success!')
+
 export const copyUtilPkg = copyFile('packages/utils/package.json','kd-utils/package.json','utilsPkg success!')
 
 export const copyElementUIReset = copyFile('packages/theme-chalk/element-theme','dist/element-theme','element-theme success!')

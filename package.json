@@ -1,12 +1,12 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run clean && npm run build:es && npm run build:umd && npm run subBuild",
+    "build": "npm run clean && npm run build:es && npm run build:umd",
     "build:es": "rollup --config build/rollup.esm.config.js",
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "subBuild": "rollup --c build/rollup.config.sub.js",
@@ -33,7 +33,6 @@
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
     "vue-i18n": "8.25.1",
-    "vue-runtime-helpers": "^1.1.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
