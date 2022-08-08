@@ -1,4 +1,4 @@
-import registerDirectives from '../utils/directives';
+import registerDirectives from '../directives/directives';
 import DetailBtn from "./DetailBtn";
 import Step from "./step";
 import Affix from "./affix";
