@@ -5,9 +5,10 @@ import commonjs from "rollup-plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import strip from "@rollup/plugin-strip";
 const file = (type) => `kd-utils/${name}.${type}.js`;
-import {copyUtilPkg} from "./copy.config"
+import {copyUtilPkg , copyUtilMd} from "./copy.config"
 
 copyUtilPkg();
+copyUtilMd();
 export { name, file };
 export default {
     input: "packages/utils/index.js",

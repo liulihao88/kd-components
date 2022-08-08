@@ -33,7 +33,7 @@ import testFilterTable from "./views/filterTable";
 import testInput from "./views/input";
 import testDateRange from "./views/dateRange";
 import testAdvancedSearch from "./views/advancedSearch";
-import testTextTooltip from "./views/textTooltip";
+import KdTooltip from "./views/KdTooltip";
 import testDialog from "./views/dialog";
 import testDrawer from "./views/drawer";
 import testTree from "./views/tree";
@@ -46,7 +46,7 @@ let com = ['testStep',
   'testInput',
   'testDateRange',
   'testAdvancedSearch',
-  'testTextTooltip',
+  'KdTooltip',
   'testDialog',
   'testDrawer',
   'testTree'
@@ -63,7 +63,7 @@ export default {
     testInput,
     testDateRange,
     testAdvancedSearch,
-    testTextTooltip,
+    KdTooltip,
     testDialog,
     testDrawer,
     testTree
