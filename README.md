@@ -123,9 +123,11 @@ export default {
 
 ```npm
 
+npm uninstall @kd/components
+
 npm install @kd/components
 或
-npm install @kd/components@next
+npm install @kd/components@latest
 
 ```
 
