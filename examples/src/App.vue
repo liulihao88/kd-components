@@ -33,7 +33,7 @@ import testFilterTable from "./views/filterTable";
 import testInput from "./views/input";
 import testDateRange from "./views/dateRange";
 import testAdvancedSearch from "./views/advancedSearch";
-
+import testTextTooltip from "./views/textTooltip";
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
@@ -42,7 +42,8 @@ let com = ['testStep',
   'testFilterTable',
   'testInput',
   'testDateRange',
-  'testAdvancedSearch'
+  'testAdvancedSearch',
+  'testTextTooltip'
   ]
 export default {
   name: "App",
@@ -55,7 +56,8 @@ export default {
     testFilterTable,
     testInput,
     testDateRange,
-    testAdvancedSearch
+    testAdvancedSearch,
+    testTextTooltip
   },
   data() {
     return {
