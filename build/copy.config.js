@@ -11,6 +11,7 @@ export const copyLocale = copyFile('packages/locale', 'dist/locale','locale succ
 export const copyComponents = copyFile('packages/components', 'dist/packages','packages success!')
 
 export const copyUtilPkg = copyFile('packages/utils/package.json','kd-utils/package.json','utilsPkg success!')
+export const copyUtilMd = copyFile('packages/utils/README.md','kd-utils/README.md','success')
 
 export const copyElementUIReset = copyFile('packages/theme-chalk/element-theme','dist/element-theme','element-theme success!')
 
