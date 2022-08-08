@@ -34,6 +34,9 @@ import testInput from "./views/input";
 import testDateRange from "./views/dateRange";
 import testAdvancedSearch from "./views/advancedSearch";
 import testTextTooltip from "./views/textTooltip";
+import testDialog from "./views/dialog";
+import testDrawer from "./views/drawer";
+import testTree from "./views/tree";
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
@@ -43,7 +46,10 @@ let com = ['testStep',
   'testInput',
   'testDateRange',
   'testAdvancedSearch',
-  'testTextTooltip'
+  'testTextTooltip',
+  'testDialog',
+  'testDrawer',
+  'testTree'
   ]
 export default {
   name: "App",
@@ -57,7 +63,10 @@ export default {
     testInput,
     testDateRange,
     testAdvancedSearch,
-    testTextTooltip
+    testTextTooltip,
+    testDialog,
+    testDrawer,
+    testTree
   },
   data() {
     return {

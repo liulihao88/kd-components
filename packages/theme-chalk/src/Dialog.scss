@@ -1,0 +1,26 @@
+.kd-dialog {
+  ::v-deep .el-icon {
+    border-radius: 50%;
+    font-size: 16px;
+    color: rgba(39, 48, 75, 0.85);
+  }
+  ::v-deep .el-dialog__title {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  ::v-deep .el-dialog__header {
+    border-bottom: 1px solid var(--gray);
+  }
+  .slot_box {
+    max-height: 600px;
+    overflow: auto;
+  }
+  .is-fullscreen .el-dialog__body {
+    max-height: inherit;
+    height: calc(100% - 113px);
+  }
+  .fullscreen__icon {
+    right: 54px;
+    text-align: right;
+  }
+}

@@ -1,0 +1,103 @@
+.kd-tree {
+  height: 100%;
+  width: 300px;
+  min-height: calc(100vh - 50px);
+  border-right: 1px solid #e3e6eb;
+  border-left: 1px solid #e3e6eb;
+  .jt_operation {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px 0 16px;
+    border-bottom: 1px solid #e3e6eb;
+    background: #fff;
+    .iconfont {
+      font-size: 16px;
+      padding-right: 4px;
+      cursor: pointer;
+      &:hover {
+        // color: #f5f7fd;
+      }
+    }
+    .jt_title {
+      display: inline-block;
+      font-size: 14px;
+    }
+    .jt_btns {
+      float: right;
+    }
+  }
+  .jt_search {
+    position: relative;
+    padding: 0 8px;
+    height: 62px;
+    line-height: 54px;
+    font-size: 14px;
+    border-bottom: 1px solid #e3e6eb;
+  }
+  .table_search {
+    position: relative;
+    height: 102px;
+    line-height: 40px;
+    padding: 10px 8px 15px;
+    border-bottom: 1px solid #e3e6eb;
+    ::v-deep .dbtable_ipt {
+      top: -4px;
+    }
+    ::v-deep .el-select {
+      width: 100%;
+      margin-bottom: 3px;
+    }
+  }
+  .jt_body {
+    position: relative;
+    height: calc(100% - 100px);
+    overflow: auto;
+    ::v-deep .job_tree_comp > .el-tree-node .el-tree-node__content {
+      height: 40px;
+    }
+    ::v-deep .job_tree_node {
+      display: inline-block;
+      height: 26px;
+      line-height: 26px;
+      max-width: 78%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .iconfont {
+        display: inline-block;
+        margin-right: 5px;
+        color: #ffb51f;
+        vertical-align: middle;
+        margin-top: -2px;
+      }
+      span {
+        user-select: none;
+      }
+    }
+  }
+  ::v-deep .is-current > .el-tree-node__content {
+    background: #f5f7fd !important;
+    color: #365edf;
+  }
+  .el-tree-node__content {
+    position: relative;
+  }
+  .el-tree-node__content:hover .right_icon {
+    display: inline-block;
+  }
+  .right_icon {
+    color: blue !important;
+    // position: absolute;
+    // display: none;
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #365edf;
+  }
+  .icon_box {
+    position: absolute;
+    // display: block;
+  }
+  .slot_box {
+    margin-left: 24px;
+  }
+}

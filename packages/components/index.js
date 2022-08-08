@@ -1,3 +1,4 @@
+import registerDirectives from '../utils/directives';
 import DetailBtn from "./DetailBtn";
 import Step from "./step";
 import Affix from "./affix";
@@ -9,13 +10,17 @@ import Input from "./Input";
 import DateRange from "./DateRange";
 import AdvancedSearch from "./AdvancedSearch";
 import TextTooltip from "./TextTooltip";
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip];
+import Dialog from "./Dialog";
+import Drawer from "./Drawer";
+import Tree from "./Tree";
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip, Dialog, Drawer, Tree];
 
 const install = (app) => {
   components.map((component) => {
     app.use(component);
   });
+  registerDirectives(app);
 };
 
-export { install, DetailBtn, Step, Affix,Owner,SelectMultiple,TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip};
+export { install, DetailBtn, Step, Affix,Owner,SelectMultiple,TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip, Dialog, Drawer, Tree};
 export default install;

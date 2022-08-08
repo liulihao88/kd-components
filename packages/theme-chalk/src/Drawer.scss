@@ -1,0 +1,31 @@
+.kd-drawer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .top {
+    font-size: 12px;
+    font-family: PingFangSC, PingFangSC-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: rgba(39, 48, 75, 0.85);
+    height: 44px;
+    padding: 24px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e3e6eb;
+  }
+  .content {
+    height: calc(100vh - 162px);
+    flex: auto;
+    overflow: scroll;
+  }
+  .footer {
+    padding: 24px;
+    box-sizing: border-box;
+    border-top: 1px solid #e3e6eb;
+  }
+}
+.icon_box {
+  &:hover {
+    cursor: pointer;
+  }
+}
