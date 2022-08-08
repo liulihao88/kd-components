@@ -34,6 +34,7 @@ import testInput from "./views/input";
 import testDateRange from "./views/dateRange";
 import testAdvancedSearch from "./views/advancedSearch";
 // import testCron from "./views/cron";
+import testTextTooltip from "./views/textTooltip";
 
 let com = ['testStep',
   'testAffixFooter',
@@ -45,6 +46,7 @@ let com = ['testStep',
   'testDateRange',
   'testAdvancedSearch',
   // 'testCron'
+  'testTextTooltip'
   ]
 export default {
   name: "App",
@@ -59,6 +61,7 @@ export default {
     testDateRange,
     testAdvancedSearch,
     // testCron
+    testTextTooltip
   },
   data() {
     return {
