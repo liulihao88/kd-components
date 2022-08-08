@@ -8,9 +8,8 @@ import FilterTable from "./FilterTable";
 import Input from "./Input";
 import DateRange from "./DateRange";
 import AdvancedSearch from "./AdvancedSearch";
-// import Cron from "./cron/input-cron";
-import TextTooltip from "./TextTooltip";
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip];
+import KdTooltip from "./KdTooltip";
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,KdTooltip];
 
 const install = (app) => {
   components.map((component) => {
@@ -18,5 +17,5 @@ const install = (app) => {
   });
 };
 
-export { install, DetailBtn, Step, Affix,Owner,SelectMultiple,TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,TextTooltip};
+export { install, DetailBtn, Step, Affix,Owner,SelectMultiple,TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,KdTooltip};
 export default install;
