@@ -8,6 +8,7 @@ import FilterTable from "./FilterTable";
 import Input from "./Input";
 import DateRange from "./DateRange";
 import AdvancedSearch from "./AdvancedSearch";
+// import Cron from "./cron/input-cron";
 
 const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch];
 

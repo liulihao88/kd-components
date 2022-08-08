@@ -17,8 +17,8 @@
     "all": "npm run build && npm run build:utils",
     "pub": "node ./bin/index.js"
   },
-  "main": "dist/lib/components/index.js",
-  "module": "dist/es/components/index.mjs",
+  "main": "dist/kd-components.esm.js",
+  "module": "dist/kd-components.cjs.js",
   "files": [
     "dist"
   ],
@@ -65,6 +65,7 @@
     "unplugin-vue-define-options": "^0.6.2",
     "vue": "^2.6.0",
     "vue-i18n": "8.25.1",
+    "element-ui": "2.15.8",
     "vue-template-compiler": "^2.6.14"
   },
   "browserslist": [
