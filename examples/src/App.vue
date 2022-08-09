@@ -39,6 +39,7 @@ import KdTooltip from "./views/KdTooltip";
 import testDialog from "./views/dialog";
 import testDrawer from "./views/drawer";
 import testTree from "./views/tree";
+import testSlidePanel from "./views/slidePanel";
 import testIcon from "./views/icon"
 import testSelect from './views/select';
 import testTitle from './views/title';
@@ -57,6 +58,7 @@ let com = [
   'testDialog',
   'testDrawer',
   'testTree',
+  'testSlidePanel',
   'testIcon',
   'testSelect',
   'testTitle',
@@ -81,6 +83,7 @@ export default {
     testDialog,
     testDrawer,
     testTree,
+    testSlidePanel,
     testIcon,
     testSelect,
     testTitle
