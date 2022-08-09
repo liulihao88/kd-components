@@ -847,6 +847,12 @@ export default {
       this.handleCurrentChange(1);
     },
     /**
+     * 刷新表格，不改变筛选条件和分页
+     */
+    refreshTableData() {
+      this._updatePage()
+    },
+    /**
      * 筛选
      */
     toSearch() {

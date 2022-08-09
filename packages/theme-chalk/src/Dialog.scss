@@ -9,7 +9,12 @@
     font-size: 14px;
   }
   ::v-deep .el-dialog__header {
-    border-bottom: 1px solid var(--gray);
+    height: 50px;
+    line-height: 50px;
+    padding: 0 0 0 20px;
+    color: var(--text-important-color);
+    background: var(--dialog-title-bg);
+    font-weight: 500;
   }
   .slot_box {
     max-height: 600px;

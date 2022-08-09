@@ -1,0 +1,33 @@
+.kd-multipane {
+  .multipane {
+    height: 100%;
+    .left_panel {
+      // float: left;
+      // width: 222px;
+      background: var(--box-bg);
+      border-right: 1px solid var(--line-color);
+    }
+    .resizer {
+      position: relative;
+      margin-left: -5px;
+      width: 4px;
+      height: 100%;
+      background: transparent;
+      z-index: 99999;
+    }
+    .right_panel {
+      width: 0;
+      border-left: 1px solid var(--line-color);
+      border-right: 1px solid var(--line-color);
+      // z-index: 0;
+    }
+    /*
+    * 此处这样设置是为了使父层级的z-index失效，因为left_panel right_panel的子层级都有弹框
+    * 父层级z-index失效才能使各自的子层级的弹框的z-index同时有效
+    */
+    &>div {
+        position: static;
+        z-index: unset;
+    }
+  }
+}

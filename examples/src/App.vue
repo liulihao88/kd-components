@@ -37,6 +37,7 @@ import KdTooltip from "./views/KdTooltip";
 import testDialog from "./views/dialog";
 import testDrawer from "./views/drawer";
 import testTree from "./views/tree";
+import testSlidePanel from "./views/slidePanel";
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
@@ -49,7 +50,8 @@ let com = ['testStep',
   'KdTooltip',
   'testDialog',
   'testDrawer',
-  'testTree'
+  'testTree',
+  'testSlidePanel'
   ]
 export default {
   name: "App",
@@ -66,7 +68,8 @@ export default {
     KdTooltip,
     testDialog,
     testDrawer,
-    testTree
+    testTree,
+    testSlidePanel
   },
   data() {
     return {
