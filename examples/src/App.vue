@@ -2,13 +2,13 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`">{{ item.replace('test', '') }}</a>
+        <a :href="`#${item}`" v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
       <div>
         <div v-for="item in comArr" :id="item" :key="item">
-          <h5 class="title">{{ item.replace('test', '') }}</h5>
+          <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
           <div v-text="">
           </div>
