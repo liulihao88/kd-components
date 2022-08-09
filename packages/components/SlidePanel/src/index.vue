@@ -32,8 +32,7 @@ export default {
   },
   data() {
     return {
-      lWidth: this.leftWidth,
-
+      lWidth: this.leftWidth
     };
   },
   components: {
@@ -58,7 +57,7 @@ export default {
     paneResizeStop(pane, container, size) {
       console.log('pane, container, size', pane, container, size);
       this.lWidth = parseInt(size);
-      this.bus.$emit('layoutEditor', true, window.innerWidth - this.lWidth - 67);
+      this.$emit('resizeStop', this.lWidth);
     },
   }
 };
