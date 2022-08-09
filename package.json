@@ -28,7 +28,9 @@
     "components"
   ],
   "author": "hrr",
-  "dependencies": {},
+  "dependencies": {
+    "css-loader": "^6.7.1"
+  },
   "peerDependencies": {
     "element-ui": "2.15.8",
     "core-js": "^3.8.3",

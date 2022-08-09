@@ -2,14 +2,16 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`">{{item.replace('test','')}}</a>
+        <a :href="`#${item}`" v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
       <div>
         <div v-for="item in comArr" :id="item" :key="item">
-          <h5 class="title">{{item.replace('test','')}}</h5>
+          <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
+          <div v-text="">
+          </div>
         </div>
         <!--    国际化demo    -->
         <div>
@@ -37,6 +39,7 @@ import KdTooltip from "./views/KdTooltip";
 import testDialog from "./views/dialog";
 import testDrawer from "./views/drawer";
 import testTree from "./views/tree";
+import testIcon from "./views/icon"
 let com = ['testStep',
   'testAffixFooter',
   'testOwner',
@@ -49,7 +52,8 @@ let com = ['testStep',
   'KdTooltip',
   'testDialog',
   'testDrawer',
-  'testTree'
+  'testTree',
+  'testIcon'
   ]
 export default {
   name: "App",
@@ -66,7 +70,8 @@ export default {
     KdTooltip,
     testDialog,
     testDrawer,
-    testTree
+    testTree,
+    testIcon
   },
   data() {
     return {
@@ -77,8 +82,16 @@ export default {
 
   },
   mounted() {
+    console.log(this)
   },
   methods: {
+    replaceName (value) {
+      let str = `kd${value.replace('test','')}`
+      return str.replace(/([A-Z])/g, (match, p1, offset, string) => {
+        // 一个捕获组捕获全部，所以match等于p1
+        return '-' + p1.toLowerCase();
+      })
+    },
     lang() {
       this.$i18n.locale = 'ja'
       localStorage.setItem('lang','ja')
@@ -108,7 +121,7 @@ export default {
 }
 .nav {
   box-sizing: border-box;
-  width: 175px;
+  width: 185px;
   border-right: 1px solid #d8d8d8;
   padding: 20px 0 30px;
   height: calc(100vh - 1px);
