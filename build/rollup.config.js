@@ -5,8 +5,8 @@ import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-fr
 import { alias as name } from "../package.json";
 // import postcss from "rollup-plugin-postcss";
 // import postcssImport from "postcss-import";
-import css from "rollup-plugin-css-only";
-import CleanCSS from "clean-css";
+// import css from "rollup-plugin-css-only";
+// import CleanCSS from "clean-css";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
@@ -26,17 +26,17 @@ export default {
   plugins: [
     nodeResolve(),
     vuePlugin({
-      css: false, // Dynamically inject css as a <style> tag
+      // css: false, // Dynamically inject css as a <style> tag
     }),
-    css({
-      output(style) {
-        !fs.existsSync("dist") && fs.mkdirSync("dist");
-        fs.writeFileSync(
-          `dist/${name}.css`,
-          new CleanCSS().minify(style).styles
-        );
-      },
-    }),
+    // css({
+    //   output(style) {
+    //     !fs.existsSync("dist") && fs.mkdirSync("dist");
+    //     fs.writeFileSync(
+    //       `dist/${name}.css`,
+    //       new CleanCSS().minify(style).styles
+    //     );
+    //   },
+    // }),
     // postcss({
     //   extensions: [".css"],
     //   extract: true,

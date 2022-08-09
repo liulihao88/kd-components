@@ -20,4 +20,5 @@ export const epRoot = resolve(pkgRoot, '')
 
 
 export const buildOutput = resolve(projRoot, 'dist')
+export const buildThemeOutput = resolve(projRoot, '../dist')
 export const epOutput = resolve(buildOutput, '')
