@@ -13,7 +13,9 @@ import KdTooltip from "./KdTooltip";
 import Dialog from "./Dialog";
 import Drawer from "./Drawer";
 import Tree from "./Tree";
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,KdTooltip, Dialog, Drawer, Tree];
+import Select from "./Select";
+import Title from './Title'
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, Select, Title];
 
 const install = (app) => {
   components.map((component) => {
@@ -22,5 +24,5 @@ const install = (app) => {
   registerDirectives(app);
 };
 
-export { install, DetailBtn, Step, Affix,Owner,SelectMultiple,TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch,KdTooltip, Dialog, Drawer, Tree};
+export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, Select, Title };
 export default install;
