@@ -132,7 +132,7 @@ export default {
 }
 .nav {
   box-sizing: border-box;
-  width: 185px;
+  width: 175px;
   border-right: 1px solid #d8d8d8;
   padding: 20px 0 30px;
   height: calc(100vh - 1px);
@@ -143,7 +143,7 @@ export default {
     text-decoration: none;
     color: #333333;
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
     &:hover {
       color: #409eff;
     }
