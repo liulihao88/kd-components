@@ -2,19 +2,27 @@
   ::v-deep .el-icon {
     border-radius: 50%;
     font-size: 16px;
-    color: rgba(39, 48, 75, 0.85);
+    color: rgba(39, 48, 75, 0.9);
   }
-  ::v-deep .el-dialog__title {
+  .el-dialog__title {
     font-weight: 500;
     font-size: 14px;
   }
-  ::v-deep .el-dialog__header {
+  .el-dialog__header {
     height: 50px;
     line-height: 50px;
     padding: 0 0 0 20px;
     color: var(--text-important-color);
     background: var(--dialog-title-bg);
     font-weight: 500;
+    .el-dialog__headerbtn {
+      top: 16px;
+      font-size: 20px;
+    }
+  }
+  .el-dialog__footer {
+    padding: 13px;
+    border-top: 1px solid var(--line-color);
   }
   .slot_box {
     max-height: 600px;
