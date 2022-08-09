@@ -2,20 +2,20 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`" v-text="replaceName(item)"></a>
+        <a :href="`#${item}`">{{ item.replace('test', '') }}</a>
       </li>
     </ul>
     <section class="container">
       <div>
         <div v-for="item in comArr" :id="item" :key="item">
-          <h5 class="title" v-text="replaceName(item)"></h5>
+          <h5 class="title">{{ item.replace('test', '') }}</h5>
           <component :is="item"></component>
           <div v-text="">
           </div>
         </div>
         <!--    国际化demo    -->
         <div>
-          <p>{{ $t("message.hello") }}</p>
+          <p>{{ $t('message.hello') }}</p>
           <el-button @click="lang">切换ja</el-button>
           <el-button @click="langen">切换en</el-button>
           <detail-btn></detail-btn>
@@ -40,7 +40,11 @@ import testDialog from "./views/dialog";
 import testDrawer from "./views/drawer";
 import testTree from "./views/tree";
 import testIcon from "./views/icon"
-let com = ['testStep',
+import testSelect from './views/select';
+import testTitle from './views/title';
+
+let com = [
+  'testStep',
   'testAffixFooter',
   'testOwner',
   'testTreeMultiple',
@@ -53,10 +57,16 @@ let com = ['testStep',
   'testDialog',
   'testDrawer',
   'testTree',
-  'testIcon'
+  'testIcon',
+  'testSelect',
+  'testTitle',
   ]
+
+// if(process.env.NODE_ENV === 'development'){
+//   com = [com[com.length-2], com[com.length-1]]
+// }
 export default {
-  name: "App",
+  name: 'App',
   components: {
     testStep,
     testAffixFooter,
@@ -71,19 +81,17 @@ export default {
     testDialog,
     testDrawer,
     testTree,
-    testIcon
+    testIcon,
+    testSelect,
+    testTitle
   },
   data() {
     return {
-      comArr: com
-    }
+      comArr: com,
+    };
   },
-  computed: {
-
-  },
-  mounted() {
-    console.log(this)
-  },
+  computed: {},
+  mounted() {},
   methods: {
     replaceName (value) {
       let str = `kd${value.replace('test','')}`
@@ -93,13 +101,13 @@ export default {
       })
     },
     lang() {
-      this.$i18n.locale = 'ja'
-      localStorage.setItem('lang','ja')
+      this.$i18n.locale = 'ja';
+      localStorage.setItem('lang', 'ja');
       location.reload();
     },
     langen() {
-      this.$i18n.locale = 'en'
-      localStorage.setItem('lang','en')
+      this.$i18n.locale = 'en';
+      localStorage.setItem('lang', 'en');
       location.reload();
     }
   }
@@ -129,8 +137,8 @@ export default {
     line-height: 40px;
   }
   a {
-    text-decoration:none;
-    color:#333333;
+    text-decoration: none;
+    color: #333333;
     text-align: left;
     font-size: 20px;
     &:hover {

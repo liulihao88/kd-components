@@ -155,9 +155,9 @@ defaultProps: {
 * 2022-06-17
 * @Author: andy凌云
 */
-import { cloneDeep } from 'lodash/cloneDeep'
+import { cloneDeep } from 'lodash/cloneDeep';
 export default {
-  name: "KdTree",
+  name: 'KdTree',
   components: {},
   props: {
     // 大部分配置都在defaultProps里

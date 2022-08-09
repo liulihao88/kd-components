@@ -1,0 +1,28 @@
+.kd-select {
+  min-width: 208px;
+  display: inline-block;
+  .left_box {
+    // background-color: #f5f7fa;
+    background: #fff;
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #dcdfe6;
+    border-right: 0 none;
+    padding: 0 8px;
+    white-space: nowrap;
+    border-radius: 2px 0 0 2px;
+    align-items: center;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    color: #909399;
+    font-size: 12px;
+  }
+  ::v-deep .el-input__inner {
+    border-radius: 0px 2px 2px 0 !important;
+  }
+  .right_box{
+    width: 208px;
+    display:inline-block;
+  }
+}
