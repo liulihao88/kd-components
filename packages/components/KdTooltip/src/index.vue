@@ -72,11 +72,5 @@ export default {
 </script>
 
 <style lang="scss">
-.hide-text{
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 </style>

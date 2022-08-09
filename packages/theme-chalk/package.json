@@ -1,0 +1,26 @@
+{
+  "name": "gulpdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp --require @esbuild-kit/cjs-loader"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.3"
+  },
+  "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.3.3",
+    "consola": "^2.15.3"
+  }
+}

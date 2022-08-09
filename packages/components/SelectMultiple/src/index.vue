@@ -66,33 +66,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-.need-table-checkbox.is-multiple .el-select-dropdown__item {
-  &.selected::after {
-    left: 21px;
-    z-index: 10;
-    width: 16px;
-    height: 16px;
-    background: #365edf;
-    border: 1px solid #365edf;
-    border-radius: 2px;
-    color: #ffffff;
-    top: 50%;
-    transform: translateY(-50%);
-    line-height: 14px;
-    text-align: center;
-  }
-  .el-checkbox__inner {
-    width: 16px;
-    height: 16px;
-  }
-  &.selected .el-checkbox__label {
-    color: #365edf;
-  }
-  &.hover {
-    background-color: #f5f7fd;
-    border-radius: 1px;
-  }
-}
-</style>
