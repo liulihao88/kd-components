@@ -40,23 +40,26 @@ import testTree from './views/tree';
 import testSelect from './views/select';
 import testTitle from './views/title';
 let com = [
-  // 'testStep',
-  // 'testAffixFooter',
-  // 'testOwner',
-  // 'testTreeMultiple',
-  // 'testSelectMultiple',
-  // 'testFilterTable',
-  // 'testInput',
-  // 'testDateRange',
-  // 'testAdvancedSearch',
-  // 'KdTooltip',
-  // 'testDialog',
-  // 'testDrawer',
-  // 'testTree',
+  'testStep',
+  'testAffixFooter',
+  'testOwner',
+  'testTreeMultiple',
+  'testSelectMultiple',
+  'testFilterTable',
+  'testInput',
+  'testDateRange',
+  'testAdvancedSearch',
+  'KdTooltip',
+  'testDialog',
+  'testDrawer',
+  'testTree',
   'testSelect',
   'testTitle',
 ];
-let lastCom = [com[com.length -1]];
+
+if(process.env.NODE_ENV === 'development'){
+  com = [com[com.length-2], com[com.length-1]]
+}
 
 export default {
   name: 'App',
@@ -80,7 +83,6 @@ export default {
   data() {
     return {
       comArr: com,
-      // comArr: lastCom,
     };
   },
   computed: {},
