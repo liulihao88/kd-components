@@ -1,0 +1,20 @@
+.kj-affix-footer {
+  position: fixed;
+  z-index: 50;
+  height: 56px;
+  bottom: 0;
+  left: 184px;
+  right: 0;
+  text-align: center;
+  padding: 11px 0 12px 0;
+  box-sizing: border-box;
+  border-top: 1px solid var(--line-color);
+  transition: all 0.2s linear;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+}
+.hideSidebar {
+  .kj-affix-footer {
+    left: 54px;
+  }
+}

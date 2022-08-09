@@ -172,17 +172,6 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-.orgtree {
-  width: 100%;
-  .el-select {
-    width: 100%;
-  }
-}
-.kj-tree {
-  padding-right: 8px;
-}
-.search-style {
-  padding: 8px 16px 8px;
-}
-</style>
+<!--<style scoped lang="scss">-->
+
+<!--</style>-->

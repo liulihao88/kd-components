@@ -1,15 +1,16 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run clean && npm run build:es && npm run build:umd",
+    "build": "npm run clean && npm run build:es && npm run build:umd && npm run build:theme",
     "build:es": "rollup --config build/rollup.esm.config.js",
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "subBuild": "rollup --c build/rollup.config.sub.js",
+    "build:theme": "npm run -C packages/theme-chalk build",
     "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit",
     "clean:utils": "rimraf ./kd-utils",
@@ -36,7 +37,8 @@
     "vue": "^2.6.14",
     "vue-i18n": "8.25.1",
     "lodash": "^4.17.21",
-    "vue-multipane": "^0.9.5"
+    "vue-multipane": "^0.9.5",
+    "css-loader": "^6.7.1"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.2.0",
@@ -68,7 +70,15 @@
     "vue": "^2.6.0",
     "vue-i18n": "8.25.1",
     "element-ui": "2.15.8",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "chalk": "^5.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "@esbuild-kit/cjs-loader": "^2.3.3",
+    "consola": "^2.15.3"
   },
   "browserslist": [
     "> 1%",

@@ -163,35 +163,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.owner-item {
-  .el-form-item {
-    margin-bottom: 24px;
-  }
-  .kj-owner {
-    display: flex;
-    align-items: center;
-    .no_drop{
-      cursor: no-drop;
-    }
-    .pointer{
-      cursor: pointer;
-    }
-
-    .add,
-    .del {
-      width: 32px;
-      height: 32px;
-      background: #ffffff;
-      border: 1px solid #e3e6eb;
-      border-radius: 1px;
-      font-size: 16px;
-      color: rgba(39, 48, 75, 0.65);
-      text-align: center;
-
-      margin-left: 8px;
-      line-height: 29px;
-    }
-  }
-}
-</style>
