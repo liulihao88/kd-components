@@ -43,6 +43,7 @@ import testSlidePanel from "./views/slidePanel";
 import testIcon from "./views/icon"
 import testSelect from './views/select';
 import testTitle from './views/title';
+import testEmpty from './views/empty';
 
 let com = [
   'testStep',
@@ -62,6 +63,7 @@ let com = [
   'testIcon',
   'testSelect',
   'testTitle',
+  'testEmpty'
   ]
 
 // if(process.env.NODE_ENV === 'development'){
@@ -86,7 +88,8 @@ export default {
     testSlidePanel,
     testIcon,
     testSelect,
-    testTitle
+    testTitle,
+    testEmpty
   },
   data() {
     return {

@@ -17,7 +17,8 @@ import SlidePanel from "./SlidePanel";
 import Icon from "./Icon";
 import Select from "./Select";
 import Title from './Title';
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title];
+import Empty from './Empty';
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title, Empty];
 
 const install = (app) => {
   components.map((component) => {
@@ -26,6 +27,6 @@ const install = (app) => {
   registerDirectives(app);
 };
 
-export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title };
+export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title, Empty };
 
 export default install;
