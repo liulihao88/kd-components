@@ -25,6 +25,7 @@
       <el-input
         v-model="queryTxt"
         width="100%"
+        size="small"
         :placeholder="defaultProps.placeholder || '请输入'"
         suffix-icon="el-icon-search"
       />

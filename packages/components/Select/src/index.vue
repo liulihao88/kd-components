@@ -31,7 +31,7 @@
 * 下拉选择框的组件封装
 * @使用方法
    1. 简单的options, 纯数组
-    <kd-select 
+    <kd-select
       v-model="tt"
       :options="TEST_DATA2"
       type="simple"
@@ -57,7 +57,7 @@
     { enName: 'andy', chName: '凌云', id: 111 },
     { enName: 'andy2', chName: '凌云2', id: 222 },
   ],
-  3. 如果是多个参数拼接出来的选项  
+  3. 如果是多个参数拼接出来的选项
   <gSelect2
       v-model="value3"
       title="拼接下拉框"
@@ -133,7 +133,7 @@ export default {
   },
   data() {
     return {
-      
+
     };
   },
   computed: {
@@ -201,5 +201,3 @@ export default {
   }
 };
 </script>
-</script>
-<style lang="scss" src="./index.scss"></style>

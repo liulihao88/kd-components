@@ -2,14 +2,16 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`">{{ item.replace('test', '') }}</a>
+        <a :href="`#${item}`" v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
       <div>
         <div v-for="item in comArr" :id="item" :key="item">
-          <h5 class="title">{{ item.replace('test', '') }}</h5>
+          <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
+          <div v-text="">
+          </div>
         </div>
         <!--    国际化demo    -->
         <div>
@@ -24,21 +26,24 @@
 </template>
 
 <script>
-import testStep from './views/step';
-import testAffixFooter from './views/affixFooter';
-import testOwner from './views/owner/index';
-import testTreeMultiple from './views/treeMultiple';
-import testSelectMultiple from './views/selectMultiple';
-import testFilterTable from './views/filterTable';
-import testInput from './views/input';
-import testDateRange from './views/dateRange';
-import testAdvancedSearch from './views/advancedSearch';
-import KdTooltip from './views/KdTooltip';
-import testDialog from './views/dialog';
-import testDrawer from './views/drawer';
-import testTree from './views/tree';
+import testStep from "./views/step";
+import testAffixFooter from "./views/affixFooter";
+import testOwner from "./views/owner/index"
+import testTreeMultiple from "./views/treeMultiple";
+import testSelectMultiple from "./views/selectMultiple";
+import testFilterTable from "./views/filterTable";
+import testInput from "./views/input";
+import testDateRange from "./views/dateRange";
+import testAdvancedSearch from "./views/advancedSearch";
+import KdTooltip from "./views/KdTooltip";
+import testDialog from "./views/dialog";
+import testDrawer from "./views/drawer";
+import testTree from "./views/tree";
+import testSlidePanel from "./views/slidePanel";
+import testIcon from "./views/icon"
 import testSelect from './views/select';
 import testTitle from './views/title';
+
 let com = [
   'testStep',
   'testAffixFooter',
@@ -53,14 +58,15 @@ let com = [
   'testDialog',
   'testDrawer',
   'testTree',
+  'testSlidePanel',
+  'testIcon',
   'testSelect',
   'testTitle',
-];
+  ]
 
-if(process.env.NODE_ENV === 'development'){
-  com = [com[com.length-2], com[com.length-1]]
-}
-
+// if(process.env.NODE_ENV === 'development'){
+//   com = [com[com.length-2], com[com.length-1]]
+// }
 export default {
   name: 'App',
   components: {
@@ -77,6 +83,8 @@ export default {
     testDialog,
     testDrawer,
     testTree,
+    testSlidePanel,
+    testIcon,
     testSelect,
     testTitle
   },
@@ -88,6 +96,13 @@ export default {
   computed: {},
   mounted() {},
   methods: {
+    replaceName (value) {
+      let str = `kd${value.replace('test','')}`
+      return str.replace(/([A-Z])/g, (match, p1, offset, string) => {
+        // 一个捕获组捕获全部，所以match等于p1
+        return '-' + p1.toLowerCase();
+      })
+    },
     lang() {
       this.$i18n.locale = 'ja';
       localStorage.setItem('lang', 'ja');
@@ -128,7 +143,7 @@ export default {
     text-decoration: none;
     color: #333333;
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
     &:hover {
       color: #409eff;
     }

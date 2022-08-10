@@ -1,5 +1,4 @@
 @import '../element-theme/element-variables.scss';
-@import './gstyle.scss';
 :root {
 --bg-color: #FFFFFF;// 页面主背景
 --box-bg: #FFFFFF;//模块背景
@@ -53,7 +52,7 @@
 --cancel-btn-color: #606266;
   // 删除红色
 --shanchu-icon: #FF0000;
-  // 提示信息icon颜色:icon-zhushi
+  // 提示信息icon颜色:Icon-zhushi
 --tip-color: #B3B8BF;
   // 图标-folder
 --icon-folder: #e0a909;

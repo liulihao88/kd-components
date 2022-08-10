@@ -17,3 +17,5 @@ export const copyElementUIReset = copyFile('packages/theme-chalk/element-theme',
 
 export const copyCmpPkg = copyFile('package.json','dist/package.json', 'dist/locale','cmpPkg success!')
 
+export const copyFonts = copyFile('packages/theme-chalk/src/fonts','dist/fonts','font success')
+

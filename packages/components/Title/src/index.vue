@@ -17,7 +17,7 @@
 * @描述
 * 公共title组件。可以设置title,  可以设置左侧竖条颜色
 * @使用方法
-<kd-title title="4. 回到顶部"></kd-title> 
+<kd-title title="4. 回到顶部"></kd-title>
 <kd-title ttitle="左侧粉色" style="--lc: pink"/>
 <kd-title
   title="自定义titile"
@@ -55,4 +55,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" src="./index.scss"></style>

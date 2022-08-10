@@ -3,11 +3,11 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import VueI18n from 'vue-i18n'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-import "element-ui/lib/theme-chalk/index.css";
-// import '../../packages/theme-chalk/element-theme/index.css'
-import "../../dist/kd-components.css";
-// import "./assets/styles/var.css";
-// import kjComponents from "../../dist/es/components/index.mjs";
+// import "element-ui/lib/theme-chalk/index.css";
+// 重置el 样式
+import '../../packages/theme-chalk/element-theme/index.css'
+// 本地dist css
+// import "../../dist/kd-components.css";
 import kjComponents from "../../packages/components/index";
 import "../../packages/theme-chalk/src/index.scss"
 import {zhCn,ja} from "../../packages/locale/index"

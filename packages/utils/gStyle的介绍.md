@@ -1,8 +1,8 @@
 ##  gStyle是全局公共样式文件。提供了最常用的css样式属性， 下面是对属性的介绍, 最常用的放在最前边。 
-> 大部分属性100以内奇数和偶数都可设置。 超过100-1000之间的只能是偶数和5的倍数。 超过1000的均不支持。 
+> 绝大部分属性100以内奇数和偶数都可设置。 100-1000之间的只能是偶数和5的倍数。 超过1000的均不支持。 
 
 ## 1. margin外边距
-+ m => margin: 8px;
++ m => margin: 8px; `此种写法后期废弃, 少用`
 + mr => margin-right: 8px;
 + m-lr-8 => margin: 0 8px;
 + m-t-24 => margin-top: 24px;
@@ -105,6 +105,8 @@ sd => box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 ac => color: var(--primary-color);
 ## 25. 链接文本
 link => cursor: pointer; color: var(--primary-color);
-
+## 26. z-index层级
+z-100 => z-index: 100;
+z-800 => z-index: 800;
 
 
