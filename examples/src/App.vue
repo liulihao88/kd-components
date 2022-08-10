@@ -26,74 +26,18 @@
 </template>
 
 <script>
-import testStep from "./views/step";
-import testAffixFooter from "./views/affixFooter";
-import testOwner from "./views/owner/index"
-import testTreeMultiple from "./views/treeMultiple";
-import testSelectMultiple from "./views/selectMultiple";
-import testFilterTable from "./views/filterTable";
-import testInput from "./views/input";
-import testDateRange from "./views/dateRange";
-import testAdvancedSearch from "./views/advancedSearch";
-import KdTooltip from "./views/KdTooltip";
-import testDialog from "./views/dialog";
-import testDrawer from "./views/drawer";
-import testTree from "./views/tree";
-import testSlidePanel from "./views/slidePanel";
-import testIcon from "./views/icon"
-import testSelect from './views/select';
-import testTitle from './views/title';
-import testEmpty from './views/empty';
+import {requireComponents} from "./utils/index"
+const constantModules = require.context('./views', true, /\.vue$/)
+const { components , names } = requireComponents(constantModules, ['testCron'])
 
-let com = [
-  'testStep',
-  'testAffixFooter',
-  'testOwner',
-  'testTreeMultiple',
-  'testSelectMultiple',
-  'testFilterTable',
-  'testInput',
-  'testDateRange',
-  'testAdvancedSearch',
-  'KdTooltip',
-  'testDialog',
-  'testDrawer',
-  'testTree',
-  'testSlidePanel',
-  'testIcon',
-  'testSelect',
-  'testTitle',
-  'testEmpty'
-  ]
-
-// if(process.env.NODE_ENV === 'development'){
-//   com = [com[com.length-2], com[com.length-1]]
-// }
 export default {
   name: 'App',
   components: {
-    testStep,
-    testAffixFooter,
-    testOwner,
-    testTreeMultiple,
-    testSelectMultiple,
-    testFilterTable,
-    testInput,
-    testDateRange,
-    testAdvancedSearch,
-    KdTooltip,
-    testDialog,
-    testDrawer,
-    testTree,
-    testSlidePanel,
-    testIcon,
-    testSelect,
-    testTitle,
-    testEmpty
+    ...components
   },
   data() {
     return {
-      comArr: com,
+      comArr: names,
     };
   },
   computed: {},

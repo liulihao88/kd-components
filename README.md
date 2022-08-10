@@ -131,6 +131,12 @@ npm install @kd/components@latest
 
 ```
 
+### vue文件图片引入方式(特别大的图不建议这么引入)
+``` js
+import logo from './logo.png';
+
+```
+
 ### 注意事项 lodash 引入会报错,需要在vue.config.js 配置以下文件
 
 ```js

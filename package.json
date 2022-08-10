@@ -11,6 +11,7 @@
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "subBuild": "rollup --c build/rollup.config.sub.js",
     "build:theme": "npm run -C packages/theme-chalk build",
+    "build:md": "node examples/src/genertate.js",
     "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit",
     "clean:utils": "rimraf ./kd-utils",
