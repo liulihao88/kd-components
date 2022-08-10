@@ -1,7 +1,7 @@
 <template>
   <div class="kd-empty">
     <div>
-      <img 
+      <img
         :src="img"
         :width="imageSize"
         alt=""
@@ -11,13 +11,14 @@
   </div>
 </template>
 <script>
+import group_null from './img/group_null.png'
 export default {
     name: 'KdEmpty',
     props: {
         img:{
             type: String,
             default: () => {
-                return require ('./img/group_null.png')
+                return group_null
             }
         },
         imageSize: {

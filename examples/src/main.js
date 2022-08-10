@@ -6,8 +6,11 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 // import "element-ui/lib/theme-chalk/index.css";
 // 重置el 样式
 import '../../packages/theme-chalk/element-theme/index.css'
-// 本地dist css
+// dist
 // import "../../dist/kd-components.css";
+// import kjComponents from "../../dist/kd-components.esm.js";
+
+// 本地的
 import kjComponents from "../../packages/components/index";
 import "../../packages/theme-chalk/src/index.scss"
 import {zhCn,ja} from "../../packages/locale/index"

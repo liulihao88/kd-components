@@ -8,6 +8,7 @@ import { alias as name } from "../package.json";
 // import css from "rollup-plugin-css-only";
 // import CleanCSS from "clean-css";
 import commonjs from "rollup-plugin-commonjs";
+import image from '@rollup/plugin-image';
 import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import strip from "@rollup/plugin-strip";
@@ -25,6 +26,7 @@ export default {
   },
   plugins: [
     nodeResolve(),
+    image(),
     vuePlugin({
       // css: false, // Dynamically inject css as a <style> tag
     }),

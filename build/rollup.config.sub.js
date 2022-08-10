@@ -4,6 +4,7 @@ import vuePlugin from "rollup-plugin-vue";
 import commonjs from "rollup-plugin-commonjs";
 import glob from 'fast-glob'
 import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle";
+import image from '@rollup/plugin-image';
 import { alias as name } from "../package.json";
 import css from "rollup-plugin-css-only";
 import CleanCSS from "clean-css";
@@ -74,6 +75,7 @@ export const buildModules = async () => {
                 isProduction: false,
                 css: false, // Dynamically inject css as a <style> tag
             }),
+            image(),
             nodeResolve({
                 extensions: ['.mjs', '.js', '.json', '.ts'],
             }),
