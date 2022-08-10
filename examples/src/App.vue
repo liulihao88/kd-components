@@ -11,7 +11,8 @@
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
           <div class="markdown-body" style="margin-top: 16px;">
-            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>
+            <VueMarkdown :source="mds[item]"></VueMarkdown>
+<!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
           </div>
         </div>
         <!--    国际化demo    -->
@@ -31,9 +32,8 @@ import VueMarkdown from 'vue-markdown';
 import {requireComponents , requireMd } from "./utils/index"
 
 const constantModulesMd = require.context('./views', true, /\.md$/)
-const { mds } = requireMd(constantModulesMd)
-import abc from "./views/icon/index.md"
 const constantModules = require.context('./views', true, /\.vue$/)
+const { mds } = requireMd(constantModulesMd)
 const { components , names } = requireComponents(constantModules, ['testCron'])
 
 
@@ -46,8 +46,7 @@ export default {
   data() {
     return {
       comArr: names,
-      mds: mds,
-      abc: abc
+      mds: mds
     };
   },
   computed: {},

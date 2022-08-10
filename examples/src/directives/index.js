@@ -6,8 +6,7 @@ Vue.directive('highlight', function (el) {
     // console.log(el.innerHTML);
     const blocks = el.querySelectorAll('pre code')
     // console.log(blocks);
-    // blocks.forEach(block => {
-    //     hljs.highlightElement(block)
-    // })
-    Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+    blocks.forEach(block => {
+        hljs.highlightElement(block)
+    })
 })
