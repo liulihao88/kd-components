@@ -26,7 +26,7 @@ const readFile = (dir) => {
 }
 
 const writeFile = (dir,data) => {
-    let content = '```vue \n \n'+
+    let content = '``` \n'+
         data +
         '\n ```'
     if (fs.existsSync(path.join(dir, 'index.md'))) {

@@ -2,6 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import ElementUI from "element-ui";
 import VueI18n from 'vue-i18n'
+import "./directives/index"
+import 'github-markdown-css/github-markdown.css'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 // import "element-ui/lib/theme-chalk/index.css";
 // 重置el 样式

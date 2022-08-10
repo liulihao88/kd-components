@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <div>
     <kd-title title="最基础用法" class="b-b-1"></kd-title>

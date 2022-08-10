@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
     <div>
         <kd-empty></kd-empty>

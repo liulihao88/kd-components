@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <!--
 des: is-object 为true时需要设置node-key,默认为value，选择后的值为[{name: "id"},{name: "name"}]
   is-object 为 false ,选择的值内容为['id','name']

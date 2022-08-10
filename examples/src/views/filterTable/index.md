@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <kd-filter-table
     ref="tableRef"

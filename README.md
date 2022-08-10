@@ -20,6 +20,12 @@ npm run build
 npm run build:utils
 ```
 
+### 自动生成examples 里的md文件
+```
+npm run build:md
+```
+
+
 ### 打包构建组件库和工具库
 ```
 npm run all

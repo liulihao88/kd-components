@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <div>
     <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">

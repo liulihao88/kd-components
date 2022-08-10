@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <kd-input
     title="sssssss"

@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <kj-cron
       v-model="cronExpression"

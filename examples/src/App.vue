@@ -10,7 +10,8 @@
         <div v-for="item in comArr" :id="item" :key="item">
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
-          <div v-text="">
+          <div class="markdown-body" style="margin-top: 16px;">
+            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>
           </div>
         </div>
         <!--    国际化demo    -->
@@ -26,18 +27,27 @@
 </template>
 
 <script>
-import {requireComponents} from "./utils/index"
+import VueMarkdown from 'vue-markdown';
+import {requireComponents , requireMd } from "./utils/index"
+
+const constantModulesMd = require.context('./views', true, /\.md$/)
+const { mds } = requireMd(constantModulesMd)
+import abc from "./views/icon/index.md"
 const constantModules = require.context('./views', true, /\.vue$/)
 const { components , names } = requireComponents(constantModules, ['testCron'])
+
 
 export default {
   name: 'App',
   components: {
+    VueMarkdown,
     ...components
   },
   data() {
     return {
       comArr: names,
+      mds: mds,
+      abc: abc
     };
   },
   computed: {},

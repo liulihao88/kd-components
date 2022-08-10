@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <kd-date-range
     title="sssssss"

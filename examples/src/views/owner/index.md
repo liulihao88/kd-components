@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <el-form :model="form" label-width="auto">
     <kj-owner

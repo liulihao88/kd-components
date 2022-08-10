@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <Kj2Step></Kj2Step>
 </template>

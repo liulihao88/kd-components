@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <div>
     <div style="width:100px;">

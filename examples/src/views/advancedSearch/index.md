@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <kd-advanced-search
     class="adsearch"

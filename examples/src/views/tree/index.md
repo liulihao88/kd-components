@@ -1,5 +1,4 @@
-```vue 
- 
+``` 
 <template>
   <div class="testtree">
     <kd-tree 
