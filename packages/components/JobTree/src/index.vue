@@ -1,5 +1,5 @@
 <template>
-  <div class="kd-tree">
+  <div class="kd-job-tree">
     <div class="jt_operation">
       <div class="jt_title">
         {{ defaultProps.title }}
@@ -158,7 +158,7 @@ defaultProps: {
 */
 import { cloneDeep } from 'lodash/cloneDeep';
 export default {
-  name: 'KdTree',
+  name: 'KdJobTree',
   components: {},
   props: {
     // 大部分配置都在defaultProps里

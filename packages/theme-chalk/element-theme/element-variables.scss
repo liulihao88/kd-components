@@ -32,6 +32,11 @@
 .el-button--text {
   color: var(--primary-color);
 }
+.el-button--info {
+  background: #ebedf0;
+  border: 1px solid #ebedf0;
+  color: rgba(39,48,75,0.85);
+}
 
 .el-descriptions-item__label:not(.is-bordered-label) {
   margin-right: 0;
