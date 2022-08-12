@@ -1,7 +1,7 @@
 ``` 
 <template>
   <div class="testtree">
-    <kd-tree 
+    <kd-job-tree 
       ref="jobTreeRef" 
       :defaultProps="defaultProps"
       :treeData="treeData"
@@ -10,7 +10,7 @@
       <template #data="{ data }">
         <div>{{ data.name }}</div>
       </template>
-    </kd-tree>
+    </kd-job-tree>
   </div>
 </template>
 

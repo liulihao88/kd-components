@@ -3,7 +3,7 @@
   <div>
     <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">
       <template #left>
-        <kd-tree 
+        <kd-job-tree 
           ref="jobTreeRef" 
           :defaultProps="defaultProps"
           :treeData="treeData"
@@ -12,7 +12,7 @@
           <template #data="{ data }">
             <div>{{ data.name }}</div>
           </template>
-        </kd-tree>
+        </kd-job-tree>
       </template>
       <template #right>
           <div>右侧容器</div>

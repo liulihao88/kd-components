@@ -17,7 +17,8 @@
     "clean:utils": "rimraf ./kd-utils",
     "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js",
     "all": "npm run build && npm run build:utils",
-    "pub": "node ./bin/index.js"
+    "pub": "node ./bin/index.js",
+    "build:exm": "vue-cli-service build"
   },
   "main": "dist/kd-components.esm.js",
   "module": "dist/kd-components.cjs.js",
