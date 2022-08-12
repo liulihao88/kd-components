@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-         sh 'sh check_package.sh'
+        //  sh 'sh check_package.sh'
          sh 'cnpm install'
          sh 'cnpm run build:exm'
       }
