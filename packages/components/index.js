@@ -12,13 +12,14 @@ import AdvancedSearch from "./AdvancedSearch";
 import KdTooltip from "./KdTooltip";
 import Dialog from "./Dialog";
 import Drawer from "./Drawer";
-import Tree from "./Tree";
+import JobTree from "./JobTree";
 import SlidePanel from "./SlidePanel";
 import Icon from "./Icon";
 import Select from "./Select";
 import Title from './Title';
 import Empty from './Empty';
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title, Empty];
+import Tree from './Tree';
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree];
 
 const install = (app) => {
   components.map((component) => {
@@ -27,6 +28,6 @@ const install = (app) => {
   registerDirectives(app);
 };
 
-export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, Tree, SlidePanel, Icon, Select, Title, Empty };
+export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree };
 
 export default install;

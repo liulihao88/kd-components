@@ -1,23 +1,16 @@
 ``` 
 <template>
-  <div>
-    <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">
-      <template #left>
-        <kd-job-tree 
-          ref="jobTreeRef" 
-          :defaultProps="defaultProps"
-          :treeData="treeData"
-          @nodeHandler="nodeHandler"
-        >
-          <template #data="{ data }">
-            <div>{{ data.name }}</div>
-          </template>
-        </kd-job-tree>
+  <div class="testtree">
+    <kd-job-tree 
+      ref="jobTreeRef" 
+      :defaultProps="defaultProps"
+      :treeData="treeData"
+      @nodeHandler="nodeHandler"
+    >
+      <template #data="{ data }">
+        <div>{{ data.name }}</div>
       </template>
-      <template #right>
-          <div>右侧容器</div>
-      </template>
-    </kd-slide-panel>
+    </kd-job-tree>
   </div>
 </template>
 
@@ -82,11 +75,9 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
-.kd-panel {
-  width: 100%;
-  height: 600px;
-  border: 1px solid gray;
-}
+  .testtree {
+    width: 300px;
+  }
 </style>
 
  ```

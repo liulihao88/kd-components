@@ -3,8 +3,7 @@
     class="item"
     effect="dark"
     :disabled="isShowTooltip"
-    :content="text"
-    :placement="kdPlacement"
+    :placement="$attrs.placement"
     v-bind="$attrs"
   >
     <span
@@ -13,7 +12,7 @@
       :style="{ maxWidth: width }"
       @mouseover="onMouseOver('str')"
     >
-      <span ref="str">{{ text }}</span>
+      <span ref="str">{{ $attrs.content }}</span>
     </span>
     <slot></slot>
   </el-tooltip>
@@ -25,29 +24,25 @@ export default {
   name: 'KdTooltip',
   components: {},
   props: {
-    text: {
-      // 浮框显示的问题
+    text: { // 浮框显示的问题
       type: String,
       default: () => {
-        return '';
-      }
+        return "";
+      },
     },
-    width: {
-      // 超过此宽度省略号显示
+    width: { // 超过此宽度省略号显示
       type: String,
       default: () => {
-        return '100%';
-      }
+        return "100%";
+      },
     },
-    kdPlacement: {
-      // 浮框显示的位置
+    kdPlacement:{ // 浮框显示的位置
       type: String,
       default: () => {
-        return 'top';
-      }
+        return "top";
+      },
     },
-    slotShow: {
-      // 是否显示插槽
+    slotShow: { // 是否显示插槽
       type: Boolean,
       default: () => {
         return false;

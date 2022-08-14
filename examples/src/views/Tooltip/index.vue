@@ -3,7 +3,7 @@
     <div style="width:100px;">
       <kd-tooltip
         width="80%"
-        :text="text"
+        :content="text"
       />
     </div>
 
@@ -13,8 +13,8 @@
     <div style="width:100px;">
       <kd-tooltip
         width="70px"
-        :text="textPx"
-        kd-placement="bottom"
+        :content="textPx"
+        placement="top"
       />
     </div>
     
@@ -23,7 +23,7 @@
 
     <div>
       <kd-tooltip
-        :text="textslot"
+        :content="textslot"
         :slot-show="true"
       >
         <i class="el-icon-user-solid"></i>
