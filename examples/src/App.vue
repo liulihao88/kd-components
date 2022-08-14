@@ -10,7 +10,9 @@
         <div v-for="item in comArr" :id="item" :key="item">
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
-          <div v-text="">
+          <div class="markdown-body" style="margin-top: 16px;">
+            <VueMarkdown :source="mds[item]"></VueMarkdown>
+<!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
           </div>
         </div>
         <!--    国际化demo    -->
@@ -26,71 +28,25 @@
 </template>
 
 <script>
-import testStep from "./views/step";
-import testAffixFooter from "./views/affixFooter";
-import testOwner from "./views/owner/index"
-import testTreeMultiple from "./views/treeMultiple";
-import testSelectMultiple from "./views/selectMultiple";
-import testFilterTable from "./views/filterTable";
-import testInput from "./views/input";
-import testDateRange from "./views/dateRange";
-import testAdvancedSearch from "./views/advancedSearch";
-import KdTooltip from "./views/KdTooltip";
-import testDialog from "./views/dialog";
-import testDrawer from "./views/drawer";
-import testTree from "./views/tree";
-import testSlidePanel from "./views/slidePanel";
-import testIcon from "./views/icon"
-import testSelect from './views/select';
-import testTitle from './views/title';
+import VueMarkdown from 'vue-markdown';
+import {requireComponents , requireMd } from "./utils/index"
 
-let com = [
-  'testStep',
-  'testAffixFooter',
-  'testOwner',
-  'testTreeMultiple',
-  'testSelectMultiple',
-  'testFilterTable',
-  'testInput',
-  'testDateRange',
-  'testAdvancedSearch',
-  'KdTooltip',
-  'testDialog',
-  'testDrawer',
-  'testTree',
-  'testSlidePanel',
-  'testIcon',
-  'testSelect',
-  'testTitle',
-  ]
+const constantModulesMd = require.context('./views', true, /\.md$/)
+const constantModules = require.context('./views', true, /\.vue$/)
+const { mds } = requireMd(constantModulesMd)
+const { components , names } = requireComponents(constantModules, ['testCron'])
 
-// if(process.env.NODE_ENV === 'development'){
-//   com = [com[com.length-2], com[com.length-1]]
-// }
+
 export default {
   name: 'App',
   components: {
-    testStep,
-    testAffixFooter,
-    testOwner,
-    testTreeMultiple,
-    testSelectMultiple,
-    testFilterTable,
-    testInput,
-    testDateRange,
-    testAdvancedSearch,
-    KdTooltip,
-    testDialog,
-    testDrawer,
-    testTree,
-    testSlidePanel,
-    testIcon,
-    testSelect,
-    testTitle
+    VueMarkdown,
+    ...components
   },
   data() {
     return {
-      comArr: com,
+      comArr: names,
+      mds: mds
     };
   },
   computed: {},

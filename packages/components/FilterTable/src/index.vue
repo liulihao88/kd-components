@@ -412,7 +412,7 @@
         </el-table-column>
         <!-- 空数据展示 -->
         <template #empty>
-          <kj-empty />
+          <kd-empty />
         </template>
       </el-table>
       <div

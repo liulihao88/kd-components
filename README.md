@@ -20,6 +20,12 @@ npm run build
 npm run build:utils
 ```
 
+### 自动生成examples 里的md文件
+```
+npm run build:md
+```
+
+
 ### 打包构建组件库和工具库
 ```
 npm run all
@@ -128,6 +134,12 @@ npm uninstall @kd/components
 npm install @kd/components
 或
 npm install @kd/components@latest
+
+```
+
+### vue文件图片引入方式(特别大的图不建议这么引入)
+``` js
+import logo from './logo.png';
 
 ```
 

@@ -8,4 +8,14 @@ module.exports = defineConfig({
       filename: "index.html",
     },
   },
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.md$/,
+          use: 'text-loader'
+        }
+      ]
+    }
+  }
 })
