@@ -20,7 +20,8 @@ import Title from './Title';
 import Empty from './Empty';
 import Tree from './Tree';
 import RowSelect from './RowSelect';
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect];
+import PopoverButton from './PopoverButton';
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect,PopoverButton];
 
 const install = (app) => {
   components.map((component) => {
