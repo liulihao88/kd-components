@@ -1,4 +1,3 @@
-###  全局mixins 
 
 ##### pageMixin
 

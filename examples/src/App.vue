@@ -10,8 +10,8 @@
     </ul>
     <section class="container">
       <div>
-        <div v-for="item in Object.keys(docName)">
-          <h5 class="title" :id="item" :key="item">{{docName[item]}}</h5>
+        <div v-for="item in Object.keys(docName)" :id="item" :key="item">
+          <h5 class="title">{{docName[item]}}</h5>
           <div class="markdown-body" style="margin-top: 16px;">
             <VueMarkdown :source="docMd[item]"></VueMarkdown>
           </div>
@@ -40,8 +40,6 @@
 import VueMarkdown from 'vue-markdown';
 import { requireComponents, requireMd } from './utils/index';
 import { docMd, docName } from "./doc/index"
-import guideMd from "./doc/guide.md";
-import gStyleMd from "./doc/gStyle.md"
 import { deepClone } from 'utils';
 
 const constantModulesMd = require.context('./views', true, /\.md$/);
@@ -69,9 +67,7 @@ export default {
       comArr: names,
       mds: mds,
       docName: docName,
-      docMd: docMd,
-      gStyleMd: gStyleMd,
-      guideMd: guideMd
+      docMd: docMd
     };
   },
   mounted() {},
