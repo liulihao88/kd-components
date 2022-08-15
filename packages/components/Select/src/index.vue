@@ -1,27 +1,28 @@
 <template>
-    <div class="kd-select" :style="{ ...handleWidth() }">
-      <div v-if="title" class="left_box">
-        {{ title }}
-      </div>
-      <el-select
-        class="right_box"
-        v-loading="loading"
+  <div class="kd-select">
+    <div v-if="title" class="left_box">
+      {{ title }}
+    </div>
+    <el-select
+      class="right_box"
+      v-loading="loading"
+      :style="{ ...mHandleWidth() }"
+      size="small"
+      :filterable="$attrs.filterable !== false"
+      :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
+      :clearable="$attrs.clearable !== false"
+      v-bind="$attrs"
+      v-on="$listeners"
+      @change="changeHandler"
+    >
+      <el-option
         size="small"
-        v-bind="$attrs"
-        :filterable="$attrs.filterable !== false"
-        :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
-        :clearable="$attrs.clearable !== false"
-        v-on="$listeners"
-        @change="changeHandler"
-      >
-        <el-option
-          size="small"
-          v-for="item in options"
-          :key="type === 'simple' ? item : handleValue(item)"
-          :label="type === 'simple' ? item : handleLabel(item)"
-          :value="type === 'simple' ? item : handleValue(item)"
-        />
-      </el-select>
+        v-for="item in options"
+        :key="type === 'simple' ? item : handleValue(item)"
+        :label="type === 'simple' ? item : handleLabel(item)"
+        :value="type === 'simple' ? item : handleValue(item)"
+      />
+    </el-select>
   </div>
 </template>
 
@@ -68,12 +69,12 @@
         value: 'id',
       }"
     />
-  4. 如果是自定义显示label。 :cusLabel="cusLabelFunc"
+  4. 如果是自定义显示label。 :customLabel="customLabelFunc"
    <kd-select
       v-model="value3"
       title="自定义label下拉框"
       :options="objConnectValue"
-      :cusLabel="(item)=>(`${item.enName}+${item.chName}` )"
+      :customLabel="(item)=>(`${item.enName}+${item.chName}` )"
       :defaultProps="{
         label: ['enName', 'chName'],
         value: 'id',
@@ -85,18 +86,17 @@
 * 2022-03-17
 * @Author: andy凌云
 */
-
 export default {
-  name: "KdSelect",
+  name: 'KdSelect',
   components: {},
   props: {
     defaultProps: {
       type: Object,
-      default: ()=>{
+      default: () => {
         return {
           value: 'value',
-          label: 'label',
-        }
+          label: 'label'
+        };
       }
     },
     loading: {
@@ -110,7 +110,7 @@ export default {
     // 是简单的options 还是复杂options。默认复杂
     type: {
       type: String,
-      default: '', // 简单选项'simple'
+      default: '' // 简单选项'simple'
     },
     title: {
       type: String,
@@ -119,85 +119,91 @@ export default {
     // 如果label显示多个参数的连接符
     connect: {
       type: String,
-      default: '/',
+      default: '/'
     },
     // 自定义label显示多个参数的函数
-    cusLabel: {
+    customLabel: {
       type: [Function, String],
-      default: '',
+      default: ''
     },
     width: {
-      type:[String, Number],
-      required:false,
+      type: [String, Number],
+      required: false
     }
   },
   data() {
-    return {
-
-    };
+    return {};
   },
-  computed: {
-
-  },
-  watch: {
-
-  },
-  created() { },
-  mounted() { },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
   methods: {
     // 将label作为多个值连接起来。 比如 admin/管理员, 这是两个属性拼接出来的
     handleLabel(item) {
-      // 如果cusLabel是函数就执行cusLabel的函数去处理label显示
-      if (typeof this.cusLabel === 'function') {
-        return this.cusLabel(item)
+      // 如果customLabel是函数就执行customLabel的函数去处理label显示
+      if (typeof this.customLabel === 'function') {
+        return this.customLabel(item);
       } else {
         // 如果label是数组, 就拼接数组。
         if (Array.isArray(this.defaultProps.label)) {
-          let str = ''
+          let str = '';
           this.defaultProps.label.forEach((v) => {
-            str += item[v] + this.connect
-          })
-          let res = str.slice(0, -1)
+            str += item[v] + this.connect;
+          });
+          let res = str.slice(0, -1);
           return res;
         } else {
           // 直接显示label
-          const label = this.defaultProps.label || 'label'
-          return item[label]
+          const label = this.defaultProps.label || 'label';
+          return item[label];
         }
       }
     },
     // 处理value的值
-    handleValue(item){
-      const value = this.defaultProps.value || 'value'
-      return item[value]
+    handleValue(item) {
+      const value = this.defaultProps.value || 'value';
+      return item[value];
     },
-    changeHandler(val) {
-      if (!val) {
-        this.$emit("selectChange", []);
-        return
-      }
-      let selectObj = this.options.filter(v => {
-        if (this.type === 'simple') {
-          return v === val
+    // 处理多选的返回情况
+    changeMulty(arr) {
+      let selectLabel = [];
+      const selectObj = this.options.filter((v) => {
+        const value = this.defaultProps.value || 'value';
+        if (arr.includes(v[value])) {
+          const label = this.defaultProps.label || 'label';
+          selectLabel.push(v[label]);
+          return true;
         } else {
-          const value =this.defaultProps.value || 'value'
+          return false;
+        }
+      });
+      this.$emit('changeSelect', [arr, selectObj, selectLabel]);
+    },
+    // 有些场景， 下拉框不仅需要获取value, 还需要获取选择的对象或者label, el-select原生没有这个属性， 所以changeHandler就做了下处理， 返回的数组包含3个属性， 第一个value, 第二个选中对象， 第三个选中的label。
+    changeHandler(val) {
+      // 如果val是数组, 证明是多选
+      if (Array.isArray(val)) {
+        this.changeMulty(val);
+        return;
+      }
+      if (!val) {
+        this.$emit('changeSelect', []);
+        return;
+      }
+      let selectObj = this.options.filter((v) => {
+        if (this.type === 'simple') {
+          return v === val;
+        } else {
+          const value = this.defaultProps.value || 'value';
           return v[value] === val;
         }
       })[0];
       const optLabel = this.defaultProps.label || 'label';
-      let selectLabel = selectObj.optLabel;
-      this.$emit("selectChange", [val, selectLabel, selectObj]);
-    },
-    // 根据传入的width, 返回处理后的width
-    handleWidth(){
-      if(!this.width){
-        return {}
-      }
-      if(this.width.indexOf('px')!== -1 || this.width.indexOf('%') !== -1){
-        return {width: this.width}
-      }
-      return {width: this.width + 'px'}
-    },
+      let selectLabel = selectObj[optLabel];
+
+      this.$emit('changeSelect', [val, selectObj, selectLabel]);
+    }
   }
 };
 </script>

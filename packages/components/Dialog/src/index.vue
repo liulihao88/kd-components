@@ -3,18 +3,16 @@
     <!-- :close-on-click-modal="mIsDev ? true : false" -->
     <el-dialog
       v-el-drag-dialog
-      :modal="true"
-      :modal-append-to-body="true"
-      :width="$attrs.width"
       :fullscreen="fullscreen"
       :destroy-on-close="$attrs.destroyOnClose !== false"
+      :zIndex="zIndex"
       v-bind="$attrs"
       v-on="$listeners"
     >
       <template slot="title">
         <div>{{ title }}</div>
         <button
-          class="el-dialog__headerbtn fullscreen__icon"
+          class="el-dialog__headerbtn dialog_fullscreen__icon"
           v-if="showFullscreen"
           @click="fullscreen = !fullscreen"
         >
@@ -24,11 +22,13 @@
           ></i>
         </button>
       </template>
-      <div class="slot_box">
+      <div class="dialog_slot_box">
         <slot />
       </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="info" size="small" @click="handleClose">{{ cancelText }}</el-button>
+      <span slot="footer" class="dialog_footer">
+        <el-button type="info" size="small" @click="handleClose">{{
+          cancelText
+        }}</el-button>
         <el-button type="primary" size="small" @click="confirmHandle">{{
           confirmText
         }}</el-button>
@@ -70,6 +70,10 @@ export default {
     showFullscreen: {
       type: Boolean,
       default: false
+    },
+    zIndex: {
+      type: [Number, String],
+      default: 999
     }
   },
   data() {

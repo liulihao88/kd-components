@@ -1,8 +1,8 @@
-import { Message } from 'element-ui'
-import _ from 'lodash'
+import { Message } from 'element-ui';
+import _ from 'lodash';
 
 export function deepClone(arr) {
-  return _.cloneDeep(arr)
+  return _.cloneDeep(arr);
 }
 
 export function setStorage(str, params, isLocalStorage = false) {
@@ -71,12 +71,15 @@ export function clearStorage(str) {
  * parseTime(new Date().getTime()); //2018-11-11 17:13:21
  */
 
-export function parseTime(time = new Date(), cFormat = "{y}-{m}-{d} {h}:{i}:{s}") {
+export function parseTime(
+  time = new Date(),
+  cFormat = '{y}-{m}-{d} {h}:{i}:{s}'
+) {
   let date;
-  if (typeof time === "object") {
+  if (typeof time === 'object') {
     date = time;
   } else {
-    if (("" + time).length === 10) time = parseInt(time) * 1000;
+    if (('' + time).length === 10) time = parseInt(time) * 1000;
     date = new Date(time);
   }
   const formatObj = {
@@ -90,11 +93,11 @@ export function parseTime(time = new Date(), cFormat = "{y}-{m}-{d} {h}:{i}:{s}"
   };
   const time_str = cFormat.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]; // Note: getDay() returns 0 on Sunday
-    if (key === "a") {
-      return ["日", "一", "二", "三", "四", "五", "六"][value];
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value];
     }
     if (result.length > 0 && value < 10) {
-      value = "0" + value;
+      value = '0' + value;
     }
     return value || 0;
   });
@@ -102,21 +105,22 @@ export function parseTime(time = new Date(), cFormat = "{y}-{m}-{d} {h}:{i}:{s}"
 }
 
 // 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
-export function $toast(str, type = 's') {
+export function $toast(str, type = 's', otherParams = {}) {
   let handleType = type;
   if (type === 's') {
-    handleType = 'success'
+    handleType = 'success';
   } else if (type === 'i') {
-    handleType = 'info'
+    handleType = 'info';
   } else if (type === 'e') {
-    handleType = 'error'
+    handleType = 'error';
   } else if (type === 'w') {
-    handleType = 'warning'
+    handleType = 'warning';
   }
   Message({
     message: str,
     type: handleType,
-  })
+    ...otherParams
+  });
 }
 
 /**
@@ -128,7 +132,7 @@ export function $toast(str, type = 's') {
  */
 export const debounce = (func, wait, immediate) => {
   var timeout, result;
-  return function(...args) {
+  return function (...args) {
     if (timeout) {
       clearTimeout(timeout);
     }
@@ -139,22 +143,25 @@ export const debounce = (func, wait, immediate) => {
 
     timeout = setTimeout(() => {
       result = func.apply(this, args);
-    }, wait)
+    }, wait);
 
-    return result
-  }
-}
+    return result;
+  };
+};
 
-export function uuid(chars = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678", length = 4) {
+export function uuid(
+  chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
+  length = 4
+) {
   // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
   if (judgeType(chars) === 'array') {
-    return chars[0][length === 4 ? 'value' : length]
+    return chars[0][length === 4 ? 'value' : length];
   }
-  let res = ''
+  let res = '';
   for (let i = length; i > 0; --i) {
-    res += chars[Math.floor(Math.random() * chars.length)]
+    res += chars[Math.floor(Math.random() * chars.length)];
   }
-  return res
+  return res;
 }
 
 // 获取当前日期前三十天的所有日期
@@ -163,20 +170,29 @@ export const getDates = () => {
   var nowY = myDate.getFullYear();
   var nowM = myDate.getMonth() + 1;
   var nowD = myDate.getDate();
-  var enddate = nowY + "-" + (nowM < 10 ? "0" + nowM : nowM) + "-" + (nowD < 10 ? "0" + nowD : nowD);//当前日期
+  var enddate =
+    nowY +
+    '-' +
+    (nowM < 10 ? '0' + nowM : nowM) +
+    '-' +
+    (nowD < 10 ? '0' + nowD : nowD); //当前日期
   //获取三十天前日期
-  let dateArr = [enddate]
+  let dateArr = [enddate];
   for (let i = 1; i < 30; i++) {
-    var lw = new Date(myDate - 1000 * 60 * 60 * 24 * i);//最后一个数字30可改，30天的意思
+    var lw = new Date(myDate - 1000 * 60 * 60 * 24 * i); //最后一个数字30可改，30天的意思
     var lastY = lw.getFullYear();
     var lastM = lw.getMonth() + 1;
     var lastD = lw.getDate();
-    var startdate = lastY + "-" + (lastM < 10 ? "0" + lastM : lastM) + "-" + (lastD < 10 ? "0" + lastD : lastD);
-    dateArr.unshift(startdate)
+    var startdate =
+      lastY +
+      '-' +
+      (lastM < 10 ? '0' + lastM : lastM) +
+      '-' +
+      (lastD < 10 ? '0' + lastD : lastD);
+    dateArr.unshift(startdate);
   }
-  return dateArr
-}
-
+  return dateArr;
+};
 
 /**
  * 判断传入参数的类型
@@ -189,7 +205,10 @@ export const getDates = () => {
  */
 export function judgeType(val) {
   if (typeof val === 'object') {
-    const objVal = Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
+    const objVal = Object.prototype.toString
+      .call(val)
+      .slice(8, -1)
+      .toLowerCase();
     return objVal;
   } else {
     return typeof val;
@@ -202,45 +221,24 @@ export function judgeType(val) {
  */
 export function isEmpty(v) {
   switch (typeof v) {
-    case 'undefined': return true;
-    case 'string': if (v.trim().length == 0) return true; break;
-    case 'boolean': if (!v) return true; break;
-    case 'number': if (0 === v) return true; break;
+    case 'undefined':
+      return true;
+    case 'string':
+      if (v.trim().length == 0) return true;
+      break;
+    case 'boolean':
+      if (!v) return true;
+      break;
+    case 'number':
+      if (0 === v) return true;
+      break;
     case 'object':
       if (null === v) return true;
       if (undefined !== v.length && v.length == 0) return true;
-      for (var k in v) { return false; } return true;
+      for (var k in v) {
+        return false;
+      }
+      return true;
   }
   return false;
-}
-
-// 子项目中使用 this.$pub.saveStore(this)。 需要传递this。 因为要处理子项目中的store
-export function saveStore(_this) {
-  //在页面加载时读取sessionStorage里的状态信息
-  if (sessionStorage.getItem("store")) {
-    // 如果_this.$store.state 和 sessionStorage.getItem("store")的键完全一致。 替换store为storeState和sessionState合并后的值
-    if (_sameKeys(_this.$store.state, JSON.parse(sessionStorage.getItem("store")))) {
-      _this.$store.replaceState(Object.assign({}, _this.$store.state, JSON.parse(sessionStorage.getItem("store"))))
-    } else {
-      // 否则。 只替换storeState的值， 且将store的sessionStorage替换为storeState
-      _this.$store.replaceState(Object.assign({}, _this.$store.state))
-      sessionStorage.setItem('store', JSON.stringify(Object.assign({}, _this.$store.state)))
-    }
-  }
-  //在页面刷新时将vuex里的信息保存到sessionStorage里
-  window.addEventListener("beforeunload", () => {
-    sessionStorage.setItem("store", JSON.stringify(_this.$store.state))
-  })
-
-  // 判断两个对象的 key是否完全一致
-  function _sameKeys(org, tar) {
-    var o1keys = Object.keys(org);
-    var o2keys = Object.keys(tar);
-    if (o2keys.length !== o1keys.length) return false;
-    for (let i = 0; i <= o1keys.length - 1; i++) {
-      let key = o1keys[i]
-      if (!o2keys.includes(key)) return false
-    }
-    return true
-  }
 }

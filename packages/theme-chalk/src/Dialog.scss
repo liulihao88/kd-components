@@ -1,39 +1,38 @@
-.kd-dialog {
-  ::v-deep .el-icon {
-    border-radius: 50%;
-    font-size: 16px;
-    color: rgba(39, 48, 75, 0.9);
+.el-dialog__title {
+  font-weight: 500;
+  font-size: 14px;
+}
+.el-dialog__header {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 0 0 20px;
+  color: var(--text-important-color);
+  background: var(--dialog-title-bg);
+  font-weight: 500;
+  .el-dialog__headerbtn {
+    top: 16px;
+    font-size: 20px;
   }
-  .el-dialog__title {
-    font-weight: 500;
-    font-size: 14px;
-  }
-  .el-dialog__header {
-    height: 50px;
-    line-height: 50px;
-    padding: 0 0 0 20px;
-    color: var(--text-important-color);
-    background: var(--dialog-title-bg);
-    font-weight: 500;
-    .el-dialog__headerbtn {
-      top: 16px;
-      font-size: 20px;
-    }
-  }
-  .el-dialog__footer {
-    padding: 13px;
-    border-top: 1px solid var(--line-color);
-  }
-  .slot_box {
-    max-height: 600px;
-    overflow: auto;
-  }
-  .is-fullscreen .el-dialog__body {
-    max-height: inherit;
-    height: calc(100% - 113px);
-  }
-  .fullscreen__icon {
-    right: 54px;
-    text-align: right;
-  }
+}
+.el-dialog__footer {
+  padding: 13px;
+  border-top: 1px solid var(--line-color);
+}
+.dialog_slot_box {
+  max-height: 600px;
+  overflow: auto;
+}
+.is-fullscreen .el-dialog__body {
+  max-height: inherit;
+  height: calc(100% - 170px);
+}
+.is-fullscreen .dialog_slot_box{
+  max-height: 100%;
+  overflow: auto;
+}
+.dialog_fullscreen__icon {
+  right: 54px;
+  top: 14px !important;
+  color: #909399;
+  text-align: right;
 }
