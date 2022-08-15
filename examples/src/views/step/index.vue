@@ -1,5 +1,5 @@
 <template>
-  <Kj2Step></Kj2Step>
+  <kd-step :active="1"></kd-step>
 </template>
 
 <script>

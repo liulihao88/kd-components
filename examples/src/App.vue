@@ -1,18 +1,27 @@
 <template>
   <div id="app">
     <ul class="nav">
+      <li v-for="item in Object.keys(docName)">
+        <a :href="`#${item}`">{{docName[item]}}</a>
+      </li>
       <li v-for="item in comArr" :key="item">
         <a :href="`#${item}`" v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
       <div>
+        <div v-for="item in Object.keys(docName)" :id="item" :key="item">
+          <h5 class="title">{{docName[item]}}</h5>
+          <div class="markdown-body" style="margin-top: 16px;">
+            <VueMarkdown :source="docMd[item]"></VueMarkdown>
+          </div>
+        </div>
         <div v-for="item in comArr" :id="item" :key="item">
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
-          <div class="markdown-body" style="margin-top: 16px;">
+          <div class="markdown-body" style="margin-top: 16px">
             <VueMarkdown :source="mds[item]"></VueMarkdown>
-<!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
+            <!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
           </div>
         </div>
         <!--    国际化demo    -->
@@ -29,13 +38,23 @@
 
 <script>
 import VueMarkdown from 'vue-markdown';
-import {requireComponents , requireMd } from "./utils/index"
+import { requireComponents, requireMd } from './utils/index';
+import { docMd, docName } from "./doc/index"
+import { deepClone } from 'utils';
 
-const constantModulesMd = require.context('./views', true, /\.md$/)
-const constantModules = require.context('./views', true, /\.vue$/)
-const { mds } = requireMd(constantModulesMd)
-const { components , names } = requireComponents(constantModules, ['testCron'])
-
+const constantModulesMd = require.context('./views', true, /\.md$/);
+const constantModules = require.context('./views', true, /\.vue$/);
+const { mds } = requireMd(constantModulesMd);
+const { components, names } = requireComponents(constantModules, ['testCron']);
+/**
+ * 将希望显示的组件放在第一位
+ */
+// names = names.splice(9)
+let spliceNames = deepClone(names);
+if (process.env.NODE_ENV === 'development') {
+  // console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
+  // spliceNames = names.filter((v) => v ==='testEmpty');
+}
 
 export default {
   name: 'App',
@@ -46,18 +65,19 @@ export default {
   data() {
     return {
       comArr: names,
-      mds: mds
+      mds: mds,
+      docName: docName,
+      docMd: docMd
     };
   },
-  computed: {},
   mounted() {},
   methods: {
-    replaceName (value) {
-      let str = `kd${value.replace('test','')}`
+    replaceName(value) {
+      let str = `kd${value.replace('test', '')}`;
       return str.replace(/([A-Z])/g, (match, p1, offset, string) => {
         // 一个捕获组捕获全部，所以match等于p1
         return '-' + p1.toLowerCase();
-      })
+      });
     },
     lang() {
       this.$i18n.locale = 'ja';
@@ -92,6 +112,10 @@ export default {
   border-right: 1px solid #d8d8d8;
   padding: 20px 0 30px;
   height: calc(100vh - 1px);
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   li {
     line-height: 40px;
   }

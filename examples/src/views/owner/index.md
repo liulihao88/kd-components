@@ -1,7 +1,7 @@
 ``` 
 <template>
   <el-form :model="form" label-width="auto">
-    <kj-owner
+    <kd-owner
         v-model="form"
         :options="ownerOptions"
         :default-props="defaultProps"

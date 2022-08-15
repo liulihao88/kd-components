@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "KjSelectMultiple",
+  name: "KdSelectMultiple",
   props: {
     value: {
       type: Array,

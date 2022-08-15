@@ -1,4 +1,5 @@
 import registerDirectives from '../directives/directives';
+import registerMixins from "../mixins/index"
 import DetailBtn from "./DetailBtn";
 import Step from "./step";
 import Affix from "./affix";
@@ -28,6 +29,7 @@ const install = (app) => {
     app.use(component);
   });
   registerDirectives(app);
+  registerMixins(app);
 };
 
 export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect };

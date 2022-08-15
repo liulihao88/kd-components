@@ -41,9 +41,9 @@
         :expand-on-click-node="false"
         :default-expanded-keys="expandedKeys"
         :filter-node-method="filterNode"
-        @node-click="clickNode"
-        @node-expand="expandNode"
-        @node-collapse="collapseNode"
+        @node-click="nodeClick"
+        @node-expand="nodeExpand"
+        @node-collapse="nodeCollapse"
       >
         <div slot-scope="{ node, data }" class="job_tree_node f-bt w-block">
           <div class="f-bt w-block">
@@ -333,15 +333,15 @@ export default {
     /**
      * 点击树节点
      */
-    async clickNode(data) {
+    async nodeClick(data) {
       this.currentKey = data.value;
       this.$emit('nodeHandler', data);
     },
 
-    expandNode(data) {
+    nodeExpand(data) {
       this.expandedKeys.push(data[this.nodeKey]);
     },
-    collapseNode(data) {
+    nodeCollapse(data) {
       const index = this.expandedKeys.indexOf(data[this.nodeKey]);
       index > -1 && this.expandedKeys.splice(index, 1);
     }

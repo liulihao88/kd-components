@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "KjAffix",
+  name: "KdAffix",
   props: {
     offsetTop: {
       type: [String, Number, undefined]

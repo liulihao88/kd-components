@@ -36,12 +36,6 @@ export default {
         return "100%";
       },
     },
-    kdPlacement:{ // 浮框显示的位置
-      type: String,
-      default: () => {
-        return "top";
-      },
-    },
     slotShow: { // 是否显示插槽
       type: Boolean,
       default: () => {
@@ -51,7 +45,6 @@ export default {
   },
   data() {
     return {
-      kdPlacement: '',
       isShowTooltip: false
     };
   },

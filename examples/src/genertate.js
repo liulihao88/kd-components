@@ -20,7 +20,8 @@ const readFile = (dir) => {
         if (err) {
             console.log(err)
         } else{
-            writeFile(path.resolve(inputPath,dir), data.toString());
+            // 不写入了,哈哈，手动写md
+            // writeFile(path.resolve(inputPath,dir), data.toString());
         }
     });
 }

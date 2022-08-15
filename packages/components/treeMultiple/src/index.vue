@@ -50,7 +50,7 @@
 <script>
 // import { getOrgList } from '@/server/orgApi'
 export default {
-  name: "KjTreeMultiple",
+  name: "KdTreeMultiple",
   props: {
     value: {
       type: [Array, Number, String, Object],

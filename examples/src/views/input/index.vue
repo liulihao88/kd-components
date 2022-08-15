@@ -1,35 +1,22 @@
 <template>
-  <kd-input
-    title="sssssss"
-    v-model="val"
-  />
+  <div>
+    <kd-input title="简单input" v-model="val" width="200" />
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Index",
-  props: {
-
-  },
+  name: 'Index',
+  props: {},
   data() {
     return {
       val: 'abc'
     };
   },
-  components: {
-  
-  },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-
-  }
+  components: {},
+  created() {},
+  mounted() {},
+  methods: {}
 };
 </script>
-<style scoped lang='scss'>
-    
-</style>
+<style scoped lang="scss"></style>

@@ -348,7 +348,7 @@
                   @click="col.handler.call(null, scope.row)"
                 >
                   <span v-if="col.filter">
-                    {{ col.filter(scope.row[col.prop]) }}
+                    {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
                     {{ scope.row[col.prop] }}
@@ -356,7 +356,7 @@
                 </span>
                 <span v-else>
                   <span v-if="col.filter">
-                    {{ col.filter(scope.row[col.prop]) }}
+                    {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
                     {{ scope.row[col.prop] }}
