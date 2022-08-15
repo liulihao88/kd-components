@@ -18,7 +18,7 @@
         {{ contentText }}
       </template>
     </p>
-    <div class="btn-wrap">
+    <div style="text-align: right;margin: 16px 4px 4px 4px;">
       <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
       <el-button type="primary" :disabled="disConfirm" @click="confirm">
         {{ confirmText }}
@@ -120,10 +120,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.btn-wrap {
-  text-align: right;
-  margin: 16px 4px 4px 4px;
-}
-</style>
