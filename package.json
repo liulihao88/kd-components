@@ -31,7 +31,7 @@
   ],
   "author": "hrr",
   "dependencies": {
-    
+    "vue-virtual-scroll-list": "^2.3.3"
   },
   "peerDependencies": {
     "element-ui": "2.15.8",

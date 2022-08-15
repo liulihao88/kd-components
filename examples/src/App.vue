@@ -1,12 +1,30 @@
 <template>
   <div id="app">
     <ul class="nav">
+      <li>
+        <a href="#guide">快速使用</a>
+      </li>
+      <li>
+        <a href="#gStyle">全局css</a>
+      </li>
       <li v-for="item in comArr" :key="item">
         <a :href="`#${item}`" v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
       <div>
+        <div>
+          <h5 class="title" id="guide">快速使用</h5>
+          <div class="markdown-body" style="margin-top: 16px;">
+            <VueMarkdown :source="guideMd"></VueMarkdown>
+          </div>
+        </div>
+        <div>
+          <h5 class="title" id="gStyle"></h5>
+          <div class="markdown-body" style="margin-top: 16px;">
+            <VueMarkdown :source="gStyleMd"></VueMarkdown>
+          </div>
+        </div>
         <div v-for="item in comArr" :id="item" :key="item">
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
@@ -30,7 +48,8 @@
 <script>
 import VueMarkdown from 'vue-markdown';
 import {requireComponents , requireMd } from "./utils/index"
-
+import guideMd from "./doc/guide.md";
+import gStyleMd from "./doc/gStyle.md"
 const constantModulesMd = require.context('./views', true, /\.md$/)
 const constantModules = require.context('./views', true, /\.vue$/)
 const { mds } = requireMd(constantModulesMd)
@@ -46,10 +65,11 @@ export default {
   data() {
     return {
       comArr: names,
-      mds: mds
+      mds: mds,
+      gStyleMd: gStyleMd,
+      guideMd: guideMd
     };
   },
-  computed: {},
   mounted() {},
   methods: {
     replaceName (value) {
@@ -92,6 +112,10 @@ export default {
   border-right: 1px solid #d8d8d8;
   padding: 20px 0 30px;
   height: calc(100vh - 1px);
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   li {
     line-height: 40px;
   }
