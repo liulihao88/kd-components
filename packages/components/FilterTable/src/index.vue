@@ -552,7 +552,7 @@ let exSlot = {
     return data.props.render(h, params);
   }
 }
-import { deepClone } from 'utils'
+import { cloneDeep } from 'lodash/cloneDeep'
 export default {
   name: "KdFilterTable",
   components: {
@@ -892,7 +892,7 @@ export default {
           })
         }
       })
-      this.searchCopy = deepClone(this.search);
+      this.searchCopy = cloneDeep(this.search);
       // 如果是上边的模糊搜索。 只处理word。 如果是下面的模糊搜索, 将word删除
       if (this.wordSearchFlag) {
         // 如果包含word搜索

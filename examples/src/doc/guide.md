@@ -22,7 +22,7 @@ npm install @kd/components
 ```
 
 npm uninstall @kd/components
-npm install @kd/components@next
+npm install @kd/components@latest
 
 ```
 
@@ -139,7 +139,8 @@ npm install @kd/utils
 ```
 
 npm uninstall @kd/utils
-npm install @kd/utils@next
+npm install @kd/utils@latest
+
 
 ```
 
