@@ -41,7 +41,7 @@
 // cancelText {String} 默认'取消'
 
 export default {
-  name: "PopoverButton",
+  name: "KdPopoverButton",
   props: {
     popoverAttrs: {
       type: Object,

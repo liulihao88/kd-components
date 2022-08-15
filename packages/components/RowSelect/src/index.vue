@@ -122,7 +122,7 @@
   // reduce(keys) 减少选项，参数为选项key字符串或数组
 
   export default {
-    name: 'RowSelect',
+    name: 'KdRowSelect',
     props: {
       value: {
         type: [Array, String],

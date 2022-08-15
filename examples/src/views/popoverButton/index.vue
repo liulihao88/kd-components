@@ -1,12 +1,12 @@
 <template>
   <div class="wrap">
-    <popover-button
+    <kd-popover-button
       class="m-r-8"
       :disabled="false"
       :content-text="'是否确认要批量删除数据表？'"
       @confirm="batchDel"
       @cancel="onCancel"
-    ></popover-button>
+    ></kd-popover-button>
   </div>
 </template>
 
