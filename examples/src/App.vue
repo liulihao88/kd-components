@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <ul class="nav">
-      <li>
-        <a href="#guide">快速使用</a>
-      </li>
-      <li>
-        <a href="#gStyle">全局css</a>
+      <li v-for="item in Object.keys(docName)">
+        <a :href="`#${item}`">{{docName[item]}}</a>
       </li>
       <li v-for="item in comArr" :key="item">
         <a :href="`#${item}`" v-text="replaceName(item)"></a>
@@ -13,16 +10,10 @@
     </ul>
     <section class="container">
       <div>
-        <div>
-          <h5 class="title" id="guide">快速使用</h5>
+        <div v-for="item in Object.keys(docName)">
+          <h5 class="title" :id="item" :key="item">{{docName[item]}}</h5>
           <div class="markdown-body" style="margin-top: 16px;">
-            <VueMarkdown :source="guideMd"></VueMarkdown>
-          </div>
-        </div>
-        <div>
-          <h5 class="title" id="gStyle"></h5>
-          <div class="markdown-body" style="margin-top: 16px;">
-            <VueMarkdown :source="gStyleMd"></VueMarkdown>
+            <VueMarkdown :source="docMd[item]"></VueMarkdown>
           </div>
         </div>
         <div v-for="item in comArr" :id="item" :key="item">
@@ -48,6 +39,7 @@
 <script>
 import VueMarkdown from 'vue-markdown';
 import { requireComponents, requireMd } from './utils/index';
+import { docMd, docName } from "./doc/index"
 import guideMd from "./doc/guide.md";
 import gStyleMd from "./doc/gStyle.md"
 import { deepClone } from 'utils';
@@ -76,6 +68,8 @@ export default {
     return {
       comArr: names,
       mds: mds,
+      docName: docName,
+      docMd: docMd,
       gStyleMd: gStyleMd,
       guideMd: guideMd
     };
