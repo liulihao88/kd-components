@@ -24,7 +24,7 @@
 <script>
 // import { debounce } from "@/share/utils/gFunc";
 export default {
-  name: "Kj2Step",
+  name: "kdStep",
   props: {
     steps: {
       type: Array,
