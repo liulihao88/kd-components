@@ -1,7 +1,7 @@
 <template>
-  <kj-affix offset-bottom="0">
+  <kd-affix offset-bottom="0">
     <el-button>test</el-button>
-  </kj-affix>
+  </kd-affix>
 </template>
 
 <script>

@@ -3,7 +3,7 @@ des: is-object 为true时需要设置value-key,默认为value，选择后的值�
     is-object 为 false ,选择的值内容为['id','name']
 -->
 <template>
-  <kj-select-multiple
+  <kd-select-multiple
       v-model="form.checkFiled"
       :options="form.allFiled"
       :default-props="defaultProps"

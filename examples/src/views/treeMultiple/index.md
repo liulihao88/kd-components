@@ -5,7 +5,7 @@ des: is-object 为true时需要设置node-key,默认为value，选择后的值�
 -->
 <template>
   <div>
-    <kj-tree-multiple
+    <kd-tree-multiple
         v-if="treeLoading"
         v-model="checkData"
         :table-data="treeData"

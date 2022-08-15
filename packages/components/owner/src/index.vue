@@ -55,7 +55,7 @@
 <script>
 // import cloneDeep from 'lodash/cloneDeep';
 export default {
-  name: 'KjOwner',
+  name: 'KdOwner',
   props: {
     value: {
       type: Object,

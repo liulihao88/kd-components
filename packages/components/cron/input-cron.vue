@@ -41,7 +41,7 @@
 import EasyCron from "./index";
 import DragDialog from "../comps/KjDragDialog.vue";
 export default {
-  name: "KjCron",
+  name: "KdCron",
   components: {
     EasyCron,
     DragDialog,
