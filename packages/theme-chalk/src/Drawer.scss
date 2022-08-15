@@ -1,7 +1,15 @@
 .kd-drawer {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 50px);
+}
+.icon_box {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.kd-drawer-box {
   .top {
     font-size: 12px;
     font-family: PingFangSC, PingFangSC-Medium;
@@ -22,10 +30,5 @@
     padding: 24px;
     box-sizing: border-box;
     border-top: 1px solid #e3e6eb;
-  }
-}
-.icon_box {
-  &:hover {
-    cursor: pointer;
   }
 }

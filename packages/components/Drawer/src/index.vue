@@ -1,19 +1,30 @@
 <template>
   <div class="kd-drawer">
     <el-drawer
-      v-bind="$attrs"
       :with-header="false"
-      :z-index="1000"
-      :size="$attrs.size || '640px'"
+      :size="fullscreen ? '100%' :($attrs.size || '640px')"
       :wrapper-closable="wrapperClosable"
       :destroy-on-close="destroyOnCloseComputed"
+      :z-index="zIndex"
+      v-bind="$attrs"
       v-on="$listeners"
     >
-      <div v-loading="loading" class="draver_box">
+      <div v-loading="loading" class="kd-drawer-box">
         <div class="top f-bt">
           <div>
             {{ title }}
           </div>
+
+          <button
+            class="el-dialog__headerbtn dialog_fullscreen__icon"
+            v-if="showFullscreen"
+            @click="fullscreen = !fullscreen"
+          >
+            <i
+              class="kj-iconfont"
+              :class="fullscreen ? 'icon-fullscreen-exit' : 'icon-fullsreen'"
+            ></i>
+          </button>
           <div class="icon_box" @click="escClose">
             <i class="el-icon-close" />
           </div>
@@ -33,7 +44,12 @@
             >
               {{ confirmText }}
             </el-button>
-            <el-button v-if="showCancel" type="info" size="small" @click="handleClose">
+            <el-button
+              v-if="showCancel"
+              type="info"
+              size="small"
+              @click="handleClose"
+            >
               {{ cancelText }}
             </el-button>
           </slot>
@@ -48,17 +64,17 @@
 * @描述
 * element组件draver抽屉封装
 * @使用方法
-  <kjDraver
+  <kd-drawer
     title="新建数据源"
     :visible.sync="isShowSource"
   >
     中间的slot
     <template #footer>
     </template>
-  </kjDraver>
+  </kd-drawer>
 
   如果有更深一层的父组件
-   <kjDraver
+   <kd-drawer
       title="andy2"
       v-bind="$attrs"
       v-on="$listeners"
@@ -66,7 +82,7 @@
     >
       {{$attrs.name}}
       {{$attrs.list}}
-    </kjDraver>
+    </kd-drawer>
   @confirm: this.$parent.mIsShow =false
   爷爷组件调用
    <gTest
@@ -117,13 +133,25 @@ export default {
     },
     showFooter: {
       type: Boolean,
-      default: true,
+      default: true
+    },
+    // 若不加zIndex, message会被遮罩层覆盖
+    zIndex: {
+      type: [Number, String],
+      default: 999
+    },
+    showFullscreen: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
-    return {};
+    return {
+      fullscreen: false
+    };
   },
   computed: {
+    // 控制是否在关闭 Drawer 之后将子元素全部销毁, 默认全部销毁
     destroyOnCloseComputed(val) {
       if (val === false) {
         return false;

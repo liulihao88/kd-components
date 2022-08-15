@@ -28,9 +28,9 @@
         <div v-for="item in comArr" :id="item" :key="item">
           <h5 class="title" v-text="replaceName(item)"></h5>
           <component :is="item"></component>
-          <div class="markdown-body" style="margin-top: 16px;">
+          <div class="markdown-body" style="margin-top: 16px">
             <VueMarkdown :source="mds[item]"></VueMarkdown>
-<!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
+            <!--            <VueMarkdown :source="mds[item]" v-highlight></VueMarkdown>-->
           </div>
         </div>
         <!--    国际化demo    -->
@@ -47,14 +47,24 @@
 
 <script>
 import VueMarkdown from 'vue-markdown';
-import {requireComponents , requireMd } from "./utils/index"
+import { requireComponents, requireMd } from './utils/index';
 import guideMd from "./doc/guide.md";
 import gStyleMd from "./doc/gStyle.md"
-const constantModulesMd = require.context('./views', true, /\.md$/)
-const constantModules = require.context('./views', true, /\.vue$/)
-const { mds } = requireMd(constantModulesMd)
-const { components , names } = requireComponents(constantModules, ['testCron'])
+import { deepClone } from 'utils';
 
+const constantModulesMd = require.context('./views', true, /\.md$/);
+const constantModules = require.context('./views', true, /\.vue$/);
+const { mds } = requireMd(constantModulesMd);
+const { components, names } = requireComponents(constantModules, ['testCron']);
+/**
+ * 将希望显示的组件放在第一位
+ */
+// names = names.splice(9)
+let spliceNames = deepClone(names);
+if (process.env.NODE_ENV === 'development') {
+  // console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
+  // spliceNames = names.filter((v) => v ==='testEmpty');
+}
 
 export default {
   name: 'App',
@@ -72,12 +82,12 @@ export default {
   },
   mounted() {},
   methods: {
-    replaceName (value) {
-      let str = `kd${value.replace('test','')}`
+    replaceName(value) {
+      let str = `kd${value.replace('test', '')}`;
       return str.replace(/([A-Z])/g, (match, p1, offset, string) => {
         // 一个捕获组捕获全部，所以match等于p1
         return '-' + p1.toLowerCase();
-      })
+      });
     },
     lang() {
       this.$i18n.locale = 'ja';
