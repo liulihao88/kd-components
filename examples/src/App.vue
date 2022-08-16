@@ -46,6 +46,15 @@ const constantModulesMd = require.context('./views', true, /\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, ['testCron']);
+/**
+ * 将希望显示的组件放在第一位
+ */
+// names = names.splice(9)
+let spliceNames = deepClone(names);
+if (process.env.NODE_ENV === 'development') {
+  // console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
+  // spliceNames = names.filter((v) => v ==='testEmpty');
+}
 
 export default {
   name: 'App',

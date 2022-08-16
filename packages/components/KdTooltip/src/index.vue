@@ -8,6 +8,7 @@
   >
     <span
       class="hide-text"
+      v-on="$listeners"
       v-if="!slotShow"
       :style="{ maxWidth: width }"
       @mouseover="onMouseOver('str')"
