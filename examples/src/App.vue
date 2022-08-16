@@ -42,10 +42,12 @@ import { requireComponents, requireMd } from './utils/index';
 import { docMd, docName } from "./doc/index"
 import { deepClone } from 'utils';
 
-const constantModulesMd = require.context('./views', true, /index\.md$/);
-const constantModules = require.context('./views', true, /index\.vue$/);
+const constantModulesMd = require.context('./views', true, /\.md$/);
+const constantModules = require.context('./views', true, /\.vue$/);
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, ['testCron']);
+console.log('mds----', mds);
+
 /**
  * 将希望显示的组件放在第一位
  */
