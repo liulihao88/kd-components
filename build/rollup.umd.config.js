@@ -5,6 +5,6 @@ export default {
     name: "kjComponents",
     file: file("cjs"),
     format: "cjs",
-    exports: "named",
+    // exports: "named",
   },
 };
