@@ -3,8 +3,8 @@
     class="filter_table"
     :class="{'showall': showallFlag}"
   >
-    <!-- searchShow为false不显示头部搜索 -->
-    <template v-if="searchShow">
+    <!-- showSearch为false不显示头部搜索 -->
+    <template v-if="showSearch">
       <!-- 关键词搜索，默认显示一个输入框，模糊查询 -->
       <template v-if="wordSearchFlag">
         <div class="top_wrapper mb">
@@ -603,7 +603,7 @@ export default {
       type: Boolean,
       default: true
     },
-    searchShow: { // 是否显示头部搜索
+    showSearch: { // 是否显示头部搜索
       type: Boolean,
       default: true
     },
@@ -631,10 +631,6 @@ export default {
       type: Object, //默认 like：模糊 eq：精确 in：数组 between：日期
       default: () => ({})
     },
-    tableInsert: { // 表格上方插入的元素
-      type: Boolean,
-      default: false,
-    },
     openSearchFlag: { //自定义搜索展开按钮
       type: Boolean,
       default: false
@@ -644,7 +640,7 @@ export default {
       default: 5000
     },
     rowKeys: {
-      type: String,
+      type: String || Array,
       default: ""
     }
   },
