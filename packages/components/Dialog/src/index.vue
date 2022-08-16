@@ -10,7 +10,9 @@
       v-on="$listeners"
     >
       <template slot="title">
-        <div>{{ title }}</div>
+        <slot name="title">
+          <div>{{ title }}</div>
+        </slot>
         <button
           class="el-dialog__headerbtn dialog_fullscreen__icon"
           v-if="showFullscreen"
@@ -26,12 +28,14 @@
         <slot />
       </div>
       <span slot="footer" class="dialog_footer">
-        <el-button type="info" size="small" @click="handleClose">{{
-          cancelText
-        }}</el-button>
-        <el-button type="primary" size="small" @click="confirmHandle">{{
-          confirmText
-        }}</el-button>
+        <slot name="footer">
+          <el-button type="info" size="small" v-if="!!cancelText" @click="handleClose">{{
+                      cancelText
+                    }}</el-button>
+        <el-button type="primary" size="small" v-if="!!confirmText" @click="confirmHandle">{{
+            confirmText
+          }}</el-button>
+        </slot>
       </span>
     </el-dialog>
   </div>
