@@ -5,6 +5,7 @@
         {{ defaultProps.title }}
       </div>
       <div class="jt_btns">
+        <slot name="create"></slot>
         <el-tooltip
           :content="defaultProps.createTitle || '创建分组'"
           placement="top"
@@ -61,53 +62,63 @@
                 </slot>
               </div>
               <div class="slot_box">
-                <slot name="data" :data="data" />
+                <slot name="data" :data="data" :node="node" />
               </div>
             </div>
-            <div
-              v-if="defaultProps.btns && defaultProps.btns.length > 0"
-              class="right_icon"
-            >
-              <el-dropdown trigger="click" :hide-on-click="false">
-                <i class="kj-iconfont icon-ellipsis" style="color: #365edf" />
-                <el-dropdown-menu slot="dropdown">
-                  <div v-for="(item, index) in defaultProps.btns" :key="index">
-                    <!-- <el-dropdown-item @click.native="popRename(data, node)">重命名</el-dropdown-item>
+            <slot name="btns" :data="data" :node="node">
+              <div
+                v-if="defaultProps.btns && defaultProps.btns.length > 0"
+                class="right_icon"
+              >
+                <el-dropdown
+                  trigger="click"
+                  :hide-on-click="false"
+                  @visible-change="btnShowHandler($event, node, data)"
+                >
+                  <i class="kj-iconfont icon-ellipsis" style="color: #365edf" />
+                  <el-dropdown-menu slot="dropdown">
+                    <div
+                      v-for="(item, index) in defaultProps.btns"
+                      :key="index"
+                    >
+                      <!-- <el-dropdown-item @click.native="popRename(data, node)">重命名</el-dropdown-item>
                           <el-dropdown-item @click.native="popMove(data, node)">移动</el-dropdown-item> -->
 
-                    <el-dropdown-item v-if="item.confirmInfo">
-                      <template>
-                        <el-popconfirm
-                          :title="item.confirmInfo"
-                          confirm-button-text="删除"
-                          cancel-button-type="info"
-                          :hide-icon="true"
-                          @confirm="
-                            item.confirm && item.confirm.call(this, node, data)
-                          "
-                        >
-                          <el-button
-                            slot="reference"
-                            type="text"
-                            class="main-txt"
+                      <el-dropdown-item v-if="item.confirmInfo">
+                        <template>
+                          <el-popconfirm
+                            :title="item.confirmInfo"
+                            :confirm-button-text="item.content || '删除'"
+                            cancel-button-type="info"
+                            :hide-icon="true"
+                            @confirm="
+                              item.confirm &&
+                                item.confirm.call(this, node, data)
+                            "
                           >
-                            删除
-                          </el-button>
-                        </el-popconfirm>
-                      </template>
-                    </el-dropdown-item>
-                    <el-dropdown-item
-                      v-else
-                      @click.native="
-                        item.handler && item.handler.call(this, node, data)
-                      "
-                    >
-                      {{ item.content }}
-                    </el-dropdown-item>
-                  </div>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
+                            <el-button
+                              slot="reference"
+                              type="text"
+                              class="main-txt"
+                            >
+                              {{item.content || '删除'}}
+                            </el-button>
+                          </el-popconfirm>
+                        </template>
+                      </el-dropdown-item>
+                      <el-dropdown-item
+                        v-else
+                        @click.native="
+                          item.handler && item.handler.call(this, node, data)
+                        "
+                      >
+                        {{ item.content }}
+                      </el-dropdown-item>
+                    </div>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </div>
+            </slot>
           </div>
         </div>
       </el-tree>
@@ -262,6 +273,20 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    btnShowHandler(event, node, data, ...a) {
+      if (event) {
+        this.$emit('btnClick', [node, data]);
+        console.log(
+          `*****<<<  真的  272行 ~/kj/kd-components/packages/components/JobTree/src/index.vue  17:27:55`
+        );
+        console.log(`%c 282行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node`, 'background:#fff;color:red', node);
+        console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node.Node`, 'background:#fff;color:red', node.data);
+        
+        console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue data`, 'background:#fff;color:red', data);
+        console.log(`%c 284行 ~/kj/kd-components/packages/components/JobTree/src/index.vue a`, 'background:#fff;color:red', a);
+        
+      }
+    },
     deleteRow() {
       console.log('deleteRow');
     },

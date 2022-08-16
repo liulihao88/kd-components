@@ -2,7 +2,7 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in Object.keys(docName)">
-        <a :href="`#${item}`">{{docName[item]}}</a>
+        <a :href="`#${item}`">{{ docName[item] }}</a>
       </li>
       <li v-for="item in comArr" :key="item">
         <a :href="`#${item}`" v-text="replaceName(item)"></a>
@@ -11,8 +11,8 @@
     <section class="container">
       <div>
         <div v-for="item in Object.keys(docName)" :id="item" :key="item">
-          <h5 class="title">{{docName[item]}}</h5>
-          <div class="markdown-body" style="margin-top: 16px;">
+          <h5 class="title">{{ docName[item] }}</h5>
+          <div class="markdown-body" style="margin-top: 16px">
             <VueMarkdown :source="docMd[item]"></VueMarkdown>
           </div>
         </div>
@@ -39,22 +39,13 @@
 <script>
 import VueMarkdown from 'vue-markdown';
 import { requireComponents, requireMd } from './utils/index';
-import { docMd, docName } from "./doc/index"
+import { docMd, docName } from './doc/index';
 import { deepClone } from 'utils';
 
 const constantModulesMd = require.context('./views', true, /\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, ['testCron']);
-/**
- * 将希望显示的组件放在第一位
- */
-// names = names.splice(9)
-let spliceNames = deepClone(names);
-if (process.env.NODE_ENV === 'development') {
-  // console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
-  // spliceNames = names.filter((v) => v ==='testEmpty');
-}
 
 export default {
   name: 'App',
@@ -69,6 +60,18 @@ export default {
       docName: docName,
       docMd: docMd
     };
+  },
+  created() {
+    /**
+     * 将希望显示的组件放在第一位
+     */
+    // names = names.splice(9)
+    if (process.env.NODE_ENV === 'development') {
+      let spliceNames = deepClone(this.comArr);
+      console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
+      this.comArr = spliceNames.filter((v) => v === 'testJobTree');
+      this.docName = {}
+    }
   },
   mounted() {},
   methods: {
