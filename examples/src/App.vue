@@ -42,8 +42,8 @@ import { requireComponents, requireMd } from './utils/index';
 import { docMd, docName } from "./doc/index"
 import { deepClone } from 'utils';
 
-const constantModulesMd = require.context('./views', true, /\.md$/);
-const constantModules = require.context('./views', true, /\.vue$/);
+const constantModulesMd = require.context('./views', true, /index\.md$/);
+const constantModules = require.context('./views', true, /index\.vue$/);
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, ['testCron']);
 /**
