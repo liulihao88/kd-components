@@ -1,5 +1,5 @@
 <template>
-  <div class="select-tree">
+  <div class="kd-tree-single">
     <el-select
       ref="selectTree"
       :key="option.value"
@@ -33,6 +33,8 @@
           :node-key="nodeKey"
           :filter-node-method="filterNode"
           :default-expanded-keys="expandedKeys"
+          highlight-current
+          :current-node-key="option.value"
           @node-click="handleClickNode"
         />
       </div>
@@ -42,7 +44,7 @@
 
 <script>
   export default {
-    name: "KdSelectSingle",
+    name: "KdTreeSingle",
     components: {
 
     },
@@ -101,18 +103,19 @@
       pId: {
         get() {
           this.$nextTick(() => {
+            
             if (this.value) {
               const node = this.$refs.treeRef.getNode(this.value);
               this.$refs.treeRef.setCurrentKey(node.key);
-              this.option.label = node[this.defaultProps.label];
-              this.option.value = node[this.defaultProps.id];
+              this.option.label = node.data[this.defaultProps.label];
+              this.option.value = node.data[this.defaultProps.value];
               this.expandedKeys = [this.value];
             }
           })
           return this.value || '';
         },
         set(v) {
-          // this.$emit("input", v);
+          this.$emit("input", v);
           this.$emit('change', v);
         }
       }
@@ -131,17 +134,8 @@
     methods: {
       //节点点击事件
       handleClickNode(data, node) {
-        this.$refs.treeRef.setCurrentKey(node.key);
         var node = this.$refs.treeRef.getNode(node.key);
-        console.log(node.key, node)
-        // if (node) {
-        //   this.options = [];
-        //   this.options.push({
-        //     label: node.data[this.defaultProps.label],
-        //     value: node.data[this.defaultProps.id]
-        //   });
-        // }
-        this.value = node.data[this.defaultProps.label];
+        this.pId = node.data[this.defaultProps.label];
         // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
         this.$refs.selectTree.blur()
       },

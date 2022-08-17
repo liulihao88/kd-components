@@ -3,7 +3,7 @@ des: is-object 为true时需要设置value-key,默认为value，选择后的值�
     is-object 为 false ,选择的值内容为['id','name']
 -->
 <template>
-  <kd-select-single
+  <kd-tree-single
       v-model="form.checkFiled"
       :tableData="form.option"
       :default-props="defaultProps"
@@ -14,7 +14,7 @@ des: is-object 为true时需要设置value-key,默认为value，选择后的值�
 
 <script >
 export default {
-  name: "testSelectSingle",
+  name: "testTreeSingle",
   data() {
     return {
       form: {
