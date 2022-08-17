@@ -3,6 +3,7 @@
     <div style="width:100px;">
       <kd-tooltip
         width="80%"
+        @click="clickHandler"
         :content="text"
       />
     </div>
@@ -17,7 +18,7 @@
         placement="top"
       />
     </div>
-    
+
     <!-- 分割线 -->
     <div class="divider"></div>
 
@@ -35,6 +36,8 @@
 </template>
 
 <script>
+import {$toast} from "../../../../packages/utils";
+
 export default {
   name: "testKdTooltip",
   data () {
@@ -42,6 +45,11 @@ export default {
       text:'测试kd-tooltip组件使用宽度百分比',
       textPx:'测试kd-tooltip组件使用宽度px',
       textslot: '测试kd-tooltip组件使用插槽'
+    }
+  },
+  methods: {
+    clickHandler() {
+      $toast("点击了click");
     }
   }
 }

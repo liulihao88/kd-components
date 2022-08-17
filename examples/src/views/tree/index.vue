@@ -1,8 +1,8 @@
 <template>
   <div class="testtree">
-    <kd-tree 
-      :data="data" 
-      :props="defaultProps" 
+    <kd-tree
+      :data="data"
+      :props="defaultProps"
       @node-click="handleNodeClick"
     ></kd-tree>
   </div>
@@ -58,7 +58,7 @@ export default {
     };
   },
   components: {
-  
+
   },
   created() {
 
