@@ -1,9 +1,9 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.19",
+  "version": "1.1.22",
   "private": false,
-  "description": "科杰大数据组件库",
+  "description": "科杰大数据组件库2.6.14版本",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:es && npm run build:umd && npm run build:theme",
@@ -34,7 +34,7 @@
     "core-js": "^3.8.3",
     "element-ui": "2.15.8",
     "lodash": "^4.17.21",
-    "vue": "^2.6.14",
+    "vue": "2.6.10",
     "vue-i18n": "8.25.1",
     "vue-multipane": "^0.9.5",
     "vue-virtual-scroll-list": "^2.3.3"
@@ -81,12 +81,12 @@
     "shelljs": "^0.8.5",
     "text-loader": "0.0.1",
     "unplugin-vue-define-options": "^0.6.2",
-    "vue": "^2.6.14",
     "vue-i18n": "8.25.1",
     "vue-markdown": "^2.2.4",
     "vue-multipane": "^0.9.5",
-    "vue-template-compiler": "^2.6.14",
-    "vue-virtual-scroll-list": "^2.3.3"
+    "vue-virtual-scroll-list": "^2.3.3",
+    "vue": "2.6.14",
+    "vue-template-compiler": "2.6.14"
   },
   "browserslist": [
     "> 1%",
