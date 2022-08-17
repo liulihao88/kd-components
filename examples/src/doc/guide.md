@@ -21,8 +21,13 @@ npm install @kd/components
 
 ```
 
+// npm update @kd/components
+
+// 或
+
 npm uninstall @kd/components
 npm install @kd/components@latest
+
 
 ```
 
