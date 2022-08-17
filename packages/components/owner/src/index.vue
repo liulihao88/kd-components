@@ -2,6 +2,7 @@
 <template>
   <el-form-item
     label="负责人"
+    style="margin-bottom: 0;"
   >
     <div
       v-for="(ownerItem, index) in form.owners"
