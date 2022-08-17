@@ -21,10 +21,10 @@ npm install @kd/components
 
 ```
 
-// npm update @kd/components
+ npm update @kd/components
 
-// 或
 
+// 如果升级主版本号,需执行以下操作更新
 npm uninstall @kd/components
 npm install @kd/components@latest
 
