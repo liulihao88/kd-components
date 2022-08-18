@@ -1,9 +1,15 @@
 <template>
   <div class="testtree">
+    <el-input
+        placeholder="输入关键字进行过滤"
+        v-model="filterText">
+    </el-input>
     <kd-tree
+       ref="tree"
       :data="data"
       :props="defaultProps"
       @node-click="handleNodeClick"
+      :filter-node-method="filterNode"
     ></kd-tree>
   </div>
 </template>
@@ -16,6 +22,7 @@ export default {
   },
   data() {
     return {
+      filterText: "",
       data: [{
         label: '一级 1',
         children: [{
@@ -57,6 +64,11 @@ export default {
       }
     };
   },
+  watch: {
+    filterText(val) {
+      this.$refs.tree.filter(val);
+    }
+  },
   components: {
 
   },
@@ -67,6 +79,10 @@ export default {
 
   },
   methods: {
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
     handleNodeClick(data) {
       console.log(data);
     }
