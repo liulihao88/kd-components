@@ -3,7 +3,7 @@
     :wrapper-closable="wrapperClosable"
     :destroy-on-close="isDestroyChild"
     :with-header="true"
-    :size="$attrs.size || 480"
+    :size="$attrs.size || 640"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -61,7 +61,7 @@ export default {
     },
     wrapperClosable: {
       type: Boolean,
-      default: false
+      default: process.env.NODE_ENV === 'development'
     }
   },
   computed: {
