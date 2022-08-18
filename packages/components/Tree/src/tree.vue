@@ -12,7 +12,7 @@
     <div class="el-tree__empty-block" v-if="isEmpty">
       <span class="el-tree__empty-text">{{ emptyText }}</span>
     </div>
-    <virtual-list :style="{ 'height':  'calc(100% - 5px)', 'overflow-y': 'auto' }"
+    <virtual-list v-else :style="{ 'height':  'calc(100% - 5px)', 'overflow-y': 'auto' }"
                   :data-key="getNodeKey"
                   :data-sources="visibleList"
                   :data-component="itemComponent"
@@ -1047,7 +1047,7 @@ export default {
     cursor: default
   }
 
-/* 
+/*
   .el-tree-node__label {
     font-size: 14px
   } */
