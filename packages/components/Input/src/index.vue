@@ -7,7 +7,7 @@
     class="kd-ipt"
     :clearable="$attrs.clearable !== false"
     :class="{ 'kd-textarea': $attrs.type === 'textarea' }"
-    :style="{ ...mHandleWidth }"
+    :style="{ ...mHandleWidth() }"
     :maxlength="handleMaxLength"
     show-word-limit
     v-on="$listeners"
