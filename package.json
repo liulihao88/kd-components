@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "private": false,
   "description": "科杰大数据组件库2.6.14版本",
   "scripts": {
