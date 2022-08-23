@@ -168,6 +168,7 @@
             :key="col.type"
             :type="col.type"
             :width="col.width"
+            :selectable="col.selectableFn"
             :reserve-selection="col.type==='selection'"
           />
           <el-table-column

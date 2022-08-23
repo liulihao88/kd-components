@@ -25,7 +25,7 @@ export default {
   name: 'KdInput',
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     width: {

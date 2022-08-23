@@ -7,8 +7,8 @@
       @nodeHandler="nodeHandler"
     >
       <template #data="{ data, nodes }">
-        <!-- <div>{{ data.name }}</div> -->
-        <div>{{ nodes }}</div>
+        <span>{{ data.name }}</span>
+        <!-- <div>{{ nodes }}</div> -->
       </template>
     </kd-job-tree>
 
