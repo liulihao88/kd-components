@@ -1,0 +1,148 @@
+.scroll-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--heigth);
+
+  // 两侧按钮样式
+  .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 100%;
+    border: 1px solid var(--line-color);
+    border-radius: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &:hover {
+      color: var(--primary-color);
+      background-color: var(--primary-bg);
+    }
+
+    &:focus {
+      color: var(--primary-color);
+      background-color: var(--bg-color);
+      border-color: var(--primary-color);
+    }
+  }
+
+  // 中间部分
+  .scroll-wrap {
+    display: inline-block;
+    flex: 1;
+    position: relative;
+    height: 100%;
+  }
+
+  // 容器
+  .inner-scrollbar {
+    width: 100%;
+    height: var(--heigth);
+    white-space: nowrap;
+    position: absolute;
+    scroll-behavior: smooth;
+    
+    .el-scrollbar__wrap{
+      overflow: hidden;
+      margin-right:0!important;
+    }
+    .el-scrollbar__view{
+      height: 100%;
+    }
+
+    .inner-wrap {
+      display: inline-block;
+      height: 100%;
+
+      .item {
+        display: inline-flex;
+        padding: 0 16px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        cursor: pointer;
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+.scroll-group[type="group"] {
+  .inner-wrap {
+    .item {
+      background: #f7f8fa;
+      border: 1px solid #e3e6eb;
+      border-radius: 0;
+      color: var(--text-color);
+      min-width: 100px;
+    }
+
+    .item + .item {
+      border-left-color: transparent;
+    }
+
+    &:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .active {
+      background: #ffffff;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color) !important;
+    }
+  }
+}
+
+.scroll-group[type="button"] {
+  .inner-wrap {
+    .item {
+      background: #f7f8fa;
+      border: 1px solid #e3e6eb;
+      border-radius: 2px;
+      color: var(--text-color);
+      min-width: 100px;
+    }
+
+    .item + .item {
+      margin-left: var(--space);
+    }
+
+    .active {
+      background: #ffffff;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color) !important;
+    }
+  }
+}
+
+.scroll-group[type="tag"] {
+  .inner-wrap {
+    .item {
+      background: #fff;
+      border-style: none;
+      border-radius: 2px;
+      color: var(--text-color);
+      height: 24px;
+      line-height: 24px;
+      padding: 0 10px;
+    }
+
+    .item + .item {
+      margin-left: var(--space);
+    }
+
+    .active {
+      background: #f5f7fd;
+      color: var(--primary-color);
+    }
+  }
+}
