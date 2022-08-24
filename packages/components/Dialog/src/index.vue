@@ -27,14 +27,22 @@
       <div class="dialog_slot_box">
         <slot />
       </div>
-      <span slot="footer" class="dialog_footer">
+      <span slot="footer" class="dialog_footer" v-if="showFooter">
         <slot name="footer">
-          <el-button type="info" size="small" v-if="!!cancelText" @click="handleClose">{{
-                      cancelText
-                    }}</el-button>
-        <el-button type="primary" size="small" v-if="!!confirmText" @click="confirmHandle">{{
-            confirmText
-          }}</el-button>
+          <el-button
+            type="info"
+            size="small"
+            v-if="!!cancelText"
+            @click="handleClose"
+            >{{ cancelText }}</el-button
+          >
+          <el-button
+            type="primary"
+            size="small"
+            v-if="!!confirmText"
+            @click="confirmHandle"
+            >{{ confirmText }}</el-button
+          >
         </slot>
       </span>
     </el-dialog>
@@ -78,6 +86,10 @@ export default {
     zIndex: {
       type: [Number, String],
       default: 999
+    },
+    showFooter: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

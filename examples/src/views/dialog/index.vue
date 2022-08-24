@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <el-button @click="isShow = true">弹框</el-button>
+  <div class="box">
+    <el-button @click="isShow = true">简单弹框</el-button>
     <el-button @click="isShow1 = true">自定义title和footer</el-button>
     <el-button @click="isShow2 = true" type="primary">复杂弹框</el-button>
-    <kd-dialog :visible.sync="isShow" title="提示" ref="dialogRef">
+    <kd-dialog :visible.sync="isShow" title="提示" ref="dialogRef" class="easy_use">
       简单用法
     </kd-dialog>
 
     <kd-dialog :visible.sync="isShow1" title="提示" ref="dialogRef">
       <template slot="title">
-        <div>自定义title <span style="color: red;">开心</span> </div>
+        <div>自定义title <span style="color: red">开心</span></div>
       </template>
       <template slot="footer">
         <el-button type="primary">自定义btn</el-button>
@@ -23,8 +23,7 @@
       @confirm="confirmDialog"
       @cancel="cancelDialog"
       showFullscreen
-      confirmText="提交按钮"
-      cancelText="取消按钮"
+      :showFooter="false"
       ref="dialogRef2"
       width="80%"
     >
@@ -33,6 +32,8 @@
         :visible.sync="isShow3"
         showFullscreen
         append-to-body
+        confirmText="提交按钮1"
+        cancelText="取消按钮2"
         title="哈哈"
         zIndex="1000"
         top="25vh"
@@ -70,4 +71,8 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.easy_use ::v-deep .el-dialog__footer{
+  border-top: none;
+}
+</style>
