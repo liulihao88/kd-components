@@ -72,10 +72,10 @@ export default {
      */
     // names = names.splice(9)
     if (process.env.NODE_ENV === 'development') {
-      // let spliceNames = deepClone(this.comArr);
-      // console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
-      // this.comArr = spliceNames.filter((v) => v === 'testDialog');
-      // this.docName = {}
+      let spliceNames = deepClone(this.comArr);
+      console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
+      this.comArr = spliceNames.filter((v) => v === 'testSelect');
+      this.docName = {}
     }
   },
   mounted() {},

@@ -1,6 +1,6 @@
 .kd-select {
-  min-width: 208px;
-  display: inline-block;
+  display: inline-flex;
+  width: 208px;
   .left_box {
     // background-color: #f5f7fa;
     background: #fff;
@@ -22,7 +22,7 @@
     border-radius: 0px 2px 2px 0 !important;
   }
   .right_box{
-    width: 208px;
+    flex-grow: 1;
     display:inline-block;
   }
 }

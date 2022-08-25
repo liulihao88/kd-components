@@ -31,6 +31,10 @@ export default {
     width: {
       type: [String, Number],
       required: false
+    },
+    block: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
