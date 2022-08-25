@@ -1,0 +1,22 @@
+//滚动条
+.kd_scrollbar {
+  height: 100%;
+  & > .el-scrollbar__wrap {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    & > .el-scrollbar__view {
+      min-height: 100%;
+    }
+  }
+  & > .el-scrollbar__bar.is-vertical {
+    width: 4px;
+    right: 0;
+    z-index: 4;
+    .el-scrollbar__thumb {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .el-scrollbar__thumb:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

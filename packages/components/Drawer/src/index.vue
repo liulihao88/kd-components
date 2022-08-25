@@ -9,7 +9,7 @@
   >
 
     <slot name="title" slot="title"></slot>
-      
+
     <div v-loading="loading" class="drawer-main">
       <el-scrollbar class="drawer-scrollbar">
         <div class="content">
@@ -17,7 +17,7 @@
         </div>
       </el-scrollbar>
 
-      <div v-if="showFooter" class="footer">
+      <div v-if="showFooter" class="kd-drawer-footer">
         <slot name="footer">
           <el-button v-if="showConfirm" type="primary" size="small" class="mr" @click="confirm">
             {{ confirmText }}
