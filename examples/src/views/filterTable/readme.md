@@ -179,7 +179,7 @@ export default {
 |type|String|''|el-table原生属性，可以配置index selection等|
 |tooltipFlag|Boolean|false|是否显示自带的tooltip，可以配合useSlot或render函数设置本列自己的tooltip|
 |handler|Function||本列点击事件函数，配置后，本列内容自动加上链接样式|
-|baseBtns|Number|2|只能配置在操作那一列，最多显示几个操作按钮，超出此个数需要点击...才能看到更多按钮|
+|maxBtns|Number|2|只能配置在操作那一列，最多显示几个操作按钮，超出此个数需要点击...才能看到更多按钮|
 |isTxtButton|Boolean|true|true：表示使用文字按钮 false：表示使用icon按钮|
 |confirmInfo|String|''|有的按钮点击后有确认信息提示，确认框点击后确认后才执行handler|
 |filterPlacement|String|'bottom-end'|el-column原生属性|
