@@ -226,10 +226,15 @@
   }
 }
 
+.el-popover__reference-wrapper button{
+  margin-left: 6px;
+}
+
 //// 表格按钮
-.btnlist button:first-child {
+.btnlist > button:first-child {
   margin-left: 0 !important;
 }
+
 
 // ElForm样式
 .el-form {
