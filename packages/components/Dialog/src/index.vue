@@ -32,6 +32,7 @@
           <el-button
             type="info"
             size="small"
+            :disabled="cancelDisabled"
             v-if="!!cancelText"
             @click="handleClose"
             >{{ cancelText }}</el-button
@@ -39,6 +40,7 @@
           <el-button
             type="primary"
             size="small"
+            :disabled="confirmDisabled"
             v-if="!!confirmText"
             @click="confirmHandle"
             >{{ confirmText }}</el-button
@@ -71,6 +73,15 @@ export default {
       type: [Function, String],
       default: ''
     },
+    confirmDisabled:{
+      type: Boolean,
+      default: false
+    },
+    cancelDisabled:{
+      type: Boolean,
+      default: false
+    },
+    
     cancelText: {
       type: String,
       default: '取消'
