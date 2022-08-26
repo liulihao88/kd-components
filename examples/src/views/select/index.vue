@@ -7,14 +7,14 @@
       :options="t1Options"
       @changeSelect="changeSelect"
       class="mr"
-      width="120"
+      width="100%"
       type="simple"
     />
     <!-- 常用select -->
     <kd-select
       :title="'最常用=>' + t2"
       v-model="t2"
-      class="mr"
+      class="mr mt"
       :options="t2Options"
       @changeSelect="changeSelect"
       :defaultProps="{ label: 'name' }"
@@ -24,6 +24,7 @@
       :title="'改变label=>' + t3"
       v-model="t3"
       class="mr"
+      width="500"
       @changeSelect="changeSelect"
       :options="t3Options"
       :customLabel="(item) => `${item.name}(${item.value})`"
@@ -34,6 +35,7 @@
       v-model="t4"
       class="mr"
       multiple
+      width="500"
       :options="t4Options"
       @changeSelect="changeSelect"
       :customLabel="(item) => `${item.name}(${item.value2})`"

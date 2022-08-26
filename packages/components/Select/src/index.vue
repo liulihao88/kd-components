@@ -1,12 +1,11 @@
 <template>
-  <div class="kd-select">
+  <div class="kd-select" :style="{ ...mHandleWidth() }">
     <div v-if="title" class="left_box">
       {{ title }}
     </div>
     <el-select
       class="right_box"
       v-loading="loading"
-      :style="{ ...mHandleWidth() }"
       size="small"
       :filterable="$attrs.filterable !== false"
       :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
@@ -129,12 +128,19 @@ export default {
     width: {
       type: [String, Number],
       required: false
-    }
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    
   },
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+   
+  },
   watch: {},
   created() {},
   mounted() {},
