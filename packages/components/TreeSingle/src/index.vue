@@ -1,5 +1,5 @@
 <template>
-  <div class="kd-tree-single">
+  <div class="kd_tree_single">
     <el-select
       ref="selectTree"
       :key="option.value"
@@ -9,7 +9,7 @@
       v-on="$listeners"
     >
       <el-option :key="option.value" :value="option.value" :label="option.label" style="height: auto" hidden />
-      <div class="search" v-if="filterable">
+      <div class="tree_single_search_box" v-if="filterable" >
         <el-input
           v-model="filterText"
           placeholder="搜索"
@@ -19,7 +19,7 @@
           @input="filterMethod"
         />
       </div>
-      <div class="tree">
+      <div class="tree_single_tree_box">
         <el-tree
           ref="treeRef"
           :data="tableData"
