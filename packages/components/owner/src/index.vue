@@ -22,7 +22,7 @@
             remote
             reserve-keyword
             :clearable="false"
-            :disabled="disabled"
+            :disabled="disabledFn(index)"
             placeholder="请输入关键词"
             size="medium"
             :remote-method="remoteMethod"
@@ -94,6 +94,10 @@ export default {
     disabled:{
       type: Boolean,
       default: false
+    },
+    firstDisabled:{
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -121,6 +125,13 @@ export default {
     }
   },
   methods: {
+    disabledFn(index){
+      if(this.firstDisabled) {
+        return index === 0
+      } else {
+        return this.disabled
+      }
+    },
     add() {
       if(this.disabled) return
       this.form.owners.push({
