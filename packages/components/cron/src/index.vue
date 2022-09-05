@@ -128,7 +128,7 @@ import MonthUi from './tabs/month.vue'
 import YearUi from './tabs/year.vue'
 import CronParser from 'cron-parser'
 import dateFormat from './format-date'
-import { debounce } from 'utils/gFunc'
+import { debounce } from '../../../utils/gFunc'
 
 export default {
   name: 'EasyCron',
