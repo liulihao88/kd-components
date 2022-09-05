@@ -85,14 +85,9 @@
     "vue-markdown": "^2.2.4",
     "vue-multipane": "^0.9.5",
     "vue-virtual-scroll-list": "^2.3.3",
-<<<<<<< HEAD
     "vue": "2.6.10",
-    "vue-template-compiler": "2.6.10"
-=======
-    "vue": "2.6.14",
-    "vue-template-compiler": "2.6.14",
+    "vue-template-compiler": "2.6.10",
     "cron-parser": "^4.6.0"
->>>>>>> 0909084b56dfd44f4f6091a2c07659625e273b4c
   },
   "browserslist": [
     "> 1%",
