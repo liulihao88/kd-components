@@ -11,7 +11,7 @@
     placeholder="请输入任务英文名称/任务中文名称/负责人英文名称"
     @updatePage="getTaskList"
   >
-    <template #search="{ search }"> 
+    <template #search="{ search }">
       <kd-input v-model="form.name" title="搜索" class="mb" />
     </template>
     <template #operation>
@@ -74,6 +74,15 @@ export default {
               handler: this.viewLog
             },
             {
+              content: '删除',
+              confirmInfo: '哈哈',
+              confirm: () => {
+                console.log(123);
+              }
+              // handler: this.viewLog
+            },
+
+            {
               content: '恢复',
               disabled: (row) =>
                 row.stopOrRecover && row.taskStatus !== 'FAILURE',
@@ -89,9 +98,7 @@ export default {
           ]
         }
       ],
-      form: {
-
-      },
+      form: {},
       totalNum: 0,
       searchTypes: {
         name: 'like',

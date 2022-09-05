@@ -45,7 +45,8 @@ import { deepClone } from 'utils';
 const constantModulesMd = require.context('./views', true, /\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
 const { mds } = requireMd(constantModulesMd);
-const { components, names } = requireComponents(constantModules, ['testCron']);
+const { components, names } = requireComponents(constantModules, []);
+// const { components, names } = requireComponents(constantModules, ['testCron']);
 /**
  * 将希望显示的组件放在第一位
  */
@@ -63,23 +64,47 @@ export default {
       comArr: names,
       mds: mds,
       docName: docName,
-      docMd: docMd
+      docMd: docMd,
+      isDev: false
     };
   },
   created() {
-    /**
-     * 将希望显示的组件放在第一位
-     */
-    // names = names.splice(9)
-    if (process.env.NODE_ENV === 'development') {
-      let spliceNames = deepClone(this.comArr);
-      console.log(`%c 222=>46行 ~/kj/kd-components/examples/src/App.vue names `, 'background:#000;color:#bada55', names);
-      this.comArr = spliceNames.filter((v) => v === 'testSelect');
-      this.docName = {}
+    // 是否隐藏组件. 因为把全部组件加载到页面上调试麻烦, 所以定义一个变量来只显示想显示的组件
+    let isHideComp = false;
+    isHideComp = true;
+    if (isHideComp) {
+      // this.hideComps();
     }
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
+    hideComps() {
+      //  将希望显示的组件放在第一位
+      if (process.env.NODE_ENV === 'development') {
+        // 只改下面这行代码,改变compName
+        let compName = ['treeSingle', 'select'];
+        // 只改上面这行代码
+        let spliceNames = deepClone(this.comArr);
+        let str = 'test';
+        let res = [];
+        for (let i = 0; i < compName.length; i++) {
+          let strRes =
+            str + compName[i][0].toUpperCase() + compName[i].slice(1);
+          res.push(strRes);
+        }
+        console.log(
+          `%c 111=>94行 examples/src/App.vue res `,
+          'background:#000;color:#bada55',
+          res
+        );
+
+        this.comArr = spliceNames.filter((v) => {
+          return res.includes(v);
+        });
+        this.docName = {};
+      }
+    },
     replaceName(value) {
       let str = `kd${value.replace('test', '')}`;
       return str.replace(/([A-Z])/g, (match, p1, offset, string) => {

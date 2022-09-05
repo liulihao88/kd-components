@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="cron-container content">
     <div class="left">
       <el-tabs
         v-model="curtab"
@@ -119,16 +119,16 @@
 </template>
 
 <script>
-import SecondUi from './tabs/second'
-import MinuteUi from './tabs/minute'
-import HourUi from './tabs/hour'
-import DayUi from './tabs/day'
-import WeekUi from './tabs/week'
-import MonthUi from './tabs/month'
-import YearUi from './tabs/year'
+import SecondUi from './tabs/second.vue'
+import MinuteUi from './tabs/minute.vue'
+import HourUi from './tabs/hour.vue'
+import DayUi from './tabs/day.vue'
+import WeekUi from './tabs/week.vue'
+import MonthUi from './tabs/month.vue'
+import YearUi from './tabs/year.vue'
 import CronParser from 'cron-parser'
 import dateFormat from './format-date'
-import { debounce } from '@/share/utils/gFunc'
+import { debounce } from 'utils/gFunc'
 
 export default {
   name: 'EasyCron',
@@ -299,69 +299,3 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-
-.content {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.left {
-  flex-basis: 60%;
-  width: 60%;
-}
-
-.right {
-  flex-basis: 40%;
-  width: 40%;
-}
-
-::v-deep .ivu-table-small td {
-  height: 30px !important;
-}
-::v-deep .el-tabs__header {
-    padding-right: 10px;
-}
-
-.exe-pre {
-    padding: 10px 10px 0 10px;
-    border: 1px solid var(--line-color);
-    border-top: none;
-}
-
-.exe-pre > div {
-  margin-bottom: 10px;
-}
-
-.exe-pre-panel {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.exe-pre-panel .p-left {
-  flex-basis: 65px;
-  flex-grow: 0;
-}
-
-.exe-pre-panel .p-right {
-  flex-basis: 100px;
-  flex-grow: 1;
-}
-.ftable {
-    margin-top: 16px;
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--line-color);
-}
-.ftable tr:nth-child(2n) {
-  background: var(--table-td-stripe-bg);
-}
-.ftable td {
-  padding-left: 8px;
-    line-height: 33px;
-    border: 0 none;
-}
-.ftable tr:not(:last-child) td {
-  border-bottom: 1px solid var(--line-color);
-}
-</style>

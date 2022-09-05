@@ -626,7 +626,7 @@ export default {
     },
     searchTitle: {
       type: String,
-      default: "搜索关键字",
+      default: "搜索关键词",
     },
     searchTypes: {
       type: Object, //默认 like：模糊 eq：精确 in：数组 between：日期
