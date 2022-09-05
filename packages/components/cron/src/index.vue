@@ -119,13 +119,13 @@
 </template>
 
 <script>
-import SecondUi from './tabs/second'
-import MinuteUi from './tabs/minute'
-import HourUi from './tabs/hour'
-import DayUi from './tabs/day'
-import WeekUi from './tabs/week'
-import MonthUi from './tabs/month'
-import YearUi from './tabs/year'
+import SecondUi from './tabs/second.vue'
+import MinuteUi from './tabs/minute.vue'
+import HourUi from './tabs/hour.vue'
+import DayUi from './tabs/day.vue'
+import WeekUi from './tabs/week.vue'
+import MonthUi from './tabs/month.vue'
+import YearUi from './tabs/year.vue'
 import CronParser from 'cron-parser'
 import dateFormat from './format-date'
 import { debounce } from 'utils/gFunc'

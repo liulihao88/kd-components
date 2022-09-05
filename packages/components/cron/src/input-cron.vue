@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import EasyCron from "./index";
-import DragDialog from "../../Dialog/src";
+import EasyCron from "./index.vue";
+import DragDialog from "../../Dialog/src/index.vue";
 export default {
   name: "KdCron",
   components: {
