@@ -45,7 +45,8 @@ import { deepClone } from 'utils';
 const constantModulesMd = require.context('./views', true, /\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
 const { mds } = requireMd(constantModulesMd);
-const { components, names } = requireComponents(constantModules, ['testCron']);
+const { components, names } = requireComponents(constantModules, []);
+// const { components, names } = requireComponents(constantModules, ['testCron']);
 /**
  * 将希望显示的组件放在第一位
  */
@@ -72,10 +73,11 @@ export default {
     let isHideComp = false;
     isHideComp = true;
     if (isHideComp) {
-      this.hideComps();
+      // this.hideComps();
     }
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     hideComps() {
       //  将希望显示的组件放在第一位
