@@ -242,3 +242,23 @@ export function isEmpty(v) {
   }
   return false;
 }
+
+/**
+ * 表单验证方法的封装. 主要不必再写逻辑判断和统一失败提示语
+ * @param {*} _this vue文件传递的this
+ * @param {*} ref form的ref名字
+ * @param {*} sucCb 验证成功的回调
+ * @example
+ * this.$pub.validateForm(this, ()=>{})
+ * this.$pub.validateForm(this, ()=>{}, 'form2Ref')
+ */
+ export function validateForm(_this, sucCb, ref = "formRef") {
+  _this.$refs[ref].validate((valid) => {
+    if (valid) {
+      sucCb();
+    } else {
+      return $toast("验证未通过", "e");
+    }
+  });
+}
+
