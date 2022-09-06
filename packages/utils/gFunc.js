@@ -242,6 +242,20 @@ export function isEmpty(v) {
   }
   return false;
 }
+//多表单验证
+export const checkForm = (formName,self) =>{
+  // console.log(formName)
+  return new Promise((resolve, reject) => {
+    self.$refs[formName].validate(valid => {
+      if(valid) {
+        resolve()
+      } else {
+        reject()
+      }
+    })
+  })
+}
+
 
 /**
  * 表单验证方法的封装. 主要不必再写逻辑判断和统一失败提示语
