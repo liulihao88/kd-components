@@ -643,6 +643,11 @@ export default {
     rowKeys: {
       type: String || Array,
       default: ""
+    },
+    addShowAllFlage: { // 是否改变表格源数据，并添加showAll属性
+      type: Boolean,
+      default: true
+    
     }
   },
   data() {
@@ -673,10 +678,16 @@ export default {
     data: {
       handler() {
         let items = [];
-        this.data.forEach(dt => {
-          items.push({ ...dt, showall: false });
-        });
-        this.tableData = items;
+        if(this.addShowAllFlage) {
+          this.data.forEach(dt => {
+            items.push({ ...dt, showall: false });
+          });
+          this.tableData = items;
+        } else {
+          this.tableData = this.data;
+        }
+        
+        
       },
       immediate: true
     },
