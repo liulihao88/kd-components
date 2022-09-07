@@ -1,59 +1,61 @@
 ```
 <template>
   <div>
-    <el-button @click="isShow=true">抽屉</el-button>
+    <el-button @click="popWin">抽屉</el-button>
+    <el-button @click="popWin2">自定义title和footer插槽</el-button>
     <el-button @click="isShowMulty = true" type="primary">嵌套抽屉</el-button>
-
-    <kd-drawer :visible.sync="isShow" title="提示" @confirm="confirmDialog">
+    <kd-drawer :visible.sync="isShow" title="提示" @confirm="confirm" ref="drawerRef">
       <el-form ref="formRef" :model="form" :rules="rules">
         <el-form-item label="中文名" prop="realName">
-          <el-input v-model="form.realName"></el-input>
+          <kd-input v-model="form.realName"></kd-input>
         </el-form-item>
       </el-form>
+      <div style="background-color: red; height: 300px"></div>
+      <div style="background-color: blue; height: 400px"></div>
+      <div style="background-color: green; height:200px"></div>
+      <div style="background-color: pink; height:500px"></div>
     </kd-drawer>
-
+     <kd-drawer :visible.sync="isShow2" @confirm="confirmDialog" title="干啥">
+      <template slot="title">
+        <div>
+          我是title
+      </div>
+      </template>
+      <div style="background-color: red; height: 300px"></div>
+      <div style="background-color: blue; height: 400px"></div>
+      <div style="background-color: green; height:200px"></div>
+      <div style="background-color: pink; height:500px"></div>
+      <template #footer>
+        <el-button @click="isShow2 = false" type="primary">我是footer按钮</el-button>
+      </template>
+    </kd-drawer>
     <kd-drawer :visible.sync="isShowMulty" title="提示" @confirm="confirmDialog" :size="800" >
         第一层抽屉
         <el-button @click="isShowMulty2 = true" type="primary">打开内部抽屉</el-button>
-        
-        <kd-drawer :visible.sync="isShowMulty2" title="提示" :zIndex="1000" append-to-body>
-          第二层抽屉  
+        <!-- 第二层要加zIndex, 否则覆盖不住第一层抽屉。 最少为1000。 若有第三层抽屉，累加为1001 -->
+        <kd-drawer :visible.sync="isShowMulty2" append-to-body @confirm="t2">
+          <div slot="title">第二层抽屉</div>
           <el-button @click="isShowMulty3 = true" type="primary">测试</el-button>
-          <kd-drawer :visible.sync="isShowMulty3" title="提示"  append-to-body zIndex="1001" direction="ttb" :size="300" showFullscreen>
-          第三层抽屉 
+          <kd-drawer :visible.sync="isShowMulty3" title="提示"  append-to-body direction="ttb" :size="300" showFullscreen>
+            第三层抽屉 
+          </kd-drawer> 
         </kd-drawer> 
-      </kd-drawer> 
+      </el-form>
     </kd-drawer>
   </div>
 </template>
 
 <script>
-### 注意：
-对于el-drawer遮罩层级过高，挡信message弹框的问题，可以在调用this.$message时，指定customClass自定义类，并声明z-index:3000，或更多在值。因为el-drawer遮罩层默认从2000开始，每打开一个+1，
-
-### 属性：
-- 支持el-drawer的绝大部分属性，以下属性按项目情况设置了默认值
-- wrapperClosable属性默认为false
-- isDestroyChild，即destroy-on-close，默认为true
-- size默认为480
-- with-header设为true，最好别设置该属性，没测试过
-
-### 事件：
-- confirm：默认确认按钮点击回调
-- cancel：默认取消按钮点击回调
-
-### 插槽：
-- title：顶部左侧部分，不含关闭按钮，没有啥情况需要整个header替换
-- default：主体内容部分
-- footer：底部按钮区域
-
-
-import {$toast} from 'u/gFunc'
+import {$toast} from 'utils'
 export default {
   name: "Index",
+  props: {
+
+  },
   data() {
     return {
       isShow: false,
+      isShow2:false,
       isShowMulty: false,
       isShowMulty2: false,
       isShowMulty3: false,
@@ -66,10 +68,46 @@ export default {
         ]
       }
     }
+  },
+  watch: {
+  
+  },
+  components: {
+  
+  },
+  created() {
+
+  },
+  mounted() {
+
+  },
+  methods: {
+    popWin() {
+      this.isShow = true
+    },
+    popWin2(){
+this.isShow2 = true
+    },
+    confirmDialog() {
+
+    },
+    confirm(){
+      this.$refs.formRef.validate((valid)=>{
+        if(valid){
+          this.isShow = false
+        }else{
+          $toast('提交失败', 'e')
+        }
+      })
+    },
+    t2(){
+      $toast('哈哈')
+    }
   }
 };
 </script>
 <style scoped lang='scss'>
     
 </style>
+
 ```

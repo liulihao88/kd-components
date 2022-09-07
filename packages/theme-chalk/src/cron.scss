@@ -1,0 +1,81 @@
+.cron-container {
+  display: flex;
+  flex-wrap: nowrap;
+  .left {
+    flex-basis: 60%;
+    width: 60%;
+  }
+
+  .right {
+    flex-basis: 40%;
+    width: 40%;
+  }
+
+  ::v-deep .ivu-table-small td {
+    height: 30px !important;
+  }
+  ::v-deep .el-tabs__header {
+    padding-right: 10px;
+  }
+
+  .exe-pre {
+    padding: 10px 10px 0 10px;
+    border: 1px solid var(--line-color);
+    border-top: none;
+  }
+
+  .exe-pre > div {
+    margin-bottom: 10px;
+  }
+
+  .exe-pre-panel {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .exe-pre-panel .p-left {
+    flex-basis: 65px;
+    flex-grow: 0;
+  }
+
+  .exe-pre-panel .p-right {
+    flex-basis: 100px;
+    flex-grow: 1;
+  }
+  .ftable {
+    margin-top: 16px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line-color);
+  }
+  .ftable tr:nth-child(2n) {
+    background: var(--table-td-stripe-bg);
+  }
+  .ftable td {
+    padding-left: 8px;
+    line-height: 33px;
+    border: 0 none;
+  }
+  .ftable tr:not(:last-child) td {
+    border-bottom: 1px solid var(--line-color);
+  }
+}
+
+.cron-mode {
+  width: 700px;
+  padding: 16px;
+}
+.input-cron,
+.input-ui {
+  display: inline-block;
+}
+.input-cron {
+  .ivu-input-wrapper {
+    width: 100% !important;
+  }
+  .el-input-group__append {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--ok-btn-color);
+  }
+}

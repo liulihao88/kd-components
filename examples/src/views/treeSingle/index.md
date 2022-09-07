@@ -4,28 +4,35 @@ des: is-object 为true时需要设置value-key,默认为value，选择后的值�
     is-object 为 false ,选择的值内容为['id','name']
 -->
 <template>
-  <kd-select-multiple
+  <kd-tree-single
       v-model="form.checkFiled"
-      :options="form.allFiled"
+      :tableData="form.option"
       :default-props="defaultProps"
-      value-key="name"
-      :is-object="true"
-      multiple
-      collapse-tags
+      :node-key="'name'"
       placeholder="请选择要映射的字段"
   />
 </template>
 
 <script >
 export default {
-  name: "testSelectMultiple",
+  name: "testTreeSingle",
   data() {
     return {
       form: {
-        allFiled: [{
-          name: "lisi"
-        }], // 字段下拉
-        checkFiled: [], // 被选择的内容
+        option: [
+          {
+            name: "lisi"
+          },
+          {
+            name: 'aaa',
+            children: [
+              {
+                name: 'a111'
+              }
+            ]
+          }
+        ], // 字段下拉
+        checkFiled: '', // 被选择的内容
       },
       /**
        * 映射字段，可自定义
@@ -38,5 +45,6 @@ export default {
   }
 }
 </script>
+
 
  ```

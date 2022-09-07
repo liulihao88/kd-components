@@ -17,8 +17,9 @@
       </template>
     </el-input>
     <DragDialog
-      v-model="dialog.show"
+      :visible.sync="dialog.show"
       :title="dialog.title"
+      width="780px"
       :buttons="dialog.buttons"
       @cancel="cancel"
       @confirm="confirm"
@@ -38,8 +39,8 @@
 </template>
 
 <script>
-import EasyCron from "./index";
-import DragDialog from "../comps/KjDragDialog.vue";
+import EasyCron from "./index.vue";
+import DragDialog from "../../Dialog/src/index.vue";
 export default {
   name: "KdCron",
   components: {
@@ -137,32 +138,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.cron-mode {
-  width: 700px;
-  padding: 16px;
-}
-.input-cron,
-.input-ui {
-  display: inline-block;
-}
-
-.input-cron .ivu-input-wrapper {
-  width: 100% !important;
-}
-
-.input-cron {
-  ::v-deep .el-input-group__append {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--ok-btn-color);
-  }
-}
-.config-btn {
-  cursor: pointer;
-}
-
-.config-btn:hover {
-  color: var(--primary-color);
-}
-</style>

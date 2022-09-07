@@ -1,6 +1,6 @@
 ``` 
 <template>
-  <kj-cron
+  <kd-cron
       v-model="cronExpression"
       exe-start-time=""
       :hide-year="false"
