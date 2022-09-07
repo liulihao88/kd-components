@@ -181,6 +181,7 @@ export default {
 |handler|Function||本列点击事件函数，配置后，本列内容自动加上链接样式|
 |maxBtns|Number|2|只能配置在操作那一列，最多显示几个操作按钮，超出此个数需要点击...才能看到更多按钮|
 |isTxtButton|Boolean|true|true：表示使用文字按钮 false：表示使用icon按钮|
+|popoverTitle|String|'删除'|点击按钮需要弹出确认弹框时，指定弹框的标题|
 |confirmInfo|String|''|有的按钮点击后有确认信息提示，确认框点击后确认后才执行handler|
 |filterPlacement|String|'bottom-end'|el-column原生属性|
 |filterMethod|Function|\|el-column原生属性|
