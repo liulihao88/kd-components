@@ -5,7 +5,6 @@
       v-el-drag-dialog
       :fullscreen="fullscreen"
       :destroy-on-close="$attrs.destroyOnClose !== false"
-      :zIndex="zIndex"
       v-bind="$attrs"
       v-on="$listeners"
     >
@@ -93,10 +92,6 @@ export default {
     showFullscreen: {
       type: Boolean,
       default: false
-    },
-    zIndex: {
-      type: [Number, String],
-      default: 999
     },
     showFooter: {
       type: Boolean,

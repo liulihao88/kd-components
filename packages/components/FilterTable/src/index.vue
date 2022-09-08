@@ -643,6 +643,11 @@ export default {
     rowKeys: {
       type: String || Array,
       default: ""
+    },
+    addShowAllFlage: { // 是否改变表格源数据，并添加showAll属性
+      type: Boolean,
+      default: true
+    
     }
   },
   data() {
@@ -673,10 +678,16 @@ export default {
     data: {
       handler() {
         let items = [];
-        this.data.forEach(dt => {
-          items.push({ ...dt, showall: false });
-        });
-        this.tableData = items;
+        if(this.addShowAllFlage) {
+          this.data.forEach(dt => {
+            items.push({ ...dt, showall: false });
+          });
+          this.tableData = items;
+        } else {
+          this.tableData = this.data;
+        }
+        
+        
       },
       immediate: true
     },
@@ -903,12 +914,13 @@ export default {
       for (let key in this.searchCopy) {
         const qData = this.searchCopy[key];
         const isArr = Array.isArray(qData);
+        const isString = !isArr && typeof qData === 'string'
         // 是数组，且数组为空的话，不需要将此条件放入请求中
         if (qData && (!isArr || qData.length > 0)) {
           let listObj = {
             queryType: this.searchTypes[key] || 'like',
             field: key,
-            queryData: isArr ? JSON.stringify(qData) : qData
+            queryData: isArr ? JSON.stringify(qData) : (isString? qData.trim() : qData)
           }
           // word不存在，或者word存在时，仅包装word和下拉框搜索
           if (!this.searchCopy.word || (this.searchCopy.word && (listObj.field === 'word' || isArr))) {

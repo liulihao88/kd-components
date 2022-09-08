@@ -4,6 +4,7 @@
     :data="taskList"
     :columns="columns"
     :totalNum="totalNum"
+    :addShowAllFlage="false"
     :table-expand="false"
     :tr-expand="false"
     :search-types="searchTypes"

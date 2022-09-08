@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.35",
+  "version": "0.1.40",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
@@ -32,8 +32,8 @@
   "author": "hrr",
   "peerDependencies": {
     "element-ui": "^2.0.0",
+    "cron-parser": ">4.0.0",
     "vue": "<2.7.0",
-    "cron-parser": "^4.0.0",
     "lodash": "^4.17.21",
     "vue-i18n": "<9.0.0",
     "vue-multipane": "^0.9.5",
