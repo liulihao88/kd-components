@@ -267,12 +267,12 @@ export const checkForm = (formName,self) =>{
  * this.$pub.validateForm(this, ()=>{}, 'form2Ref')
  */
  export function validateForm(_this, sucCb, ref = "formRef") {
-  _this.$refs[ref].validate((valid) => {
-    if (valid) {
-      sucCb();
-    } else {
-      return $toast("验证未通过", "e");
-    }
-  });
+  // _this.$refs[ref].validate((valid) => {
+  //   if (valid) {
+  //     sucCb();
+  //   } else {
+  //     return $toast("验证未通过", "e");
+  //   }
+  // });
 }
 
