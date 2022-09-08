@@ -24,6 +24,8 @@
       @cancel="cancel"
       @confirm="confirm"
       @afterClose="afterClose"
+      v-bind="$attrs"
+      v-on="$listeners"
     >
       <div class="cron-mode">
         <easy-cron
