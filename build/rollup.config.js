@@ -1,5 +1,5 @@
 import vuePlugin from "rollup-plugin-vue";
-
+import alias from '@rollup/plugin-alias';
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle";
 import { alias as name } from "../package.json";
@@ -12,7 +12,7 @@ import image from '@rollup/plugin-image';
 import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import strip from "@rollup/plugin-strip";
-import fs from "fs";
+import {componentsRoot, utilsRoot} from "./build-utils/build.config";
 
 const file = (type) => `dist/${name}.${type}.js`;
 
@@ -48,6 +48,15 @@ export default {
     // }),
     commonjs({
       include: ["node_modules/**", "node_modules/**/*"],
+    }),
+    alias({
+      entries: [
+        {
+          find: '@kd/utils',
+          replacement: utilsRoot
+        },
+        { find: '@kd/components', replacement: componentsRoot },
+      ]
     }),
     // // 压缩代码
     terser(),

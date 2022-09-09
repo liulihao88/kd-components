@@ -24,6 +24,8 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         'utils': resolve('packages/utils'),
+        '@kd/utils': resolve('packages/utils'),
+        '@kd/components': resolve('packages/components'),
       }
     },
   }

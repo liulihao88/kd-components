@@ -17,6 +17,8 @@ export const excludeFiles = (files) => {
 export const projRoot = resolve(__dirname, '..',)
 export const pkgRoot = resolve(projRoot, 'packages/')
 export const epRoot = resolve(pkgRoot, '')
+export const componentsRoot = resolve(pkgRoot, 'components')
+export const utilsRoot = resolve(pkgRoot, 'utils')
 
 
 export const buildOutput = resolve(projRoot, 'dist')
