@@ -20,7 +20,7 @@
     </p>
     <div style="text-align: right;margin: 16px 4px 4px 4px;">
       <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
-      <el-button type="primary" :disabled="disConfirm" @click="confirm">
+      <el-button type="primary" :disabled="disConfirm" :loading="loading" @click="confirm">
         {{ confirmText }}
       </el-button>
     </div>
@@ -88,11 +88,16 @@ export default {
     cancelText: {
       type: String,
       default: "取消"
+    },
+    loadingConfirm: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      show: false
+      show: false,
+      loading: false
     };
   },
   computed: {
@@ -110,8 +115,17 @@ export default {
   },
   methods: {
     confirm() {
-      this.show = false;
-      this.$emit("confirm");
+      if (this.loadingConfirm) {
+        this.loading = true;
+      } else {
+        this.show = false;
+      }
+      this.$emit("confirm", (err) => {
+        if (!err) {
+          this.loading = false;
+          this.show = false;
+        }
+      });
     },
     cancel() {
       this.show = false;

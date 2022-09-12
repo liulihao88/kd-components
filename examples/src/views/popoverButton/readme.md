@@ -8,12 +8,31 @@
       @confirm="batchDel"
       @cancel="onCancel"
     ></kd-popover-button>
+    <kd-popover-button
+      class="m-r-8"
+      content-text="确定暂停数据读取吗？"
+      reference-text="暂停"
+      :popover-attrs="{title: '暂停'}"
+      :loading-confirm="true"
+      :confirm-text="stopLoading? '加载中': '确定'"
+      @confirm="stopRead"
+      @cancel="onCancel"
+    >
+      <template #reference>
+        <i class="icon kj-iconfont icon-geshihua m-l-4 cp" />
+      </template>
+    </kd-popover-button>
   </div>
 </template>
 
 <script>
   export default {
     name: 'Index',
+    data() {
+      return {
+        stopLoading: false
+      }
+    }
     methods: {
       batchDel() {
         console.log('批量删除')
@@ -21,6 +40,13 @@
       },
       onCancel(){
         this.$message.info('取消操作')
+      },
+      stopRead(cb) {
+        this.stopLoading = true
+        setTimeout(() => {
+          this.stopLoading = false
+          cb();
+        }, 3000)
       }
     },
   }
@@ -39,6 +65,7 @@
 |disConfirm|Boolean|false|popover框确认按钮disabled|
 |confirmText|String|"确认"|popover框确认按钮文本|
 |cancelText|String|"取消"|popover框取消按钮文本|
+|loadingConfirm|Boolean|false|点击确认时，是否要loading，如果设置为true，则confirm事件方法要加一个cb回调函数，在方法结束时调用一下|
 
 ### 事件
 |事件名称|说明|回调参数|
