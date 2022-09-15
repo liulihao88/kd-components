@@ -105,7 +105,7 @@ export default {
       loading: false,
       ruleObject: {
         owners: [
-          // this.mBlurRequired('请输入负责人'),
+          this.mBlurRequired('请输入负责人'),
           {validator: this.validateOwner, trigger: ['blur', 'change']}
         ]
       }
