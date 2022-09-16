@@ -117,15 +117,17 @@ export default {
     confirm() {
       if (this.loadingConfirm) {
         this.loading = true;
+        this.$emit("confirm", (err) => {
+          if (!err) {
+            this.loading = false;
+            this.show = false;
+          }
+        });
       } else {
         this.show = false;
+        this.$emit("confirm");
       }
-      this.$emit("confirm", (err) => {
-        if (!err) {
-          this.loading = false;
-          this.show = false;
-        }
-      });
+      
     },
     cancel() {
       this.show = false;
