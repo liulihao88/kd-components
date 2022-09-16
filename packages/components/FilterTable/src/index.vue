@@ -241,8 +241,8 @@
                   trigger="click"
                 >
                   <span
-                    class="ml po-r"
-                    style="top: -3px;cursor: pointer;"
+                    class="po-r"
+                    style="top: -3px;cursor: pointer;font-weight: bold;"
                   >
                     ...<i class="" />
                   </span>
@@ -969,6 +969,7 @@ export default {
       }
       this.$refs.kTable.clearFilter()
       this.toSearch();
+      this.clearSelection();
     },
     /**
      * 高级筛选
