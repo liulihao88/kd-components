@@ -969,6 +969,7 @@ export default {
       }
       this.$refs.kTable.clearFilter()
       this.toSearch();
+      this.clearSelection();
     },
     /**
      * 高级筛选
