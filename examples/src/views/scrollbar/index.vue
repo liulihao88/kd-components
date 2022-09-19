@@ -1,6 +1,6 @@
 <template>
   <div class="box-container">
-    <kd-scrollbar>
+    <kd-scrollbar ref="kdScrollRef">
       <div class="inner-container">
         test
         <br/>
@@ -21,6 +21,14 @@
 
 <script>
 export default {
+  methods: {
+    updateScroll() {
+      this.$nextTick(() => {
+        //解决滚动条初始化消失的问题
+        this.$refs.kdScrollRef.updateScroll();
+      })
+    },
+  }
 }
 </script>
 

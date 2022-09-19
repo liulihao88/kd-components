@@ -2,12 +2,22 @@
 ##### 不站位滚动条
 
 ```
-
 <template>
   <div class="box-container">
-    <kd-scrollbar>
+    <kd-scrollbar ref="kdScrollRef">
       <div class="inner-container">
-         内容
+        test
+        <br/>
+        test
+        <br/>
+        test
+        <br/>
+        test
+        <br/>
+        test
+        <br/>
+        test
+        <br/>
       </div>
     </kd-scrollbar>
   </div>
@@ -15,6 +25,15 @@
 
 <script>
 export default {
+  methods: {
+  // 当异步加载数据时才需要调用此方法
+    updateScroll() {
+      this.$nextTick(() => {
+        //解决滚动条初始化消失的问题
+        this.$refs.kdScrollRef.updateScroll();
+      })
+    },
+  }
 }
 </script>
 
@@ -27,6 +46,5 @@ export default {
   }
 }
 </style>
-
 
 ```
