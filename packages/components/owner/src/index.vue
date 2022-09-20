@@ -24,7 +24,7 @@
             :clearable="false"
             :disabled="disabledFn(index)"
             placeholder="请输入关键词"
-            size="medium"
+            size="small"
             :remote-method="remoteMethod"
             :loading="loading"
           >
