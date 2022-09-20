@@ -56,6 +56,14 @@ export default {
           useSlot: true
         },
         {
+          title: '状态',
+          key: 'status',
+          filters: [
+            { text: "未上线", value: "offline" },
+            { text: "已上线", value: "online" }
+          ]
+        },
+        {
           title: '结束时间',
           key: 'endTime'
         },
@@ -123,12 +131,14 @@ export default {
             {
               name: 'name1',
               showName: 'showName1',
+              status: '已上线',
               owner: 'owner1',
               endTime: '2022-08-02 12:12:00'
             },
             {
               name: 'name2',
               owner: 'owner2',
+              status: '未上线',
               showName: 'showName2',
               endTime: '2022-08-02 12:12:00'
             }
