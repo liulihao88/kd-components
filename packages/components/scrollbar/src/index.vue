@@ -14,10 +14,15 @@
       }
     },
     mounted() {
-      this.getMaxScroll();
-      this.$refs.kdScrollRef.wrap.addEventListener('scroll', this.scrollEvent)
+      this.$nextTick(() => {
+        this.getMaxScroll();
+        this.$refs.kdScrollRef.wrap.addEventListener('scroll', this.scrollEvent)
+      })
     },
     methods: {
+      /**
+       * 更新滚动条
+       */
       updateScroll() {
         this.$nextTick(() => {
           this.$refs.kdScrollRef.update();

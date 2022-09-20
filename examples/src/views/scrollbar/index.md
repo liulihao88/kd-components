@@ -65,13 +65,13 @@ export default {
 ```
 
 ### 方法（ref调用）
-|方法名称| 说明                      |参数|
-|---|-------------------------|---|
-|updateScroll| 动态切换数据时才需要使用,可以更新滚动条的比例 |无|
-|setScrollPositionTop| 定位到顶部                   |无|
-|setScrollPositionBottom| 定位到底部                   |无|
-|getScrollPosition| 获取当前滚动条scrollTop的位置     |无|
-|setScrollPosition| 动态设置当前滚动条的位置   |无|
+|方法名称| 说明                      | 参数            |
+|---|-------------------------|---------------|
+|updateScroll| 动态切换数据时才需要使用,可以更新滚动条的比例 | 无             |
+|setScrollPositionTop| 定位到顶部                   | 无             |
+|setScrollPositionBottom| 定位到底部                   | 无             |
+|getScrollPosition| 获取当前滚动条scrollTop的位置     | 无             |
+|setScrollPosition| 动态设置当前滚动条的位置   | value: number |
 
 
 ### 事件

@@ -77,10 +77,12 @@ export default {
     }
   },
   mounted() {
-    let hash = document.location.hash
-    if(hash) {
-      document.querySelector(hash).scrollIntoView(true);
-    }
+    this.$nextTick(() => {
+      let hash = document.location.hash
+      if(hash) {
+        document.querySelector(hash).scrollIntoView(true);
+      }
+    })
   },
   methods: {
     hideComps() {
