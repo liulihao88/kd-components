@@ -13,7 +13,7 @@
     </template> -->
     <template slot="title">
       <slot name="title">
-        <div class="ml2">{{ title }}</div>
+        <div class="ml2 ft-14">{{ title }}</div>
       </slot>
     </template>
 
