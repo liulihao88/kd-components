@@ -351,3 +351,7 @@
 .test-blue{
   background: blue;
 }
+// 表格右下角多一条线
+.el-table__fixed-right::before, .el-table__fixed::before {
+  margin-bottom: -1px;
+}
