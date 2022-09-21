@@ -1,12 +1,6 @@
 ``` 
 <template>
-  <kd-icon name="geshihua" />
+  <span class="kd-icon-cangku"></span>
 </template>
-
-<script>
-export default {
-}
-</script>
-
 
  ```

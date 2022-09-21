@@ -18,8 +18,7 @@
           @click="fullscreen = !fullscreen"
         >
           <i
-            class="kj-iconfont"
-            :class="fullscreen ? 'icon-fullscreen-exit' : 'icon-fullsreen'"
+            :class="fullscreen ? 'kd-icon-fullscreen-exit' : 'kd-icon-fullsreen'"
           ></i>
         </button>
       </template>
@@ -80,7 +79,7 @@ export default {
       type: Boolean,
       default: false
     },
-    
+
     cancelText: {
       type: String,
       default: '取消'
