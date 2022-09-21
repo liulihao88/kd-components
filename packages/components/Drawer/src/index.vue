@@ -31,6 +31,7 @@
             type="primary"
             size="small"
             class="mr"
+            v-throttle="throttleNumber"
             @click="confirm"
           >
             {{ confirmText }}
@@ -39,6 +40,7 @@
             v-if="showCancel"
             type="info"
             size="small"
+            v-throttle="throttleNumber"
             @click="handleClose"
           >
             {{ cancelText }}
@@ -85,6 +87,10 @@ export default {
     wrapperClosable: {
       type: Boolean,
       default: process.env.NODE_ENV === 'development'
+    },
+    throttleNumber:{
+      type: Number,
+      default: 4000
     }
   },
   computed: {

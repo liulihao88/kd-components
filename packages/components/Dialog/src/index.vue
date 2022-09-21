@@ -31,6 +31,7 @@
             type="info"
             size="small"
             :disabled="cancelDisabled"
+            v-throttle="throttleNumber"
             v-if="!!cancelText"
             @click="handleClose"
             >{{ cancelText }}</el-button
@@ -39,6 +40,7 @@
             type="primary"
             size="small"
             :disabled="confirmDisabled"
+            v-throttle="throttleNumber"
             v-if="!!confirmText"
             @click="confirmHandle"
             >{{ confirmText }}</el-button
@@ -95,6 +97,10 @@ export default {
     showFooter: {
       type: Boolean,
       default: true
+    },
+    throttleNumber:{
+      type: Number,
+      default: 4000
     }
   },
   data() {
