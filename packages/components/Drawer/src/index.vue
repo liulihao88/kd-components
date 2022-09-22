@@ -31,7 +31,7 @@
             type="primary"
             size="small"
             class="mr"
-            v-throttle="throttleNumber"
+            v-throttle="cancelThrottleNumber"
             @click="confirm"
           >
             {{ confirmText }}
@@ -40,7 +40,7 @@
             v-if="showCancel"
             type="info"
             size="small"
-            v-throttle="throttleNumber"
+            v-throttle="confirmThrottleNumber"
             @click="handleClose"
           >
             {{ cancelText }}
@@ -88,9 +88,13 @@ export default {
       type: Boolean,
       default: process.env.NODE_ENV === 'development'
     },
-    throttleNumber:{
+    cancelThrottleNumber:{
       type: Number,
-      default: 4000
+      default: 1000
+    },
+    confirmThrottleNumber: {
+      type: Number,
+      default: 2000
     }
   },
   computed: {
