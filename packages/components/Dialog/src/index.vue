@@ -4,6 +4,7 @@
     <el-dialog
       v-el-drag-dialog
       :fullscreen="fullscreen"
+      :custom-class="getThemeClass"
       :destroy-on-close="$attrs.destroyOnClose !== false"
       v-bind="$attrs"
       v-on="$listeners"
@@ -69,6 +70,10 @@ export default {
       type: String,
       default: ''
     },
+    theme: {
+      type: String,
+      default: 'default'
+    },
     cancel: {
       type: [Function, String],
       default: ''
@@ -115,8 +120,17 @@ export default {
   watch: {
     showDialog() {}
   },
-  created() {},
-  mounted() {},
+  computed: {
+    getThemeClass() {
+      if(this.theme === 'norm') {
+        return 'kd-norm-dialog'
+      } else if(this.theme === 'norm16') {
+        return 'kd-norm16-dialog'
+      } else {
+        return ''
+      }
+    }
+  },
   methods: {
     confirmHandle() {
       if (this.$listeners.confirm) {
