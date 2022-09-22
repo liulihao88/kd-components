@@ -3,7 +3,7 @@
     <el-button @click="isShow = true">简单弹框</el-button>
     <el-button @click="isShow1 = true">自定义title和footer</el-button>
     <el-button @click="isShow2 = true" type="primary">复杂弹框</el-button>
-    <kd-dialog :visible.sync="isShow" title="提示" ref="dialogRef" class="easy_use">
+    <kd-dialog :visible.sync="isShow" theme="norm16" title="提示" ref="dialogRef" class="easy_use">
       简单用法
     </kd-dialog>
 
