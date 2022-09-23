@@ -322,7 +322,7 @@
             font-size: 12px;
         }
     }
-    
+
 }
 // 修改下拉选择字号
 .el-checkbox__label{
@@ -354,4 +354,17 @@
 // 表格右下角多一条线
 .el-table__fixed-right::before, .el-table__fixed::before {
   margin-bottom: -1px;
+}
+
+.el-message {
+  font-size: 16px;
+  .el-icon-warning {
+    color: #FFB51F;
+  }
+  .el-icon-success {
+    color: #30BD82;
+  }
+  .el-icon-error {
+    color: #E94C35;
+  }
 }
