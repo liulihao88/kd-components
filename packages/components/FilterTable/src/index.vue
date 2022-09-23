@@ -65,7 +65,7 @@
           v-if="advancedSearchFlag"
           ref="searchBoxRef"
           class="f"
-          style="flex-wrap: wrap"
+          :style="{'flex-wrap': 'wrap', width: searchareaWidth + 'px'}"
         >
           <slot
             name="search"
@@ -988,7 +988,7 @@ export default {
     // 确定按钮
     confirmBtn(btn, _this, scope, isOut = true) {
       isOut ? this.handleCloseOut(scope.$index) : this.handleClose(scope.$index)
-      btn.confirm && btn.confirm.call(_this, scope.row)
+      btn.confirm && btn.confirm.call(_this, scope.row, scope)
     },
 
   }
