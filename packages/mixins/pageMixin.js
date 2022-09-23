@@ -15,78 +15,118 @@ export const pageMixin = {
       ]
     */
     // 返回true，表示无权限；返回false，表示有权限
-    mDisabled(sendStr, row = '') {
+    // mDisabled(sendStr, row = '') {
+    //   // 行内按钮权限和全局按钮权限对应字段。
+    //   const dict = {
+    //     CREATE: 'create',
+    //     UPDATE: 'edit',
+    //     DELETE: 'del',
+    //     CONFIG: 'config'
+    //   };
+    //   // 如果是走后台逻辑登录
+    //   try {
+    //     let getLoginRoutes = this.$store.getters.loginRoutes;
+    //     let nowPageMenuKey = this.mMenuKey();
+    //     // 如果当前路由没有menuKey, 那么按钮权限全部放开都可以点击
+    //     if (!nowPageMenuKey) {
+    //       return false;
+    //     }
+    //     // 如果当前路由有menuKey且本地缓存中有权限控制。 过滤出按钮的权限
+    //     let isDisabled = true;
+    //     let rowDisabled = false;
+    //     if (nowPageMenuKey && getLoginRoutes) {
+    //       let btnList =
+    //         getLoginRoutes.filter((v) => {
+    //           return v.menuKey === nowPageMenuKey;
+    //         })[0].btnList || [];
+    //       if (btnList.length > 0) {
+    //         btnList.forEach((val) => {
+    //           if (val.action_mode === sendStr || val.code === sendStr) {
+    //             isDisabled = false;
+    //           }
+    //         });
+    //       }
+    //     }
+    //     if (row && row.permissionTypes) {
+    //       let matchStr = dict[sendStr];
+    //       rowDisabled = !row.permissionTypes.includes(matchStr);
+    //     }
+    //     return isDisabled || rowDisabled;
+    //   } catch (error) {
+    //     // 如果有错误， 按钮都不可点击
+    //     // console.error('pageMixin进入到catch错误');
+    //     return true;
+    //   }
+    // },
+    // 返回true，表示无权限；返回false，表示有权限
+    mDisabled (sendStr, row = "") {
       // 行内按钮权限和全局按钮权限对应字段。
       const dict = {
-        CREATE: 'create',
-        UPDATE: 'edit',
-        DELETE: 'del',
-        CONFIG: 'config'
-      };
+        CREATE: "create",
+        UPDATE: "edit",
+        DELETE: "del",
+        CONFIG: "config"
+      }
       // 如果是走后台逻辑登录
       try {
-        let getLoginRoutes = this.$store.getters.loginRoutes;
-        let nowPageMenuKey = this.mMenuKey();
+        const nowPageMenuKey = this.$route.meta?.menuKey
         // 如果当前路由没有menuKey, 那么按钮权限全部放开都可以点击
         if (!nowPageMenuKey) {
-          return false;
+          return false
         }
+        const btnList = this.$route?.meta?.btnList || []
         // 如果当前路由有menuKey且本地缓存中有权限控制。 过滤出按钮的权限
-        let isDisabled = true;
-        let rowDisabled = false;
-        if (nowPageMenuKey && getLoginRoutes) {
-          let btnList =
-            getLoginRoutes.filter((v) => {
-              return v.menuKey === nowPageMenuKey;
-            })[0].btnList || [];
+        let isDisabled = true
+        let rowDisabled = false
+        if (nowPageMenuKey) {
           if (btnList.length > 0) {
             btnList.forEach((val) => {
               if (val.action_mode === sendStr || val.code === sendStr) {
-                isDisabled = false;
+                isDisabled = false
               }
-            });
+            })
           }
         }
         if (row && row.permissionTypes) {
-          let matchStr = dict[sendStr];
-          rowDisabled = !row.permissionTypes.includes(matchStr);
+          let matchStr = dict[sendStr]
+          rowDisabled = !row.permissionTypes.includes(matchStr)
         }
-        return isDisabled || rowDisabled;
+        return isDisabled || rowDisabled
       } catch (error) {
         // 如果有错误， 按钮都不可点击
-        // console.error('pageMixin进入到catch错误');
-        return true;
+        console.error("pageMixin进入到catch错误", error)
+        return true
       }
     },
 
     // 如果本地路由没有存menuKey返回空， 否则返回当前menuKey
-    mMenuKey() {
+    mMenuKey () {
       if (!this.$route.meta || !this.$route.meta.menuKey) {
-        return '';
+        return ''
       }
-      return this.$route.meta.menuKey;
+      return this.$route.meta.menuKey
     },
 
     // 清空form表单的校验
-    mClearValidate(formRef = 'formRef') {
+    mClearValidate (formRef = 'formRef') {
       if (this.$refs[formRef]) {
         this.$nextTick(() => {
-          this.$refs[formRef].clearValidate();
-        });
+          this.$refs[formRef].clearValidate()
+        })
       }
     },
     // 根据传入的width, 返回处理后的width
-    mHandleWidth() {
+    mHandleWidth () {
       if (this.block) {
-        return { width: '100%' };
+        return { width: '100%' }
       }
       if (!this.width) {
-        return {};
+        return {}
       }
       if (this.width.indexOf('px') !== -1 || this.width.indexOf('%') !== -1) {
-        return { width: this.width };
+        return { width: this.width }
       }
-      return { width: this.width + 'px' };
+      return { width: this.width + 'px' }
     }
   }
-};
+}
