@@ -6,6 +6,133 @@
 </code></pre>
     <div class="content font-class">
       <ul class="icon_lists dib-box">
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shanchu"></span>
+          <div class="name">
+            删除
+          </div>
+          <div class="code-name">.kd-icon-shanchu
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-xuanzhong"></span>
+          <div class="name">
+            选中
+          </div>
+          <div class="code-name">.kd-icon-xuanzhong
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-fenlei"></span>
+          <div class="name">
+            分类
+          </div>
+          <div class="code-name">.kd-icon-fenlei
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-cunchu"></span>
+          <div class="name">
+            存储
+          </div>
+          <div class="code-name">.kd-icon-cunchu
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-a-1bi1"></span>
+          <div class="name">
+            1比1
+          </div>
+          <div class="code-name">.kd-icon-a-1bi1
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guanli"></span>
+          <div class="name">
+            管理
+          </div>
+          <div class="code-name">.kd-icon-guanli
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-biaoguanli"></span>
+          <div class="name">
+            表管理
+          </div>
+          <div class="code-name">.kd-icon-biaoguanli
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-kuguanli"></span>
+          <div class="name">
+            库管理
+          </div>
+          <div class="code-name">.kd-icon-kuguanli
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-ziyuanwenjian"></span>
+          <div class="name">
+            资源文件
+          </div>
+          <div class="code-name">.kd-icon-ziyuanwenjian
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-hanshuguanli"></span>
+          <div class="name">
+            函数管理
+          </div>
+          <div class="code-name">.kd-icon-hanshuguanli
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-tingzhi"></span>
+          <div class="name">
+            停止
+          </div>
+          <div class="code-name">.kd-icon-tingzhi
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhujian"></span>
+          <div class="name">
+            主键
+          </div>
+          <div class="code-name">.kd-icon-zhujian
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-paixu"></span>
+          <div class="name">
+            排序
+          </div>
+          <div class="code-name">.kd-icon-paixu
+          </div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shangxian"></span>
+          <div class="name">
+            上线
+          </div>
+          <div class="code-name">.kd-icon-shangxian
+          </div>
+        </li>
+
         <li class="dib">
           <span class="icon iconfont kd-icon-cangku"></span>
           <div class="name">
@@ -354,15 +481,6 @@
             集市
           </div>
           <div class="code-name">.kd-icon-jishi
-          </div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shangxian"></span>
-          <div class="name">
-            上线
-          </div>
-          <div class="code-name">.kd-icon-shangxian
           </div>
         </li>
 
@@ -851,6 +969,7 @@
           <div class="code-name">.kd-icon-lixian
           </div>
         </li>
+
       </ul>
     </div>
   </div>
