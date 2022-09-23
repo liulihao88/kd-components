@@ -12,8 +12,8 @@
           :open-delay="500"
         >
           <i
-            class="kj-iconfont icon-xinjianwenjianjia cp"
-            :class="defaultProps.createIcon || 'icon-xinjianwenjianjia'"
+            class="kd-icon-xinjianwenjianjia cp"
+            :class="defaultProps.createIcon || 'kd-icon-xinjianwenjianjia'"
             @click="create"
             v-if="defaultProps.showCreate !== false"
           />
@@ -52,11 +52,10 @@
               <div class="icon_box">
                 <slot name="icon" :data="data" :node="node">
                   <i
-                    class="kj-iconfont"
                     :class="[
                       node.expanded
-                        ? defaultProps.openIcon || 'icon-wenjianjiazhankai'
-                        : defaultProps.closeIcon || 'icon-wenjianjia'
+                        ? defaultProps.openIcon || 'kd-icon-wenjianjiazhankai'
+                        : defaultProps.closeIcon || 'kd-icon-wenjianjia'
                     ]"
                   />
                 </slot>
@@ -75,7 +74,7 @@
                   :hide-on-click="false"
                   @visible-change="btnShowHandler($event, node, data)"
                 >
-                  <i class="kj-iconfont icon-ellipsis" style="color: #365edf" />
+                  <i class="kd-icon-ellipsis" style="color: #365edf" />
                   <el-dropdown-menu slot="dropdown">
                     <div
                       v-for="(item, index) in defaultProps.btns"
@@ -281,10 +280,10 @@ export default {
         );
         console.log(`%c 282行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node`, 'background:#fff;color:red', node);
         console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node.Node`, 'background:#fff;color:red', node.data);
-        
+
         console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue data`, 'background:#fff;color:red', data);
         console.log(`%c 284行 ~/kj/kd-components/packages/components/JobTree/src/index.vue a`, 'background:#fff;color:red', a);
-        
+
       }
     },
     deleteRow() {

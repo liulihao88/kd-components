@@ -36,3 +36,40 @@
   color: #909399;
   text-align: right;
 }
+
+.kd-norm-dialog,.kd-norm16-dialog {
+  .el-dialog__title {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    color: rgba(39,48,75,0.85);
+    line-height: 20px;
+  }
+  .el-dialog__header {
+    height: 44px;
+    line-height: 44px;
+    padding: 0 0 0 24px;
+    color: var(--text-important-color);
+    background-color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #e3e6eb;
+    .el-dialog__headerbtn {
+      top: 16px;
+      font-size: 14px;
+    }
+  }
+  .el-dialog__body {
+    padding: 24px 24px 11px;
+  }
+  .el-dialog__footer {
+    padding: 13px;
+    border-top: none;
+  }
+}
+
+.kd-norm16-dialog {
+  .el-dialog__body {
+    padding: 16px 24px 11px;
+  }
+}

@@ -4,6 +4,7 @@
     <el-dialog
       v-el-drag-dialog
       :fullscreen="fullscreen"
+      :custom-class="getThemeClass"
       :destroy-on-close="$attrs.destroyOnClose !== false"
       v-bind="$attrs"
       v-on="$listeners"
@@ -18,8 +19,7 @@
           @click="fullscreen = !fullscreen"
         >
           <i
-            class="kj-iconfont"
-            :class="fullscreen ? 'icon-fullscreen-exit' : 'icon-fullsreen'"
+            :class="fullscreen ? 'kd-icon-fullscreen-exit' : 'kd-icon-fullsreen'"
           ></i>
         </button>
       </template>
@@ -32,6 +32,7 @@
             type="info"
             size="small"
             :disabled="cancelDisabled"
+            v-throttle="cancelThrottleNumber"
             v-if="!!cancelText"
             @click="handleClose"
             >{{ cancelText }}</el-button
@@ -40,6 +41,7 @@
             type="primary"
             size="small"
             :disabled="confirmDisabled"
+            v-throttle="confirmThrottleNumber"
             v-if="!!confirmText"
             @click="confirmHandle"
             >{{ confirmText }}</el-button
@@ -68,6 +70,10 @@ export default {
       type: String,
       default: ''
     },
+    theme: {
+      type: String,
+      default: 'default'
+    },
     cancel: {
       type: [Function, String],
       default: ''
@@ -80,7 +86,7 @@ export default {
       type: Boolean,
       default: false
     },
-    
+
     cancelText: {
       type: String,
       default: '取消'
@@ -96,6 +102,14 @@ export default {
     showFooter: {
       type: Boolean,
       default: true
+    },
+    cancelThrottleNumber: {
+      type: Number,
+      default: 1000
+    },
+    confirmThrottleNumber:{
+      type: Number,
+      default: 2000
     }
   },
   data() {
@@ -106,8 +120,17 @@ export default {
   watch: {
     showDialog() {}
   },
-  created() {},
-  mounted() {},
+  computed: {
+    getThemeClass() {
+      if(this.theme === 'norm') {
+        return 'kd-norm-dialog'
+      } else if(this.theme === 'norm16') {
+        return 'kd-norm16-dialog'
+      } else {
+        return ''
+      }
+    }
+  },
   methods: {
     confirmHandle() {
       if (this.$listeners.confirm) {
