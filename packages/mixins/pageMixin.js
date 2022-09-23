@@ -69,12 +69,12 @@ export const pageMixin = {
       }
       // 如果是走后台逻辑登录
       try {
-        const nowPageMenuKey = this.$route.meta?.menuKey
+        const nowPageMenuKey = this.$route.meta.menuKey
         // 如果当前路由没有menuKey, 那么按钮权限全部放开都可以点击
         if (!nowPageMenuKey) {
           return false
         }
-        const btnList = this.$route?.meta?.btnList || []
+        const btnList = this.$route.meta.btnList || []
         // 如果当前路由有menuKey且本地缓存中有权限控制。 过滤出按钮的权限
         let isDisabled = true
         let rowDisabled = false
