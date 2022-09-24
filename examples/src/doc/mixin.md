@@ -21,6 +21,7 @@ mValidateHost | function | 校验host
 mValidateMobile | function | 校验mobile
 mValidateEmail | function | 验证电子邮箱格式
 validateNumber | function | 仅支持数字
+mPostMessageHeight | function | iframe嵌套子页面向iframe发送自己的高度，入参时页面id
 
 ##### function 调用方法 this.mBlurRequired();
 

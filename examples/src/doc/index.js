@@ -3,13 +3,15 @@ import addComponentsMd from "./addComponents.md"
 import gStyleMd from "./gStyle.md"
 import directiveMd from "./directive.md"
 import mixinMd from "./mixin.md"
+import FAQSMd from "./FAQS.md"
 
 export default {
     guideMd,
     gStyleMd,
     directiveMd,
     mixinMd,
-    addComponentsMd
+    addComponentsMd,
+    FAQSMd
 }
 
 export const docMd = {
@@ -18,6 +20,7 @@ export const docMd = {
     directive: directiveMd,
     mixin: mixinMd,
     addComponents: addComponentsMd,
+    faq: FAQSMd
 }
 
 export const docName = {
@@ -26,4 +29,5 @@ export const docName = {
     gStyle: "全局CSS",
     directive: "全局指令",
     mixin: "全局mixins",
+    faq: "常见问题汇总"
 }

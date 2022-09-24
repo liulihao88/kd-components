@@ -98,7 +98,24 @@ export const pageMixin = {
         return true
       }
     },
-
+    /**
+     * dom 加载完成，计算高度并发送给iframe接收
+     * @param id
+     */
+    mPostMessageHeight(id) {
+      let newWindow = new Function("return window")();
+      if(newWindow.parent) {
+        let domH = document.querySelector(id).scrollHeight || 0; //获取自身高度
+        newWindow.parent.postMessage(domH, "*");
+      }
+    },
+    /**
+     * 设置iframe 高度
+     * @param event
+     */
+    mSetIframeHeight(event) {
+      document.querySelector('#kdIframe').style.height = event.data + 'px'
+    },
     // 如果本地路由没有存menuKey返回空， 否则返回当前menuKey
     mMenuKey () {
       if (!this.$route.meta || !this.$route.meta.menuKey) {
