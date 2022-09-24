@@ -110,6 +110,16 @@ export const pageMixin = {
       }
     },
     /**
+     * 向iframe 发送 message
+     * @param params
+     */
+    mPostMessage(params) {
+      let newWindow = new Function("return window")();
+      if(newWindow.parent) {
+        newWindow.parent.postMessage(params, "*");
+      }
+    },
+    /**
      * 设置iframe 高度
      * @param event
      */
