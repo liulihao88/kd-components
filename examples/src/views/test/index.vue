@@ -1,52 +1,132 @@
 <template>
   <div>
-    哈哈
-<!--    <kd-drawer-->
-<!--      :visible.sync="isShowMulty"-->
-<!--      title="提示"-->
-<!--      @confirm="confirmDialog"-->
-<!--      :size="800"-->
-<!--    >-->
-<!--      第一层抽屉-->
-<!--      <el-button @click="isShowMulty2 = true" type="primary"-->
-<!--        >打开内部抽屉</el-button-->
-<!--      >-->
-<!--      &lt;!&ndash; 第二层要加zIndex, 否则覆盖不住第一层抽屉。 最少为1000。 若有第三层抽屉，累加为1001 &ndash;&gt;-->
-<!--      <kd-dialog :visible.sync="isShowMulty2" append-to-body @confirm="t2">-->
-<!--        <div slot="title">第二层抽屉</div>-->
-<!--        <el-button @click="isShowMulty3 = true" type="primary">测试</el-button>-->
-<!--        <kd-drawer-->
-<!--          :visible.sync="isShowMulty3"-->
-<!--          title="提示"-->
-<!--          append-to-body-->
-<!--          direction="ttb"-->
-<!--          :size="300"-->
-<!--          showFullscreen-->
-<!--        >-->
-<!--          第三层抽屉-->
-<!--        </kd-drawer>-->
-<!--      </kd-dialog>-->
-<!--    </kd-drawer>-->
+    <kd-filter-table
+      ref="tableRef"
+      :data="tableData"
+      :columns="columnsData"
+      :totalNum="totalNum"
+      @selection-change="selectionChange"
+      @updatePage="init"
+    >
+      <template #operation>
+        <el-button type="info" @click="deleteBtn">{{ deleteTxt }}</el-button>
+      </template>
+      <template #search="{ search }">
+        <kd-input
+          v-model="search.name"
+          title="任务英文名称"
+          class="mr mb"
+          width="220"
+        ></kd-input>
+        <kd-input
+          v-model="search.nameCn"
+          title="任务中文名称"
+          class="mr mb"
+          width="220"
+        ></kd-input>
+      </template>
+    </kd-filter-table>
   </div>
 </template>
 
 <script>
+/**
+* @描述
+showSearch: 是否显示头部
+wordSearchFlag: 是否支持关键字筛选
+pageFlag: 显示pagenation
+rowKeys: 选择selection时候无id需要其他参数做唯一值
+searchareaWidth: 搜索宽度
+searchFlag: 是否显示高级搜索
+searchTitle： 搜索关键字
+isShow: 列是否显示
+方法: 
+clearSelection: 清空表格选中项
+*/
 export default {
-  name: 'Index',
+  name: 'T1',
   props: {},
   data() {
     return {
-      isShowMulty: false,
-      isShowMulty2: false,
-      isShowMulty3: false
+      tableData: [
+        { name: '', status: 1 },
+        { name: [], status: [] },
+        { name: undefined, status: 3 },
+        { name: ' ', status: ' ' },
+        { name: {}, status: {} },
+        { name: {}, status: {},}
+      ],
+      totalNum: 0,
+      selectArr: []
     };
   },
   components: {},
-  computed: {},
+  computed: {
+    deleteTxt() {
+      let selectTxt =
+        this.selectArr.length === 0 ? '' : `(${this.selectArr.length})`;
+      return `删除${selectTxt}`;
+    },
+    columnsData() {
+      return [
+        {
+          type: 'selection',
+          selectableFn: (row, index) => {
+            return index % 2 === 0;
+          }
+        },
+        {
+          title: '任务英文名称',
+          key: 'name',
+          filters: [
+            { text: '是', value: 1 },
+            { text: '否', value: 0 }
+          ]
+        },
+        {
+          title: '任务状态',
+          key: 'status',
+        },
+        {
+          key: 'operation',
+          title: '操作',
+          btns: [
+            {
+              content: '编辑',
+              disabled: (item) => {
+                return this.mDisabled('UPDATE', item) || item.status === 'on';
+              }
+            },
+            {
+              content: '删除',
+              disabled: (item) => {
+                return this.mDisabled('DELETE', item) || item.status === 'on';
+              },
+              confirm: this.deleteRow,
+              confirmInfo: '您确定要删除此文件嘛? '
+            }
+          ]
+        }
+      ];
+    }
+  },
   watch: {},
-  created() {},
+  created() {
+    this.init();
+  },
   mounted() {},
-  methods: {}
+  methods: {
+    deleteBtn() {},
+    init() {
+      this.totalNum = this.tableData.length;
+    },
+    deleteRow(row) {
+      console.log(JSON.stringify(row, null, '\t'));
+    },
+    selectionChange(val) {
+      this.selectArr = val;
+    }
+  }
 };
 </script>
 <style scoped lang="scss"></style>
