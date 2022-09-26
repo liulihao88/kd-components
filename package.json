@@ -1,7 +1,7 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "0.1.58",
+  "version": "0.1.59",
   "private": false,
   "description": "科杰大数据组件库",
   "scripts": {
@@ -17,7 +17,7 @@
     "clean:utils": "rimraf ./kd-utils",
     "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js",
     "all": "npm run build && npm run build:utils",
-    "pub": "node ./bin/index.js",
+    "pub": "node cmd/index.js",
     "build:exm": "vue-cli-service build"
   },
   "main": "dist/kd-components.esm.js",
