@@ -6,6 +6,8 @@
       :columns="columnsData"
       :totalNum="totalNum"
       @selection-change="selectionChange"
+      @toReset="toReset"
+      @toClear="toClear"
       @updatePage="init"
     >
       <template #operation>
@@ -54,11 +56,11 @@ export default {
         { name: ' ', status: ' ' },
         { name: [], status: [] },
         { name: null, status: {} },
-        { name: {}, status: {},}
+        { name: {}, status: {} }
       ],
       totalNum: 0,
       selectArr: [],
-      form: {},
+      form: {}
     };
   },
   components: {},
@@ -86,7 +88,7 @@ export default {
         },
         {
           title: '任务状态',
-          key: 'status',
+          key: 'status'
         },
         {
           key: 'operation',
@@ -117,8 +119,19 @@ export default {
   },
   mounted() {},
   methods: {
+    toSearch() {
+      console.log('toSearch');
+    },
+    toClear() {
+      console.log('toClear');
+    },
+    toReset() {
+      console.log('toReset');
+    },
     deleteBtn() {},
     init() {
+      console.log(`***** init  132行 examples/src/views/test/index.vue  22:51:26`);
+      
       this.totalNum = this.tableData.length;
     },
     deleteRow(row) {

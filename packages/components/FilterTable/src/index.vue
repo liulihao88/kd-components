@@ -19,7 +19,7 @@
                 class="w-500"
                 size="small"
                 clearable
-                @clear="toSearch"
+                @clear="toClear"
                 :placeholder="placeholder"
                 :disabled="advancedSearchFlag"
                 @keyup.enter.native="toSearch"
@@ -936,8 +936,20 @@ export default {
      * 筛选
      */
     toSearch() {
-      this.currentPage = 1;
-      this._updatePage();
+      if (this.$listeners.toSearch) {
+        this.$emit('toSearch');
+      } else {
+        this.currentPage = 1;
+        this._updatePage();
+      }
+    },
+    // 清除搜索框
+    toClear() {
+      if (this.$listeners.toClear) {
+        this.$emit('toClear');
+      } else {
+        this.toSearch();
+      }
     },
     handleSizeChange(val) {
       this.pageSize = val;
@@ -1044,12 +1056,16 @@ export default {
      * 重置
      */
     toReset() {
-      for (let key in this.search) {
-        this.search[key] = '';
+      if (this.$listeners.toReset) {
+        this.$emit('toReset');
+      } else {
+        for (let key in this.search) {
+          this.search[key] = '';
+        }
+        this.$refs.kTable.clearFilter();
+        this.toSearch();
+        this.clearSelection();
       }
-      this.$refs.kTable.clearFilter();
-      this.toSearch();
-      this.clearSelection();
     },
     /**
      * 高级筛选
