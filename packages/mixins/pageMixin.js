@@ -69,7 +69,10 @@ export const pageMixin = {
       }
       // 如果是走后台逻辑登录
       try {
-        const nowPageMenuKey = this.$route.meta.menuKey
+        let nowPageMenuKey = ''
+        if(this.$route && this.$route.meta) {
+          nowPageMenuKey = this.$route.meta.menuKey
+        }
         // 如果当前路由没有menuKey, 那么按钮权限全部放开都可以点击
         if (!nowPageMenuKey) {
           return false
