@@ -18,6 +18,8 @@
                 v-model="search.word"
                 class="w-500"
                 size="small"
+                clearable
+                @clear="toSearch"
                 :placeholder="placeholder"
                 :disabled="advancedSearchFlag"
                 @keyup.enter.native="toSearch"
@@ -385,7 +387,9 @@
                     {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
-                    {{ scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin) }}
+                    {{
+                      scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin)
+                    }}
                   </span>
                 </span>
                 <span v-else>
@@ -393,7 +397,9 @@
                     {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
-                    {{ scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin) }}
+                    {{
+                      scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin)
+                    }}
                   </span>
                 </span>
               </template>
@@ -692,10 +698,11 @@ export default {
       type: Boolean,
       default: true
     },
-     keepOrigin: { // 空值是否显示原始值
+    keepOrigin: {
+      // 空值是否显示原始值
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -718,12 +725,15 @@ export default {
   filters: {
     /**
      *
-     * undefined, null, '', '   ', [], {} 均显示'-', 否则显示原本的值
+     * undefined, null, '', '   ', 均显示'-', 否则显示原本的值
      * 如果给某一项或全局设置keepOrigin为true, 则保持原始值
      */
     addEmpty: (v, rowKeepOrigin, globalKeepOrigin) => {
       if (rowKeepOrigin || globalKeepOrigin) {
         return v;
+      }
+      if (v === null) {
+        return '-';
       }
       switch (typeof v) {
         case 'undefined':
@@ -731,13 +741,6 @@ export default {
         case 'string':
           if (v.trim().length === 0) return '-';
           break;
-        case 'object':
-          if (null === v) return '-';
-          if (undefined !== v.length && v.length === 0) return '-';
-          for (var k in v) {
-            return v;
-          }
-          return '-';
       }
       return v;
     }
@@ -898,7 +901,7 @@ export default {
           filteredValue: item.filteredValue,
           selectableFn: item.selectableFn, // 决定单行多选按钮是否可勾选
           isShow: item.isShow === false ? false : item.isShow, // 列是否显示
-          keepOrigin: item.keepOrigin || "", // 保持原始的值
+          keepOrigin: item.keepOrigin || '' // 保持原始的值
         };
       });
     },

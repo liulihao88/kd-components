@@ -13,13 +13,13 @@
       </template>
       <template #search="{ search }">
         <kd-input
-          v-model="search.name"
+          v-model="form.name"
           title="任务英文名称"
           class="mr mb"
           width="220"
         ></kd-input>
         <kd-input
-          v-model="search.nameCn"
+          v-model="form.nameCn"
           title="任务中文名称"
           class="mr mb"
           width="220"
@@ -49,15 +49,16 @@ export default {
   data() {
     return {
       tableData: [
-        { name: '', status: 1 },
-        { name: [], status: [] },
+        { name: '   ', status: 1 },
         { name: undefined, status: 3 },
         { name: ' ', status: ' ' },
-        { name: {}, status: {} },
+        { name: [], status: [] },
+        { name: null, status: {} },
         { name: {}, status: {},}
       ],
       totalNum: 0,
-      selectArr: []
+      selectArr: [],
+      form: {},
     };
   },
   components: {},
