@@ -73,7 +73,7 @@ export default {
     let isHideComp = false;
     isHideComp = true;
     if (isHideComp) {
-      this.hideComps();
+      // this.hideComps();
     }
   },
   mounted() {
