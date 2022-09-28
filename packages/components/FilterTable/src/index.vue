@@ -18,7 +18,7 @@
                 v-model="search.word"
                 class="w-500"
                 size="small"
-                clearable
+                :clearable="clearable"
                 @clear="toClear"
                 :placeholder="placeholder"
                 :disabled="advancedSearchFlag"
@@ -702,7 +702,12 @@ export default {
       // 空值是否显示原始值
       type: Boolean,
       default: false
-    }
+    },
+    clearable: {
+      // 搜索框是否显示删除按钮
+      type: Boolean,
+      default: true
+    },
   },
   data() {
     return {
