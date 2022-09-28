@@ -5,7 +5,7 @@
       v-el-drag-dialog
       :fullscreen="fullscreen"
       :custom-class="getThemeClass"
-      :destroy-on-close="$attrs.destroyOnClose !== false"
+      :destroy-on-close="destroy-on-close !== false"
       v-bind="$attrs"
       :class="!border && 'hide-title-border'"
       v-on="$listeners"
@@ -117,7 +117,12 @@ export default {
     border: {
       type: Boolean,
       default: true
-    }
+    },
+    'destroy-on-close': {
+      type: Boolean,
+      default: true
+    },
+    
   },
   data() {
     return {

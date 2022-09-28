@@ -1,7 +1,7 @@
 <template>
   <el-drawer
     :wrapper-closable="wrapperClosable"
-    :destroy-on-close="isDestroyChild"
+    :destroy-on-close="destroy-on-close !== false"
     :with-header="true"
     :size="$attrs.size || 640"
     v-bind="$attrs"
@@ -95,15 +95,14 @@ export default {
     confirmThrottleNumber: {
       type: Number,
       default: 2000
-    }
+    },
+    'destroy-on-close': {
+      type: Boolean,
+      default: true
+    },
   },
   computed: {
-    isDestroyChild() {
-      if (this.$attrs['destroy-on-close'] !== undefined) {
-        return this.$attrs['destroy-on-close'];
-      }
-      return true;
-    }
+   
   },
   mounted() {},
   methods: {
