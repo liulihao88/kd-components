@@ -357,6 +357,7 @@
 }
 
 .el-message {
+  z-index: 9999;
   font-size: 16px;
   .el-icon-warning {
     color: #FFB51F;
