@@ -1,16 +1,12 @@
 <template>
   <el-drawer
     :wrapper-closable="wrapperClosable"
-    :destroy-on-close="destroy-on-close !== false"
+    :destroy-on-close="destroyOnClose !== false"
     :with-header="true"
     :size="$attrs.size || 640"
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <!-- <slot name="title" slot="title"></slot> -->
-    <!-- <template name="title">
-      哈哈
-    </template> -->
     <template slot="title">
         <slot name="title" >
           <div>{{ title }}</div>
@@ -96,7 +92,7 @@ export default {
       type: Number,
       default: 2000
     },
-    'destroy-on-close': {
+    destroyOnClose: {
       type: Boolean,
       default: true
     },
