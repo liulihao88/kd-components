@@ -4,7 +4,7 @@
     <template v-if="showSearch">
       <!-- 关键词搜索，默认显示一个输入框，模糊查询 -->
       <template v-if="wordSearchFlag">
-        <div class="top_wrapper mb">
+        <div class="top_wrapper mtb">
           <div
             ref="searchAreaComp"
             class="searcharea"
@@ -13,7 +13,7 @@
           >
             <slot />
 
-            <div class="searchopers f mt">
+            <div class="searchopers f">
               <el-input
                 v-model="search.word"
                 class="w-500"
@@ -56,7 +56,7 @@
               </el-button>
             </div>
           </div>
-          <div class="operations mt">
+          <div class="operations">
             <slot name="operation" />
           </div>
         </div>
@@ -75,7 +75,7 @@
       </template>
       <!-- 自定义搜索框 -->
       <template v-else>
-        <div class="top_wrapper">
+        <div class="top_wrapper mt">
           <div
             ref="searchAreaComp"
             class="searcharea aloneSearcharea"
@@ -83,7 +83,7 @@
             :class="{ filter_active: advancedSearchFlag }"
           >
             <slot />
-            <div class="searchopers search_btn mt">
+            <div class="searchopers search_btn ">
               <div ref="searchBoxRef" class="f" style="flex-wrap: wrap">
                 <slot
                   name="search"
@@ -119,7 +119,7 @@
               </el-button>
             </div>
           </div>
-          <div class="operations mt">
+          <div class="operations ">
             <slot name="operation" />
           </div>
         </div>
@@ -707,7 +707,7 @@ export default {
       // 搜索框是否显示删除按钮
       type: Boolean,
       default: true
-    },
+    }
   },
   data() {
     return {
@@ -878,13 +878,18 @@ export default {
             baseBtns = item.btns;
           }
         }
+        // 如果是空数组, 将item的filters设为null, 没有下拉框
+        let itemFilters = item.filters || null;
+        if (Array.isArray(item.filters) && item.filters.length === 0) {
+          itemFilters = null;
+        }
         return {
           label: item.title,
           prop: item.key,
           width: item.width,
           fixed: item.fixed || false, // 'right' 右侧固定, true 默认左侧固定
           sortable: item.sortable || false,
-          filters: item.filters || null,
+          filters: itemFilters,
           filter: item.filter || null,
           minWidth: item.minWidth,
           render: item.render, // 渲染函数

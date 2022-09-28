@@ -7,8 +7,9 @@
   line-height: 50px;
   padding: 0 0 0 20px;
   color: var(--text-important-color);
-  background: var(--dialog-title-bg);
+  background: #fff;
   font-weight: 500;
+  border-bottom: 1px solid var(--line-color);
   .el-dialog__headerbtn {
     top: 16px;
     font-size: 20px;
@@ -71,5 +72,10 @@
 .kd-norm16-dialog {
   .el-dialog__body {
     padding: 16px 24px 11px;
+  }
+}
+.hide-title-border{
+  .el-dialog__header{
+    border-bottom: 1px solid transparent;
   }
 }

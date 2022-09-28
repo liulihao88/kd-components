@@ -73,7 +73,7 @@ export default {
     let isHideComp = false;
     isHideComp = true;
     if (isHideComp) {
-      // this.hideComps();
+      this.hideComps();
     }
   },
   mounted() {
@@ -89,7 +89,7 @@ export default {
       //  将希望显示的组件放在第一位
       if (process.env.NODE_ENV === 'development') {
         // 只改下面这行代码,改变compName
-        let compName = ['treeSingle', 'select'];
+        let compName = ['test'];
         // 只改上面这行代码
         let spliceNames = deepClone(this.comArr);
         let str = 'test';

@@ -5,7 +5,7 @@
       <div>{{ title }}</div>
       <slot></slot>
     </div>
-    <div class="f mr3 title_right">
+    <div class="f title_right">
       <slot name="right"></slot>
     </div>
   </div>

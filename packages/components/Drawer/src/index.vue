@@ -12,9 +12,9 @@
       哈哈
     </template> -->
     <template slot="title">
-      <slot name="title">
-        <div class="ml2 ft-14">{{ title }}</div>
-      </slot>
+        <slot name="title" >
+          <div>{{ title }}</div>
+        </slot>
     </template>
 
     <div v-loading="loading" class="drawer-main">
@@ -88,7 +88,7 @@ export default {
       type: Boolean,
       default: process.env.NODE_ENV === 'development'
     },
-    cancelThrottleNumber:{
+    cancelThrottleNumber: {
       type: Number,
       default: 1000
     },

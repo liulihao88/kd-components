@@ -1,144 +1,110 @@
 <template>
   <div>
-    <kd-filter-table
-      ref="tableRef"
-      :data="tableData"
-      :columns="columnsData"
-      :totalNum="totalNum"
-      @selection-change="selectionChange"
-      @toReset="toReset"
-      @toClear="toClear"
-      @updatePage="init"
+    <el-button @click="popWin">抽屉</el-button>
+    <el-button @click="popWin2">自定义title和footer插槽</el-button>
+    <el-button @click="isShowMulty = true" type="primary">嵌套抽屉</el-button>
+    <kd-drawer
+      :visible.sync="isShow"
+      title="提示"
+      @confirm="confirm"
+      ref="drawerRef"
     >
-      <template #operation>
-        <el-button type="info" @click="deleteBtn">{{ deleteTxt }}</el-button>
+      <el-form ref="formRef" :model="form" :rules="rules">
+        <el-form-item label="中文名" prop="realName">
+          <kd-input v-model="form.realName"></kd-input>
+        </el-form-item>
+      </el-form>
+      <div style="background-color: red; height: 300px"></div>
+      <div style="background-color: blue; height: 400px"></div>
+      <div style="background-color: green; height: 200px"></div>
+      <div style="background-color: pink; height: 500px"></div>
+    </kd-drawer>
+    <kd-drawer :visible.sync="isShow2" @confirm="confirmDialog" title="干啥">
+      <template slot="title">
+        <div>我是title</div>
       </template>
-      <template #search="{ search }">
-        <kd-input
-          v-model="form.name"
-          title="任务英文名称"
-          class="mr mb"
-          width="220"
-        ></kd-input>
-        <kd-input
-          v-model="form.nameCn"
-          title="任务中文名称"
-          class="mr mb"
-          width="220"
-        ></kd-input>
+      <div style="background-color: red; height: 300px"></div>
+      <div style="background-color: blue; height: 400px"></div>
+      <div style="background-color: green; height: 200px"></div>
+      <div style="background-color: pink; height: 500px"></div>
+      <template #footer>
+        <el-button @click="isShow2 = false" type="primary"
+          >我是footer按钮</el-button
+        >
       </template>
-    </kd-filter-table>
+    </kd-drawer>
+    <kd-drawer
+      :visible.sync="isShowMulty"
+      title="提示"
+      @confirm="confirmDialog"
+      :size="800"
+    >
+      第一层抽屉
+      <el-button @click="isShowMulty2 = true" type="primary"
+        >打开内部抽屉</el-button
+      >
+      <!-- 第二层要加zIndex, 否则覆盖不住第一层抽屉。 最少为1000。 若有第三层抽屉，累加为1001 -->
+      <kd-drawer :visible.sync="isShowMulty2" append-to-body @confirm="t2">
+        <div slot="title">第二层抽屉</div>
+        <el-button @click="isShowMulty3 = true" type="primary">测试</el-button>
+        <kd-drawer
+          :visible.sync="isShowMulty3"
+          title="提示"
+          append-to-body
+          direction="ttb"
+          :size="300"
+          showFullscreen
+        >
+          第三层抽屉
+        </kd-drawer>
+      </kd-drawer>
+    </kd-drawer>
   </div>
 </template>
 
 <script>
-/**
-* @描述
-showSearch: 是否显示头部
-wordSearchFlag: 是否支持关键字筛选
-pageFlag: 显示pagenation
-rowKeys: 选择selection时候无id需要其他参数做唯一值
-searchareaWidth: 搜索宽度
-searchFlag: 是否显示高级搜索
-searchTitle： 搜索关键字
-isShow: 列是否显示
-方法: 
-clearSelection: 清空表格选中项
-*/
+import { $toast } from 'utils';
 export default {
-  name: 'T1',
+  name: 'Index',
   props: {},
   data() {
     return {
-      tableData: [
-        { name: '   ', status: 1 },
-        { name: undefined, status: 3 },
-        { name: ' ', status: ' ' },
-        { name: [], status: [] },
-        { name: null, status: {} },
-        { name: {}, status: {} }
-      ],
-      totalNum: 0,
-      selectArr: [],
-      form: {}
+      isShow: false,
+      isShow2: false,
+      isShowMulty: false,
+      isShowMulty2: false,
+      isShowMulty3: false,
+      form: {
+        realName: ''
+      },
+      rules: {
+        realName: [{ required: true, message: '请输入中文', trigger: 'blur' }]
+      }
     };
   },
-  components: {},
-  computed: {
-    deleteTxt() {
-      let selectTxt =
-        this.selectArr.length === 0 ? '' : `(${this.selectArr.length})`;
-      return `删除${selectTxt}`;
-    },
-    columnsData() {
-      return [
-        {
-          type: 'selection',
-          selectableFn: (row, index) => {
-            return index % 2 === 0;
-          }
-        },
-        {
-          title: '任务英文名称',
-          key: 'name',
-          filters: [
-            { text: '是', value: 1 },
-            { text: '否', value: 0 }
-          ]
-        },
-        {
-          title: '任务状态',
-          key: 'status'
-        },
-        {
-          key: 'operation',
-          title: '操作',
-          btns: [
-            {
-              content: '编辑',
-              disabled: (item) => {
-                return this.mDisabled('UPDATE', item) || item.status === 'on';
-              }
-            },
-            {
-              content: '删除',
-              disabled: (item) => {
-                return this.mDisabled('DELETE', item) || item.status === 'on';
-              },
-              confirm: this.deleteRow,
-              confirmInfo: '您确定要删除此文件嘛? '
-            }
-          ]
-        }
-      ];
-    }
-  },
   watch: {},
-  created() {
-    this.init();
-  },
+  components: {},
+  created() {},
   mounted() {},
   methods: {
-    toSearch() {
-      console.log('toSearch');
+    popWin() {
+      this.isShow = true;
     },
-    toClear() {
-      console.log('toClear');
+    popWin2() {
+      this.isShow2 = true;
     },
-    toReset() {
-      console.log('toReset');
+    confirmDialog() {},
+    confirm() {
+      this.$refs.formRef.validate((valid) => {
+        if (valid) {
+          this.isShow = false;
+        } else {
+          $toast('提交失败', 'e');
+        }
+      });
     },
-    deleteBtn() {},
-    init() {
-      console.log(`***** init  132行 examples/src/views/test/index.vue  22:51:26`);
-      
-      this.totalNum = this.tableData.length;
-    },
-    deleteRow(row) {
-      console.log(JSON.stringify(row, null, '\t'));
-    },
-    selectionChange(val) {
-      this.selectArr = val;
+    t2() {
+      $toast('哈哈');
     }
   }
 };
