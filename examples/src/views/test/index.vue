@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button @click="isShowDialog = true" type="primary">弹框</el-button>
     <el-button @click="popWin">抽屉</el-button>
     <el-button @click="popWin2">自定义title和footer插槽</el-button>
     <el-button @click="isShowMulty = true" type="primary">嵌套抽屉</el-button>
@@ -59,6 +60,10 @@
         </kd-drawer>
       </kd-drawer>
     </kd-drawer>
+
+    <kd-dialog ref="dialogRef" title="测试弹框" :visible.sync="isShowDialog" @confirm="isShowDialog = false">
+      这弹框的内容多大?
+    </kd-dialog>
   </div>
 </template>
 
@@ -69,6 +74,7 @@ export default {
   props: {},
   data() {
     return {
+      isShowDialog: false,
       isShow: false,
       isShow2: false,
       isShowMulty: false,

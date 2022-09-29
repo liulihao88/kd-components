@@ -29,11 +29,10 @@
       <div class="dialog_slot_box">
         <slot />
       </div>
-      <span slot="footer" class="dialog_footer" v-if="showFooter">
+      <div slot="footer" class="dialog_footer" v-if="showFooter">
         <slot name="footer">
           <el-button
             type="info"
-            size="small"
             :disabled="cancelDisabled"
             v-throttle="cancelThrottleNumber"
             v-if="!!cancelText"
@@ -42,7 +41,6 @@
           >
           <el-button
             type="primary"
-            size="small"
             :disabled="confirmDisabled"
             v-throttle="confirmThrottleNumber"
             v-if="!!confirmText"
@@ -50,7 +48,7 @@
             >{{ confirmText }}</el-button
           >
         </slot>
-      </span>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -75,7 +73,7 @@ export default {
     },
     theme: {
       type: String,
-      default: 'default'
+      default: '' // 弹框样式: 默认空, norm norm16 simple
     },
     cancel: {
       type: [Function, String],
@@ -121,8 +119,7 @@ export default {
     destroyOnClose: {
       type: Boolean,
       default: true
-    },
-    
+    }
   },
   data() {
     return {
@@ -138,6 +135,8 @@ export default {
         return 'kd-norm-dialog';
       } else if (this.theme === 'norm16') {
         return 'kd-norm16-dialog';
+      } else if (this.theme === 'simple') {
+        return 'kd-simple-dialog';
       } else {
         return '';
       }
@@ -148,13 +147,6 @@ export default {
       if (this.$listeners.confirm) {
         this.$emit('confirm');
       } else {
-        
-        console.log(
-          `%c 111=>138行 packages/components/Dialog/src/index.vue 111 `,
-          'background:#000;color:#bada55',
-          111
-        );
-        return;
         this.$emit('update:visible', false);
       }
     },

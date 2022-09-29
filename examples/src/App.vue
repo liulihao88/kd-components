@@ -44,8 +44,10 @@ import { deepClone } from 'utils';
 
 const constantModulesMd = require.context('./views', true, /\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
+
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, []);
+
 // const { components, names } = requireComponents(constantModules, ['testCron']);
 /**
  * 将希望显示的组件放在第一位
@@ -69,27 +71,38 @@ export default {
     };
   },
   created() {
+    // 生产环境下隐藏test等想要隐藏的组件
+    this.prodHideTest();
+    
     // 是否隐藏组件. 因为把全部组件加载到页面上调试麻烦, 所以定义一个变量来只显示想显示的组件
-    let isHideComp = false;
-    isHideComp = true;
-    if (isHideComp) {
-      // this.hideComps();
-    }
+    // this.hideComps();
   },
   mounted() {
     this.$nextTick(() => {
-      let hash = document.location.hash
-      if(hash) {
-        document.querySelector(hash).scrollIntoView(true);
+      let hash = document.location.hash;
+      if (hash) {
+          document.querySelector(hash).scrollIntoView(true);
       }
-    })
+    });
   },
   methods: {
+    prodHideTest() {
+      if (process.env.NODE_ENV === 'production') {
+        this.comArr = this.comArr.filter((v) => {
+          if (v.endsWith('Test')) {
+            return false;
+
+          } else {
+            return true;
+          }
+        });
+      }
+    },
     hideComps() {
       //  将希望显示的组件放在第一位
       if (process.env.NODE_ENV === 'development') {
         // 只改下面这行代码,改变compName
-        let compName = ['test'];
+        let compName = ['test', 'andyTest'];
         // 只改上面这行代码
         let spliceNames = deepClone(this.comArr);
         let str = 'test';
@@ -99,12 +112,6 @@ export default {
             str + compName[i][0].toUpperCase() + compName[i].slice(1);
           res.push(strRes);
         }
-        console.log(
-          `%c 111=>94行 examples/src/App.vue res `,
-          'background:#000;color:#bada55',
-          res
-        );
-
         this.comArr = spliceNames.filter((v) => {
           return res.includes(v);
         });
