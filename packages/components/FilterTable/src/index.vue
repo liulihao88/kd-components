@@ -137,7 +137,7 @@
       <slot name="tableInsert" />
     </template>
     <!-- :row-key="(row) => row.id || ''" -->
-    <div class="tablewraper mt2">
+    <div class="tablewraper" :class="showSearch && 'mt2'">
       <el-table
         ref="kTable"
         v-loading="loading"
@@ -460,7 +460,7 @@
       <div v-if="pageFlag" style="height: 68px">
         <slot name="pageleft" />
         <el-pagination
-          class="tab_pagination mt2"
+          class="tab_pagination"
           background
           :current-page="currentPage"
           :page-sizes="pageSizes"
