@@ -1,23 +1,30 @@
 <template>
   <div>
-    <kd-input title="简单input" v-model="val" width="200" />
-    <kd-input v-model="val" title="独占一行" width="100%" />
+    <kd-input title="简单input" v-model="val" width="200" class="mb" />
+    <kd-input
+      v-model="val"
+      title="密码独占一行"
+      width="100%"
+      type="password"
+      class="mb"
+    />
+    <kd-input v-model="val" type="textarea" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Index',
+  name: "Index",
   props: {},
   data() {
     return {
-      val: 'abc'
+      val: "abc",
     };
   },
   components: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 <style scoped lang="scss"></style>

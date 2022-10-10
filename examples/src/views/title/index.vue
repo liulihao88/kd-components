@@ -1,7 +1,16 @@
 <template>
   <div>
-    <kd-title title="最基础用法" class="b-b-1"></kd-title>
-    <kd-title title="我是title" style="--lc: red">
+    <kd-title title="最基础用法"></kd-title>
+    <kd-title
+      title="我是title"
+      style="--lc: red"
+      class="bd-b-1"
+      :customStyle="{
+        fontSize: '16px',
+        padding: '10px 0',
+      }"
+      size="large"
+    >
       <span class="ml2"> 这是默认插槽 </span>
       <template #right>
         <el-button>这是右侧插槽的值</el-button>
@@ -12,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Index',
+  name: "Index",
   props: {},
   data() {
     return {};
@@ -22,9 +31,6 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {
-    t1() {}
-  }
 };
 </script>
 <style scoped lang="scss"></style>
