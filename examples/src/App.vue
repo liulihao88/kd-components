@@ -2,10 +2,10 @@
   <div id="app">
     <ul class="nav">
       <li v-for="item in Object.keys(docName)">
-        <a :href="`#${item}`">{{ docName[item] }}</a>
+        <a :href="`#${item}`" @click="changeLocationHash(item)" :class="{active: navActive(item) }">{{ docName[item] }}</a>
       </li>
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`" v-text="replaceName(item)"></a>
+        <a :href="`#${item}`" @click="changeLocationHash(item)" :class="{active: navActive(item) }"  v-text="replaceName(item)"></a>
       </li>
     </ul>
     <section class="container">
@@ -67,13 +67,14 @@ export default {
       mds: mds,
       docName: docName,
       docMd: docMd,
-      isDev: false
+      isDev: false,
+      locationHash: ''
     };
   },
   created() {
     // 生产环境下隐藏test等想要隐藏的组件
     this.prodHideTest();
-    
+
     // 是否隐藏组件. 因为把全部组件加载到页面上调试麻烦, 所以定义一个变量来只显示想显示的组件
     // this.hideComps();
   },
@@ -81,7 +82,8 @@ export default {
     this.$nextTick(() => {
       let hash = document.location.hash;
       if (hash) {
-          document.querySelector(hash).scrollIntoView(true);
+        this.locationHash = hash
+        document.querySelector(hash).scrollIntoView(true);
       }
     });
   },
@@ -97,6 +99,12 @@ export default {
           }
         });
       }
+    },
+    changeLocationHash(item) {
+      this.locationHash = `#${item}`
+    },
+    navActive(item) {
+      return this.locationHash === `#${item}`
     },
     hideComps() {
       //  将希望显示的组件放在第一位
@@ -173,6 +181,10 @@ export default {
     &:hover {
       color: #409eff;
     }
+  }
+  .active {
+    color: #409eff;
+    font-weight: 700;
   }
 }
 .container {

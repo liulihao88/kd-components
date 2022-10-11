@@ -13,17 +13,11 @@
 <script>
 export default {
   name: 'Index',
-  props: {},
   data() {
     return {
       val: [],
       dateValue: []
     };
-  },
-  components: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  }
 };
 </script>
-<style scoped lang="scss"></style>

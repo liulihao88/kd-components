@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     boxStyle() {
-      console.log(typeof this.offsetTop, 1222);
+      // console.log(typeof this.offsetTop, 1222);
       if(typeof this.offsetTop === "string" || typeof this.offsetTop === "number") {
         return {
           top: this.offsetTop
