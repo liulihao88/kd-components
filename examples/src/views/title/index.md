@@ -1,3 +1,17 @@
+ ### 组件接收参数
+属性 | 说明 | 类型 | 默认值
+--- | :---| :---| :---
+title |  title的文字 | String | 
+color | 左侧竖条颜色| String | 
+customStyle | 文字的自定义style样式| Object | {}
+size | 上下margin间距；可选值(none："0"; small："8px 0"; small："24px 0" ) | String | ''
+ ### 组件插槽
+属性 | 说明  
+--- | :---
+—— |  title文字靠右的插槽（匿名插槽） 
+right | 最右侧插槽
+
+
 ```
 <template>
   <div>
