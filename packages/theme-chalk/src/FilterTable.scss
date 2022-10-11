@@ -196,13 +196,11 @@
   color: var(--primary-color);
 }
 // 解决表格下拉筛选按钮被遮住一部分问题
-.el-table-filter__content {
-  .el-scrollbar {
-    .el-scrollbar__wrap {
-      overflow: auto;
-      padding-bottom: 12px;
-    }
-  }
+.el-table-filter__bottom {
+  border-top: 1px solid #ebeef5;
+  padding: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 /* 这个样式解决的问题是：比如api详情页面，切换参数信息和测试信息的tab时，有时候表格宽度会变成0 */
@@ -247,3 +245,4 @@
 .el-table__empty-block{
   min-width: 100%;
 }
+

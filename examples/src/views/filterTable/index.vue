@@ -59,7 +59,7 @@ export default {
           title: '状态',
           key: 'status',
           filters: [
-            { text: "未上线", value: "offline" },
+            { text: "未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线", value: "offline" },
             { text: "已上线", value: "online" }
           ]
         },
