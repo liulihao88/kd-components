@@ -1,20 +1,16 @@
 <template>
   <el-drawer
     :wrapper-closable="wrapperClosable"
-    :destroy-on-close="isDestroyChild"
+    :destroy-on-close="destroyOnClose !== false"
     :with-header="true"
     :size="$attrs.size || 640"
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <!-- <slot name="title" slot="title"></slot> -->
-    <!-- <template name="title">
-      哈哈
-    </template> -->
     <template slot="title">
-      <slot name="title">
-        <div class="ml2 ft-14">{{ title }}</div>
-      </slot>
+        <slot name="title" >
+          <div>{{ title }}</div>
+        </slot>
     </template>
 
     <div v-loading="loading" class="drawer-main">
@@ -88,22 +84,21 @@ export default {
       type: Boolean,
       default: process.env.NODE_ENV === 'development'
     },
-    cancelThrottleNumber:{
+    cancelThrottleNumber: {
       type: Number,
       default: 1000
     },
     confirmThrottleNumber: {
       type: Number,
       default: 2000
-    }
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: true
+    },
   },
   computed: {
-    isDestroyChild() {
-      if (this.$attrs['destroy-on-close'] !== undefined) {
-        return this.$attrs['destroy-on-close'];
-      }
-      return true;
-    }
+   
   },
   mounted() {},
   methods: {

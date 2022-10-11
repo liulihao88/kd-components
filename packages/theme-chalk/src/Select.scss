@@ -12,9 +12,11 @@
     white-space: nowrap;
     border-radius: 2px 0 0 2px;
     align-items: center;
-    height: 30px;
+    // height: 30px;
     display: inline-block;
-    line-height: 30px;
+    // line-height: 30px;
+    display: flex;
+    justify-content: space-around;
     color: #909399;
     font-size: 12px;
   }

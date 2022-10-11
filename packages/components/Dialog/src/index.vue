@@ -5,8 +5,9 @@
       v-el-drag-dialog
       :fullscreen="fullscreen"
       :custom-class="getThemeClass"
-      :destroy-on-close="$attrs.destroyOnClose !== false"
+      :destroy-on-close="destroyOnClose !== false"
       v-bind="$attrs"
+      :class="!border && 'hide-title-border'"
       v-on="$listeners"
     >
       <template slot="title">
@@ -19,18 +20,19 @@
           @click="fullscreen = !fullscreen"
         >
           <i
-            :class="fullscreen ? 'kd-icon-fullscreen-exit' : 'kd-icon-fullsreen'"
+            :class="
+              fullscreen ? 'kd-icon-fullscreen-exit' : 'kd-icon-fullsreen'
+            "
           ></i>
         </button>
       </template>
       <div class="dialog_slot_box">
         <slot />
       </div>
-      <span slot="footer" class="dialog_footer" v-if="showFooter">
+      <div slot="footer" class="dialog_footer" v-if="showFooter">
         <slot name="footer">
           <el-button
             type="info"
-            size="small"
             :disabled="cancelDisabled"
             v-throttle="cancelThrottleNumber"
             v-if="!!cancelText"
@@ -39,7 +41,6 @@
           >
           <el-button
             type="primary"
-            size="small"
             :disabled="confirmDisabled"
             v-throttle="confirmThrottleNumber"
             v-if="!!confirmText"
@@ -47,7 +48,7 @@
             >{{ confirmText }}</el-button
           >
         </slot>
-      </span>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -72,17 +73,17 @@ export default {
     },
     theme: {
       type: String,
-      default: 'default'
+      default: '' // 弹框样式: 默认空, norm norm16 simple
     },
     cancel: {
       type: [Function, String],
       default: ''
     },
-    confirmDisabled:{
+    confirmDisabled: {
       type: Boolean,
       default: false
     },
-    cancelDisabled:{
+    cancelDisabled: {
       type: Boolean,
       default: false
     },
@@ -107,9 +108,17 @@ export default {
       type: Number,
       default: 1000
     },
-    confirmThrottleNumber:{
+    confirmThrottleNumber: {
       type: Number,
       default: 2000
+    },
+    border: {
+      type: Boolean,
+      default: true
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -122,12 +131,14 @@ export default {
   },
   computed: {
     getThemeClass() {
-      if(this.theme === 'norm') {
-        return 'kd-norm-dialog'
-      } else if(this.theme === 'norm16') {
-        return 'kd-norm16-dialog'
+      if (this.theme === 'norm') {
+        return 'kd-norm-dialog';
+      } else if (this.theme === 'norm16') {
+        return 'kd-norm16-dialog';
+      } else if (this.theme === 'simple') {
+        return 'kd-simple-dialog';
       } else {
-        return ''
+        return '';
       }
     }
   },

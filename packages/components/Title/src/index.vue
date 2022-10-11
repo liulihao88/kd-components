@@ -1,21 +1,19 @@
 <template>
-  <div class="kd-title">
-    <div class="mtb  f-bt border">
+  <div class="kd-title f-bt" :style="{ ...handleMargin, ...customStyle }">
     <div class="title f" ref="titleRef">
       <div>{{ title }}</div>
       <slot></slot>
     </div>
-    <div class="f mr3 title_right">
+    <div class="title_right">
       <slot name="right"></slot>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
 /**
 * @描述
-* 公共title组件。可以设置title,  可以设置左侧竖条颜色
+* 公共title组件。可以设置title,  可以设置左侧竖条颜色, 可设置默认插槽和右侧插槽
 * @使用方法
 <kd-title title="4. 回到顶部"></kd-title>
 <kd-title ttitle="左侧粉色" style="--lc: pink"/>
@@ -23,35 +21,50 @@
   title="自定义titile"
   style="--lc: yellow"
 ></kd-title>
-* @param
-* @LastEditTime: 最后更新时间
-* 2022-03-02
-* @Author: andy凌云
 */
 export default {
   name: "KdTitle",
   props: {
-     title: {
+    title: {
       type: String,
-      default: ''
+      default: "",
     },
+    // 左侧竖条颜色
     color: {
       type: String,
-      default: ''
+      default: "",
+    },
+    customStyle: {
+      type: Object,
+      default: () => {},
+    },
+    size: {
+      type: String,
+      default: "", // 默认margin 16px 0
     },
   },
   data() {
-    return {
-
-    };
+    return {};
   },
   components: {},
-  computed: {},
+  computed: {
+    handleMargin() {
+      if (this.size === "none") {
+        return { margin: "0"};
+      } else if (this.size === "small") {
+        return { margin: "8px 0" };
+      } else if (this.size === "large") {
+        return { margin: "24px 0" };
+      } else {
+        return {};
+      }
+    },
+  },
   watch: {},
   created() {},
   mounted() {},
   methods: {
-  t1() {},
-  }
-}
+    t1() {},
+  },
+};
 </script>

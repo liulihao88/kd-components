@@ -136,8 +136,6 @@ export default {
       }
     }
   },
-  mounted() {
-  },
   methods: {
     dateChange(v) {
       this.$emit('input', v);

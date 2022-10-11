@@ -172,15 +172,15 @@
   min-width: fit-content;
   padding-left: 10px;
 }
-.filter_table .operations .el-button:not(:last-child) {
-  margin-right: 8px;
+.filter_table .operations .el-button {
+  margin-right: 0;
 }
 .filter_table .tab_pagination {
   display: inline-block;
   float: right;
   text-align: right;
   padding-right: 0;
-  margin: 18px 0;
+  margin: 16px 0;
   font-size: 12px;
 }
 .filter_table .table_oper_box .disabled {
@@ -240,3 +240,7 @@
 .el-table--border .el-table__cell{
   border-right: unset;
 }
+.el-table__empty-block{
+  min-width: 100%;
+}
+

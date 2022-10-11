@@ -1,16 +1,15 @@
 <template>
   <el-input
-    v-model="iptValue"
+    v-on="$listeners"
     v-bind="$attrs"
+    v-model="iptValue"
     :placeholder="handlePlaceholder()"
-    :size="$attrs.size || 'small'"
     class="kd-ipt"
     :clearable="$attrs.clearable !== false"
     :class="{ 'kd-textarea': $attrs.type === 'textarea' }"
     :style="{ ...mHandleWidth() }"
     :maxlength="handleMaxLength"
-    show-word-limit
-    v-on="$listeners"
+    :show-word-limit="handleShowWordLimit()"
     @focus="focusHandler($event)"
     @keyup.delete.native="keyUpDeleteHandler()"
   >
@@ -32,9 +31,9 @@ export default {
       type: [String, Number],
       required: false
     },
-    block: {
-      type: Boolean,
-      default: false
+    showWordLimit: {
+      type: [Boolean, String],
+      default: ''
     }
   },
   computed: {
@@ -50,13 +49,9 @@ export default {
     // 如果是textarea。 默认文本长度为200
     handleMaxLength() {
       if (this.$attrs.type === 'textarea') {
-        if (this.maxlength) {
-          return this.maxlength;
-        } else {
-          return 200;
-        }
+        return this.$attrs.maxlength || 200;
       } else {
-        return '';
+        return this.$attrs.maxlength || '';
       }
     }
   },
@@ -72,6 +67,16 @@ export default {
       if (this.$attrs.type === 'password') {
         this.iptValue = '';
       }
+    },
+    // 是否显示showWordLimit属性
+    handleShowWordLimit() {
+      if (typeof this.showWordLimit === 'boolean') {
+        return this.showWordLimit;
+      }
+      if (this.$attrs.type === 'textarea') {
+        return true;
+      }
+      return false;
     },
     // 如果是密码输入框, focus直接选中文本
     focusHandler(evt) {

@@ -17,7 +17,9 @@ import kjComponents from '../../packages/components/index';
 import '../../packages/theme-chalk/src/index.scss';
 import { zhCn, ja } from '../../packages/locale/index';
 Vue.config.productionTip = false;
-Vue.use(ElementUI);
+Vue.use(ElementUI, {
+  size: 'small',
+})
 Vue.use(kjComponents);
 Vue.use(VueI18n);
 
