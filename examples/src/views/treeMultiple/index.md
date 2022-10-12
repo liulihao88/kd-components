@@ -9,7 +9,7 @@ des: is-object 为true时需要设置node-key,默认为value，选择后的值�
         v-if="treeLoading"
         v-model="checkData"
         :table-data="treeData"
-        style="width: 208px"
+        style="width: 316px"
         :default-props="defaultProps"
         node-key="id"
     />

@@ -7,6 +7,7 @@
       :custom-class="getThemeClass"
       :destroy-on-close="destroyOnClose !== false"
       v-bind="$attrs"
+      :width="$attrs.width || '640px'"
       :class="!border && 'hide-title-border'"
       v-on="$listeners"
     >
