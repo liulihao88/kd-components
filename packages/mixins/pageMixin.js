@@ -173,7 +173,7 @@ export const pageMixin = {
       }
       return str;
     },
-    mModifyTitle(str, type, fileName, otherParams = {}) {
+    mSetTitle(str, type, fileName, otherParams = {}) {
       let devFile =
         process.env.NODE_ENV === "development" ? `(${fileName})` : "";
       if (type === "edit") {
