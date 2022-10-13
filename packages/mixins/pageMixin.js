@@ -172,6 +172,14 @@ export const pageMixin = {
         return `${str}(${arr.length})`;
       }
       return str;
-    }
+    },
+    mModifyTitle(str, type, fileName, otherParams = {}) {
+      let devFile =
+        process.env.NODE_ENV === "development" ? `(${fileName})` : "";
+      if (type === "edit") {
+        return `编辑${str}${devFile}`;
+      }
+      return `新建${str}${devFile}`;
+    },
   }
 };
