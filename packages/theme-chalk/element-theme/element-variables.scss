@@ -6,7 +6,7 @@
   padding: 0 8px;
   background: #fff;
   box-sizing: border-box;
-  color: rgba(39,48,75,0.85);
+  color: rgba(39, 48, 75, 0.85);
   border: 1px solid #e3e6eb;
   border-right: none;
 }
@@ -35,7 +35,7 @@
 .el-button--info {
   background: #ebedf0;
   border: 1px solid #ebedf0;
-  color: rgba(39,48,75,0.85);
+  color: rgba(39, 48, 75, 0.85);
 }
 
 .el-descriptions-item__label:not(.is-bordered-label) {
@@ -58,7 +58,7 @@
     border-top: none;
   }
   .el-date-table td.today::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0px;
     left: 50%;
@@ -87,43 +87,6 @@
   width: 90%;
   .el-descriptions-item__content {
     width: 80%;
-  }
-}
-
-// ElForm样式
-.el-form {
-  // radio
-  .el-radio__inner {
-    width: 16px;
-    height: 16px;
-  }
-  .el-radio__input.is-checked .el-radio__inner {
-    background: var(--form-item-bg);
-  }
-  .el-radio__input.is-checked .el-radio__inner::after {
-    background-color: var(--primary-color);
-    width: 8px;
-    height: 8px;
-  }
-  // 重置label
-  .el-form-item__label {
-    font-weight: 400;
-    color: var(--text-color);
-    font-size: 12px;
-  }
-  // 重置input
-  .el-input-number:not .el-input {
-    width: auto;
-    max-width: 316px;
-  }
-  .el-textarea {
-    width: auto;
-    max-width: 424px;
-  }
-  .el-select {
-    .el-input {
-      width: 316px;
-    }
   }
 }
 
@@ -195,7 +158,7 @@
     border-top: none;
   }
   .el-date-table td.today::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0px;
     left: 50%;
@@ -235,7 +198,6 @@
   margin-left: 0 !important;
 }
 
-
 // ElForm样式
 .el-form {
   // radio
@@ -258,19 +220,15 @@
     font-size: 12px;
   }
   // 重置input
-  .el-input {
-    width: 316px;
+  .el-input-number:not .el-input {
+    width: auto;
+    max-width: 316px;
   }
   .el-input-number .el-input {
     width: 100%;
   }
   .el-textarea {
     width: 424px;
-  }
-  .el-select {
-    .el-input {
-      width: 316px;
-    }
   }
 }
 
@@ -297,62 +255,44 @@
   }
 }
 
-// 离线开发检查节点form
-.inspect_form{
-  .el-input,
-  .kj-owner .el-select .el-input {
-    width: 316px;
-  }
-  .el-select {
-  }
-  .kj-owner {
-    .el-select {
-      width: 316px !important;
-    }
-    .el-input {
-      width: 316px !important;
-    }
-  }
-}
-
 // 下拉字号
-.el-select-dropdown{
-    .el-select-dropdown__item{
-        span{
-            font-size: 12px;
-        }
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    span {
+      font-size: 12px;
     }
-
+  }
 }
 // 修改下拉选择字号
-.el-checkbox__label{
-    font-size: 12px;
+.el-checkbox__label {
+  font-size: 12px;
 }
 // 单选框字号
-.el-radio__label{
+.el-radio__label {
   font-size: 12px;
 }
 // 修改全局message样式
-.el-message{
-    min-width: 0px;
-    padding-right: 20px;
-    background: #fff;
-    border-color: #fff;
-    box-shadow: 0px 2px 8px 0px rgba(197,197,197,0.50);
-    .el-message__content{
-        font-size: 12px;
-        font-family: PingFangSC, PingFangSC-Regular;
-        font-weight: 400;
-        color: rgba(39,48,75,0.85);
-        line-height: 18px;
-    }
+.el-message {
+  min-width: 0px;
+  padding-right: 20px;
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(197, 197, 197, 0.5);
+  .el-message__content {
+    font-size: 12px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(39, 48, 75, 0.85);
+    line-height: 18px;
+  }
 }
 
-.test-blue{
+.test-blue {
   background: blue;
 }
 // 表格右下角多一条线
-.el-table__fixed-right::before, .el-table__fixed::before {
+.el-table__fixed-right::before,
+.el-table__fixed::before {
   margin-bottom: -1px;
 }
 
@@ -360,12 +300,21 @@
   font-size: 16px;
   z-index: 9999 !important;
   .el-icon-warning {
-    color: #FFB51F;
+    color: #ffb51f;
   }
   .el-icon-success {
-    color: #30BD82;
+    color: #30bd82;
   }
   .el-icon-error {
-    color: #E94C35;
+    color: #e94c35;
+  }
+}
+.el-select,
+.el-input {
+  width: 316px;
+}
+.el-select {
+  .el-input {
+    width: unset;
   }
 }

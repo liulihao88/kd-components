@@ -166,6 +166,7 @@ export const pageMixin = {
      * 删除相关, 如果selectArr为[], 显示`删除`; 如果selectArr长度为3, 显示`删除(3)`
      * {{ mMerge('删除', selectArr) }}
      * :referenceText="mMerge('删除', selectArr)"
+     * {{mMerge('删除', selectArr)}}
      */
     mMerge(str, arr = []) {
       if (Array.isArray(arr) && arr.length > 0) {
@@ -173,13 +174,28 @@ export const pageMixin = {
       }
       return str;
     },
-    mSetTitle(str, type, fileName, otherParams = {}) {
-      let devFile =
-        process.env.NODE_ENV === "development" ? `(${fileName})` : "";
-      if (type === "edit") {
+    /**
+     * 
+     * @param {*} str 要显示的最基础文本
+     * @param {*} fileName 当前文件的文件名
+     * @param {*} type 当为true或者'add'的时候为新增, 为edit或false的时候是编辑, 否则为基础文本
+     * @param {*} otherParams 待开发
+     * @example
+     *  :title="mSetTitle('项目', 'project')" => 项目(project)
+     *  :title="mSetTitle('项目', 'project', type)" => 新增项目(project)
+     *  :title="mSetTitle('项目', 'project', type==='add')" => 新增项目(project)
+     */
+     mSetTitle(str, fileName, type = "", otherParams = {}) {
+      let devFile = "";
+      if (process.env.NODE_ENV === "development" && fileName) {
+        devFile = `(${fileName})`;
+      }
+      if (type === "add" || type === true) {
+        return `新建${str}${devFile}`;
+      } else if (type === "edit" || type === false) {
         return `编辑${str}${devFile}`;
       }
-      return `新建${str}${devFile}`;
+      return `${str}${devFile}`;
     },
   }
 };
