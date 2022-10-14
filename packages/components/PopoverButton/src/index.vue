@@ -1,23 +1,17 @@
 <template>
-  <el-popover v-model="show" v-bind="popAttrs">
+  <el-popover v-model="show" v-bind="popAttrs" v-on="$listeners" class="kd-popover-button">
     <slot slot="reference" name="reference">
       <el-button v-bind="referenceBtnAttrs" :disabled="disabled">
-        <template v-if="referenceFormat !== null">
-          {{ referenceFormat() }}
-        </template>
-        <template v-else>
-          {{ referenceText }}
-        </template>
+        {{ referenceText }}
       </el-button>
     </slot>
-    <p :style="contentStyles">
-      <template v-if="contentFormat !== null">
-        {{ contentFormat() }}
-      </template>
-      <template v-else>
+
+    <slot slot="default">
+      <p :style="contentStyles">
         {{ contentText }}
-      </template>
-    </p>
+      </p>
+    </slot>
+
     <div style="text-align: right;margin: 16px 4px 4px 4px;">
       <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
       <el-button type="primary" :disabled="disConfirm" :loading="loading" @click="confirm">
@@ -31,14 +25,17 @@
 // Attributes
 // popupAttrs {Object} popover的属性对象
 // referenceBtnAttrs {Object} 触发popup的按钮属性对象
-// referenceText {String} 触发按钮文本
-// referenceFormat {Function} 触发按钮文本自定义format
-// contentText {String} 默认'确定删除？'  主体文本
-// contentFormat {Function} 默认null，主体文本自定义
+// referenceText {String} 按钮文本；不使用reference插槽时，默认为按钮样式；使用reference插槽后该属性失效
+// disabled {Boolean} 同el-button的disabled，控制按钮能否点击
+// contentText {String} 默认'确定删除？'，主体文本
 // contentStyles {Object} 默认null，主体文本样式
 // disConfirm {Boolean} 默认false，弹出框确认按钮disabled
 // confirmText {String} 默认'确认',
 // cancelText {String} 默认'取消'
+
+// 插槽
+// default 同popover的default插槽，Popover 内嵌 HTML 文本
+// reference 同popover的reference插槽，触发 Popover 显示的 HTML 元素
 
 export default {
   name: "KdPopoverButton",
@@ -57,10 +54,6 @@ export default {
       type: String,
       default: "删除"
     },
-    referenceFormat: {
-      type: Function,
-      default: null
-    },
     disabled: {
       type: Boolean,
       default: false
@@ -72,10 +65,6 @@ export default {
     contentStyles: {
       type: Object,
       default: () => {}
-    },
-    contentFormat: {
-      type: Function,
-      default: null
     },
     disConfirm: {
       type: Boolean,
@@ -105,7 +94,7 @@ export default {
       return Object.assign(
         {
           placement: "bottom",
-          title: "批量删除",
+          title: "删除",
           width: 260,
           trigger: "click"
         },
