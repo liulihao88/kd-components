@@ -22,6 +22,7 @@
       @confirm="confirmDialog"
       @cancel="cancelDialog"
       showFullscreen
+      append-to-body
       :showFooter="false"
       ref="dialogRef2"
       width="80%"
@@ -30,11 +31,10 @@
       <kd-dialog
         :visible.sync="isShow3"
         showFullscreen
-        append-to-body
+        :close-on-click-modal="false"
         confirmText="提交按钮1"
         cancelText="取消按钮2"
         title="哈哈"
-        zIndex="1000"
         top="25vh"
       >
         最里层dialog
