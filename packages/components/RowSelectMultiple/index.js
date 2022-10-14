@@ -1,5 +1,5 @@
-import RowSelectMultiple from "./src/index.vue";
+import KdRowSelectMultiple from "./src/index.vue";
 
-RowSelectMultiple.install = (Vue) => Vue.component(RowSelectMultiple.name, RowSelectMultiple);
+KdRowSelectMultiple.install = (Vue) => Vue.component(KdRowSelectMultiple.name, KdRowSelectMultiple);
 
-export default RowSelectMultiple;
+export default KdRowSelectMultiple;
