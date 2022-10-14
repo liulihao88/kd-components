@@ -1,18 +1,51 @@
 <template>
-  <div class="wrap">
-    <h3>可滚动按钮组（目前只支持单选）</h3>
-    <h4>按钮组：type="group"</h4>
-    <kd-scroll-group v-model="value" type="group" :options="options.slice(0,3)" :height="50" min-width="150"></kd-scroll-group>
-    <h4>单个按钮：type="button"</h4>
-    <kd-scroll-group v-model="value" type="button" :options="options"></kd-scroll-group>
-    <h4>标签形式：type="tag"</h4>
-    <kd-scroll-group v-model="value" type="tag" :options="options"></kd-scroll-group>
+  <div>
+    <h3>可滚动选项组（单选）</h3>
+    <div class="author">维护人：刘云</div>
+    <div class="sub-title">
+      可滚动按钮组（单选），根据外层容器宽度显示滚动按钮。
+    </div>
+
+    <h5>基础用法</h5>
+    <div class="example-wrap">
+      <kd-scroll-group v-model="value" :type="groupType" :options="options.slice(0,3)" :force-show="forceShow">
+      </kd-scroll-group>
+    </div>
+    <el-button @click="groupType='group'">按钮组</el-button>
+    <el-button @click="groupType='button'">单个按钮</el-button>
+    <el-button @click="groupType='tag'">标签样式</el-button>
+    <el-button @click="forceShow=!forceShow">显示/隐藏滚动按钮</el-button>
+    <example-code :source="source1" style="margin-top:20px;">
+      设置 v-model/value 和 options 选项数组即可；<br />
+      通过type可控制按钮组显示模式，可选值：group-按钮组，button-按钮，tag-标签；<br />
+      默认情况下，选项数量不超过容器宽度时，不显示滚动按钮，通过 force-show 可强制显示；
+    </example-code>
+
+    <h5>选项配置</h5>
+    <div class="example-wrap">
+      <kd-scroll-group v-model="value2" :type="groupType2" :options="options" :height="50" :space="40" min-width="150">
+      </kd-scroll-group>
+    </div>
+    <el-button @click="groupType2='group'">按钮组</el-button>
+    <el-button @click="groupType2='button'">单个按钮</el-button>
+    <el-button @click="groupType2='tag'">标签样式</el-button>
+    <example-code :source="source2" style="margin-top:20px;">
+      选项集合options默认情况下应该是 [{label:'',value:''}] 格式；<br />
+      height属性可控制组件高度，同时会影响type为group/button时按钮高度，对于type=tag时，只影响组件高度和滚动按钮高度，不影响tag样式；<br />
+      space用来控制选项间距，对type=group无效
+    </example-code>
   </div>
 </template>
 
 <script>
+import ExampleCode from "../../components/ExampleCode";
+import source1 from "./source/source1.md"
+import source2 from "./source/source2.md"
   export default {
     name: 'Index',
+    components:{
+      ExampleCode
+    },
     data() {
       return {
         options:[
@@ -58,12 +91,29 @@
           }
         ],
         value:'sh',
+        value2:'sh',
+        groupType: 'group',
+        groupType2:'group',
+        forceShow:false,
+        source1,
+        source2,
       }
     }
   }
 </script>
-<style lang="scss">
-.wrap{
-  width:50%;
+<style lang="scss" scoped>
+.author{
+  margin-bottom:10px;
+  font-size:12px;
+  font-style: italic;
+}
+.sub-title{
+  font-size: 14px;
+  color: #5e6d82;
+  line-height: 1.5em;
+}
+.example-wrap{
+  width:600px;
+  margin-bottom:20px;
 }
 </style>
