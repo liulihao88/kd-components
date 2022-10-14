@@ -42,7 +42,7 @@ import { requireComponents, requireMd } from './utils/index';
 import { docMd, docName } from './doc/index';
 import { deepClone } from 'utils';
 
-const constantModulesMd = require.context('./views', true, /\.md$/);
+const constantModulesMd = require.context('./views', true, /index\.md$/);
 const constantModules = require.context('./views', true, /\.vue$/);
 
 const { mds } = requireMd(constantModulesMd);
