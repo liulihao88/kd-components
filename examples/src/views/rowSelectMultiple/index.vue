@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>行选择器（多选）</h3>
     <div class="author">维护人：刘云</div>
     <div class="sub-title">
       行选择器（多选），由于业务场景中目前只有多选情况，所以原row-select即将弃用且不再更新。
