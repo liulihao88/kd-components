@@ -1,6 +1,5 @@
 .kd-select {
   display: inline-flex;
-  width: 208px;
   .left_box {
     // background-color: #f5f7fa;
     background: #fff;
@@ -23,8 +22,8 @@
   ::v-deep .el-input__inner {
     border-radius: 0px 2px 2px 0 !important;
   }
-  .right_box{
+  .right_box {
     flex-grow: 1;
-    display:inline-block;
+    display: inline-block;
   }
 }

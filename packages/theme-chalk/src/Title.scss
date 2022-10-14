@@ -5,6 +5,8 @@
   .title {
     width: 100%;
     padding-left: 8px;
+    height: 12px;
+    line-height: 12px;
     position: relative;
     font-weight: 500;
     box-sizing: border-box;
@@ -12,7 +14,7 @@
   }
   .title::before {
     position: absolute;
-    top: 2px;
+    top: 0;
     bottom: 0;
     left: 0;
     content: '';
