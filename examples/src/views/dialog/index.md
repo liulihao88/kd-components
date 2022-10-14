@@ -84,7 +84,6 @@ export default {
 #### 全局属性
 |选项|类型|默认值|说明|
 |---|---|---|---|
-|isShow|Boolean | false|弹框是否显示 |
 |title|String|""|弹框标题名称|
 |theme|String|""|弹框样式：norm norm16 simple|
 |confirmDisabled|Boolean|false|确认按钮是否禁止点击|
@@ -97,19 +96,19 @@ export default {
 |confirmThrottleNumber|Number|1000|确定按钮节流|
 |border|Boolean|true|是否显示弹框标题下边线|
 |destroyOnClose|Boolean|true|关闭时是否销毁Dialog中的元素|
-|width|String|50%|Dialog的宽度（原有）|
-|top|String|15vh|Dialog CSS中的margin-top值（原有）|
-|append-to-body|Boolean|false|Dialog 自身是否插入至 body 元素上。嵌套的 Dialog 必须指定该属性并赋值为 true（原有）|
-|close-on-click-modal|Boolean|true|是否可以通过点击 modal 关闭 Dialog（原有）|
+|width|String|50%|Dialog的宽度|
+|top|String|15vh|Dialog CSS中的margin-top值|
+|append-to-body|Boolean|false|Dialog 自身是否插入至 body 元素上。嵌套的 Dialog 必须指定该属性并赋值为 true|
+|close-on-click-modal|Boolean|true|是否可以通过点击 modal 关闭 Dialog|
 
 ### 事件
 |事件名称|说明|回调参数|
 |---|---|---|
-|cancel|弹框取消按钮|无|
-|confirm|组弹框确定按钮|无|
+|cancel|弹框取消按钮|-|
+|confirm|弹框确定按钮|-|
 
 ### slot
 |名称|说明|参数|
 |---|---|---|
-|title|自定义弹框标题|
-|footer|自定义弹框底部按钮|
+|title|自定义弹框标题|-|
+|footer|自定义弹框底部按钮|-|
