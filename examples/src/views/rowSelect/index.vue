@@ -107,7 +107,7 @@
     },
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .part {
     display: flex;
     justify-content: space-around;
