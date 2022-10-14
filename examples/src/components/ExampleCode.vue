@@ -47,6 +47,7 @@ export default {
 .markdown-body {
   background-color:#fafafa;
   border: 1px solid #ebebeb;
+  margin-top:20px;
 
   .notice {
     padding:10px;
