@@ -22,12 +22,13 @@ import Title from './Title';
 import Empty from './Empty';
 import Tree from './Tree';
 import RowSelect from './RowSelect';
+import RowSelectMultiple from './RowSelectMultiple';
 import PopoverButton from './PopoverButton';
 import ScrollGroup from './ScrollGroup';
 import scrollbar from "./scrollbar";
 import cron from "./cron"
 
-const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect,PopoverButton,ScrollGroup,scrollbar,cron];
+const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect,RowSelectMultiple,PopoverButton,ScrollGroup,scrollbar,cron];
 
 const install = (app) => {
   components.map((component) => {
@@ -37,6 +38,6 @@ const install = (app) => {
   registerMixins(app);
 };
 
-export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect,ScrollGroup,scrollbar,cron };
+export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input, DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,RowSelect,RowSelectMultiple,ScrollGroup,scrollbar,cron };
 
 export default install;
