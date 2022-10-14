@@ -197,8 +197,6 @@
 }
 // 解决表格下拉筛选按钮被遮住一部分问题
 .el-table-filter__bottom {
-  border-top: 1px solid #ebeef5;
-  padding: 8px;
   position: relative;
   z-index: 1;
 }

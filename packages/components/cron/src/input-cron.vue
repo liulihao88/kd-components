@@ -19,7 +19,7 @@
     <DragDialog
       :visible.sync="dialog.show"
       :title="dialog.title"
-      width="780px"
+      :width="width"
       :buttons="dialog.buttons"
       @cancel="cancel"
       @confirm="confirm"
@@ -59,8 +59,8 @@ export default {
       default: "",
     },
     width: {
-      type: Number,
-      default: 700,
+      type: String,
+      default: '780px',
     },
     placeholder: {
       type: String,

@@ -8,9 +8,6 @@
       />
     </div>
 
-    <!-- 分割线 -->
-    <div class="divider"></div>
-
     <div style="width:100px;">
       <kd-tooltip
         width="70px"
@@ -19,9 +16,6 @@
       />
     </div>
     
-    <!-- 分割线 -->
-    <div class="divider"></div>
-
     <div>
       <kd-tooltip
         :content="textslot"
@@ -47,15 +41,6 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.divider{
-  width: 100%;
-  height: 1px;
-  background: #e3e6eb;
-  margin: 10px 0;
-}
-</style>
-
 
  ```
  ### 组件接收参数
@@ -64,4 +49,4 @@ export default {
 width|文字容器的宽度，可以设置%、px、calc()，百分比需要父容器设置宽度|string|100%
 slotShow|是否使用插槽,这里使用的是匿名插槽|boolean|false
 
-剩余参数可参考element中的Tooltip组件直接传值就可以
+剩余参数可参考element中的Tooltip组件直接传值就可以.

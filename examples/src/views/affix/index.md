@@ -12,3 +12,10 @@ export default {
 </script>
 
  ```
+
+### 组件接收参数
+参数 |               说明               |   类型    | 默认值
+:---:|:------------------------------:|:-------:|:---:
+offset-bottom| 距离底部窗口的值,不配置默认是offset-bottom：0 | string  | 无
+offsetTop|            距离顶部窗口的值            | String  | 无
+

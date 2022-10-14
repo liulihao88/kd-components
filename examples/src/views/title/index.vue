@@ -6,8 +6,8 @@
       style="--lc: red"
       class="bd-b-1"
       :customStyle="{
-        fontSize: '16px',
-        padding: '10px 0',
+        fontSize: '12px',
+        padding: '10px 0px',
       }"
       size="large"
     >
@@ -16,6 +16,7 @@
         <el-button>这是右侧插槽的值</el-button>
       </template>
     </kd-title>
+    <kd-title title="最基础用法" size="large"></kd-title>
   </div>
 </template>
 

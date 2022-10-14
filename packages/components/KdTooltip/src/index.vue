@@ -25,12 +25,6 @@ export default {
   name: 'KdTooltip',
   components: {},
   props: {
-    text: { // 浮框显示的问题
-      type: String,
-      default: () => {
-        return "";
-      },
-    },
     width: { // 超过此宽度省略号显示
       type: String,
       default: () => {
@@ -49,8 +43,6 @@ export default {
       isShowTooltip: false
     };
   },
-  created() {},
-  mounted() {},
   methods: {
     onMouseOver(str) {
       if (this.slotShow) return;
@@ -64,4 +56,3 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
