@@ -1,13 +1,12 @@
 <template>
   <div
-    class="scroll-group"
-    :style="{ '--min-width': minWidth + 'px', '--heigth': height + 'px', '--space': space + 'px'}"
+    class="kd-scroll-group"
+    :style="{ '--min-width': minWidth + 'px', '--height': height + 'px', '--space': space + 'px'}"
     :type="type"
   >
     <el-button v-show="showArrow" class="btn m-r-8" icon="el-icon-arrow-left" @click="toLeft"></el-button>
     <div class="scroll-wrap">
-      <el-scrollbar ref="scrollContain" class="inner-scrollbar" native>
-        <slot>
+      <el-scrollbar ref="scrollContain" class="inner-scrollbar scroll-x" native>
           <div ref="tInner" class="inner-wrap" @click="onClick">
             <div
               v-for="(item, index) in options"
@@ -19,7 +18,6 @@
               {{ item.label }}
             </div>
           </div>
-        </slot>
       </el-scrollbar>
     </div>
     <el-button v-show="showArrow" class="btn m-l-10" icon="el-icon-arrow-right" @click="toRight"></el-button>
@@ -70,37 +68,67 @@ export default {
   },
   data() {
     return {
-      curValue: "",
       showArrow: false
     };
   },
   computed: {
     scrollWrapper() {
       return this.$refs.scrollContain.$refs.wrap;
+    },
+    curValue: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        this.$emit("input", val);
+      }
+    }
+  },
+  watch: {
+    options: {
+      handler(value) {
+        if (value) {
+          this.$nextTick(() => {
+            this.onResize();
+          });
+        }
+      },
+      deep: true,
+      immediate: true
+    },
+    curValue: {
+      handler(oVal, nVal) {
+        if (oVal !== nVal) {
+          this.$emit("change", nVal);
+        }
+      },
+      immediate: true
     }
   },
   mounted() {
-    this.curValue = this.value;
-    this.$nextTick(() => {
-      if (this.forceShow) {
-        this.showArrow = true;
-      } else {
-        this.showArrow = this.$el.scrollWidth < this.$refs.tInner.scrollWidth;
-      }
-    });
+    window.addEventListener("resize", this.onResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
+    onResize(){
+      this.$nextTick(() => {
+        if (this.forceShow) {
+          this.showArrow = true;
+        } else {
+          this.showArrow = this.$el.scrollWidth < this.$refs.tInner.scrollWidth;
+        }
+      })
+    },
     onClick(e) {
       this.curValue = e.target.dataset.value;
-      this.$emit("input", e.target.dataset.value);
     },
     toLeft() {
       this.scrollWrapper.scrollLeft = this.scrollWrapper.scrollLeft - (this.minWidth || 50);
-      console.log(this.scrollWrapper.scrollLeft)
     },
     toRight() {
       this.scrollWrapper.scrollLeft = this.scrollWrapper.scrollLeft + (this.minWidth || 50);
-      console.log(this.scrollWrapper.scrollLeft)
     }
   }
 };
