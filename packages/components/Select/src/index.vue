@@ -121,7 +121,7 @@ export default {
     },
     width: {
       type: [String, Number],
-      default: 316
+      default: ''
     },
     block: {
       type: Boolean,

@@ -29,7 +29,7 @@ export default {
     },
     width: {
       type: [String, Number],
-      default: 316
+      default: ''
     },
     showWordLimit: {
       type: [Boolean, String],

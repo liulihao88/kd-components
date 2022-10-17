@@ -14,9 +14,9 @@
             <slot />
 
             <div class="searchopers f">
-              <el-input
+              <kd-input
                 v-model="search.word"
-                class="w-500"
+                :width="500"
                 :clearable="clearable"
                 @clear="toClear"
                 :placeholder="placeholder"
@@ -26,7 +26,7 @@
                 <div slot="prepend">
                   {{ searchTitle }}
                 </div>
-              </el-input>
+              </kd-input>
               <!-- :disabled="mDisabled('LOAD')" -->
               <el-button
                 type="primary"
