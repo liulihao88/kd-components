@@ -8,9 +8,9 @@
     v-on="$listeners"
   >
     <template slot="title">
-        <slot name="title" >
-          <div>{{ title }}</div>
-        </slot>
+      <slot name="title">
+        <div>{{ title }}</div>
+      </slot>
     </template>
 
     <div v-loading="loading" class="drawer-main">
@@ -26,6 +26,7 @@
             v-if="showConfirm"
             type="primary"
             size="small"
+            v-bind="confirmAttrs"
             class="mr"
             v-throttle="cancelThrottleNumber"
             @click="confirm"
@@ -35,6 +36,7 @@
           <el-button
             v-if="showCancel"
             type="info"
+            v-bind="cancelAttrs"
             size="small"
             v-throttle="confirmThrottleNumber"
             @click="handleClose"
@@ -49,11 +51,11 @@
 
 <script>
 export default {
-  name: 'KdDrawer',
+  name: "KdDrawer",
   props: {
     title: {
       type: String,
-      default: ''
+      default: ""
     },
 
     showConfirm: {
@@ -62,7 +64,7 @@ export default {
     },
     confirmText: {
       type: String,
-      default: '提交'
+      default: "提交"
     },
     showCancel: {
       type: Boolean,
@@ -70,7 +72,7 @@ export default {
     },
     cancelText: {
       type: String,
-      default: '取消'
+      default: "取消"
     },
     loading: {
       type: Boolean,
@@ -82,7 +84,7 @@ export default {
     },
     wrapperClosable: {
       type: Boolean,
-      default: process.env.NODE_ENV === 'development'
+      default: process.env.NODE_ENV === "development"
     },
     cancelThrottleNumber: {
       type: Number,
@@ -96,24 +98,34 @@ export default {
       type: Boolean,
       default: true
     },
+    confirmAttrs: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    },
+    cancelAttrs: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }
   },
-  computed: {
-   
-  },
+  computed: {},
   mounted() {},
   methods: {
     confirm() {
       if (this.$listeners.confirm) {
-        this.$emit('confirm');
+        this.$emit("confirm");
       } else {
-        this.$emit('update:visible', false);
+        this.$emit("update:visible", false);
       }
     },
     handleClose() {
       if (this.$listeners.cancel) {
-        this.$emit('cancel');
+        this.$emit("cancel");
       } else {
-        this.$emit('update:visible', false);
+        this.$emit("update:visible", false);
       }
     }
   }
