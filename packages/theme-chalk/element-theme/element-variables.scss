@@ -1,6 +1,5 @@
 // cover some element-ui styles
-.el-input-group__append {
-}
+
 .el-input-group__prepend {
   border-radius: 1px;
   padding: 0 8px;
@@ -104,8 +103,7 @@
 }
 
 // cover some element-ui styles
-.el-input-group__append {
-}
+
 .el-input-group__prepend {
   border-radius: 1px;
   padding: 0 8px;
@@ -227,11 +225,17 @@
   .el-input-number .el-input {
     width: 100%;
   }
-  .el-input, .el-select{
+  .el-input,
+  .el-select {
     width: 316px;
   }
   .el-textarea {
     width: 424px;
+  }
+  .el-select {
+    .el-input {
+      width: unset;
+    }
   }
 }
 
@@ -310,11 +314,5 @@
   }
   .el-icon-error {
     color: #e94c35;
-  }
-}
-
-.el-select {
-  .el-input {
-    width: unset !important;
   }
 }
