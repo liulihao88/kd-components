@@ -148,18 +148,25 @@ export const debounce = (func, wait, immediate) => {
     return result;
   };
 };
+/**
+ * 生成随机数, 第一个参数可传字符串, 空 或者数组
+ * uuid("名字") => 名字hc8f
+ * uuid() => abcd
+ * uuid([ { label: "小泽泽", value: "xzz" },{ label: "小月月", value: "xyy" }]) => xzz
+ */
 
 export function uuid(
-  chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
+  type = '',
   length = 4
 ) {
   // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
-  if (judgeType(chars) === 'array') {
-    return chars[0][length === 4 ? 'value' : length];
+  if (judgeType(type) === 'array') {
+    return type[0][length === 4 ? 'value' : length];
   }
-  let res = '';
+  let res = type;
+  let randomStr = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
   for (let i = length; i > 0; --i) {
-    res += chars[Math.floor(Math.random() * chars.length)];
+    res += randomStr[Math.floor(Math.random() * randomStr.length)];
   }
   return res;
 }
