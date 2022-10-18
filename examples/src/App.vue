@@ -25,12 +25,12 @@
           </div>
         </div>
         <!--    国际化demo    -->
-        <div>
+        <!-- <div>
           <p>{{ $t('message.hello') }}</p>
           <el-button @click="lang">切换ja</el-button>
           <el-button @click="langen">切换en</el-button>
           <detail-btn></detail-btn>
-        </div>
+        </div> -->
       </div>
     </section>
   </div>
@@ -76,7 +76,7 @@ export default {
     this.prodHideTest();
 
     // 是否隐藏组件. 因为把全部组件加载到页面上调试麻烦, 所以定义一个变量来只显示想显示的组件
-    // this.hideComps();
+    this.hideComps();
   },
   mounted() {
     this.$nextTick(() => {
@@ -110,7 +110,8 @@ export default {
       //  将希望显示的组件放在第一位
       if (process.env.NODE_ENV === 'development') {
         // 只改下面这行代码,改变compName
-        let compName = ['andyTest'];
+        // let compName = ['rowSelectMultiple', 'selectMultiple'];
+        let compName = ['selectMultiple', 'slidePanel'];
         // 只改上面这行代码
         let spliceNames = deepClone(this.comArr);
         let str = 'test';

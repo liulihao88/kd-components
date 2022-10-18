@@ -1,92 +1,12 @@
-``` 
-<template>
-  <div>
-    <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">
-      <template #left>
-        <kd-job-tree 
-          ref="jobTreeRef" 
-          :defaultProps="defaultProps"
-          :treeData="treeData"
-          @nodeHandler="nodeHandler"
-        >
-          <template #data="{ data }">
-            <div>{{ data.name }}</div>
-          </template>
-        </kd-job-tree>
-      </template>
-      <template #right>
-          <div>右侧容器</div>
-      </template>
-    </kd-slide-panel>
-  </div>
-</template>
+#### 全局属性
+| 选项            | 类型     | 默认值 | 说明                 |
+|---------------|--------|-----|--------------------|
+| minWidth | number/string  | 190  | 左侧的最小宽度                |
+| maxWidth      | number/string | 450 | 左侧的最大宽度      |
+| leftWidth  | number/string | 222   | 左侧的默认宽度             |
 
-<script>
-export default {
-  name: "Index",
-  props: {
-
-  },
-  data() {
-    return {
-      defaultProps: {
-        title: '资源管理'
-      },
-      treeData: [
-        {
-          "id" : "1551899237577396292",
-          "parentId" : null,
-          "name" : "DD",
-          "path" : "/DD",
-          "children" : [ {
-            "id" : "1555115624034734129",
-            "parentId" : "1551899237577396292",
-            "name" : "dd2",
-            "path" : "/DD/dd2",
-            "children" : [ {
-              "id" : "1555115691147792393",
-              "parentId" : "1555115624034734129",
-              "name" : "dd3",
-              "path" : "/DD/dd2/dd3"
-            } ]
-          } ]
-        }, {
-          "id" : "1551894041832984635",
-          "parentId" : null,
-          "name" : "gbgh",
-          "path" : "/gbgh",
-          "children" : [ {
-            "id" : "1552484508060618790",
-            "parentId" : "1551894041832984635",
-            "name" : "11",
-            "path" : "/gbgh/11"
-          } ]
-        }
-      ]
-    };
-  },
-  components: {
-  
-  },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-    nodeHandler() {
-
-    }
-  }
-};
-</script>
-<style scoped lang='scss'>
-.kd-panel {
-  width: 100%;
-  height: 600px;
-  border: 1px solid gray;
-}
-</style>
-
- ```
+#### Slots
+| 选项             | 说明                 |
+|-----------------|--------------------|
+| left | 左侧内容插槽 |
+| right | 右侧内容插槽 |

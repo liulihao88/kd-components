@@ -1,89 +1,84 @@
 <template>
   <div>
-    <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">
-      <template #left>
-        <kd-job-tree 
-          ref="jobTreeRef" 
-          :defaultProps="defaultProps"
-          :treeData="treeData"
-          @nodeHandler="nodeHandler"
-        >
-          <template #data="{ data }">
-            <div>{{ data.name }}</div>
-          </template>
-        </kd-job-tree>
-      </template>
-      <template #right>
+    <h3>布局拖拽容器</h3>
+    <div class="author">维护人：刘月鹏</div>
+    <div class="sub-title">
+      左右布局拖拽组件基于 vue-multipane 的二次封装
+    </div>
+
+    <h5>基础用法</h5>
+    <div class="example-wrap" style="width: 100%;">
+      <kd-slide-panel class="kd-panel" :leftWidth="240" :minWidth="200" :maxWidth="360">
+        <template #left>
+          <div>左侧容器</div>
+        </template>
+        <template #right>
           <div>右侧容器</div>
-      </template>
-    </kd-slide-panel>
+        </template>
+      </kd-slide-panel>
+    </div>
+    <example-code :source="source1">
+      左右布局 配置好 leftWidth minWidth maxWidth #left #right
+    </example-code>
   </div>
 </template>
 
-<script>
+<script >
+import ExampleCode from "../../components/ExampleCode";
+import source1 from "./source/source1.md";
 export default {
-  name: "Index",
-  props: {
-
+  name: "testSelectMultiple",
+  components: {
+    ExampleCode
   },
   data() {
     return {
-      defaultProps: {
-        title: '资源管理'
-      },
-      treeData: [
-        {
-          "id" : "1551899237577396292",
-          "parentId" : null,
-          "name" : "DD",
-          "path" : "/DD",
-          "children" : [ {
-            "id" : "1555115624034734129",
-            "parentId" : "1551899237577396292",
-            "name" : "dd2",
-            "path" : "/DD/dd2",
-            "children" : [ {
-              "id" : "1555115691147792393",
-              "parentId" : "1555115624034734129",
-              "name" : "dd3",
-              "path" : "/DD/dd2/dd3"
-            } ]
-          } ]
-        }, {
-          "id" : "1551894041832984635",
-          "parentId" : null,
-          "name" : "gbgh",
-          "path" : "/gbgh",
-          "children" : [ {
-            "id" : "1552484508060618790",
-            "parentId" : "1551894041832984635",
-            "name" : "11",
-            "path" : "/gbgh/11"
-          } ]
-        }
-      ]
-    };
-  },
-  components: {
-  
-  },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-    nodeHandler() {
-
+      source1,
     }
   }
-};
+}
 </script>
 <style scoped lang='scss'>
 .kd-panel {
   width: 100%;
-  height: 600px;
+  height: 300px;
   border: 1px solid gray;
 }
 </style>
+<style lang="scss" scoped>
+.author{
+  margin-bottom:10px;
+  font-size:12px;
+  font-style: italic;
+}
+.sub-title{
+  font-size: 14px;
+  color: #5e6d82;
+  line-height: 1.5em;
+}
+.example-wrap{
+  width:600px;
+  margin-bottom:20px;
+}
+.advanced-wrap {
+  border: 1px solid var(--line-color);
+
+  .title {
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line-color);
+  }
+
+  .main {
+    padding: 16px;
+
+    .row-select:nth-child(-n + 3) {
+      margin-bottom: 16px;
+    }
+  }
+}
+</style>
+
