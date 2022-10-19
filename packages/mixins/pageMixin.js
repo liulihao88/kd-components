@@ -164,18 +164,18 @@ export const pageMixin = {
      * @param {*} arr 要显示的数组长度. 如果为空数组, 则
      * @example
      * 删除相关, 如果selectArr为[], 显示`删除`; 如果selectArr长度为3, 显示`删除(3)`
-     * {{ mMerge('删除', selectArr) }}
-     * :referenceText="mMerge('删除', selectArr)"
-     * {{mMerge('删除', selectArr)}}
+     * {{ mBatchTitle('删除', selectArr) }}
+     * :referenceText="mBatchTitle('删除', selectArr)"
+     * {{mBatchTitle('删除', selectArr)}}
      */
-    mMerge(str, arr = []) {
+    mBatchTitle(str, arr = []) {
       if (Array.isArray(arr) && arr.length > 0) {
         return `${str}(${arr.length})`;
       }
       return str;
     },
     /**
-     * 
+     *
      * @param {*} str 要显示的最基础文本
      * @param {*} fileName 当前文件的文件名
      * @param {*} type 当为true或者'add'的时候为新增, 为edit或false的时候是编辑, 否则为基础文本
@@ -185,7 +185,7 @@ export const pageMixin = {
      *  :title="mSetTitle('项目', 'project', type)" => 新增项目(project)
      *  :title="mSetTitle('项目', 'project', type==='add')" => 新增项目(project)
      */
-     mSetTitle(str, fileName, type = "", otherParams = {}) {
+    mSetTitle(str, fileName, type = "", otherParams = {}) {
       let devFile = "";
       if (process.env.NODE_ENV === "development" && fileName) {
         devFile = `(${fileName})`;
@@ -197,5 +197,23 @@ export const pageMixin = {
       }
       return `${str}${devFile}`;
     },
+
+    /**
+     * 验证表单是否可以提交
+     * this.mValidForm()
+     * this.mValidForm("formRef", {errorText: "不允许提交"})
+     */
+    mValidForm(formName = "formRef", { errorText = "验证未通过" } = {}) {
+      return new Promise((resolve, reject) => {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            resolve();
+          } else {
+            this.$pub.$toast(errorText, "e");
+            reject();
+          }
+        });
+      });
+    }
   }
 };

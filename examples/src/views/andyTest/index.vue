@@ -11,19 +11,17 @@
         <kd-select
           v-model="aa"
           :options="options"
-          style="--width: 100px"
           width="100"
         />
         <kd-select
           v-model="aa"
           :options="options"
-          width="200px"
           popper-class="cc"
         />
       </el-form-item>
     </el-form>
     <div>下面的不在form中</div>
-    <kd-select v-model="aa" :options="options" block />
+    <kd-select v-model="aa" :options="options" />
     <kd-select v-model="aa" :options="options" width="600" />
     <div>hah a</div>
     <kd-input v-model="aa" width="100%"></kd-input>
