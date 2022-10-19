@@ -10,7 +10,7 @@
         <vue-markdown v-show="fold" :source="source"></vue-markdown>
       </transition>
     </div>
-    <div class="footer" @click="triggerFold">
+    <div v-if="source" class="footer" @click="triggerFold">
       <i :class="fold?'el-icon-caret-top':'el-icon-caret-bottom'"></i>
       {{ fold?'隐藏代码':'显示代码' }}
     </div>
