@@ -1,50 +1,13 @@
-``` 
-<template>
-  <el-form :model="form" label-width="auto">
-    <kd-owner
-        v-model="form"
-        :options="ownerOptions"
-        :default-props="defaultProps"
-        @remoteMethod="remoteMethod"
-    />
-  </el-form>
-</template>
-
-<script >
-export default {
-  name: "testOwner",
-  data() {
-    return {
-      form: {
-        owners: [{ name:"" }], // 传入form,取值form.owner
-      },
-      ownerOptions: [{
-        "name" : "admin",
-        "realName" : "admin(管理员)",
-        "id": 456789056789
-      }], // 下拉信息,只需要改变这个值，下拉选项就会改变
-      defaultProps: {
-        label: "realName",
-        value: "name",
-      }
-    }
-  },
-  methods: {
-    /**
-     * owner 搜索接口, getUserList 是接口api，需自己更换。
-     * @param query
-     * @param callback
-     * @returns {Promise<void>}
-     */
-    async remoteMethod(query, callback) {
-      // let result = await getUserList(query);
-      // if (result && result.success) {
-      //   this.ownerOptions = result.data;
-      // }
-      callback();
-    }
-  }
-}
-</script>
-
- ```
+#### Attributes
+| 选项            | 类型     | 默认值 | 说明                 |
+|---------------|--------|-----|--------------------|
+| value/v-model | Array  | []  | 绑定值                |
+| options      | Array | [] | 下拉框内的数据      |
+| defaultProps  | Array | []   | 配置lable 和value     与el-option label   value 同理        |
+| disabled  | Boolean | false   | 是否禁用全部输入框 且不可添加负责人            |
+| firstDisabled  | Boolean | false   | 仅禁用第一个负责人输入框             |
+| rowKey  | string | id   | 与el-option key 同理             |
+#### Methods
+| 选项            | 类型     | 默认值 | 说明                 |
+|---------------|--------|-----|--------------------|
+| remoteMethod |  - | -  | 它会在输入值发生变化时调用，参数为当前输入值                |
