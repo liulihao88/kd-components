@@ -1,167 +1,66 @@
 <template>
-  <kd-filter-table
-    ref="tableRef"
-    :data="taskList"
-    :columns="columns"
-    :totalNum="totalNum"
-    :addShowAllFlage="false"
-    :table-expand="false"
-    :tr-expand="false"
-    :search-types="searchTypes"
-    searchTitle="自定义搜索文字"
-    placeholder="请输入任务英文名称/任务中文名称/负责人英文名称"
-    @updatePage="getTaskList"
-  >
-    <template #search="{ search }">
-      <kd-input v-model="form.name" title="搜索" class="mb" />
-    </template>
-    <template #operation>
-      <div>
-        <el-button
-          style="background: #ebedf0"
-          size="small"
-          :disabled="false"
-          @click="recover()"
-        >
-          恢复
-        </el-button>
-      </div>
-    </template>
-    <template #owner="{ row, scope }">
-      {{ row.owner }}
-      {{ scope.row.name }}
-      {{ scope.$index }}
-    </template>
-  </kd-filter-table>
+  <div>
+    <div class="author">维护人：盖翠莎</div>
+    <div class="sub-title">
+      表格
+    </div>
+
+    <h5>一般用法</h5>
+    <div class="example-wrap">
+      <source1></source1>
+    </div>
+    <example-code :source="sourceMd1">
+      一般表格，包含关键字搜索，高级搜索，operation插槽，分页，字段插槽，列下拉搜索，每行操作按钮配置等
+    </example-code>
+
+    <h5>简单用法</h5>
+    <div class="example-wrap">
+      <source2></source2>
+    </div>
+    <example-code :source="sourceMd2">
+      仅表格，不包含其他功能
+    </example-code>
+    
+    <h5>支持多选、批量操作</h5>
+    <div class="example-wrap">
+      <source3></source3>
+    </div>
+    <example-code :source="sourceMd3">
+      支持多选、批量操作
+    </example-code>
+  </div>
 </template>
 
 <script>
-import { $toast } from 'utils';
+import ExampleCode from "../../components/ExampleCode";
+import source1 from './source/source1.vue';
+import sourceMd1 from "./source/source1.md";
+import source2 from './source/source2.vue';
+import sourceMd2 from "./source/source2.md";
+import source3 from './source/source3.vue';
+import sourceMd3 from "./source/source3.md";
 export default {
   name: 'TestTable',
   props: {},
   data() {
     return {
-      taskList: [],
-      columns: [
-        {
-          title: '任务英文名称',
-          key: 'name',
-          filter: (val, row) => row.showName,
-          handler: (row) => $toast(row)
-        },
-        {
-          title: '负责人',
-          key: 'owner',
-          useSlot: true
-        },
-        {
-          title: '状态',
-          key: 'status',
-          filters: [
-            { text: "未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线", value: "offline" },
-            { text: "已上线", value: "online" }
-          ]
-        },
-        {
-          title: '结束时间',
-          key: 'endTime'
-        },
-        {
-          title: '操作',
-          key: 'operation',
-          width: 150,
-          fixed: 'right',
-          align: 'center',
-          headerAlign: 'center',
-          customHeader: true,
-          maxBtns: 2,
-          btns: [
-            {
-              content: '查看日志',
-              // disabled: (item) => { return true },
-              handler: this.viewLog
-            },
-            {
-              content: '删除',
-              confirmInfo: '哈哈',
-              confirm: () => {
-                console.log(123);
-              }
-              // handler: this.viewLog
-            },
-
-            {
-              content: '恢复',
-              disabled: (row) =>
-                row.stopOrRecover && row.taskStatus !== 'FAILURE',
-              handler: this.recover
-            },
-            {
-              content: '终止运行',
-              disabled: (row) => {
-                return row.name === 'name1';
-              },
-              handler: this.stop
-            }
-          ]
-        }
-      ],
-      form: {},
-      totalNum: 0,
-      searchTypes: {
-        name: 'like',
-        owner: 'eq',
-        endTime: 'between'
-      }
+      sourceMd1,
+      sourceMd2,
+      sourceMd3
     };
   },
-  components: {},
+  components: {
+    ExampleCode,
+    source1,
+    source2,
+    source3
+  },
   created() {
-    this.getTaskList();
+    
   },
   mounted() {},
   methods: {
-    getTaskList(search) {
-      // const res = await getTaskList(search);
-      const res = {
-        success: true,
-        data: {
-          records: [
-            {
-              name: 'name1',
-              showName: 'showName1',
-              status: '已上线',
-              owner: 'owner1',
-              endTime: '2022-08-02 12:12:00'
-            },
-            {
-              name: 'name2',
-              owner: 'owner2',
-              status: '未上线',
-              showName: 'showName2',
-              endTime: '2022-08-02 12:12:00'
-            }
-          ],
-          total: 2
-        }
-      };
-      if (res.success) {
-        const { records, total } = res.data;
-        this.taskList = records;
-        this.totalNum = total;
-      }
-    },
-    viewLog() {
-      $toast(1);
-    },
-    recover() {
-      $toast(2);
-    },
-    stop() {
-      $toast(3);
-      this.$refs.tableRef.initTableData();
-    }
+    
   }
 };
 </script>
