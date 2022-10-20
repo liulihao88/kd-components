@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- title="空" width="200" -->
-        <kd-empty></kd-empty>
+        <kd-empty width="120" title="暂无数据哦！！"></kd-empty>
     </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
         };
     },
     components: {
-    
+
     },
     created() {
 
@@ -31,5 +31,6 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
-    
+
+
 </style>

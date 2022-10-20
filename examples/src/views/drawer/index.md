@@ -1,4 +1,4 @@
-```
+```html 
 <template>
   <div>
     <el-button @click="popWin">抽屉</el-button>
@@ -109,5 +109,43 @@ this.isShow2 = true
 <style scoped lang='scss'>
     
 </style>
-
 ```
+
+### 属性
+#### 全局属性
+|选项|类型|默认值|说明|
+|---|---|---|---|
+|title|String|""|抽屉标题名称|
+|showConfirm|Boolean|true|是否显示提交按钮|
+|showCancel|Boolean|true|是否显示取消按钮|
+|confirmText|String|"提交"|提交按钮文本|
+|cancelText|String|"取消"|取消按钮文本|
+|showFooter|Boolean|true|是否显示底部按钮|
+|cancelThrottleNumber|Number|1000|取消按钮节流|
+|confirmThrottleNumber|Number|2000|提交按钮节流|
+|destroyOnClose|Boolean|true|关闭时是否销毁抽屉中的元素|
+|loading|Boolean|false|抽屉内容的loading|
+|wrapperClosable|Boolean|process.env.NODE_ENV === 'development'|点击遮罩层是否可以关闭 Drawer，开发模式为true|
+|size|String/Number|30%|Drawer的宽度|
+|withHeader|Boolean|true|控制是否显示 header 栏, 默认为 true, 当此项为 false 时, title attribute 和 title slot 均不生效|
+|modal-append-to-body|Boolean|true|遮罩层是否插入至 body 元素上，若为 false，则遮罩层会插入至 Drawer 的父元素上|
+|direction|Direction|rtl / ltr / ttb / btt|Drawer 打开的方向|
+|modal|Boolean|true|是否需要遮罩层|
+|before-close|function(done)，done 用于关闭 Drawer|-|关闭前的回调，会暂停 Drawer 的关闭|
+|show-close|Boolean|true|是否显示关闭按钮|
+|append-to-body|Boolean|true|Drawer 自身是否插入至 body 元素上。嵌套的 Drawer 必须指定该属性并赋值为 true|
+|close-on-press-escape|Boolean|true|是否可以通过按下 ESC 关闭 Drawer|
+|custom-class|String|-|Drawer 的自定义类名|
+
+### 事件
+|事件名称|说明|回调参数|
+|---|---|---|
+|cancel|抽屉取消按钮|-|
+|confirm|抽屉提交按钮|-|
+
+### slot
+|名称|说明|参数|
+|---|---|---|
+|title|自定义抽屉标题|-|
+|footer|自定义抽屉底部按钮|-|
+

@@ -1,3 +1,28 @@
+:root {
+  --blue: #365edf;
+  --85: rgba(39, 48, 75, 0.85);
+  --65: rgba(39, 48, 75, 0.65);
+  --45: rgba(39, 48, 75, 0.45);
+  --black: #000;
+  --white: #ffffff;
+  --red: #e94c35;
+  --yellow: #ffb51f;
+  --green: #30bd82;
+  --gray: ##ebedf0;
+  --line: #e3e6eb;
+}
+@each $cl, $clVar in blue var(--blue), 85 var(--85), 65 var(--65), 45 var(--45),
+  black var(--black), white var(--white), red var(--red), yellow var(--yellow),
+  green var(--green), gray var(--gray), line var(--line)
+{
+  .cl-#{$cl} {
+    color: $clVar;
+  }
+  .bg-#{$cl} {
+    background: $clVar;
+  }
+}
+
 // 定义flex等分
 @for $num from 0 through 24 {
   .flex-#{$num},
@@ -8,26 +33,26 @@
     opacity: $num * 0.1;
   }
   @each $short, $long in p padding, m margin, h height, lh line-height {
-    .#{$short}#{'' + $num} {
+    .#{$short}#{"" + $num} {
       #{$long}: $num * 8px;
     }
     @if ($short == p or $short == m) {
-      .#{$short}t#{'' + $num} {
+      .#{$short}t#{"" + $num} {
         #{$long}-top: $num * 8px;
       }
-      .#{$short}r#{'' + $num} {
+      .#{$short}r#{"" + $num} {
         #{$long}-right: $num * 8px;
       }
-      .#{$short}b#{'' + $num} {
+      .#{$short}b#{"" + $num} {
         #{$long}-bottom: $num * 8px;
       }
-      .#{$short}l#{'' + $num} {
+      .#{$short}l#{"" + $num} {
         #{$long}-left: $num * 8px;
       }
-      .#{$short}lr#{'' + $num} {
+      .#{$short}lr#{"" + $num} {
         #{$long}: 0 $num * 8px;
       }
-      .#{$short}tb#{'' + $num} {
+      .#{$short}tb#{"" + $num} {
         #{$long}: $num * 8px 0;
       }
       .#{$short}t {
@@ -212,7 +237,6 @@
 }
 
 @for $index from 101 through 1000 {
-
   @if $index % 2 == 0 or $index % 5 == 0 or $index == 1 {
     .w-#{$index} {
       width: $index + px;
@@ -417,7 +441,7 @@
 //文本超出换行或隐藏，最多5行
 @for $i from 1 through 5 {
   .line-#{$i} {
-    @if $i == '1' {
+    @if $i == "1" {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

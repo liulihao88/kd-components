@@ -58,7 +58,7 @@
 /**
  * 二次封装dialog
 * @param {*} showDialog 是否显示dialog。
-* @param {*} cancle 是否使用自定义的cancel方法
+* @param {*} cancel 是否使用自定义的cancel方法
 * @example 使用方法
 <kjDialog
 :visible.sync="isShow"
@@ -70,7 +70,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: '' // 弹框标题名称
     },
     theme: {
       type: String,
@@ -78,15 +78,15 @@ export default {
     },
     cancel: {
       type: [Function, String],
-      default: ''
+      default: '' //
     },
     confirmDisabled: {
       type: Boolean,
-      default: false
+      default: false // 确认按钮是否禁止点击
     },
     cancelDisabled: {
       type: Boolean,
-      default: false
+      default: false // 取消按钮是否禁止点击
     },
 
     cancelText: {
@@ -99,15 +99,15 @@ export default {
     },
     showFullscreen: {
       type: Boolean,
-      default: false
+      default: false // 是否显示可全屏
     },
     showFooter: {
       type: Boolean,
-      default: true
+      default: true // 是否显示底部操作按钮
     },
     cancelThrottleNumber: {
       type: Number,
-      default: 1000
+      default: 1000 // 取消按钮节流
     },
     confirmThrottleNumber: {
       type: Number,

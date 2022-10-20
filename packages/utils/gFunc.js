@@ -1,5 +1,5 @@
-import { Message } from 'element-ui';
-import _ from 'lodash';
+import { Message } from "element-ui";
+import _ from "lodash";
 
 export function deepClone(arr) {
   return _.cloneDeep(arr);
@@ -7,7 +7,7 @@ export function deepClone(arr) {
 
 export function setStorage(str, params, isLocalStorage = false) {
   let handleParams;
-  if (typeof params === 'number' || typeof params === 'string') {
+  if (typeof params === "number" || typeof params === "string") {
     handleParams = params;
   } else {
     handleParams = JSON.stringify(params);
@@ -25,7 +25,7 @@ export function getStorage(data) {
   let getSessionData = sessionStorage.getItem(data);
   if (getLocalData) {
     try {
-      if (data !== 'curProject') {
+      if (data !== "curProject") {
         getLocalData = JSON.parse(getLocalData);
       }
     } catch (e) {
@@ -34,7 +34,7 @@ export function getStorage(data) {
     return getLocalData;
   } else if (getSessionData) {
     try {
-      if (data !== 'curProject') {
+      if (data !== "curProject") {
         getSessionData = JSON.parse(getSessionData);
       }
     } catch (e) {
@@ -73,13 +73,13 @@ export function clearStorage(str) {
 
 export function parseTime(
   time = new Date(),
-  cFormat = '{y}-{m}-{d} {h}:{i}:{s}'
+  cFormat = "{y}-{m}-{d} {h}:{i}:{s}"
 ) {
   let date;
-  if (typeof time === 'object') {
+  if (typeof time === "object") {
     date = time;
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000;
+    if (("" + time).length === 10) time = parseInt(time) * 1000;
     date = new Date(time);
   }
   const formatObj = {
@@ -93,11 +93,11 @@ export function parseTime(
   };
   const time_str = cFormat.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]; // Note: getDay() returns 0 on Sunday
-    if (key === 'a') {
-      return ['日', '一', '二', '三', '四', '五', '六'][value];
+    if (key === "a") {
+      return ["日", "一", "二", "三", "四", "五", "六"][value];
     }
     if (result.length > 0 && value < 10) {
-      value = '0' + value;
+      value = "0" + value;
     }
     return value || 0;
   });
@@ -105,16 +105,16 @@ export function parseTime(
 }
 
 // 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
-export function $toast(str, type = 's', otherParams = {}) {
+export function $toast(str, type = "s", otherParams = {}) {
   let handleType = type;
-  if (type === 's') {
-    handleType = 'success';
-  } else if (type === 'i') {
-    handleType = 'info';
-  } else if (type === 'e') {
-    handleType = 'error';
-  } else if (type === 'w') {
-    handleType = 'warning';
+  if (type === "s") {
+    handleType = "success";
+  } else if (type === "i") {
+    handleType = "info";
+  } else if (type === "e") {
+    handleType = "error";
+  } else if (type === "w") {
+    handleType = "warning";
   }
   Message({
     message: str,
@@ -148,18 +148,22 @@ export const debounce = (func, wait, immediate) => {
     return result;
   };
 };
+/**
+ * 生成随机数, 第一个参数可传字符串, 空 或者数组
+ * uuid("名字") => 名字hc8f
+ * uuid() => abcd
+ * uuid([ { label: "小泽泽", value: "xzz" },{ label: "小月月", value: "xyy" }]) => xzz
+ */
 
-export function uuid(
-  chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
-  length = 4
-) {
+export function uuid(type = "", length = 4) {
   // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
-  if (judgeType(chars) === 'array') {
-    return chars[0][length === 4 ? 'value' : length];
+  if (judgeType(type) === "array") {
+    return type[0][length === 4 ? "value" : length];
   }
-  let res = '';
+  let res = type;
+  let randomStr = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
   for (let i = length; i > 0; --i) {
-    res += chars[Math.floor(Math.random() * chars.length)];
+    res += randomStr[Math.floor(Math.random() * randomStr.length)];
   }
   return res;
 }
@@ -172,10 +176,10 @@ export const getDates = () => {
   var nowD = myDate.getDate();
   var enddate =
     nowY +
-    '-' +
-    (nowM < 10 ? '0' + nowM : nowM) +
-    '-' +
-    (nowD < 10 ? '0' + nowD : nowD); //当前日期
+    "-" +
+    (nowM < 10 ? "0" + nowM : nowM) +
+    "-" +
+    (nowD < 10 ? "0" + nowD : nowD); //当前日期
   //获取三十天前日期
   let dateArr = [enddate];
   for (let i = 1; i < 30; i++) {
@@ -185,10 +189,10 @@ export const getDates = () => {
     var lastD = lw.getDate();
     var startdate =
       lastY +
-      '-' +
-      (lastM < 10 ? '0' + lastM : lastM) +
-      '-' +
-      (lastD < 10 ? '0' + lastD : lastD);
+      "-" +
+      (lastM < 10 ? "0" + lastM : lastM) +
+      "-" +
+      (lastD < 10 ? "0" + lastD : lastD);
     dateArr.unshift(startdate);
   }
   return dateArr;
@@ -204,7 +208,7 @@ export const getDates = () => {
  * judgeType(null) null
  */
 export function judgeType(val) {
-  if (typeof val === 'object') {
+  if (typeof val === "object") {
     const objVal = Object.prototype.toString
       .call(val)
       .slice(8, -1)
@@ -221,18 +225,18 @@ export function judgeType(val) {
  */
 export function isEmpty(v) {
   switch (typeof v) {
-    case 'undefined':
+    case "undefined":
       return true;
-    case 'string':
+    case "string":
       if (v.trim().length == 0) return true;
       break;
-    case 'boolean':
+    case "boolean":
       if (!v) return true;
       break;
-    case 'number':
+    case "number":
       if (0 === v) return true;
       break;
-    case 'object':
+    case "object":
       if (null === v) return true;
       if (undefined !== v.length && v.length == 0) return true;
       for (var k in v) {
@@ -243,19 +247,18 @@ export function isEmpty(v) {
   return false;
 }
 //多表单验证
-export const checkForm = (formName,self) =>{
+export const checkForm = (formName, self) => {
   // console.log(formName)
   return new Promise((resolve, reject) => {
-    self.$refs[formName].validate(valid => {
-      if(valid) {
-        resolve()
+    self.$refs[formName].validate((valid) => {
+      if (valid) {
+        resolve();
       } else {
-        reject()
+        reject();
       }
-    })
-  })
-}
-
+    });
+  });
+};
 
 /**
  * 表单验证方法的封装. 主要不必再写逻辑判断和统一失败提示语
@@ -266,7 +269,7 @@ export const checkForm = (formName,self) =>{
  * this.$pub.validateForm(this, ()=>{})
  * this.$pub.validateForm(this, ()=>{}, 'form2Ref')
  */
- export function validateForm(_this, sucCb, ref = "formRef") {
+export function validateForm(_this, sucCb, ref = "formRef") {
   _this.$refs[ref].validate((valid) => {
     if (valid) {
       sucCb();
@@ -276,3 +279,6 @@ export const checkForm = (formName,self) =>{
   });
 }
 
+export function sleep(time = 0) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}

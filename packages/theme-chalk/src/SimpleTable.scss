@@ -1,0 +1,91 @@
+.kd-simple-table-wrap{
+  position: relative;
+  flex: 1;
+
+  .table-inner {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter_table .el-table {
+    border-bottom: 1px solid var(--line-color);
+  }
+
+  .el-icon-arrow-down {
+    margin-left: 4px;
+
+    &:before {
+      font-size: 14px;
+    }
+  }
+
+  // 更换可展开行图标
+  .cell .el-icon-arrow-right:before {
+    content: "";
+  }
+
+  // 可展开行无子元素时图标处用一个空元素占位，保证缩进
+  .iconfont-null {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+
+  .el-table__placeholder {
+    width: 0;
+  }
+
+  //空数据时提示组件
+  .el-table__empty-block {
+    width: 100% !important;
+  }
+
+  //底部分页组件样式
+  .page-wrap {
+    height:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--table-border);
+    border-top-style: none;
+    padding: 0 24px;
+    box-sizing: border-box;
+
+    .left-text {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: var(--text-color);
+      font-size:12px;
+    }
+
+    .el-select{
+      width:auto;
+    }
+  }
+
+  // 表格内表单样式覆盖
+  .cell {
+    .el-form-item__content {
+      margin-left: 0 !important;
+
+      .el-select {
+        width: 100%!important;
+      }
+      .kd-select {
+        width: 100%!important;
+      }
+    }
+
+    .el-form-item {
+      margin-bottom: 1px;
+
+      .el-input {
+        width: 100%;
+      }
+    }
+  }
+}
