@@ -153,7 +153,7 @@ export const pageMixin = {
       if (!this.width) {
         return {};
       }
-      if (this.width.indexOf("px") !== -1 || this.width.indexOf("%") !== -1) {
+      if (isNaN(this.width) && (this.width.indexOf("px") !== -1 || this.width.indexOf("%") !== -1)) {
         return { width: this.width };
       }
       return { width: this.width + "px" };
