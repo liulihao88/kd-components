@@ -50,6 +50,17 @@
       如果有其他自定义需求，可以设置pre-col-type为空（默认值），然后通过el-table-column进行自定义。
     </example-code>
 
+    <h5>行拖拽</h5>
+    <kd-simple-table :data="tableData" draggable :pre-col-conf="{width:'40px'}" @onSort="onSortHandler">
+      <el-table-column label="接口名称" prop="name"></el-table-column>
+      <kd-column-show p-l="url,地址"></kd-column-show>
+    </kd-simple-table>
+    <example-code :source="source2">
+      通过draggable控制表格的行是否可以被拖拽，通过drag-col-conf控制该列的其他属性。<br />
+      行拖拽功能依赖sortablejs，组件内部进行了排序逻辑处理，并赋值了新的表格数据，通过onSort接收拖拽后的新数据。<br />
+      <b>注意：</b>本示例中的行拖拽功能仍有问题，目前仍在测试中。
+    </example-code>
+
     <h5>分页配置</h5>
     <kd-simple-table :data="tableData" :paging-attrs="pagingConf" @pageChange="onPageChange">
       <el-table-column label="接口名称" prop="name"></el-table-column>
@@ -155,6 +166,9 @@ import source3 from "./source/source3.md";
       },
       onPageChange(e){
         this.$message.success(JSON.stringify(e))
+      },
+      onSortHandler(e) {
+        console.log(e)
       }
     },
   }

@@ -11,7 +11,7 @@
           v-bind="$attrs"
           v-on="$listeners"
       >
-        <el-table-column v-if="draggable" width="50px">
+        <el-table-column v-if="draggable" v-bind="dragColConf">
           <div class="drag-icon">
             <kd-icon class="kd-icon-move"></kd-icon>
           </div>
@@ -80,7 +80,7 @@ export default {
       type:Object,
       default:()=> {
         return {
-          width:"55px"
+          width:"50px"
         }
       }
     },
@@ -89,15 +89,18 @@ export default {
       type: Boolean,
       default: false
     },
+    dragColConf:{
+      type:Object,
+      default:()=> {
+        return {
+          width:"50px"
+        }
+      }
+    },
     footHeight: {
       type: Number,
       default: 64
-    },
-    // 是否显示默认空占位符
-    // defaultEmpty: {
-    //   type: Boolean,
-    //   default: true
-    // }
+    }
   },
   data() {
     return {
@@ -156,10 +159,7 @@ export default {
     rowDrop() {
       const tbody = document.querySelector(".kd-simple-table .el-table__body-wrapper tbody");
       const _this = this;
-      console.log(tbody);
-      // Sortable.create(tbody, {
-      if(this.sort) this.sort=null;
-      this.sort=new Sortable(tbody, {
+      Sortable.create(tbody, {
         ghostClass: "ghost-drag-table",
         handle: ".drag-icon",
         onEnd({ newIndex, oldIndex }) {
