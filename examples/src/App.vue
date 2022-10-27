@@ -44,6 +44,7 @@ import { deepClone } from 'utils';
 
 const constantModulesMd = require.context('./views', true, /index\.md$/);
 const constantModules = require.context('./views', true, /index.vue$/);
+import './components'
 
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, []);
@@ -195,8 +196,9 @@ export default {
   height: calc(100vh - 1px);
   overflow: auto;
   > div > div {
-    box-shadow: #d9d9d9ab 0 1px 3px;
-    margin: 20px 0;
+    //box-shadow: #d9d9d9ab 0 1px 3px;
+    box-shadow: rgb(64 158 255 / 20%) 0 1px 10px;
+    margin: 50px 0;
     padding: 10px 20px 20px;
     border-radius: 10px;
     text-align: left;

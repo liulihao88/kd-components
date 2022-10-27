@@ -1,0 +1,45 @@
+``` 
+<template>
+  <div>
+    <div style="width:100px;">
+      <kd-tooltip
+        width="80%"
+        :content="text"
+      />
+    </div>
+
+    <div style="width:100px;">
+      <kd-tooltip
+        width="70px"
+        :content="textPx"
+        placement="top"
+      />
+    </div>
+    
+    <div>
+      <kd-tooltip
+        :content="textslot"
+        :slot-show="true"
+      >
+        <i class="el-icon-user-solid"></i>
+      </kd-tooltip>
+    </div>
+  </div>
+
+
+</template>
+
+<script>
+export default {
+  name: "testKdTooltip",
+  data () {
+    return {
+      text:'测试kd-tooltip组件使用宽度百分比',
+      textPx:'测试kd-tooltip组件使用宽度px',
+      textslot: '测试kd-tooltip组件使用插槽'
+    }
+  }
+}
+</script>
+
+ ```
