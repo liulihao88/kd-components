@@ -5,11 +5,14 @@
       维护人：{{data.maintenance}}
       <span class="m-l-10" v-if="data.author">开发人: {{data.author}}</span>
     </div>
-    <div class="sub-title" v-if="data.subTitle">
-      {{data.subTitle}}
+    <div class="sub-title">
+      <span v-if="data.subTitle">
+         {{data.subTitle}}
+      </span>
+      <slot></slot>
     </div>
     <div class="warning" v-if="warning">
-      <slot></slot>
+      <slot name="warning"></slot>
     </div>
   </div>
 </template>
