@@ -1,5 +1,9 @@
 <template>
-  <div class="wrap">
+  <div>
+    <example-title :data="{title: '行选择器',maintenance: '刘云'}" warning>
+      <template #warning>即将弃用且不再更新</template>
+    </example-title>
+
     <h4>多选模式</h4>
     <kd-row-select
       ref="rowSelect1"

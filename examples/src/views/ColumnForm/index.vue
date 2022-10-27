@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h3>表格表单列</h3>
-    <div class="author">维护人：刘云</div>
-    <div class="sub-title">
-      基于el-table-column封装，与kd-simple-table一起使用，专为表单中内嵌table的情况封装，所以某些参数为必填：<br />
-      - prop：字段名，用于form-item.prop、column.prop、内部表单绑定值<br />
-      - t-name：form表单中表格数据对应的字段名，用于绑定参数校验<br />
-      组件内部由el-table-column、el-form-item、动态组件三层嵌套，使用时需要通过editor-type给动态组件指定一个组件名称，
-      并且这个组件应该是全局组件，如：el-input、el-select等<br />
-      <br />
-      <b>注意</b> ：本组件未实现一个单元格内需要多个表单的情况，因为涉及到关联关系、布局样式等问题，逻辑可能会比较复杂。<br />
-      当kd-column-form不能满足需求时，可以考虑使用原生的el-table-column组件去自由发挥，实现一些特殊的需求。
-    </div>
+    <example-title :data="{title: '表格表单列',maintenance: '刘云'}">
+      <template>
+        基于el-table-column封装，与kd-simple-table一起使用，专为表单中内嵌table的情况封装，所以某些参数为必填：<br />
+        - prop：字段名，用于form-item.prop、column.prop、内部表单绑定值<br />
+        - t-name：form表单中表格数据对应的字段名，用于绑定参数校验<br />
+        组件内部由el-table-column、el-form-item、动态组件三层嵌套，使用时需要通过editor-type给动态组件指定一个组件名称，
+        并且这个组件应该是全局组件，如：el-input、el-select等<br />
+        <br />
+        <b>注意</b> ：本组件未实现一个单元格内需要多个表单的情况，因为涉及到关联关系、布局样式等问题，逻辑可能会比较复杂。<br />
+        当kd-column-form不能满足需求时，可以考虑使用原生的el-table-column组件去自由发挥，实现一些特殊的需求。
+      </template>
+    </example-title>
 
     <h5>用法示例</h5>
     <el-form :model="form" ref="form" :rules="rules">
@@ -61,13 +61,9 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
 import source1 from "./source/source1.md";
   export default {
     name: 'Index',
-    components: {
-      ExampleCode
-    },
     data() {
       return {
         source1,
@@ -119,20 +115,3 @@ import source1 from "./source/source1.md";
     },
   }
 </script>
-<style lang="scss" scoped>
-.author{
-  margin-bottom:10px;
-  font-size:12px;
-  font-style: italic;
-}
-.sub-title{
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 1.8em;
-  margin-bottom: 5px;
-}
-.example-wrap{
-  width:600px;
-  margin-bottom:20px;
-}
-</style>

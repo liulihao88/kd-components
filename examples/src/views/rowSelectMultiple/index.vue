@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h3>行选择器（多选）</h3>
-    <div class="author">维护人：刘云</div>
-    <div class="sub-title">
+    <example-title :data="{title: '行选择器（多选）',maintenance: '刘云'}" warning>
       行选择器（多选），由于业务场景中目前只有多选情况，所以原row-select即将弃用且不再更新。
       如果有单选场景，会再增加row-select-single组件。单选与多选逻辑混合在一起时过于复杂，不便维护。
-    </div>
+      <template #warning>row-select即将弃用且不再更新</template>
+    </example-title>
 
     <h5>基础用法</h5>
     <div class="example-wrap">
@@ -137,7 +136,6 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
 import source1 from "./source/source1.md";
 import source2 from "./source/source2.md";
 import source3 from "./source/source3.md";
@@ -151,9 +149,6 @@ import source7 from "./source/source7.md";
   }
   export default {
     name: 'Index',
-    components: {
-      ExampleCode
-    },
     data() {
       return {
         value1: ['2', '4'],
@@ -201,16 +196,6 @@ import source7 from "./source/source7.md";
   }
 </script>
 <style lang="scss" scoped>
-.author{
-  margin-bottom:10px;
-  font-size:12px;
-  font-style: italic;
-}
-.sub-title{
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 1.5em;
-}
 .example-wrap{
   width:600px;
   margin-bottom:20px;

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h3>表格操作列</h3>
-    <div class="author">维护人：刘云</div>
-    <div class="sub-title">
-      基于el-table-column封装，内置了dropdown、popover按钮的处理，与kd-simple-table一起使用。<br />
-      通过btn-list配置来控制操作列各种按钮的展示形式；通过click事件处理点击回调。<br />
-      <br />
-      当kd-column-operate不能满足需求时，可以考虑使用原生的el-table-column组件去自由发挥，实现一些特殊的需求。
-    </div>
+    <example-title :data="{title: '表格操作列',maintenance: '刘云'}">
+      <template>
+        基于el-table-column封装，内置了dropdown、popover按钮的处理，与kd-simple-table一起使用。<br />
+        通过btn-list配置来控制操作列各种按钮的展示形式；通过click事件处理点击回调。<br />
+        <br />
+        当kd-column-operate不能满足需求时，可以考虑使用原生的el-table-column组件去自由发挥，实现一些特殊的需求。
+      </template>
+    </example-title>
 
     <h5>基础用法</h5>
     <kd-simple-table :data="tableData" :show-paging="false">
@@ -23,13 +23,9 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
 import source1 from "./source/source1.md";
   export default {
     name: 'Index',
-    components: {
-      ExampleCode
-    },
     data() {
       return {
         source1,
@@ -128,20 +124,3 @@ import source1 from "./source/source1.md";
     },
   }
 </script>
-<style lang="scss" scoped>
-.author{
-  margin-bottom:10px;
-  font-size:12px;
-  font-style: italic;
-}
-.sub-title{
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 1.8em;
-  margin-bottom: 5px;
-}
-.example-wrap{
-  width:600px;
-  margin-bottom:20px;
-}
-</style>

@@ -1,10 +1,8 @@
 <template>
   <div>
-    <h3>可滚动选项组（单选）</h3>
-    <div class="author">维护人：刘云</div>
-    <div class="sub-title">
+    <example-title :data="{title: '可滚动选项组（单选）',maintenance: '刘云'}">
       可滚动按钮组（单选），根据外层容器宽度显示滚动按钮。
-    </div>
+    </example-title>
 
     <h5>基础用法</h5>
     <div class="example-wrap">
@@ -38,14 +36,10 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
 import source1 from "./source/source1.md"
 import source2 from "./source/source2.md"
   export default {
     name: 'Index',
-    components:{
-      ExampleCode
-    },
     data() {
       return {
         options:[
@@ -102,16 +96,6 @@ import source2 from "./source/source2.md"
   }
 </script>
 <style lang="scss" scoped>
-.author{
-  margin-bottom:10px;
-  font-size:12px;
-  font-style: italic;
-}
-.sub-title{
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 1.5em;
-}
 .example-wrap{
   width:600px;
   margin-bottom:20px;
