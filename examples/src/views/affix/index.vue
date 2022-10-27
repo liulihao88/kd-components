@@ -8,6 +8,9 @@
       author: ''
     }"
     ></example-title>
+    <example-code :source="source1Md">
+      代码展示
+    </example-code>
     <!--    <kd-affix offset-bottom="0">-->
 <!--      <el-button>test</el-button>-->
 <!--    </kd-affix>  -->
@@ -15,8 +18,14 @@
 </template>
 
 <script>
+import source1Md from "./source/source1.md"
 export default {
-  name: "testAffixFooter"
+  name: "testAffixFooter",
+  data() {
+    return {
+      source1Md: source1Md
+    }
+  }
 }
 </script>
 
