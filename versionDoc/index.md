@@ -3,3 +3,5 @@
 - 【优化】kd-row-select-multiple组件，停止对ke-row-select组件的更新。
 - 【优化】kd-scroll-group组件。
 - 【新增】kd-simple-table、kd-column-show、kd-column-operate、kd-column-form表格组件及示例代码。
+
+- 【删除】AdvancedSearch组件弃用，改为使用kd-row-select-multiple组件。
