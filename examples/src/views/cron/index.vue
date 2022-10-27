@@ -8,15 +8,14 @@
         author: ''
         }"
     ></example-title>
-    <example-code :source="source1Md">
-      <kd-cron
-          v-model="cronExpression"
-          exe-start-time=""
-          :hide-year="false"
-          :hide-second="false"
-          placeholder="请输入cron表达式"
-      />
-    </example-code>
+    <kd-cron
+        v-model="cronExpression"
+        exe-start-time=""
+        :hide-year="false"
+        :hide-second="false"
+        placeholder="请输入cron表达式"
+    />
+    <example-code :source="source1Md" />
   </div>
 
 </template>
