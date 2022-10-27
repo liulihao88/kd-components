@@ -2,6 +2,10 @@
   <div>
     <el-button @click="t1" type="primary">测试1</el-button>
     <el-button @click="t2" type="info">测试2</el-button>
+    <div style="background: var(--yellow); fontsize: 40px">我呢</div>
+    <div class="test-text">我呢2</div>
+    <div class="cl-85 bg-blue">我呢3</div>
+    <div style="background: var(--blue2); color: var(--red); fontSize: 40px">测试字体色</div>
   </div>
 </template>
 
@@ -67,7 +71,7 @@ export default {
       console.log(
         uuid("time", 0, { startStr: "andy", timeStr: "{h}:{i}:{s}" })
       );
-      console.log(uuid('number'), typeof uuid('number'));
+      console.log(uuid("number"), typeof uuid("number"));
     },
     t2() {
       console.log("t2");
@@ -75,4 +79,10 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.test-text {
+  color: var(--white);
+  background: var(--gray);
+  border: 1px solid var(--line);
+}
+</style>
