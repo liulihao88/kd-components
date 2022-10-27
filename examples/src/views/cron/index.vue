@@ -1,18 +1,33 @@
 <template>
-  <kd-cron
-      v-model="cronExpression"
-      exe-start-time=""
-      :hide-year="false"
-      :hide-second="false"
-      placeholder="请输入cron表达式"
-  />
+  <div>
+    <example-title
+        :data="{
+        title: 'cron 表达式',
+        subTitle: 'cron 表达式组件',
+        maintenance: '胡瑞瑞',
+        author: ''
+        }"
+    ></example-title>
+    <example-code :source="source1Md">
+      <kd-cron
+          v-model="cronExpression"
+          exe-start-time=""
+          :hide-year="false"
+          :hide-second="false"
+          placeholder="请输入cron表达式"
+      />
+    </example-code>
+  </div>
+
 </template>
 
 <script >
+import source1Md from "./source/source1.md"
 export default {
   data() {
     return {
-      cronExpression: ''
+      cronExpression: '',
+      source1Md: source1Md
     }
   }
 }

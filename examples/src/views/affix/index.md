@@ -1,6 +1,6 @@
 ``` 
 <template>
-  <kd-affix offset-bottom="0">
+  <kd-affix>
     <el-button>test</el-button>
   </kd-affix>
 </template>
