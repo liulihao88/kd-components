@@ -107,7 +107,7 @@
 }
 
 @for $index from 0 through 100 {
-  .ft-#{$index} {
+  .ft-#{$index}, .fs-#{$index} {
     font-size: $index + px;
   }
 

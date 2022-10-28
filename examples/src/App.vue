@@ -112,7 +112,7 @@ export default {
       if (process.env.NODE_ENV === 'development') {
         // 只改下面这行代码,改变compName
         // let compName = ['rowSelectMultiple', 'selectMultiple'];
-        let compName = ['andyTest', 'slidePanel'];
+        let compName = ['jobTree'];
         // 只改上面这行代码
         let spliceNames = deepClone(this.comArr);
         let str = 'test';
