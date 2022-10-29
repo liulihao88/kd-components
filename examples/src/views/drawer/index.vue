@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <el-button @click="popWin">抽屉</el-button>
     <el-button @click="popWin2">自定义title和footer插槽</el-button>
     <el-button @click="isShowMulty = true" type="primary">嵌套抽屉</el-button>
@@ -38,12 +39,21 @@
       title="提示"
       @confirm="confirmDialog"
       :size="800"
+      :confirmAttrs="{
+        disabled: true,
+        type: 'danger',
+      }"
+      :cancelAttrs="{
+        disabled: true,
+        type: 'primary',
+        size: 'large',
+        loading: true
+      }"
     >
       第一层抽屉
       <el-button @click="isShowMulty2 = true" type="primary"
         >打开内部抽屉</el-button
       >
-      <!-- 第二层要加zIndex, 否则覆盖不住第一层抽屉。 最少为1000。 若有第三层抽屉，累加为1001 -->
       <kd-drawer :visible.sync="isShowMulty2" append-to-body @confirm="t2">
         <div slot="title">第二层抽屉</div>
         <el-button @click="isShowMulty3 = true" type="primary">测试</el-button>
@@ -63,9 +73,9 @@
 </template>
 
 <script>
-import { $toast } from 'utils';
+import { $toast } from "utils";
 export default {
-  name: 'Index',
+  name: "Index",
   props: {},
   data() {
     return {
@@ -75,10 +85,10 @@ export default {
       isShowMulty2: false,
       isShowMulty3: false,
       form: {
-        realName: ''
+        realName: ""
       },
       rules: {
-        realName: [{ required: true, message: '请输入中文', trigger: 'blur' }]
+        realName: [{ required: true, message: "请输入中文", trigger: "blur" }]
       }
     };
   },
@@ -99,12 +109,12 @@ export default {
         if (valid) {
           this.isShow = false;
         } else {
-          $toast('提交失败', 'e');
+          $toast("提交失败", "e");
         }
       });
     },
     t2() {
-      $toast('哈哈');
+      $toast("哈哈");
     }
   }
 };
