@@ -32,12 +32,28 @@
       height属性可控制组件高度，同时会影响type为group/button时按钮高度，对于type=tag时，只影响组件高度和滚动按钮高度，不影响tag样式；<br />
       space用来控制选项间距，对type=group无效
     </example-code>
+
+    <h5>选项样式及插槽</h5>
+    <div class="example-wrap">
+      <kd-scroll-group v-model="value3" :options="options" :height="50" :item-styles="{width:'200px',color:'red'}">
+        <template slot-scope="scope">
+          <div>
+            <div style="font-size: 12px;">选项:{{ scope.index+1 }}-{{ scope.label}}</div>
+            <div style="color:blue;text-align: center;margin-top: 5px;">{{ scope.value }}</div>
+          </div>
+        </template>
+      </kd-scroll-group>
+    </div>
+    <example-code :source="source3" style="margin-top:20px;">
+      通过item-styles、item-class可以控制选项样式，同时选项支持插槽，通过 slot-scope="scope" 接收选项内容
+    </example-code>
   </div>
 </template>
 
 <script>
 import source1 from "./source/source1.md"
 import source2 from "./source/source2.md"
+import source3 from "./source/source3.md"
   export default {
     name: 'Index',
     data() {
@@ -86,11 +102,18 @@ import source2 from "./source/source2.md"
         ],
         value:'sh',
         value2:'sh',
+        value3:'sh',
         groupType: 'group',
         groupType2:'group',
         forceShow:false,
         source1,
         source2,
+        source3,
+      }
+    },
+    methods: {
+      onChange(e){
+        console.log(e)
       }
     }
   }

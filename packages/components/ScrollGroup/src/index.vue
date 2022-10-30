@@ -1,30 +1,39 @@
 <template>
   <div
     class="kd-scroll-group"
-    :style="{ '--min-width': minWidth + 'px', '--height': height + 'px', '--space': space + 'px'}"
+    :style="{ '--height': height + 'px', '--space': space + 'px'}"
     :type="type"
   >
-    <el-button v-show="showArrow" class="btn m-r-8" icon="el-icon-arrow-left" @click="toLeft"></el-button>
-    <div class="scroll-wrap">
-      <el-scrollbar ref="scrollContain" class="inner-scrollbar scroll-x" native>
-          <div ref="tInner" class="inner-wrap" @click="onClick">
-            <div
-              v-for="(item, index) in options"
-              :key="index"
-              class="item"
-              :data-value="item.value"
-              :class="{ active: curValue === item.value }"
-            >
-              {{ item.label }}
-            </div>
+    <div :class="['kd-scroll-group__wrap',forceShow||scrollable ? 'is-scrollable' : '']">
+        <el-button v-show="forceShow||scrollable" :disabled="!scrollable.prev" :style="btnStyles" class="btn prev" :class="btnClass" icon="el-icon-arrow-left" @click="scrollPrev"></el-button>
+        <div class="kd-scroll-group__scroll" ref="navScroll">
+          <div class="kd-scroll-group__list" ref="nav" :style="navStyle" >
+            <template v-for="(item, index) in options">
+                <div
+                  :key="index"
+                  :class="['item',{ active: value === item.value },itemClass]"
+                  :style="itemStyles"
+                  @click="onClick(item.value)"
+                >
+                  <slot v-bind="item" :index="index">
+                    {{ item.label }}
+                  </slot>
+                </div>
+            </template>
           </div>
-      </el-scrollbar>
+        </div>
+        <el-button v-show="forceShow||scrollable" :disabled="!scrollable.next" :style="btnStyles" class="btn next" :class="btnClass"  icon="el-icon-arrow-right" @click="scrollNext"></el-button>
     </div>
-    <el-button v-show="showArrow" class="btn m-l-10" icon="el-icon-arrow-right" @click="toRight"></el-button>
   </div>
 </template>
 
 <script>
+import { removeResizeListener } from "element-ui/src/utils/resize-event";
+import { cloneDeep } from "lodash";
+
+const firstUpperCase = str => {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+};
 export default {
   name: "KdScrollGroup",
   props: {
@@ -32,6 +41,22 @@ export default {
     value: {
       type: String,
       default: ""
+    },
+    // 两边按钮样式
+    btnStyles:{
+      type:Object,
+      default:()=>{
+        return {}
+      }
+    },
+    btnClass:{
+      type: String,
+      default: ""
+    },
+    // 强制显示箭头，默认情况只有超宽时显示
+    forceShow: {
+      type: Boolean,
+      default: false
     },
     // 选项数组，{label:'',value:''}
     options: {
@@ -51,7 +76,13 @@ export default {
       default: 16
     },
     // 选项最小宽度
-    minWidth: {
+    itemStyles: {
+      type: Object,
+      default: ()=>{
+        return {}
+      }
+    },
+    itemClass: {
       type: String,
       default: ""
     },
@@ -59,77 +90,139 @@ export default {
     height: {
       type: Number,
       default: 34
-    },
-    // 强制显示箭头，默认情况只有超宽时显示
-    forceShow: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
     return {
-      showArrow: false
+      showArrow: false,
+      scrollable: false, // 是否可滚动
+      sizeName:'width',  // 尺寸变量
+      navOffset: 0, // 偏移量
     };
   },
   computed: {
-    scrollWrapper() {
-      return this.$refs.scrollContain.$refs.wrap;
+    navStyle() {
+      // const dir = ['top', 'bottom'].indexOf(this.rootTabs.tabPosition) !== -1 ? 'X' : 'Y';
+      return {
+        transform: `translateX(-${this.navOffset}px)`
+      };
     },
-    curValue: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        this.$emit("input", val);
-      }
-    }
   },
   watch: {
+    type:{
+      handler(){
+        this.update()
+      },
+      immediate: true
+    },
     options: {
       handler(value) {
         if (value) {
           this.$nextTick(() => {
-            this.onResize();
+            this.update()
           });
         }
       },
       deep: true,
       immediate: true
     },
-    curValue: {
-      handler(oVal, nVal) {
-        if (oVal !== nVal) {
-          this.$emit("change", nVal);
-        }
-      },
-      immediate: true
+    forceShow(){
+      this.update()
+    },
+    value(){
+      this.scrollToActiveTab()
     }
   },
   mounted() {
-    window.addEventListener("resize", this.onResize);
+    this.update()
+    addEventListener(this.$el,this.update);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    if (this.$el && this.update) removeResizeListener(this.$el, this.update);
+  },
+  updated() {
+    this.update();
   },
   methods: {
-    onResize(){
-      this.$nextTick(() => {
-        if (this.forceShow) {
-          this.showArrow = true;
-        } else {
-          this.showArrow = this.$el.scrollWidth < this.$refs.tInner.scrollWidth;
+    update(){
+      if (!this.$refs.nav) return;
+      const sizeName = this.sizeName;
+      // 内容尺寸（实际）
+      const navSize = this.$refs.nav[`offset${firstUpperCase(sizeName)}`];
+      // 容器尺寸（可视）
+      const containerSize = this.$refs.navScroll[`offset${firstUpperCase(sizeName)}`];
+      // 当前偏移量
+      const currentOffset = this.navOffset;
+      // 实际尺寸小于容器尺寸
+      if(containerSize < navSize){
+        const currentOffset = this.navOffset;
+        this.scrollable=this.scrollable || {};
+        this.scrollable.prev = currentOffset;
+        this.scrollable.next = currentOffset + containerSize < navSize;
+        if (navSize - currentOffset < containerSize) {
+          this.navOffset = navSize - containerSize;
         }
+      }else {
+        this.scrollable = false;
+        if (currentOffset > 0) {
+          this.navOffset = 0;
+        }
+      }
+    },
+    scrollPrev() {
+      const containerSize = this.$refs.navScroll[`offset${firstUpperCase(this.sizeName)}`];
+      const currentOffset = this.navOffset;
+      if (!currentOffset) return;
+      this.navOffset = currentOffset > containerSize ? currentOffset - containerSize : 0;
+    },
+    scrollNext() {
+      const navSize = this.$refs.nav[`offset${firstUpperCase(this.sizeName)}`];
+      const containerSize = this.$refs.navScroll[`offset${firstUpperCase(this.sizeName)}`];
+      const currentOffset = this.navOffset;
+      if (navSize - currentOffset <= containerSize) return;
+      this.navOffset = navSize - currentOffset > containerSize * 2 ? currentOffset + containerSize : (navSize - containerSize);
+    },
+    scrollToActiveTab() {
+      if (!this.scrollable) return;
+      const nav = this.$refs.nav;
+      const activeTab = this.$el.querySelector('.active');
+      if (!activeTab) return;
+      const navScroll = this.$refs.navScroll;
+      const isHorizontal = true;
+      const activeTabBounding = activeTab.getBoundingClientRect();
+      const navScrollBounding = navScroll.getBoundingClientRect();
+      const maxOffset = isHorizontal
+          ? nav.offsetWidth - navScrollBounding.width
+          : nav.offsetHeight - navScrollBounding.height;
+      const currentOffset = this.navOffset;
+      let newOffset = currentOffset;
+
+      if (isHorizontal) {
+        // 水平排列
+        if (activeTabBounding.left < navScrollBounding.left) { // 元素左侧超出边界
+          newOffset = currentOffset - (navScrollBounding.left - activeTabBounding.left);
+        }
+        if (activeTabBounding.right > navScrollBounding.right) { // 元素右侧超出边界
+          newOffset = currentOffset + activeTabBounding.right - navScrollBounding.right;
+        }
+      } else {
+        if (activeTabBounding.top < navScrollBounding.top) {
+          newOffset = currentOffset - (navScrollBounding.top - activeTabBounding.top);
+        }
+        if (activeTabBounding.bottom > navScrollBounding.bottom) {
+          newOffset = currentOffset + (activeTabBounding.bottom - navScrollBounding.bottom);
+        }
+      }
+      newOffset = Math.max(newOffset, 0);
+      this.navOffset = Math.min(newOffset, maxOffset);
+    },
+    onClick(value) {
+      this.$emit('input',value)
+      this.$emit('change',{value,item:cloneDeep(this.options.find(x=>x.value===value)),index:this.options.indexOf(x=>x.value===value)})
+      this.$nextTick(() =>{
+        this.scrollToActiveTab()
       })
     },
-    onClick(e) {
-      this.curValue = e.target.dataset.value;
-    },
-    toLeft() {
-      this.scrollWrapper.scrollLeft = this.scrollWrapper.scrollLeft - (this.minWidth || 50);
-    },
-    toRight() {
-      this.scrollWrapper.scrollLeft = this.scrollWrapper.scrollLeft + (this.minWidth || 50);
-    }
   }
 };
 </script>

@@ -1,97 +1,83 @@
 .kd-scroll-group {
-  display: flex;
-  align-items: center;
-  width: 100%;
   height: var(--height);
+  position: relative;
+  padding:0;
+  min-height: 24px;
 
-  // 两侧按钮样式
-  .btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 34px;
+  .kd-scroll-group__wrap{
     height: 100%;
-    border: 1px solid var(--line-color);
-    border-radius: 2px;
-    cursor: pointer;
-    box-sizing: border-box;
-
-    &:hover {
-      color: var(--primary-color);
-      background-color: var(--primary-bg);
-    }
-
-    &:focus {
-      color: var(--primary-color);
-      background-color: var(--bg-color);
-      border-color: var(--primary-color);
-    }
-  }
-
-  // 中间部分
-  .scroll-wrap {
-    width: 100%;
-    display: inline-block;
-    flex: 1;
+    overflow: hidden;
     position: relative;
-    height: 100%;
-  }
-
-  // 滚动条样式设置
-  .scroll-x {
-    height: 100%;
-    position: relative;
-
-    .el-scrollbar__wrap {
-      overflow-x: hidden;
-      margin: 0;
+    &.is-scrollable{
+      padding:0 40px;
+      box-sizing: border-box;
     }
 
-    .el-scrollbar__view {
-      width: 100%;
+    .kd-scroll-group__scroll{
       height: 100%;
-      position: relative;
-    }
-  }
-
-  // 容器
-  .inner-scrollbar {
-    width: 100%;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-    height: 100%;
-    position: relative;
-    
-    .el-scrollbar__wrap{
       overflow: hidden;
-      margin-right:0!important;
-    }
-    .el-scrollbar__view{
-      height: 100%;
-      width: 100%;
-      position: relative;
-    }
 
-    .inner-wrap {
-      display: inline-block;
-      height: 100%;
-
-      .item {
-        display: inline-flex;
-        padding: 0 16px;
+      .kd-scroll-group__list{
         height: 100%;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        cursor: pointer;
-        border-width: 1px;
+        white-space: nowrap;
+        position: relative;
+        transition: transform .3s;
+        float: left;
+        z-index: 2;
+
+        .item{
+          height: 100%;
+          display:inline-flex;
+          padding: 0 16px;
+          line-height: 100%;
+          justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+          cursor: pointer;
+          border-width: 1px;
+        }
+
+        >*{
+          display: inline-block;
+        }
+      }
+    }
+
+    // 两侧按钮样式
+    .btn {
+      position:absolute;
+      top:0;
+      width: 34px;
+      height: 100%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+
+      &.prev{
+        left:0;
+      }
+
+      &.next{
+        right:0;
+      }
+
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--primary-bg);
+      }
+
+      &:focus {
+        color: var(--primary-color);
+        background-color: var(--bg-color);
+        border-color: var(--primary-color);
       }
     }
   }
 }
 
 .kd-scroll-group[type="group"] {
-  .inner-wrap {
+
     .item {
       background: #f7f8fa;
       border: 1px solid #e3e6eb;
@@ -102,6 +88,7 @@
 
     .item + .item {
       border-left-color: transparent;
+      margin-left: 0;
     }
 
     &:first-child {
@@ -119,11 +106,10 @@
       color: var(--primary-color);
       border: 1px solid var(--primary-color) !important;
     }
-  }
+
 }
 
 .kd-scroll-group[type="button"] {
-  .inner-wrap {
     .item {
       background: #f7f8fa;
       border: 1px solid #e3e6eb;
@@ -141,12 +127,9 @@
       color: var(--primary-color);
       border: 1px solid var(--primary-color) !important;
     }
-  }
 }
 
 .kd-scroll-group[type="tag"] {
-  .inner-wrap {
-    line-height: var(--height);
     .item {
       background: #fff;
       border-style: none;
@@ -165,5 +148,4 @@
       background: #f5f7fd;
       color: var(--primary-color);
     }
-  }
 }
