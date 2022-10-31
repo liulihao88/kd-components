@@ -29,6 +29,7 @@ import ColumnOperate from "./ColumnOperate";
 import ColumnForm from "./ColumnForm";
 import PopoverButton from './PopoverButton';
 import PageTitle from './PageTitle';
+import TableSearch from './TableSearch';
 import ScrollGroup from './ScrollGroup';
 import scrollbar from "./scrollbar";
 import cron from "./cron"
@@ -36,7 +37,7 @@ import cron from "./cron"
 const components = [DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input,
   DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,
   RowSelect,RowSelectMultiple,PopoverButton,PageTitle,SimpleTable,ColumnShow,ColumnOperate,ColumnForm,ScrollGroup,
-  scrollbar,cron];
+  scrollbar,cron,TableSearch];
 
 const install = (app) => {
   components.map((component) => {
@@ -49,6 +50,6 @@ const install = (app) => {
 export { install, DetailBtn, Step, Affix, Owner, SelectMultiple, TreeSingle, TreeMultiple, FilterTable, Input,
   DateRange, AdvancedSearch, KdTooltip, Dialog, Drawer, JobTree, SlidePanel, Icon, Select, Title, Empty, Tree,
   RowSelect,RowSelectMultiple,PopoverButton,PageTitle,SimpleTable,ColumnShow,ColumnOperate,ColumnForm,ScrollGroup,
-  scrollbar,cron };
+  scrollbar,cron,TableSearch };
 
 export default install;

@@ -1,0 +1,34 @@
+.kd-table-search{
+  .first-row{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height:32px;
+
+    .left{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .form{
+        margin-right:8px;
+      }
+    }
+
+    .right{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .more-row{
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 0.5s;
+    &>*{
+      margin-right:8px;
+      margin-top:16px;
+    }
+  }
+}
