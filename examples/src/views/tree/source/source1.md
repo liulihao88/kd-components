@@ -1,39 +1,23 @@
+```vue
 <template>
-  <div>
-    <h3>表格展示列</h3>
-    <div class="author">维护人：刘力豪</div>
-    <div class="sub-title"></div>
-
-    <h5>用法示例</h5>
-    <div class="w-300">
-      <el-input placeholder="输入关键字进行过滤" v-model="filterText">
-      </el-input>
-      <kd-tree
-        ref="tree"
-        :data="data"
-        :props="defaultProps"
-        @node-click="handleNodeClick"
-        :filter-node-method="filterNode"
-      ></kd-tree>
-    </div>
-    <example-code :source="source1">
-      <div>上面示例中展示了kd-tree组件的各种使用方法。</div>
-      <div></div>
-    </example-code>
+  <div class="w-300">
+    <el-input placeholder="输入关键字进行过滤" v-model="filterText"> </el-input>
+    <kd-tree
+      ref="tree"
+      :data="data"
+      :props="defaultProps"
+      @node-click="handleNodeClick"
+      :filter-node-method="filterNode"
+    ></kd-tree>
   </div>
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
-import source1 from "./source/source1.md";
 export default {
   name: "Index",
-  components: {
-    ExampleCode
-  },
+  props: {},
   data() {
     return {
-      source1,
       filterText: "",
       data: [
         {
@@ -114,20 +98,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.author {
-  margin-bottom: 10px;
-  font-size: 12px;
-  font-style: italic;
-}
-.sub-title {
-  font-size: 14px;
-  color: #5e6d82;
-  line-height: 1.8em;
-  margin-bottom: 5px;
-}
-.example-wrap {
-  width: 600px;
-  margin-bottom: 20px;
-}
+<style scoped lang="scss">
+
 </style>
+```

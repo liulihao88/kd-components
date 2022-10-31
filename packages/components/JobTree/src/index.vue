@@ -9,20 +9,19 @@
         <el-tooltip
           :content="defaultProps.createTitle || '创建分组'"
           placement="top"
-          :open-delay="500"
         >
           <i
+            v-if="defaultProps.showCreate !== false"
             class="kd-icon-xinjianwenjianjia cp"
             :class="defaultProps.createIcon || 'kd-icon-xinjianwenjianjia'"
             @click="create"
-            v-if="defaultProps.showCreate !== false"
           />
         </el-tooltip>
       </div>
     </div>
     <!-- 搜索框上边的插槽 -->
     <slot name="top" />
-    <div class="jt_search" v-if="defaultProps.showSearch !== false">
+    <div v-if="defaultProps.showSearch !== false" class="jt_search">
       <el-input
         v-model="queryTxt"
         width="100%"
@@ -31,94 +30,139 @@
         suffix-icon="el-icon-search"
       />
     </div>
-    <div ref="treeScrollComp" v-loading="isLoading" class="jt_body">
+    <div ref="treeScrollComp" class="jt_body">
       <el-tree
         ref="treeRef"
+        v-loading="loading"
         class="job_tree_comp"
-        :props="treeProps"
-        :data="treeData"
+        :data="sTreeData"
         :node-key="nodeKey"
+        v-bind="$attrs"
+        v-on="$listeners"
         highlight-current
-        :expand-on-click-node="false"
+        :expand-on-click-node="!($attrs.expandOnClickNode !== false)"
         :default-expanded-keys="expandedKeys"
         :filter-node-method="filterNode"
         @node-click="nodeClick"
         @node-expand="nodeExpand"
         @node-collapse="nodeCollapse"
       >
-        <div slot-scope="{ node, data }" class="job_tree_node f-bt w-block">
-          <div class="f-bt w-block">
-            <div class="txt_box">
-              <div class="icon_box">
-                <slot name="icon" :data="data" :node="node">
-                  <i
-                    :class="[
-                      node.expanded
-                        ? defaultProps.openIcon || 'kd-icon-wenjianjiazhankai'
-                        : defaultProps.closeIcon || 'kd-icon-wenjianjia'
-                    ]"
-                  />
-                </slot>
-              </div>
-              <div class="slot_box">
-                <slot name="data" :data="data" :node="node" />
-              </div>
+        <div slot-scope="{ node, data }" class="job_tree_node">
+          <div class="left_txt_box">
+            <div class="icon_box">
+              <slot name="icon" :data="data" :node="node">
+                <i
+                  style="color: #ffb51f"
+                  :class="[
+                    node.expanded
+                      ? defaultProps.openIcon || 'kd-icon-wenjianjiazhankai'
+                      : defaultProps.closeIcon || 'kd-icon-wenjianjia'
+                  ]"
+                />
+              </slot>
             </div>
-            <slot name="btns" :data="data" :node="node">
-              <div
-                v-if="defaultProps.btns && defaultProps.btns.length > 0"
-                class="right_icon"
+            <div class="slot_box">
+              <slot name="data" :data="data" :node="node">
+                {{ data[treeProps.label] }}
+              </slot>
+            </div>
+          </div>
+          <!-- @click.stop="() => {}" -->
+          <slot name="btns" :data="data" :node="node">
+            <div
+              v-if="
+                defaultProps.btns &&
+                defaultProps.btns.length > 0 &&
+                showBtns(data, node)
+              "
+              class="right_icon_box"
+              @click.stop="() => {}"
+            >
+              <el-dropdown
+                ref="dropdownRef"
+                trigger="click"
+                :hide-on-click="false"
+                @visible-change="btnShowHandler($event, node, data)"
               >
-                <el-dropdown
-                  trigger="click"
-                  :hide-on-click="false"
-                  @visible-change="btnShowHandler($event, node, data)"
-                >
-                  <i class="kd-icon-ellipsis" style="color: #365edf" />
-                  <el-dropdown-menu slot="dropdown">
-                    <div
-                      v-for="(item, index) in defaultProps.btns"
-                      :key="index"
-                    >
-                      <!-- <el-dropdown-item @click.native="popRename(data, node)">重命名</el-dropdown-item>
-                          <el-dropdown-item @click.native="popMove(data, node)">移动</el-dropdown-item> -->
-
-                      <el-dropdown-item v-if="item.confirmInfo">
-                        <template>
-                          <el-popconfirm
-                            :title="item.confirmInfo"
-                            :confirm-button-text="item.content || '删除'"
-                            cancel-button-type="info"
-                            :hide-icon="true"
-                            @confirm="
-                              item.confirm &&
-                                item.confirm.call(this, node, data)
+                <i
+                  class="kd-icon-ellipsis"
+                  style="color: #365edf"
+                  @click="ellipsisHandler(node, data)"
+                />
+                <el-dropdown-menu slot="dropdown">
+                  <div v-for="(btn, index) in defaultProps.btns" :key="index">
+                    <template v-if="btn.useSlot">
+                      <el-dropdown-item v-if="btn.useSlot">
+                        <slot :name="btn.key" :data="data" :node="node" />
+                      </el-dropdown-item>
+                    </template>
+                    <template v-else-if="btn.confirmInfo">
+                      <el-dropdown-item>
+                        <el-popover
+                          v-if="
+                            btn.confirmInfo && operatorBtnFn(btn.isShow, data)
+                          "
+                          :key="index"
+                          :ref="`popoverOut-${index}`"
+                          :disabled="btn.disabled ? btn.disabled(data) : false"
+                          placement="bottom-start"
+                          width="224"
+                          :title="btn.popoverTitle || '删除'"
+                          popper-class="popover_btn"
+                        >
+                          <p>{{ confirmInfoFn(btn.confirmInfo, data) }}</p>
+                          <div
+                            style="
+                              text-align: right;
+                              margin: 0;
+                              margin-top: 16px;
                             "
                           >
                             <el-button
-                              slot="reference"
-                              type="text"
-                              class="main-txt"
+                              size="mini"
+                              type="info"
+                              @click="handleCloseOut(index)"
                             >
-                              {{item.content || '删除'}}
+                              取消
                             </el-button>
-                          </el-popconfirm>
-                        </template>
+                            <el-button
+                              type="primary"
+                              size="mini"
+                              @click="
+                                handleCloseOut(index) ||
+                                  (btn.confirm && btn.confirm(node, data))
+                              "
+                            >
+                              确定
+                            </el-button>
+                          </div>
+                          <el-button
+                            slot="reference"
+                            type="text"
+                            size="small"
+                            :disabled="
+                              btn.disabled ? btn.disabled(data) : false
+                            "
+                          >
+                            删除
+                          </el-button>
+                        </el-popover>
                       </el-dropdown-item>
+                    </template>
+                    <template v-else>
                       <el-dropdown-item
-                        v-else
-                        @click.native="
-                          item.handler && item.handler.call(this, node, data)
+                        @click.native.stop.prevent="
+                          btn.handler && btn.handler(node, data)
                         "
                       >
-                        {{ item.content }}
+                        {{ btn.content }}==
                       </el-dropdown-item>
-                    </div>
-                  </el-dropdown-menu>
-                </el-dropdown>
-              </div>
-            </slot>
-          </div>
+                    </template>
+                  </div>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </div>
+          </slot>
         </div>
       </el-tree>
     </div>
@@ -130,17 +174,6 @@
 * @描述
 * 公共的树形组件
 * @使用方法
-<kjTree
-  class="left_box"
-  ref="treeRef"
-  title="函数管理"
-  :defaultProps="defaultProps"
-  @nodeHandler="nodeHandler"
->
-  <template #data="{data}">
-    <div>{{data.nameCh}}</div>
-  </template>
-</kjTree>
 
 defaultProps: {
   title: '新建函数',
@@ -160,15 +193,10 @@ defaultProps: {
     },
   ],
 },
-* @param
-*
-* @LastEditTime: 最后更新时间
-* 2022-06-17
-* @Author: andy凌云
 */
-import { cloneDeep } from 'lodash/cloneDeep';
+import cloneDeep from "lodash/cloneDeep";
 export default {
-  name: 'KdJobTree',
+  name: "KdJobTree",
   components: {},
   props: {
     // 大部分配置都在defaultProps里
@@ -176,50 +204,42 @@ export default {
       type: [Object],
       default: () => {}
     },
-    treeData: {
+    data: {
       type: Array,
       default: () => []
     },
     nodeKey: {
       type: String,
-      default: 'id'
+      default: "id"
     },
-    type: {
-      // job接口最开始的url字符串
-      type: String,
-      default: 'function' // resource
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-
-    createOptions: {
-      type: [Object]
-    },
-    //
     treeProps: {
       type: Object,
       default: () => {
-        return { children: 'children' };
+        return {
+          children: "children",
+          label: "label"
+        };
       }
     },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     // 自定义展开的项
-    cusExpand: {
-      type: [String, Function],
-      default: ''
+    customExpand: {
+      type: [Function, String],
+      default: ""
     }
   },
   data() {
     return {
-      queryTxt: '',
+      queryTxt: "",
       // 当前选中的节点
-      currentKey: '',
+      currentKey: "",
       // 当前展开的节点
       expandedKeys: [],
-
       expandKeys: [], //展开的节点
-      isLoading: false
+      sTreeData: this.data
     };
   },
   computed: {},
@@ -227,74 +247,65 @@ export default {
     queryTxt(newVal) {
       this.$refs.treeRef.filter(newVal);
     },
-    async treeData(val) {
+    async data(val) {
+      this.sTreeData = cloneDeep(val);
       // 展开我的标准树&&获取根目录我的标准下的所有标准
-      await this.sleep(0);
-      if (typeof this.cusExpand === 'function') {
-        this.cusExpand(val);
+      if (typeof this.customExpand === "function") {
+        this.customExpand(val);
       } else {
         if (val && val.length) {
-          const rootId = val[0][this.nodeKey];
-
-          // const rootId = '1554777131681058862';
-          // console.log(
-          //   `%c 222=>228行 ~/kj/qiankun-fe/main/src/share/components/comps/gaeaComps/KjTree.vue this.currentKey `,
-          //   'background:#000;color:#bada55',
-          //   this.currentKey
-          // );
-
+          let rootId = val[0][this.nodeKey];
           this.expandedKeys = this.expandedKeys.length
             ? this.expandedKeys
             : [rootId];
-          console.log(
-            `%c 555=>233行 ~/kj/qiankun-fe/main/src/share/components/comps/gaeaComps/KjTree.vue this.expandedKeys `,
-            'background:#000;color:#bada55',
-            this.expandedKeys
-          );
-          console.log(
-            `%c 666=>234行 ~/kj/qiankun-fe/main/src/share/components/comps/gaeaComps/KjTree.vue this.rootId `,
-            'background:#000;color:#bada55',
-            rootId
-          );
-
-          console.log(
-            `%c 777=>236行 ~/kj/qiankun-fe/main/src/share/components/comps/gaeaComps/KjTree.vue this.currentKey `,
-            'background:#000;color:#bada55',
-            this.currentKey
-          );
-
-          this.$refs.treeRef.setCurrentKey(this.currentKey || rootId);
+          this.$nextTick(() => {
+            this.$refs.treeRef.setCurrentKey(this.currentKey || rootId);
+          });
         }
-        this.$emit('nodeHandler', this.treeData[0] || {});
+        this.$emit("nodeHandler", this.sTreeData[0] || {});
       }
     }
   },
   created() {},
   mounted() {},
   methods: {
-    btnShowHandler(event, node, data, ...a) {
+    ellipsisHandler(node, data) {
+      // this.$refs.dropdownRef.visible = false;
+      // this.$refs.dropdownRef.visible = true;
+    },
+    btnShowHandler(event, node, data) {
       if (event) {
-        this.$emit('btnClick', [node, data]);
-        console.log(
-          `*****<<<  真的  272行 ~/kj/kd-components/packages/components/JobTree/src/index.vue  17:27:55`
-        );
-        console.log(`%c 282行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node`, 'background:#fff;color:red', node);
-        console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue node.Node`, 'background:#fff;color:red', node.data);
-
-        console.log(`%c 283行 ~/kj/kd-components/packages/components/JobTree/src/index.vue data`, 'background:#fff;color:red', data);
-        console.log(`%c 284行 ~/kj/kd-components/packages/components/JobTree/src/index.vue a`, 'background:#fff;color:red', a);
-
+        this.$emit("btnHandler", node, data);
       }
     },
-    deleteRow() {
-      console.log('deleteRow');
+    // 表格confirmInfo判断函数还是String
+    confirmInfoFn(confirmInfo, data) {
+      if (!confirmInfo) {
+        return "您确定要删除当前行嘛";
+      } else if (typeof confirmInfo === "string") {
+        return confirmInfo;
+      } else if (typeof confirmInfo === "function") {
+        return confirmInfo(data);
+      }
     },
-    editRow() {
-      console.log('editTow');
+    operatorBtnFn(cont, row = "") {
+      if (typeof cont === "function") {
+        if (!row) {
+          return true;
+        }
+        return cont(row);
+      } else {
+        if (cont === undefined) {
+          return true;
+        }
+        return cont;
+      }
     },
+    deleteRow() {},
+    editRow() {},
     // 创建目录
     create() {
-      this.$emit('create');
+      this.$emit("create");
     },
 
     sleep(time = 0) {
@@ -305,7 +316,7 @@ export default {
      * 递归获取目录结构
      */
     getMyPaths(exceptNode) {
-      let myPaths = this.treeData;
+      let myPaths = cloneDeep(this.sTreeData);
       myPaths = cloneDeep(myPaths);
       // 获取exceptNode文件夹的层级和
       let maxLayerNum = 5;
@@ -324,7 +335,6 @@ export default {
             getMaxDepth(exceptNode[this.treeProps.children] || [], 1)
           );
         })();
-        console.log('maxLayerNum', maxLayerNum);
       }
       let makePaths = (mys, layer) => {
         layer++;
@@ -358,16 +368,36 @@ export default {
      * 点击树节点
      */
     async nodeClick(data) {
-      this.currentKey = data.value;
-      this.$emit('nodeHandler', data);
+      this.currentKey = data[this.nodeKey];
+      this.$emit("nodeHandler", data);
     },
 
     nodeExpand(data) {
-      this.expandedKeys.push(data[this.nodeKey]);
+      if (data[this.nodeKey]) {
+        this.expandedKeys.push(data[this.nodeKey]);
+      }
     },
     nodeCollapse(data) {
-      const index = this.expandedKeys.indexOf(data[this.nodeKey]);
-      index > -1 && this.expandedKeys.splice(index, 1);
+      let index = this.expandedKeys.indexOf(data[this.nodeKey]);
+
+      if (index > -1) {
+        this.expandedKeys.splice(index, 1);
+      }
+    },
+    handleCloseOut(index) {
+      this.$nextTick(() => {
+        this.$refs[`popoverOut-${index}`].forEach((item) => {
+          item.doClose();
+        });
+      });
+    },
+    // 判断根据不同的返回值, 右侧是否显示...按钮
+    showBtns(data, node) {
+      if (this.$listeners.showBtns) {
+        return this.$listeners.showBtns(data, node);
+      } else {
+        return true;
+      }
     }
   }
 };

@@ -24,7 +24,7 @@
 </template>
 
 <script >
-import ExampleCode from "../../components/ExampleCode";
+import ExampleCode from "../../components/ExampleCode.vue";
 import source1 from "./source/source1.md";
 export default {
   name: "testSelectMultiple",

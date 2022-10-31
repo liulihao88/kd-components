@@ -5,3 +5,4 @@
 - 【新增】kd-simple-table、kd-column-show、kd-column-operate、kd-column-form表格组件及示例代码。
 
 - 【删除】AdvancedSearch组件弃用，改为使用kd-row-select-multiple组件。
+- 【优化】kd-filter-table组件，点击重置按钮重置时间范围时控制台报错问题修复。

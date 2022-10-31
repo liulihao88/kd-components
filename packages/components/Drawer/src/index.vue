@@ -24,8 +24,7 @@
         <slot name="footer">
           <el-button
             v-if="showConfirm"
-            type="primary"
-            size="small"
+            :type="confirmAttrs.type || 'primary'"
             v-bind="confirmAttrs"
             class="mr"
             v-throttle="cancelThrottleNumber"
@@ -35,9 +34,8 @@
           </el-button>
           <el-button
             v-if="showCancel"
-            type="info"
+            :type="cancelAttrs.type || 'info'"
             v-bind="cancelAttrs"
-            size="small"
             v-throttle="confirmThrottleNumber"
             @click="handleClose"
           >
@@ -58,13 +56,17 @@ export default {
       default: ""
     },
 
-    showConfirm: {
-      type: Boolean,
-      default: true
-    },
     confirmText: {
       type: String,
       default: "提交"
+    },
+    showFooter: {
+      type: Boolean,
+      default: true
+    },
+    showConfirm: {
+      type: Boolean,
+      default: true
     },
     showCancel: {
       type: Boolean,
@@ -78,10 +80,7 @@ export default {
       type: Boolean,
       default: false
     },
-    showFooter: {
-      type: Boolean,
-      default: true
-    },
+
     wrapperClosable: {
       type: Boolean,
       default: process.env.NODE_ENV === "development"

@@ -19,25 +19,27 @@
     <kd-dialog
       :visible.sync="isShow2"
       title="复杂提示"
-      @confirm="confirmDialog"
-      @cancel="cancelDialog"
       showFullscreen
-      append-to-body
-      :showFooter="false"
       ref="dialogRef2"
-      width="80%"
+      width="1000"
+      :confirmAttrs="{
+        type: 'danger',
+        size: 'mini',
+        disabled: true,
+      }"
     >
       <el-button @click="isShow3 = true" type="primary">复杂用法</el-button>
       <kd-dialog
         :visible.sync="isShow3"
         showFullscreen
+        append-to-body
         :close-on-click-modal="false"
         confirmText="提交按钮1"
         cancelText="取消按钮2"
         title="哈哈"
         top="25vh"
       >
-        最里层dialog
+        最里层dialog, 且点击模态框不关闭
       </kd-dialog>
     </kd-dialog>
   </div>
@@ -60,13 +62,7 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    cancelDialog() {
-      console.log('cancelDialog');
-    },
-    popWin() {
-      this.isShow = true;
-    },
-    confirmDialog() {}
+   
   }
 };
 </script>

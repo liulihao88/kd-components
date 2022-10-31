@@ -8,12 +8,17 @@
       :clearable="clearable"
       v-on="$listeners"
     >
-      <el-option :key="option.value" :value="option.value" :label="option.label" style="height: auto" hidden />
-      <div class="tree_single_search_box" v-if="filterable" >
+      <el-option
+        :key="option.value"
+        :value="option.value"
+        :label="option.label"
+        style="height: auto"
+        hidden
+      />
+      <div class="tree_single_search_box" v-if="filterable">
         <el-input
           v-model="filterText"
           placeholder="搜索"
-          size="small"
           clearable
           suffix-icon="el-icon-search"
           @input="filterMethod"
@@ -62,22 +67,16 @@ export default {
     //配置是否可以搜索
     filterable: {
       type: Boolean,
-      default() {
-        return true;
-      }
+      default: true
     },
     // 配置是否可清空选择
     clearable: {
       type: Boolean,
-      default() {
-        return false;
-      }
+      default: false
     },
     nodeKey: {
       type: String,
-      default() {
-        return "id";
-      }
+      default: "id"
     }
   },
   data() {
@@ -115,7 +114,7 @@ export default {
   watch: {
     filterText(newVal) {
       this.$refs.treeRef.filter(newVal);
-    },
+    }
   },
   created() {},
   mounted() {},
@@ -136,7 +135,9 @@ export default {
       if (!value) return true;
       // return data.name.indexOf(value) !== -1;
       // 不区分大小写
-      return data[this.defaultProps.label].toLowerCase().includes(value.toLowerCase());
+      return data[this.defaultProps.label]
+        .toLowerCase()
+        .includes(value.toLowerCase());
     }
   }
 };
