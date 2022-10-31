@@ -36,7 +36,7 @@
     <h5>选项样式及插槽</h5>
     <div class="example-wrap">
       <kd-scroll-group v-model="value3" :options="options" :height="50" :item-styles="{width:'200px',color:'red'}">
-        <template slot-scope="scope">
+        <template #default="scope">
           <div>
             <div style="font-size: 12px;">选项:{{ scope.index+1 }}-{{ scope.label}}</div>
             <div style="color:blue;text-align: center;margin-top: 5px;">{{ scope.value }}</div>
