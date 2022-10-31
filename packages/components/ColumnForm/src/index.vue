@@ -1,6 +1,6 @@
 <template>
   <el-table-column :prop="prop" v-bind="colAttrs">
-    <template scope="scope">
+    <template slot-scope="scope">
       <el-form-item v-bind="formItemAttrs" :key="scope.row[keyField]" :prop="`${tName}.${scope.$index}.${prop}`">
         <component
             :is="editorType"
