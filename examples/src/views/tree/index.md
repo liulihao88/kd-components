@@ -1,100 +1,16 @@
-``` 
-<template>
-  <div class="testtree">
-    <el-input
-        placeholder="输入关键字进行过滤"
-        v-model="filterText">
-    </el-input>
-    <kd-tree
-       ref="tree"
-      :data="data"
-      :props="defaultProps"
-      @node-click="handleNodeClick"
-      :filter-node-method="filterNode"
-    ></kd-tree>
-  </div>
-</template>
+### 组件接收参数
 
-<script>
-export default {
-  name: "Index",
-  props: {
+| 参数              | 说明                                                 | 类型           | 默认值                                                       |
+| ----------------- | ---------------------------------------------------- | -------------- | ------------------------------------------------------------ |
+| data              | 展示数据                                             | Array          | ""                                                           |
+| props             | 配置选项                                             | Object         | { children: "children",label: "label",disabled: "disabled" } |
+| nodeKey           | 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的 | String         | ""                                                           |
+| expandOnClickNode | 是否在点击节点的时候展开或者收缩节点， 默认值为 true | Boolean        | true                                                         |
+| currentNodeKey    | 当前选中的节点                                       | string, number | ""                                                           |
 
-  },
-  data() {
-    return {
-      filterText: "",
-      data: [{
-        label: '一级 1',
-        children: [{
-          label: '二级 1-1',
-          children: [{
-            label: '三级 1-1-1'
-          }]
-        }]
-      }, {
-        label: '一级 2',
-        children: [{
-          label: '二级 2-1',
-          children: [{
-            label: '三级 2-1-1'
-          }]
-        }, {
-          label: '二级 2-2',
-          children: [{
-            label: '三级 2-2-1'
-          }]
-        }]
-      }, {
-        label: '一级 3',
-        children: [{
-          label: '二级 3-1',
-          children: [{
-            label: '三级 3-1-1'
-          }]
-        }, {
-          label: '二级 3-2',
-          children: [{
-            label: '三级 3-2-1'
-          }]
-        }]
-      }],
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      }
-    };
-  },
-  watch: {
-    filterText(val) {
-      this.$refs.tree.filter(val);
-    }
-  },
-  components: {
+### 事件
 
-  },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.label.indexOf(value) !== -1;
-    },
-    handleNodeClick(data) {
-      console.log(data);
-    }
-  }
-};
-</script>
-<style scoped lang='scss'>
-  .testtree {
-    width: 300px;
-  }
-</style>
-
-
- ```
+| 事件名称         | 说明               | 回调参数                                                                             |
+| ---------------- | ------------------ | ------------------------------------------------------------------------------------ |
+| nodeClick        | 节点被点击时的回调 | 共三个参数,传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身 |
+| filterNodeMethod | 过滤方法           |                                                                                      |

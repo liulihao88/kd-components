@@ -1,83 +1,44 @@
-``` 
-<template>
-  <div class="testtree">
-    <kd-job-tree 
-      ref="jobTreeRef" 
-      :defaultProps="defaultProps"
-      :treeData="treeData"
-      @nodeHandler="nodeHandler"
-    >
-      <template #data="{ data }">
-        <div>{{ data.name }}</div>
-      </template>
-    </kd-job-tree>
-  </div>
-</template>
+### 属性
 
-<script>
-export default {
-  name: "Index",
-  props: {
+| 选项         | 类型     | 默认值                                 | 说明                                         |
+| ------------ | -------- | -------------------------------------- | -------------------------------------------- |
+| defaultProps | Object   | {}                                     | 默认的公共属性, 大部分属性都在这个对象中书写 |
+| data         | Array    | []                                     | 展示数据                                     |
+| nodeKey      | String   | 'id'                                   | 唯一标识的属性                               |
+| treeProps    | Object   | {children: 'children',label: 'label',} | 配置选项                                     |
+| loading      | Boolean  | false                                  | 组件 loading                                 |
+| customExpand | Function | ''                                     | 自定义展开项函数                             |
 
-  },
-  data() {
-    return {
-      defaultProps: {
-        title: '资源管理'
-      },
-      treeData: [
-        {
-          "id" : "1551899237577396292",
-          "parentId" : null,
-          "name" : "DD",
-          "path" : "/DD",
-          "children" : [ {
-            "id" : "1555115624034734129",
-            "parentId" : "1551899237577396292",
-            "name" : "dd2",
-            "path" : "/DD/dd2",
-            "children" : [ {
-              "id" : "1555115691147792393",
-              "parentId" : "1555115624034734129",
-              "name" : "dd3",
-              "path" : "/DD/dd2/dd3"
-            } ]
-          } ]
-        }, {
-          "id" : "1551894041832984635",
-          "parentId" : null,
-          "name" : "gbgh",
-          "path" : "/gbgh",
-          "children" : [ {
-            "id" : "1552484508060618790",
-            "parentId" : "1551894041832984635",
-            "name" : "11",
-            "path" : "/gbgh/11"
-          } ]
-        }
-      ]
-    };
-  },
-  components: {
-  
-  },
-  created() {
+### defaultProps 的参数举例
 
-  },
-  mounted() {
+```js
+defaultProps: {
+  title: "表管理",
+  showCreate: false,
+  showSearch: false,
+  placeholder: "请输入库名",
+  openIcon: "kd-icon-wenjianjia"
+  btns: [
+     {
+       content: "编辑",
+       handler: this.editTree
+     },
+     {
+       content: "删除",
+       confirm: this.deleteTree,
+       confirmInfo: "确认删除本条数据吗"
+     },
+     {
+       key: "cus",
+       content: "男",
+       useSlot: true
+     }
+   ]
+}
+```
 
-  },
-  methods: {
-    nodeHandler() {
+### 事件
 
-    }
-  }
-};
-</script>
-<style scoped lang='scss'>
-  .testtree {
-    width: 300px;
-  }
-</style>
-
- ```
+| 事件名称    | 说明               | 回调参数     |
+| ----------- | ------------------ | ------------ |
+| nodeHandler | 点击一行时候的方法 | 当前行的数据 |

@@ -1,9 +1,24 @@
 <template>
   <div>
-    <kd-icon name="geshihua" />
-    <h3 id="-">挑选相应图标并获取类名，应用于页面：</h3>
-    <pre><code class="language-html">&lt;span class="kd-icon-xxx"&gt;&lt;/span&gt;
-</code></pre>
+    <example-title
+        :data="{
+        title: 'Icon 图标',
+        subTitle: '提供了一套常用的图标集合。挑选相应图标并获取类名，应用于页面：',
+        maintenance: '胡瑞瑞',
+        author: '胡瑞瑞'
+        }"
+    ></example-title>
+    <example-code :source="source1Md">
+      <i class="kd-icon-cangku"></i>
+      <span class="m-r-10"></span>
+      <i class="kd-icon-shanchu"></i>
+      <span class="m-r-10"></span>
+      <el-button type="primary">
+        <i class="kd-icon-shangxian"></i>
+        <span class="ft-14">搜索</span>
+      </el-button>
+    </example-code>
+    <h3>图标集合</h3>
     <div class="content font-class">
       <ul class="icon_lists dib-box">
 
@@ -976,7 +991,13 @@
 </template>
 
 <script>
+import source1Md from "./source/source1.md"
 export default {
+  data() {
+    return {
+      source1Md: source1Md
+    }
+  }
 }
 </script>
 

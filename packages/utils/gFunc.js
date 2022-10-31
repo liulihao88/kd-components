@@ -152,16 +152,64 @@ export const debounce = (func, wait, immediate) => {
  * 生成随机数, 第一个参数可传字符串, 空 或者数组
  * uuid("名字") => 名字hc8f
  * uuid() => abcd
+ * uuid('time') => 25MR 10-27 17:34:01
+ * uuid('time', 0, {startStr:'andy', timeStr:"{h}:{i}:{s}"}) => andy 17:38:23
+ * uuid('phone') => 13603312460
+ * uuid('email') => cBZA@qq.com
+ * uuid('number') => 2319
  * uuid([ { label: "小泽泽", value: "xzz" },{ label: "小月月", value: "xyy" }]) => xzz
  */
 
-export function uuid(type = "", length = 4) {
+export function uuid(
+  type = "",
+  length = 4,
+  { emailStr = "@qq.com", timeStr = "{m}-{d} {h}:{i}:{s}", startStr = "" } = {}
+) {
+  let randomStr = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+  let res = type;
   // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
   if (judgeType(type) === "array") {
     return type[0][length === 4 ? "value" : length];
   }
-  let res = type;
-  let randomStr = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+  // 如果是手机号, 生成随机手机号
+  if (type === "phone") {
+    let prefixArray = new Array(
+      "130",
+      "131",
+      "132",
+      "133",
+      "135",
+      "136",
+      "137",
+      "138",
+      "170",
+      "187",
+      "189"
+    );
+    let i = parseInt(10 * Math.random());
+    let res = prefixArray[i];
+    for (var j = 0; j < 8; j++) {
+      res = res + Math.floor(Math.random() * 10);
+    }
+    return res;
+  }
+  // 如果是email, 生成随机email
+  if (type === "email") {
+    return uuid(startStr, length) + emailStr;
+  }
+  // 如果是时间, 生成时间字符串
+  if (type === "time") {
+    return uuid(startStr, length) + " " + parseTime(new Date(), timeStr);
+  }
+  if(type === 'number'){
+    let randomStr = '123456789';
+    let res = '';
+    for (let i = length; i > 0; --i) {
+      res += randomStr[Math.floor(Math.random() * randomStr.length)];
+    }
+    
+    return Number(res);
+  }
   for (let i = length; i > 0; --i) {
     res += randomStr[Math.floor(Math.random() * randomStr.length)];
   }

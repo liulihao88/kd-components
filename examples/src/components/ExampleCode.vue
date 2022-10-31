@@ -2,7 +2,7 @@
   <div class="markdown-body">
     <div class="notice">
       <div class="inner">
-        <slot></slot>
+        <slot>代码示例</slot>
       </div>
     </div>
     <div class="markdown-inner">

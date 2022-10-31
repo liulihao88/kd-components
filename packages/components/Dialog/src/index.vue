@@ -33,18 +33,18 @@
       <div slot="footer" class="dialog_footer" v-if="showFooter">
         <slot name="footer">
           <el-button
-            type="info"
-            :disabled="cancelDisabled"
+            :type="cancelAttrs.type || 'info'"
             v-throttle="cancelThrottleNumber"
-            v-if="!!cancelText"
+            v-if="showCancel"
+            v-bind="cancelAttrs"
             @click="handleClose"
             >{{ cancelText }}</el-button
           >
           <el-button
-            type="primary"
-            :disabled="confirmDisabled"
+            :type="confirmAttrs.type || 'primary'"
+            v-bind="confirmAttrs"
             v-throttle="confirmThrottleNumber"
-            v-if="!!confirmText"
+            v-if="showConfirm"
             @click="confirmHandle"
             >{{ confirmText }}</el-button
           >
@@ -55,30 +55,20 @@
 </template>
 
 <script>
-/**
- * 二次封装dialog
-* @param {*} showDialog 是否显示dialog。
-* @param {*} cancel 是否使用自定义的cancel方法
-* @example 使用方法
-<kjDialog
-:visible.sync="isShow"
-@confirm="confirmDialog"
-> </kjDialog>
-*/
 export default {
-  name: 'KdDialog',
+  name: "KdDialog",
   props: {
     title: {
       type: String,
-      default: '' // 弹框标题名称
+      default: "" // 弹框标题名称
     },
     theme: {
       type: String,
-      default: '' // 弹框样式: 默认空, norm norm16 simple
+      default: "" // 弹框样式: 默认空, norm norm16 simple
     },
     cancel: {
       type: [Function, String],
-      default: '' //
+      default: "" //
     },
     confirmDisabled: {
       type: Boolean,
@@ -91,11 +81,11 @@ export default {
 
     cancelText: {
       type: String,
-      default: '取消'
+      default: "取消"
     },
     confirmText: {
       type: String,
-      default: '确认'
+      default: "确认"
     },
     showFullscreen: {
       type: Boolean,
@@ -104,6 +94,14 @@ export default {
     showFooter: {
       type: Boolean,
       default: true // 是否显示底部操作按钮
+    },
+    showCancel: {
+      type: Boolean,
+      default: true
+    },
+    showConfirm: {
+      type: Boolean,
+      default: true
     },
     cancelThrottleNumber: {
       type: Number,
@@ -120,6 +118,14 @@ export default {
     destroyOnClose: {
       type: Boolean,
       default: true
+    },
+    confirmAttrs: {
+      type: Object,
+      default: () => ({})
+    },
+    cancelAttrs: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {
@@ -132,30 +138,30 @@ export default {
   },
   computed: {
     getThemeClass() {
-      if (this.theme === 'norm') {
-        return 'kd-norm-dialog';
-      } else if (this.theme === 'norm16') {
-        return 'kd-norm16-dialog';
-      } else if (this.theme === 'simple') {
-        return 'kd-simple-dialog';
+      if (this.theme === "norm") {
+        return "kd-norm-dialog";
+      } else if (this.theme === "norm16") {
+        return "kd-norm16-dialog";
+      } else if (this.theme === "simple") {
+        return "kd-simple-dialog";
       } else {
-        return '';
+        return "";
       }
     }
   },
   methods: {
     confirmHandle() {
       if (this.$listeners.confirm) {
-        this.$emit('confirm');
+        this.$emit("confirm");
       } else {
-        this.$emit('update:visible', false);
+        this.$emit("update:visible", false);
       }
     },
     handleClose() {
       if (this.$listeners.cancel) {
-        this.$emit('cancel');
+        this.$emit("cancel");
       } else {
-        this.$emit('update:visible', false);
+        this.$emit("update:visible", false);
       }
     }
   }

@@ -1,50 +1,7 @@
-``` 
-<!--
-des: is-object 为true时需要设置value-key,默认为value，选择后的值为[{name: "id"},{name: "name"}]
-    is-object 为 false ,选择的值内容为['id','name']
--->
-<template>
-  <kd-tree-single
-      v-model="form.checkFiled"
-      :tableData="form.option"
-      :default-props="defaultProps"
-      :node-key="'name'"
-      placeholder="请选择要映射的字段"
-  />
-</template>
+### 属性
 
-<script >
-export default {
-  name: "testTreeSingle",
-  data() {
-    return {
-      form: {
-        option: [
-          {
-            name: "lisi"
-          },
-          {
-            name: 'aaa',
-            children: [
-              {
-                name: 'a111'
-              }
-            ]
-          }
-        ], // 字段下拉
-        checkFiled: '', // 被选择的内容
-      },
-      /**
-       * 映射字段，可自定义
-       */
-      defaultProps: {
-        value: "name",
-        label: "name",
-      }
-    }
-  }
-}
-</script>
-
-
- ```
+| 选项         | 类型   | 默认值                                           | 说明     |
+| ------------ | ------ | ------------------------------------------------ | -------- |
+| tableData    | Array  | ''                                               | 展示数据 |
+| defaultProps | Object | {value: "id",label: "name",children: "children"} | 属性     |
+| filterable | Boolean | true  | 是否显示搜索框    |

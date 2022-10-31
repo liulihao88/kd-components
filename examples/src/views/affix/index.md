@@ -1,17 +1,4 @@
-``` 
-<template>
-  <kd-affix>
-    <el-button>test</el-button>
-  </kd-affix>
-</template>
 
-<script>
-export default {
-  name: "testAffixFooter"
-}
-</script>
-
- ```
 
 ### 组件接收参数
 参数 |               说明               |   类型    | 默认值
