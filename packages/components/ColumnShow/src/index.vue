@@ -198,7 +198,9 @@ export default {
         ...this.propLabel,
         "row-key": this.rowKey,
         "column-key": this.colKey,
-        "show-overflow-tooltip": !this.noTip
+        "show-overflow-tooltip": !this.noTip,
+        "min-width":100,
+        width:120
       };
       // if (this.colFilters.length !== 0) customAttr.filters = this.colFilters;
       return assign({}, this.$attrs, customAttr);
