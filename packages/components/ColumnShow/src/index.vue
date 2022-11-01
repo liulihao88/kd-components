@@ -73,7 +73,7 @@
 // duration {number} 默认200 动画时长，单位ms
 // lineHeight {Number} 默认24 选项高度，会影响所
 // required {Boolean} 默认true 是否必须选中最少1项
-import { assign, isEmpty } from "lodash";
+import { assign, isEmpty, get } from "lodash";
 
 export default {
   name: "KdColumnShow",
@@ -261,7 +261,7 @@ export default {
       let arr = [];
       if (!this.isLink && this.isStatus) {
         arr = this.statusArr.length === 0 ? [true, false] : this.statusArr;
-        if (this.statusByFilters && this.colFilters?.length > 0) {
+        if (this.statusByFilters && get(this.colFilters,'legnth')> 0) {
           arr = this.colFilters.map((x) => x.value);
         }
       }

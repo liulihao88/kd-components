@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { get } from "lodash";
+
 export default {
   name: "KdTableSearch",
   data() {
@@ -29,7 +31,7 @@ export default {
   },
   computed: {
     hasMore(){
-      return this.$slots?.more?.length>0
+      return get(this.$slots,'more.length')>0
     }
   },
   methods: {

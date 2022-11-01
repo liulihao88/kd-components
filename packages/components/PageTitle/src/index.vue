@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import {get} from "lodash";
 export default {
   name: "KdPageTitle",
   props: {
@@ -61,9 +62,9 @@ export default {
     $route: {
       handler(route) {
         if(!route) return
-        console.info('kd-page-title [info] current page title：',route?.meta?.title)
+        console.info('kd-page-title [info] current page title：',get(route,'meta.title'))
         this.routeInfo=route;
-        this.routeTitle=route?.meta?.title||''
+        this.routeTitle=get(route,'meta.title')||''
       },
       immediate: true,
       deep:true

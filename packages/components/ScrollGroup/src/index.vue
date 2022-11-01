@@ -130,18 +130,27 @@ export default {
       this.update()
     },
     value(){
-      this.scrollToActiveTab()
+      console.log('value')
+      this.$nextTick(() => {
+        this.scrollToActiveTab()
+      })
+
     }
   },
   mounted() {
-    this.update()
+    // this.update()
     addEventListener(this.$el,this.update);
+    setTimeout(() => {
+      this.scrollToActiveTab();
+    }, 0);
   },
   beforeDestroy() {
     if (this.$el && this.update) removeResizeListener(this.$el, this.update);
   },
   updated() {
+    console.log('updated')
     this.update();
+    console.log(this.scrollable)
   },
   methods: {
     update(){
@@ -155,13 +164,15 @@ export default {
       const currentOffset = this.navOffset;
       // 实际尺寸小于容器尺寸
       if(containerSize < navSize){
-        const currentOffset = this.navOffset;
-        this.scrollable=this.scrollable || {};
-        this.scrollable.prev = currentOffset;
-        this.scrollable.next = currentOffset + containerSize < navSize;
-        if (navSize - currentOffset < containerSize) {
-          this.navOffset = navSize - containerSize;
-        }
+        // this.$nextTick(() => {
+          const currentOffset = this.navOffset;
+          this.scrollable=this.scrollable || {};
+          this.scrollable.prev = currentOffset;
+          this.scrollable.next = currentOffset + containerSize < navSize;
+          if (navSize - currentOffset < containerSize) {
+            this.navOffset = navSize - containerSize;
+          }
+        // })
       }else {
         this.scrollable = false;
         if (currentOffset > 0) {
@@ -184,44 +195,48 @@ export default {
     },
     scrollToActiveTab() {
       if (!this.scrollable) return;
-      const nav = this.$refs.nav;
-      const activeTab = this.$el.querySelector('.active');
-      if (!activeTab) return;
-      const navScroll = this.$refs.navScroll;
-      const isHorizontal = true;
-      const activeTabBounding = activeTab.getBoundingClientRect();
-      const navScrollBounding = navScroll.getBoundingClientRect();
-      const maxOffset = isHorizontal
-          ? nav.offsetWidth - navScrollBounding.width
-          : nav.offsetHeight - navScrollBounding.height;
-      const currentOffset = this.navOffset;
-      let newOffset = currentOffset;
+      // this.$nextTick(() =>{
+        const nav = this.$refs.nav;
+        const activeTab = this.$el.querySelector('.active');
+        if (!activeTab) return;
+        const navScroll = this.$refs.navScroll;
+        const isHorizontal = true;
+        const activeTabBounding = activeTab.getBoundingClientRect();
+        const navScrollBounding = navScroll.getBoundingClientRect();
+        const maxOffset = isHorizontal
+            ? nav.offsetWidth - navScrollBounding.width
+            : nav.offsetHeight - navScrollBounding.height;
+        const currentOffset = this.navOffset;
+        let newOffset = currentOffset;
 
-      if (isHorizontal) {
-        // 水平排列
-        if (activeTabBounding.left < navScrollBounding.left) { // 元素左侧超出边界
-          newOffset = currentOffset - (navScrollBounding.left - activeTabBounding.left);
+        if (isHorizontal) {
+          // 水平排列
+          if (activeTabBounding.left < navScrollBounding.left) { // 元素左侧超出边界
+            newOffset = currentOffset - (navScrollBounding.left - activeTabBounding.left);
+          }
+          if (activeTabBounding.right > navScrollBounding.right) { // 元素右侧超出边界
+            newOffset = currentOffset + activeTabBounding.right - navScrollBounding.right;
+          }
         }
-        if (activeTabBounding.right > navScrollBounding.right) { // 元素右侧超出边界
-          newOffset = currentOffset + activeTabBounding.right - navScrollBounding.right;
-        }
-      } else {
-        if (activeTabBounding.top < navScrollBounding.top) {
-          newOffset = currentOffset - (navScrollBounding.top - activeTabBounding.top);
-        }
-        if (activeTabBounding.bottom > navScrollBounding.bottom) {
-          newOffset = currentOffset + (activeTabBounding.bottom - navScrollBounding.bottom);
-        }
-      }
-      newOffset = Math.max(newOffset, 0);
-      this.navOffset = Math.min(newOffset, maxOffset);
+        // 不考虑垂直排列
+        // else {
+        //   if (activeTabBounding.top < navScrollBounding.top) {
+        //     newOffset = currentOffset - (navScrollBounding.top - activeTabBounding.top);
+        //   }
+        //   if (activeTabBounding.bottom > navScrollBounding.bottom) {
+        //     newOffset = currentOffset + (activeTabBounding.bottom - navScrollBounding.bottom);
+        //   }
+        // }
+        newOffset = Math.max(newOffset, 0);
+        this.navOffset = Math.min(newOffset, maxOffset);
+      // })
+
+
     },
     onClick(value) {
       this.$emit('input',value)
       this.$emit('change',{value,item:cloneDeep(this.options.find(x=>x.value===value)),index:this.options.indexOf(x=>x.value===value)})
-      this.$nextTick(() =>{
-        this.scrollToActiveTab()
-      })
+      this.update()
     },
   }
 };

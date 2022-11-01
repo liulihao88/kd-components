@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import { get } from "lodash";
+
 export default {
   name: "KdColumnOperate",
   props: {
@@ -148,7 +150,7 @@ export default {
     getDisabled(scope, item) {
       let rowDisabled = false;
       let itemDisabled = item.disabled || false;
-      if (item.permission && scope.row?.permissionTypes) {
+      if (item.permission && get(scope,'row.permissionTypes')) {
         rowDisabled = !scope.row.permissionTypes.includes(item.permission.toLowerCase());
       }
       return itemDisabled || rowDisabled;
