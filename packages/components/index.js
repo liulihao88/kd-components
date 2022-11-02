@@ -10,7 +10,6 @@ import TreeMultiple from './treeMultiple';
 import FilterTable from './FilterTable';
 import Input from './Input';
 import DateRange from './DateRange';
-import AdvancedSearch from './AdvancedSearch';
 import KdTooltip from './KdTooltip';
 import Dialog from './Dialog';
 import Drawer from './Drawer';
@@ -45,7 +44,6 @@ const components = [
   FilterTable,
   Input,
   DateRange,
-  AdvancedSearch,
   KdTooltip,
   Dialog,
   Drawer,
@@ -90,7 +88,6 @@ export {
   FilterTable,
   Input,
   DateRange,
-  AdvancedSearch,
   KdTooltip,
   Dialog,
   Drawer,

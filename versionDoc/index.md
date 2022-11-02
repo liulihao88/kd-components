@@ -1,5 +1,6 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+- 【删除】AdvancedSearch组件
 - 【优化】项目内增加eslint、prettier、git Hooks相关代码规范化配置
 - 【优化】kd-title：取消.title::before的z-index层级声明
 - 【优化】kd-column-show显示列组件：增加默认列宽：width=120，minWidth=100
