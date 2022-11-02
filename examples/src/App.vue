@@ -48,13 +48,14 @@ import VueMarkdown from 'vue-markdown';
 import { requireComponents, requireMd } from './utils/index';
 import { docMd, docName } from './doc/index';
 import { deepClone } from 'utils';
+import './components';
 
 const constantModulesMd = require.context('./views', true, /index\.md$/);
 const constantModules = require.context('./views', true, /index.vue$/);
-import './components';
-
 const { mds } = requireMd(constantModulesMd);
-const { components, names } = requireComponents(constantModules, []);
+// 生产环境过滤的案例
+let excludeArr = process.env.NODE_ENV !== 'production' ? [] : ['testAndyTest', 'testTest'];
+const { components, names } = requireComponents(constantModules, excludeArr);
 
 // const { components, names } = requireComponents(constantModules, ['testCron']);
 /**
