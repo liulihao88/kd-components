@@ -18,7 +18,10 @@
     "build:utils": "npm run clean:utils && rollup --c build/rollup.config.utils.js",
     "all": "npm run build && npm run build:utils",
     "pub": "node cmd/index.js",
-    "build:exm": "vue-cli-service build"
+    "build:exm": "vue-cli-service build",
+    "lint": "eslint examples/ --fix --ext .js,.vue",
+    "lint:ly": "eslint examples/ packages/ --fix --ext .js,.vue",
+    "prepare": "husky install"
   },
   "main": "dist/kd-components.esm.js",
   "module": "dist/kd-components.esm.js",
@@ -42,6 +45,7 @@
     "vue-virtual-scroll-list": "^2.3.3"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "@esbuild-kit/cjs-loader": "^2.3.3",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-image": "^2.1.1",
@@ -59,6 +63,10 @@
     "core-js": "^3.24.1",
     "cron-parser": "^4.6.0",
     "element-ui": "2.15.8",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.7.0",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
     "github-markdown-css": "^5.1.0",
@@ -68,10 +76,13 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "highlight.js": "^11.6.0",
+    "husky": "^8.0.1",
     "jest": "^27.0.5",
+    "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
     "normalize.css": "^8.0.1",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.77.2",
     "rollup-plugin-babel": "^4.4.0",
@@ -99,6 +110,9 @@
     "last 2 versions",
     "not dead"
   ],
+  "lint-staged": {
+    "*.{js,vue}": "eslint examples/ --fix --ext .js,.vue"
+  },
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest"
   }

@@ -1,0 +1,11 @@
+build
+dist
+node_modules/**
+node_modules/big.js
+iconfont
+public
+*-lock.yaml
+*-lock.json
+**/*/test
+**/*.md
+fonts
