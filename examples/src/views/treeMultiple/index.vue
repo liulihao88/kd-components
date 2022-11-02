@@ -9,20 +9,18 @@
       :table-data="treeData"
       :default-props="defaultProps"
       node-key="id"
-    />
-    <example-code :source="source1">
-      上面示例中展示了操作列组件的各种使用方法。
-    </example-code>
+    ></kd-tree-multiple>
+    <example-code :source="source1"> 上面示例中展示了操作列组件的各种使用方法。 </example-code>
   </div>
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
-import source1 from "./source/source1.md";
+import ExampleCode from '../../components/ExampleCode';
+import source1 from './source/source1.md';
 export default {
-  name: "Index",
+  name: 'Index',
   components: {
-    ExampleCode
+    ExampleCode,
   },
   data() {
     return {
@@ -31,10 +29,10 @@ export default {
       treeData: [], // 下拉树形结构数据
       defaultProps: {
         // 属性可自己配置
-        value: "id",
-        label: "label",
-        children: "children"
-      }
+        value: 'id',
+        label: 'label',
+        children: 'children',
+      },
     };
   },
   created() {
@@ -45,43 +43,43 @@ export default {
       this.treeData = [
         {
           id: 1,
-          label: "一级 2",
+          label: '一级 2',
           children: [
             {
               id: 3,
-              label: "二级 2-1",
+              label: '二级 2-1',
               children: [
                 {
                   id: 4,
-                  label: "三级 3-1-1"
+                  label: '三级 3-1-1',
                 },
                 {
                   id: 5,
-                  label: "三级 3-1-2"
-                }
-              ]
+                  label: '三级 3-1-2',
+                },
+              ],
             },
             {
               id: 2,
-              label: "二级 2-2",
+              label: '二级 2-2',
               disabled: true,
               children: [
                 {
                   id: 6,
-                  label: "三级 3-2-1"
+                  label: '三级 3-2-1',
                 },
                 {
                   id: 7,
-                  label: "三级 3-2-2",
-                  disabled: true
-                }
-              ]
-            }
-          ]
-        }
+                  label: '三级 3-2-2',
+                  disabled: true,
+                },
+              ],
+            },
+          ],
+        },
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

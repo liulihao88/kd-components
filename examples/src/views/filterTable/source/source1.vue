@@ -3,28 +3,21 @@
     ref="tableRef"
     :data="taskList"
     :columns="columns"
-    :totalNum="totalNum"
-    :addShowAllFlage="false"
+    :total-num="totalNum"
+    :add-show-all-flage="false"
     :table-expand="false"
     :tr-expand="false"
     :search-types="searchTypes"
-    searchTitle="自定义搜索文字"
+    search-title="自定义搜索文字"
     placeholder="请输入任务英文名称/任务中文名称/负责人英文名称"
     @updatePage="getTaskList"
   >
     <template #search="{ search }">
-      <kd-input v-model="search.name" title="搜索" class="mb" />
+      <kd-input v-model="search.name" title="搜索" class="mb"></kd-input>
     </template>
     <template #operation>
       <div>
-        <el-button
-          style="background: #ebedf0"
-          size="small"
-          :disabled="false"
-          @click="recover()"
-        >
-          恢复
-        </el-button>
+        <el-button style="background: #ebedf0" size="small" :disabled="false" @click="recover()"> 恢复 </el-button>
       </div>
     </template>
     <template #owner="{ row, scope }">
@@ -37,10 +30,9 @@
 
 <script>
 export default {
-  name: "Exam1",
-  props: {
-
-  },
+  name: 'Exam1',
+  components: {},
+  props: {},
   data() {
     return {
       taskList: [],
@@ -49,24 +41,24 @@ export default {
           title: '任务英文名称',
           key: 'name',
           filter: (val, row) => row.showName,
-          handler: (row) => $toast(row)
+          handler: (row) => $toast(row),
         },
         {
           title: '负责人',
           key: 'owner',
-          useSlot: true
+          useSlot: true,
         },
         {
           title: '状态',
           key: 'status',
           filters: [
-            { text: "未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线", value: "offline" },
-            { text: "已上线", value: "online" }
-          ]
+            { text: '未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线未上线', value: 'offline' },
+            { text: '已上线', value: 'online' },
+          ],
         },
         {
           title: '结束时间',
-          key: 'endTime'
+          key: 'endTime',
         },
         {
           title: '操作',
@@ -81,50 +73,44 @@ export default {
             {
               content: '查看日志',
               // disabled: (item) => { return true },
-              handler: this.viewLog
+              handler: this.viewLog,
             },
             {
               content: '删除',
               confirmInfo: '哈哈',
               confirm: () => {
                 console.log(123);
-              }
+              },
               // handler: this.viewLog
             },
 
             {
               content: '恢复',
-              disabled: (row) =>
-                row.stopOrRecover && row.taskStatus !== 'FAILURE',
-              handler: this.recover
+              disabled: (row) => row.stopOrRecover && row.taskStatus !== 'FAILURE',
+              handler: this.recover,
             },
             {
               content: '终止运行',
               disabled: (row) => {
                 return row.name === 'name1';
               },
-              handler: this.stop
-            }
-          ]
-        }
+              handler: this.stop,
+            },
+          ],
+        },
       ],
       totalNum: 0,
       searchTypes: {
         name: 'like',
         owner: 'eq',
-        endTime: 'between'
-      }
+        endTime: 'between',
+      },
     };
-  },
-  components: {
-  
   },
   created() {
     this.getTaskList();
   },
-  mounted() {
-
-  },
+  mounted() {},
   methods: {
     getTaskList(search) {
       // const res = await getTaskList(search);
@@ -137,18 +123,18 @@ export default {
               showName: 'showName1',
               status: '已上线',
               owner: 'owner1',
-              endTime: '2022-08-02 12:12:00'
+              endTime: '2022-08-02 12:12:00',
             },
             {
               name: 'name2',
               owner: 'owner2',
               status: '未上线',
               showName: 'showName2',
-              endTime: '2022-08-02 12:12:00'
-            }
+              endTime: '2022-08-02 12:12:00',
+            },
           ],
-          total: 2
-        }
+          total: 2,
+        },
       };
       if (res.success) {
         const { records, total } = res.data;
@@ -165,10 +151,8 @@ export default {
     stop() {
       $toast(3);
       this.$refs.tableRef.initTableData();
-    }
-  }
+    },
+  },
 };
 </script>
-<style scoped lang='scss'>
-  
-</style>
+<style scoped lang="scss"></style>

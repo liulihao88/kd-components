@@ -1,15 +1,14 @@
 <template>
   <div
-    class="el-tree-node"
-    @click.stop="handleClick"
-    @contextmenu="($event) => this.handleContextMenu($event)"
     v-show="node.visible"
+    ref="node"
+    class="el-tree-node"
     :class="{
       'is-expanded': expanded,
       'is-current': node.isCurrent,
       'is-hidden': !node.visible,
       'is-focusable': !node.disabled,
-      'is-checked': !node.disabled && node.checked
+      'is-checked': !node.disabled && node.checked,
     }"
     role="treeitem"
     tabindex="-1"
@@ -17,21 +16,21 @@
     :aria-disabled="node.disabled"
     :aria-checked="node.checked"
     :draggable="tree.draggable"
+    @click.stop="handleClick"
+    @contextmenu="($event) => handleContextMenu($event)"
     @dragstart.stop="handleDragStart"
     @dragover.stop="handleDragOver"
     @dragend.stop="handleDragEnd"
     @drop.stop="handleDrop"
-    ref="node"
   >
-    <div class="el-tree-node__content"
-      :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
+    <div class="el-tree-node__content" :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
       <span
-        @click.stop="handleExpandIconClick"
         :class="[
           { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded },
           'el-tree-node__expand-icon',
-          tree.iconClass ? tree.iconClass : 'el-icon-caret-right'
+          tree.iconClass ? tree.iconClass : 'el-icon-caret-right',
         ]"
+        @click.stop="handleExpandIconClick"
       >
       </span>
       <el-checkbox
@@ -43,28 +42,26 @@
         @change="handleCheckChange"
       >
       </el-checkbox>
-      <span
-        v-if="node.loading"
-        class="el-tree-node__loading-icon el-icon-loading">
-      </span>
+      <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"> </span>
       <node-content :node="node"></node-content>
     </div>
     <el-collapse-transition>
       <div
-        class="el-tree-node__children"
         v-if="!renderAfterExpand || childNodeRendered"
         v-show="expanded"
+        class="el-tree-node__children"
         role="group"
         :aria-expanded="expanded"
       >
         <el-tree-node
-          :render-content="renderContent"
           v-for="child in node.childNodes"
+          :key="getNodeKey(child)"
+          :render-content="renderContent"
           :render-after-expand="renderAfterExpand"
           :show-checkbox="showCheckbox"
-          :key="getNodeKey(child)"
           :node="child"
-          @node-expand="handleChildNodeExpand">
+          @node-expand="handleChildNodeExpand"
+        >
         </el-tree-node>
       </div>
     </el-collapse-transition>
@@ -72,36 +69,16 @@
 </template>
 
 <script type="text/jsx">
-import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition'
-import ElCheckbox from 'element-ui/packages/checkbox'
-import emitter from 'element-ui/src/mixins/emitter'
-import mixinNode from './mixin/node'
-import { getNodeKey } from './model/util'
+import ElCollapseTransition from "element-ui/src/transitions/collapse-transition"
+import ElCheckbox from "element-ui/packages/checkbox"
+import emitter from "element-ui/src/mixins/emitter"
+import mixinNode from "./mixin/node"
+import { getNodeKey } from "./model/util"
 
 export default {
-  name: 'ElTreeNode',
+  name: "ElTreeNode",
 
-  componentName: 'ElTreeNode',
-
-  mixins: [emitter, mixinNode],
-
-  props: {
-    node: {
-      default () {
-        return {}
-      }
-    },
-    props: {},
-    renderContent: Function,
-    renderAfterExpand: {
-      type: Boolean,
-      default: true
-    },
-    showCheckbox: {
-      type: Boolean,
-      default: false
-    }
-  },
+  componentName: "ElTreeNode",
 
   components: {
     ElCollapseTransition,
@@ -109,8 +86,8 @@ export default {
     NodeContent: {
       props: {
         node: {
-          required: true
-        }
+          required: true,
+        },
       },
       render (h) {
         const parent = this.$parent
@@ -122,16 +99,16 @@ export default {
           ? parent.renderContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node, data, store })
           : tree.$scopedSlots.default
             ? tree.$scopedSlots.default({ node, data })
-            : h('span', {
+            : h("span", {
               style: {
-                display: 'inline-block',
-                width: '100%'
-              }
+                display: "inline-block",
+                width: "100%",
+              },
             }, [
-              h('span', {
-                class: 'el-tree-node__label'
+              h("span", {
+                class: "el-tree-node__label",
 
-              }, [data[props.treeLabel || props.label]])
+              }, [data[props.treeLabel || props.label]]),
             ], node[props.treeLabel || props.label])
         /* return (
             parent.renderContent
@@ -140,8 +117,32 @@ export default {
                 ? tree.$scopedSlots.default({ node, data })
                 : <span class="el-tree-node__label">{ node.label }</span>
           ); */
-      }
-    }
+      },
+    },
+  },
+
+  mixins: [emitter, mixinNode],
+
+  props: {
+    node: {
+      type:Object,
+      default () {
+        return {}
+      },
+    },
+    props: {},
+    renderContent: {
+      type:Function,
+      default:null
+    },
+    renderAfterExpand: {
+      type: Boolean,
+      default: true,
+    },
+    showCheckbox: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data () {
@@ -150,37 +151,42 @@ export default {
       expanded: false,
       childNodeRendered: false,
       oldChecked: null,
-      oldIndeterminate: null
+      oldIndeterminate: null,
     }
   },
 
   watch: {
-    'node.indeterminate' (val) {
+    "node.indeterminate" (val) {
       this.handleSelectChange(this.node.checked, val)
     },
 
-    'node.checked' (val) {
+    "node.checked" (val) {
       this.handleSelectChange(val, this.node.indeterminate)
     },
 
-    'node.expanded' (val) {
+    "node.expanded" (val) {
       // eslint-disable-next-line no-return-assign
       this.$nextTick(() => this.expanded = val)
       if (val) {
         this.childNodeRendered = true
       }
-    }
+    },
+  },
+
+  created () {
+    const parent = this.$parent
+    this.creator(parent, "node")
   },
 
   methods: {
     handleDragStart (event) {
       if (!this.tree.draggable) return
-      this.tree.$emit('tree-node-drag-start', event, this)
+      this.tree.$emit("tree-node-drag-start", event, this)
     },
 
     handleDragOver (event) {
       if (!this.tree.draggable) return
-      this.tree.$emit('tree-node-drag-over', event, this)
+      this.tree.$emit("tree-node-drag-over", event, this)
       event.preventDefault()
     },
 
@@ -190,13 +196,8 @@ export default {
 
     handleDragEnd (event) {
       if (!this.tree.draggable) return
-      this.tree.$emit('tree-node-drag-end', event, this)
-    }
+      this.tree.$emit("tree-node-drag-end", event, this)
+    },
   },
-
-  created () {
-    const parent = this.$parent
-    this.creator(parent, 'node')
-  }
 }
 </script>

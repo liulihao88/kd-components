@@ -1,17 +1,17 @@
 <template>
   <div class="example-title">
-    <h3>{{data.title}}</h3>
+    <h3>{{ data.title }}</h3>
     <div class="author">
-      维护人：{{data.maintenance}}
-      <span class="m-l-10" v-if="data.author">开发人: {{data.author}}</span>
+      维护人：{{ data.maintenance }}
+      <span v-if="data.author" class="m-l-10">开发人: {{ data.author }}</span>
     </div>
     <div class="sub-title">
       <span v-if="data.subTitle">
-         {{data.subTitle}}
+        {{ data.subTitle }}
       </span>
       <slot></slot>
     </div>
-    <div class="warning" v-if="warning">
+    <div v-if="warning" class="warning">
       <slot name="warning"></slot>
     </div>
   </div>
@@ -19,23 +19,25 @@
 
 <script>
 export default {
-  name: "ExampleTitle",
+  name: 'ExampleTitle',
   props: {
     data: {
       type: Object,
-      default: {
-        title: 'Input 输入框',
-        maintenance: '', // 维护人
-        author: '', // 开发人
-        subTitle: ''
-      }
+      default: () => {
+        return {
+          title: 'Input 输入框',
+          maintenance: '', // 维护人
+          author: '', // 开发人
+          subTitle: '',
+        };
+      },
     },
     warning: {
       type: Boolean,
-      default: false
-    }
-  }
-}
+      default: false,
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -48,12 +50,12 @@ export default {
     border-left: 5px solid #fe6c6f;
     margin: 20px 0;
   }
-  .author{
-    margin-bottom:10px;
-    font-size:12px;
+  .author {
+    margin-bottom: 10px;
+    font-size: 12px;
     font-style: italic;
   }
-  .sub-title{
+  .sub-title {
     font-size: 14px;
     color: #5e6d82;
     line-height: 1.5em;
@@ -63,7 +65,7 @@ export default {
     padding: 0 4px;
     border: 1px solid #eaeefb;
     border-radius: 4px;
-    background-color: hsla(0,0%,100%,.7);
+    background-color: hsla(0, 0%, 100%, 0.7);
     color: #445368;
   }
 }

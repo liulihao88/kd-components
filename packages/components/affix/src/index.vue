@@ -1,38 +1,34 @@
 <template>
-  <div
-    class="kj-affix-footer"
-    v-bind="$attrs"
-    :style="boxStyle"
-  >
-    <slot />
+  <div class="kj-affix-footer" v-bind="$attrs" :style="boxStyle">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "KdAffix",
+  name: 'KdAffix',
   props: {
     offsetTop: {
-      type: [String, Number, undefined]
+      type: [String, Number, undefined],
     },
     offsetBottom: {
       type: [String, Number],
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
     boxStyle() {
       // console.log(typeof this.offsetTop, 1222);
-      if(typeof this.offsetTop === "string" || typeof this.offsetTop === "number") {
+      if (typeof this.offsetTop === 'string' || typeof this.offsetTop === 'number') {
         return {
-          top: this.offsetTop
-        }
+          top: this.offsetTop,
+        };
       } else {
         return {
-          bottom: this.offsetBottom
-        }
+          bottom: this.offsetBottom,
+        };
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

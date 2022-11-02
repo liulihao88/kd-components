@@ -1,6 +1,6 @@
 <template>
   <div class="kd-title f-bt" :style="{ ...handleMargin, ...customStyle }">
-    <div class="title f" ref="titleRef">
+    <div ref="titleRef" class="title f">
       <div>{{ title }}</div>
       <slot></slot>
     </div>
@@ -23,16 +23,17 @@
 ></kd-title>
 */
 export default {
-  name: "KdTitle",
+  name: 'KdTitle',
+  components: {},
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     // 左侧竖条颜色
     color: {
       type: String,
-      default: "",
+      default: '',
     },
     customStyle: {
       type: Object,
@@ -40,21 +41,20 @@ export default {
     },
     size: {
       type: String,
-      default: "", // 默认margin 16px 0
+      default: '', // 默认margin 16px 0
     },
   },
   data() {
     return {};
   },
-  components: {},
   computed: {
     handleMargin() {
-      if (this.size === "none") {
-        return { margin: "0"};
-      } else if (this.size === "small") {
-        return { margin: "8px 0" };
-      } else if (this.size === "large") {
-        return { margin: "24px 0" };
+      if (this.size === 'none') {
+        return { margin: '0' };
+      } else if (this.size === 'small') {
+        return { margin: '8px 0' };
+      } else if (this.size === 'large') {
+        return { margin: '24px 0' };
       } else {
         return {};
       }

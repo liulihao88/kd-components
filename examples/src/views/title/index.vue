@@ -5,7 +5,7 @@
       title="我是title"
       style="--lc: red"
       class="bd-b-1"
-      :customStyle="{
+      :custom-style="{
         fontSize: '12px',
         padding: '10px 0px',
       }"
@@ -22,12 +22,12 @@
 
 <script>
 export default {
-  name: "Index",
+  name: 'Index',
+  components: {},
   props: {},
   data() {
     return {};
   },
-  components: {},
   computed: {},
   watch: {},
   created() {},

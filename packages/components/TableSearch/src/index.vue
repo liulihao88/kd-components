@@ -1,50 +1,56 @@
 <template>
-<div class="kd-table-search">
-  <div class="first-row">
-    <div class="left">
-      <div class="form">
-        <slot></slot>
+  <div class="kd-table-search">
+    <div class="first-row">
+      <div class="left">
+        <div class="form">
+          <slot></slot>
+        </div>
+        <el-button type="primary" @click="onSearch">查询</el-button>
+        <el-button @click="onReset">重置</el-button>
+        <el-button
+          v-if="hasMore"
+          type="text"
+          :icon="isFold ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
+          @click="onFold"
+          >{{ isFold ? '高级搜索' : '收起' }}</el-button
+        >
       </div>
-      <el-button type="primary" @click="onSearch">查询</el-button>
-      <el-button @click="onReset">重置</el-button>
-      <el-button type="text" v-if="hasMore" :icon="isFold?'el-icon-arrow-down':'el-icon-arrow-up'" @click="onFold">{{ isFold?'高级搜索':'收起' }}</el-button>
+      <div class="right">
+        <slot name="right"></slot>
+      </div>
     </div>
-    <div class="right">
-      <slot name="right"></slot>
+    <div v-show="!isFold" ref="moreRow" class="more-row">
+      <slot name="more"></slot>
     </div>
   </div>
-  <div class="more-row" v-show="!isFold" ref="moreRow">
-    <slot name="more"></slot>
-  </div>
-</div>
 </template>
 
 <script>
-import { get } from "lodash";
+import { get } from 'lodash';
 
 export default {
-  name: "KdTableSearch",
+  name: 'KdTableSearch',
   data() {
     return {
-      isFold:true, // 是否折叠
+      isFold: true, // 是否折叠
     };
   },
   computed: {
-    hasMore(){
-      return get(this.$slots,'more.length')>0
-    }
+    hasMore() {
+      return get(this.$slots, 'more.length') > 0;
+    },
   },
   methods: {
-    onFold(){
-      this.isFold=!this.isFold;
-      this.$emit('onFold',this.isFold);
+    onFold() {
+      this.isFold = !this.isFold;
+      this.$emit('onFold', this.isFold);
     },
-    onSearch(){
+    onSearch() {
       this.$emit('onSearch');
     },
-    onReset(){
+    onReset() {
       this.$emit('onReset');
-    }
-  }
-}
+    },
+  },
+};
 </script>

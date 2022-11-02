@@ -6,24 +6,22 @@
     <h5>基础用法</h5>
     <kd-tree-single
       v-model="form.checkFiled"
-      :tableData="form.option"
+      :table-data="form.option"
       :default-props="defaultProps"
       node-key="name"
       placeholder="请选择要映射的字段"
-    />
-    <example-code :source="source1">
-      上面示例中展示了操作列组件的各种使用方法。
-    </example-code>
+    ></kd-tree-single>
+    <example-code :source="source1"> 上面示例中展示了操作列组件的各种使用方法。 </example-code>
   </div>
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
-import source1 from "./source/source1.md";
+import ExampleCode from '../../components/ExampleCode';
+import source1 from './source/source1.md';
 export default {
-  name: "Index",
+  name: 'Index',
   components: {
-    ExampleCode
+    ExampleCode,
   },
   data() {
     return {
@@ -31,29 +29,29 @@ export default {
       form: {
         option: [
           {
-            name: "lisi"
+            name: 'lisi',
           },
           {
-            name: "aaa",
+            name: 'aaa',
             children: [
               {
-                name: "a111"
-              }
-            ]
-          }
+                name: 'a111',
+              },
+            ],
+          },
         ], // 字段下拉
-        checkFiled: "" // 被选择的内容
+        checkFiled: '', // 被选择的内容
       },
       /**
        * 映射字段，可自定义
        */
       defaultProps: {
-        value: "name",
-        label: "name"
-      }
+        value: 'name',
+        label: 'name',
+      },
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>

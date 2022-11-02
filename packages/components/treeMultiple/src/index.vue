@@ -23,14 +23,14 @@
         :label="item[defaultProps.label]"
         style="height: auto"
         hidden
-      />
+      ></el-option>
       <div class="search-style">
         <el-input
           v-model="searchValue"
           placeholder="输入关键字搜索"
           suffix-icon="el-icon-search"
           @input="filterMethod"
-        />
+        ></el-input>
       </div>
       <el-tree
         ref="orgTree"
@@ -42,7 +42,7 @@
         :filter-node-method="filterNode"
         :default-expanded-keys="expandedKeys"
         @check="handleCheckChange"
-      />
+      ></el-tree>
     </el-select>
   </div>
 </template>
@@ -50,17 +50,17 @@
 <script>
 // import { getOrgList } from '@/server/orgApi'
 export default {
-  name: "KdTreeMultiple",
+  name: 'KdTreeMultiple',
   props: {
     value: {
       type: [Array, Number, String, Object],
       default() {
-          return []
+        return [];
       },
     },
     isObject: {
       type: Boolean,
-      default: true
+      default: true,
     },
     tableData: {
       type: Array,
@@ -74,7 +74,7 @@ export default {
     },
     nodeKey: {
       type: String,
-      default: "id", // 当isObject为true时，一定要配置该字段
+      default: 'id', // 当isObject为true时，一定要配置该字段
     },
     edit: {
       type: Boolean,
@@ -84,82 +84,82 @@ export default {
       type: Object,
       default() {
         return {
-          value: "id",
-          label: "name",
-          children: "children",
+          value: 'id',
+          label: 'name',
+          children: 'children',
         };
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       checkList: [],
-      searchValue: ''
+      searchValue: '',
     };
   },
   computed: {
     expandedKeys() {
-      return Array.from(this.checkList, item => item[this.defaultProps.value])
+      return Array.from(this.checkList, (item) => item[this.defaultProps.value]);
     },
     checkLists() {
-      return this.checkList.length <= 0 ? [{}] : this.checkList.slice()
+      return this.checkList.length <= 0 ? [{}] : this.checkList.slice();
     },
     pIds: {
       get() {
-        let nowValue = Array.isArray(this.value) ? this.value.slice() : []
+        let nowValue = Array.isArray(this.value) ? this.value.slice() : [];
         this.$nextTick(() => {
-          if(this.isObject) {
-            this.checkList = nowValue
-            this.$refs.orgTree.setCheckedNodes(nowValue)
-            this.$emit("change", nowValue, this.expandedKeys)
+          if (this.isObject) {
+            this.checkList = nowValue;
+            this.$refs.orgTree.setCheckedNodes(nowValue);
+            this.$emit('change', nowValue, this.expandedKeys);
           } else {
-            this.checkList = Array.from(nowValue, item => this.$refs.orgTree.getNode(item).data)
-            this.$refs.orgTree.setCheckedKeys(nowValue)
-            this.$emit("change", nowValue, nowValue)
+            this.checkList = Array.from(nowValue, (item) => this.$refs.orgTree.getNode(item).data);
+            this.$refs.orgTree.setCheckedKeys(nowValue);
+            this.$emit('change', nowValue, nowValue);
           }
-        })
+        });
         return nowValue;
       },
       set(v) {
-        this.$emit("input", JSON.parse(JSON.stringify(v)))
+        this.$emit('input', JSON.parse(JSON.stringify(v)));
       },
     },
   },
   methods: {
     handleCheckChange(data) {
-      let nodes = this.$refs.orgTree.getCheckedNodes(true)
-      let filterData = nodes
+      let nodes = this.$refs.orgTree.getCheckedNodes(true);
+      let filterData = nodes;
       /**
        * 设置edit,说明拿到的数据，在外部会再次被增删改，不设置不进行比对。节省资源
        */
-      if(this.edit) {
+      if (this.edit) {
         // 当数据增加时,合并数据
-        if(this.pIds.length < nodes.length) {
-          let pidValues = Array.from(this.pIds, item => item[this.nodeKey])
-          filterData = Array.from(nodes, item => {
-            let nodeIndex = pidValues.findIndex(pidItem => pidItem === item[this.nodeKey])
-            if(nodeIndex >= 0) {
-              return this.pIds[nodeIndex]
+        if (this.pIds.length < nodes.length) {
+          let pidValues = Array.from(this.pIds, (item) => item[this.nodeKey]);
+          filterData = Array.from(nodes, (item) => {
+            let nodeIndex = pidValues.findIndex((pidItem) => pidItem === item[this.nodeKey]);
+            if (nodeIndex >= 0) {
+              return this.pIds[nodeIndex];
             } else {
-              return item
+              return item;
             }
-          })
-        } else if(this.pIds.length > nodes.length) {
+          });
+        } else if (this.pIds.length > nodes.length) {
           // 当数据减少时,过滤删除的数据
-          let nodeValues = Array.from(nodes, item => item[this.nodeKey])
-          filterData = this.pIds.filter(item => nodeValues.includes(item[this.nodeKey]))
+          let nodeValues = Array.from(nodes, (item) => item[this.nodeKey]);
+          filterData = this.pIds.filter((item) => nodeValues.includes(item[this.nodeKey]));
         }
       }
-      this.checkList = filterData
-      if(this.isObject) {
+      this.checkList = filterData;
+      if (this.isObject) {
         this.pIds = filterData.slice();
       } else {
-        this.pIds = this.$refs.orgTree.getCheckedKeys(true)
+        this.pIds = this.$refs.orgTree.getCheckedKeys(true);
       }
-      this.$emit('currentNode',data)
+      this.$emit('currentNode', data);
     },
     tagRemove(value) {
-      this.$emit('currentNode',value)
+      this.$emit('currentNode', value);
     },
     filterMethod(query) {
       this.$refs.orgTree.filter(query);

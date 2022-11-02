@@ -1,4 +1,4 @@
-import Step from "./src/index.vue";
+import Step from './src/index.vue';
 
 Step.install = (Vue) => Vue.component(Step.name, Step);
 

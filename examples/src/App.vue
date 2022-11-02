@@ -1,11 +1,18 @@
 <template>
   <div id="app">
     <ul class="nav">
-      <li v-for="item in Object.keys(docName)">
-        <a :href="`#${item}`" @click="changeLocationHash(item)" :class="{active: navActive(item) }">{{ docName[item] }}</a>
+      <li v-for="(item, index) in Object.keys(docName)" :key="index">
+        <a :href="`#${item}`" :class="{ active: navActive(item) }" @click="changeLocationHash(item)">{{
+          docName[item]
+        }}</a>
       </li>
       <li v-for="item in comArr" :key="item">
-        <a :href="`#${item}`" @click="changeLocationHash(item)" :class="{active: navActive(item) }"  v-text="replaceName(item)"></a>
+        <a
+          :href="`#${item}`"
+          :class="{ active: navActive(item) }"
+          @click="changeLocationHash(item)"
+          v-text="replaceName(item)"
+        ></a>
       </li>
     </ul>
     <section class="container">
@@ -44,7 +51,7 @@ import { deepClone } from 'utils';
 
 const constantModulesMd = require.context('./views', true, /index\.md$/);
 const constantModules = require.context('./views', true, /index.vue$/);
-import './components'
+import './components';
 
 const { mds } = requireMd(constantModulesMd);
 const { components, names } = requireComponents(constantModules, []);
@@ -60,7 +67,7 @@ export default {
   name: 'App',
   components: {
     VueMarkdown,
-    ...components
+    ...components,
   },
   data() {
     return {
@@ -69,7 +76,7 @@ export default {
       docName: docName,
       docMd: docMd,
       isDev: false,
-      locationHash: ''
+      locationHash: '',
     };
   },
   created() {
@@ -83,7 +90,7 @@ export default {
     this.$nextTick(() => {
       let hash = document.location.hash;
       if (hash) {
-        this.locationHash = hash
+        this.locationHash = hash;
         document.querySelector(hash).scrollIntoView(true);
       }
     });
@@ -94,7 +101,6 @@ export default {
         this.comArr = this.comArr.filter((v) => {
           if (v.endsWith('Test')) {
             return false;
-
           } else {
             return true;
           }
@@ -102,10 +108,10 @@ export default {
       }
     },
     changeLocationHash(item) {
-      this.locationHash = `#${item}`
+      this.locationHash = `#${item}`;
     },
     navActive(item) {
-      return this.locationHash === `#${item}`
+      return this.locationHash === `#${item}`;
     },
     hideComps() {
       //  将希望显示的组件放在第一位
@@ -118,8 +124,7 @@ export default {
         let str = 'test';
         let res = [];
         for (let i = 0; i < compName.length; i++) {
-          let strRes =
-            str + compName[i][0].toUpperCase() + compName[i].slice(1);
+          let strRes = str + compName[i][0].toUpperCase() + compName[i].slice(1);
           res.push(strRes);
         }
         this.comArr = spliceNames.filter((v) => {
@@ -144,8 +149,8 @@ export default {
       this.$i18n.locale = 'en';
       localStorage.setItem('lang', 'en');
       location.reload();
-    }
-  }
+    },
+  },
 };
 </script>
 

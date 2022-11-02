@@ -1,4 +1,4 @@
-import SlidePanel from "./src/index.vue";
+import SlidePanel from './src/index.vue';
 
 SlidePanel.install = (Vue) => Vue.component(SlidePanel.name, SlidePanel);
 

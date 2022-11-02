@@ -1,8 +1,9 @@
 <template>
-  <div v-show="show"
-       class="kd-page-title"
-       :class="{ 'border-bottom': border }"
-       :style="{height:height,padding:padding}"
+  <div
+    v-show="show"
+    class="kd-page-title"
+    :class="{ 'border-bottom': border }"
+    :style="{ height: height, padding: padding }"
   >
     <div class="left">
       <slot name="left" :data="routeInfo">
@@ -21,54 +22,54 @@
 </template>
 
 <script>
-import {get} from "lodash";
+import { get } from 'lodash';
 export default {
-  name: "KdPageTitle",
+  name: 'KdPageTitle',
   props: {
-    show:{
-      type:Boolean,
-      default:true
+    show: {
+      type: Boolean,
+      default: true,
     },
-    height:{
-      type:String,
-      default:"44px"
+    height: {
+      type: String,
+      default: '44px',
     },
-    padding:{
-      type:String,
-      default:"0 24px"
+    padding: {
+      type: String,
+      default: '0 24px',
     },
     border: {
-      type:Boolean,
-      default:true
+      type: Boolean,
+      default: true,
     },
     title: {
       type: String,
-      default: "",
+      default: '',
     },
-    titleStyles:{
-      type:Object,
-      default:()=>{
-        return {}
-      }
-    }
+    titleStyles: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   data() {
     return {
-      routeTitle: "",
-      routeInfo:{}
+      routeTitle: '',
+      routeInfo: {},
     };
   },
   watch: {
     $route: {
       handler(route) {
-        if(!route) return
-        console.info('kd-page-title [info] current page title：',get(route,'meta.title'))
-        this.routeInfo=route;
-        this.routeTitle=get(route,'meta.title')||''
+        if (!route) return;
+        console.info('kd-page-title [info] current page title：', get(route, 'meta.title'));
+        this.routeInfo = route;
+        this.routeTitle = get(route, 'meta.title') || '';
       },
       immediate: true,
-      deep:true
+      deep: true,
     },
   },
-}
+};
 </script>

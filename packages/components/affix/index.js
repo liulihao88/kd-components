@@ -1,4 +1,4 @@
-import Affix from "./src/index.vue";
+import Affix from './src/index.vue';
 
 Affix.install = (Vue) => Vue.component(Affix.name, Affix);
 

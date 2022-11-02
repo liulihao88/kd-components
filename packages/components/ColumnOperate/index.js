@@ -1,4 +1,4 @@
-import ColumnOperate from "./src/index.vue";
+import ColumnOperate from './src/index.vue';
 
 ColumnOperate.install = (Vue) => Vue.component(ColumnOperate.name, ColumnOperate);
 

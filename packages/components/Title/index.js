@@ -1,4 +1,4 @@
-import Title from "./src/index.vue";
+import Title from './src/index.vue';
 
 Title.install = (Vue) => Vue.component(Title.name, Title);
 

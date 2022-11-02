@@ -1,6 +1,6 @@
 <template>
   <div>
-    <example-title :data="{title: '行选择器（多选）',maintenance: '刘云'}" warning>
+    <example-title :data="{ title: '行选择器（多选）', maintenance: '刘云' }" warning>
       行选择器（多选），由于业务场景中目前只有多选情况，所以原row-select即将弃用且不再更新。
       如果有单选场景，会再增加row-select-single组件。单选与多选逻辑混合在一起时过于复杂，不便维护。
       <template #warning>row-select即将弃用且不再更新</template>
@@ -10,9 +10,7 @@
     <div class="example-wrap">
       <kd-row-select-multiple v-model="value1" :options="tagData"></kd-row-select-multiple>
     </div>
-    <example-code :source="source1">
-      设置 v-model/value 和 options 选项数组即可；
-    </example-code>
+    <example-code :source="source1"> 设置 v-model/value 和 options 选项数组即可； </example-code>
 
     <h5>全局配置</h5>
     <div class="example-wrap">
@@ -27,51 +25,51 @@
     <h5>label配置</h5>
     <div class="example-wrap">
       <kd-row-select-multiple
-          v-model="value1"
-          :options="tagData"
-          label-width="10em"
-          label-align="right"
-          label-text="一级业务线"
-          separator
-          :label-styles="labelStyles"
+        v-model="value1"
+        :options="tagData"
+        label-width="10em"
+        label-align="right"
+        label-text="一级业务线"
+        separator
+        :label-styles="labelStyles"
       >
       </kd-row-select-multiple>
     </div>
     <example-code :source="source3">
-      通过 label-text 配置label显示文字； label-width 控制label的宽度，默认值为auto； 通过 label-align 控制label文字水平对齐
-      方式，可选值同css text-align，默认为left，只有在配置了label-width时才会生效；label-styles 接受一个对象，用来配置label样式；
-      separator用来控制是否显示label分隔符，目前只支持冒号（:）分隔符
+      通过 label-text 配置label显示文字； label-width 控制label的宽度，默认值为auto； 通过 label-align
+      控制label文字水平对齐 方式，可选值同css text-align，默认为left，只有在配置了label-width时才会生效；label-styles
+      接受一个对象，用来配置label样式； separator用来控制是否显示label分隔符，目前只支持冒号（:）分隔符
     </example-code>
 
     <h5>折叠按钮配置</h5>
     <div class="example-wrap">
       <kd-row-select-multiple
-          v-model="value1"
-          :options="tagData"
-          fold-text="打开"
-          unfold-text="收起"
-          icon-position="right"
-          :btn-styles="labelStyles"
+        v-model="value1"
+        :options="tagData"
+        fold-text="打开"
+        unfold-text="收起"
+        icon-position="right"
+        :btn-styles="labelStyles"
       >
       </kd-row-select-multiple>
     </div>
     <example-code :source="source4">
-      fold-text/unfold-text 分别控制折叠状态/展开状态下按钮文字；<br />icon-position 控制图标位置，可选值：left/right；<br />btn-styles
-      接受一个对象，用来配置按钮文字样式，不包括图标；
+      fold-text/unfold-text 分别控制折叠状态/展开状态下按钮文字；<br />icon-position
+      控制图标位置，可选值：left/right；<br />btn-styles 接受一个对象，用来配置按钮文字样式，不包括图标；
     </example-code>
 
     <h5>选项配置</h5>
     <div class="example-wrap">
       <kd-row-select-multiple
-          v-model="value1"
-          :options="tagData"
-          active-text-color="blue"
-          active-bg-color="yellow"
-          hover-bg-color="red"
-          hover-text-color="blue"
-          :line-height="40"
-          item-width="20"
-          item-max-width="50"
+        v-model="value1"
+        :options="tagData"
+        active-text-color="blue"
+        active-bg-color="yellow"
+        hover-bg-color="red"
+        hover-text-color="blue"
+        :line-height="40"
+        item-width="20"
+        item-max-width="50"
       >
       </kd-row-select-multiple>
     </div>
@@ -79,22 +77,16 @@
       选项集合options默认情况下应该是 [{label:'',value:''}] 格式，通过 label-name/key-name 可指定label、key字段；<br />
       "全部"选项是一个特殊选项，不包含在options内，是根据业务需求在组件内部添加的额外选项，它的key为"$all"，按现有的业务需求，
       选择全部时返回值为空数组（[]）；<br />
-      active-text-color/active-bg-color 分别控制选项在选中状态下的文字颜色/背景颜色；
-      hover-text-color/hover-bg-color 分别控制选项在 hover 状态下的文字颜色/背景颜色；
-      line-height 控制选项行高；<br />
-      item-width/item-max-width 控制选项宽度/最大宽度，可按需求使用，item-width优先级更高；
-      overflow 可控制当选项内容超宽时的显示行为；<br />
+      active-text-color/active-bg-color 分别控制选项在选中状态下的文字颜色/背景颜色； hover-text-color/hover-bg-color
+      分别控制选项在 hover 状态下的文字颜色/背景颜色； line-height 控制选项行高；<br />
+      item-width/item-max-width 控制选项宽度/最大宽度，可按需求使用，item-width优先级更高； overflow
+      可控制当选项内容超宽时的显示行为；<br />
       item-styles 接受一个对象，用来配置选项样式，注意不要更改width、height属性，会与内置配置项引起冲突
     </example-code>
 
     <h5>折叠/展开</h5>
     <div class="example-wrap">
-      <kd-row-select-multiple
-          ref="rowSelectMultiple"
-          v-model="value1"
-          :options="tagData"
-      >
-      </kd-row-select-multiple>
+      <kd-row-select-multiple ref="rowSelectMultiple" v-model="value1" :options="tagData"> </kd-row-select-multiple>
       <el-button @click="triggerSelect">展开/折叠</el-button>
       <el-button @click="triggerSelect('open')">展开</el-button>
       <el-button @click="triggerSelect('close')">折叠</el-button>
@@ -114,15 +106,15 @@
           <div v-show="showMain" class="main transition-box">
             <template v-for="(value, key) in showConfig">
               <kd-row-select-multiple
-                  :key="key"
-                  v-model="value.value"
-                  label-width="5em"
-                  :label-text="value.label"
-                  label-align="right"
-                  separator
-                  :default-lines="2"
-                  :options="value.options"
-                  icon-position="right"
+                :key="key"
+                v-model="value.value"
+                label-width="5em"
+                :label-text="value.label"
+                label-align="right"
+                separator
+                :default-lines="2"
+                :options="value.options"
+                icon-position="right"
               ></kd-row-select-multiple>
             </template>
           </div>
@@ -136,69 +128,69 @@
 </template>
 
 <script>
-import source1 from "./source/source1.md";
-import source2 from "./source/source2.md";
-import source3 from "./source/source3.md";
-import source4 from "./source/source4.md";
-import source5 from "./source/source5.md";
-import source6 from "./source/source6.md";
-import source7 from "./source/source7.md";
-  let arr = []
-  for (let i = 0; i < 20; i++) {
-    arr.push({ label: 'item' + i, value: i + '' })
-  }
-  export default {
-    name: 'Index',
-    data() {
-      return {
-        value1: ['2', '4'],
-        tagData: arr,
-        labelStyles:{
-          background:"#eee",
-          color:'red',
-          fontSize:"10px",
-        },
-        source1,
-        source2,
-        source3,
-        source4,
-        source5,
-        source6,
-        source7,
-        showConfig:{
-          o1:{
-            value:[],
-            label:'主题',
-            options:arr.slice(0,20)
-          },
-          o2:{
-            value:[],
-            label:'项目',
-            options:arr.slice(0,10)
-          },
-          o3:{
-            value:[],
-            label:'业务线',
-            options:arr.slice(0,15)
-          }
-        },
-        showMain:true
-      }
-    },
-    methods: {
-      triggerSelect(type){
-        this.$refs.rowSelectMultiple.trigger(type)
+import source1 from './source/source1.md';
+import source2 from './source/source2.md';
+import source3 from './source/source3.md';
+import source4 from './source/source4.md';
+import source5 from './source/source5.md';
+import source6 from './source/source6.md';
+import source7 from './source/source7.md';
+let arr = [];
+for (let i = 0; i < 20; i++) {
+  arr.push({ label: 'item' + i, value: i + '' });
+}
+export default {
+  name: 'Index',
+  data() {
+    return {
+      value1: ['2', '4'],
+      tagData: arr,
+      labelStyles: {
+        background: '#eee',
+        color: 'red',
+        fontSize: '10px',
       },
-      triggerFold() {
-        this.showMain = !this.showMain;
-      }
+      source1,
+      source2,
+      source3,
+      source4,
+      source5,
+      source6,
+      source7,
+      showConfig: {
+        o1: {
+          value: [],
+          label: '主题',
+          options: arr.slice(0, 20),
+        },
+        o2: {
+          value: [],
+          label: '项目',
+          options: arr.slice(0, 10),
+        },
+        o3: {
+          value: [],
+          label: '业务线',
+          options: arr.slice(0, 15),
+        },
+      },
+      showMain: true,
+    };
+  },
+  methods: {
+    triggerSelect(type) {
+      this.$refs.rowSelectMultiple.trigger(type);
     },
-  }
+    triggerFold() {
+      this.showMain = !this.showMain;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
-.example-wrap{
-  width:600px;
-  margin-bottom:20px;
+.example-wrap {
+  width: 600px;
+  margin-bottom: 20px;
 }
 .advanced-wrap {
   border: 1px solid var(--line-color);

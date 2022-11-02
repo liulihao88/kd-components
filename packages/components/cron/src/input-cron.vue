@@ -1,19 +1,8 @@
 <template>
   <div class="input-cron">
-    <el-input
-      v-model="editCronValueTrunk"
-      :placeholder="placeholder"
-      style="width: auto"
-      :disabled="disabled"
-    >
+    <el-input v-model="editCronValueTrunk" :placeholder="placeholder" style="width: auto" :disabled="disabled">
       <template slot="append">
-        <el-button
-          type="primary"
-          :disabled="disabled"
-          @click="showDialog"
-        >
-          配置cron
-        </el-button>
+        <el-button type="primary" :disabled="disabled" @click="showDialog"> 配置cron </el-button>
       </template>
     </el-input>
     <DragDialog
@@ -21,10 +10,10 @@
       :title="dialog.title"
       :width="width"
       :buttons="dialog.buttons"
+      v-bind="$attrs"
       @cancel="cancel"
       @confirm="confirm"
       @afterClose="afterClose"
-      v-bind="$attrs"
       v-on="$listeners"
     >
       <div class="cron-mode">
@@ -34,29 +23,29 @@
           :hide-year="hideYear"
           :remote="remote"
           :hide-second="hideSecond"
-        />
+        ></easy-cron>
       </div>
     </DragDialog>
   </div>
 </template>
 
 <script>
-import EasyCron from "./index.vue";
-import DragDialog from "@kd/components/Dialog/src/index.vue";
+import EasyCron from './index.vue';
+import DragDialog from '@kd/components/Dialog/src/index.vue';
 export default {
-  name: "KdCron",
+  name: 'KdCron',
   components: {
     EasyCron,
     DragDialog,
   },
   model: {
-    prop: "value",
-    event: "input",
+    prop: 'value',
+    event: 'input',
   },
   props: {
     value: {
       type: String,
-      default: "",
+      default: '',
     },
     width: {
       type: String,
@@ -64,7 +53,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "请输入cron表达式",
+      default: '请输入cron表达式',
     },
     disabled: {
       type: Boolean,
@@ -92,13 +81,13 @@ export default {
       editCronValue: this.value,
       dialog: {
         show: false,
-        title: "配置Cron表达式",
+        title: '配置Cron表达式',
         buttons: [
-          { text: "确定", className: "xa-bg-ok-click", clickEvent: "confirm" },
+          { text: '确定', className: 'xa-bg-ok-click', clickEvent: 'confirm' },
           {
-            text: "取消",
-            className: "xa-bg-cancel-click",
-            clickEvent: "cancel",
+            text: '取消',
+            className: 'xa-bg-cancel-click',
+            clickEvent: 'cancel',
           },
         ],
       },
@@ -107,36 +96,35 @@ export default {
   computed: {
     editCronValueTrunk: {
       get() {
-        return this.value
+        return this.value;
       },
       set(v) {
-        this.$emit("input", v);
-        this.$emit("change", v);
-      }
-    }
+        this.$emit('input', v);
+        this.$emit('change', v);
+      },
+    },
   },
   methods: {
     showDialog() {
       this.dialog.show = true;
       if (!this.value) {
-        this.editCronValue = "0 0 0 * * ? *";
+        this.editCronValue = '0 0 0 * * ? *';
       } else {
-        this.editCronValue = this.value
+        this.editCronValue = this.value;
       }
     },
     cancel() {
       this.dialog.show = false;
-      this.editCronValueTrunk = this.value
+      this.editCronValueTrunk = this.value;
     },
     confirm() {
-      this.editCronValueTrunk = this.editCronValue
+      this.editCronValueTrunk = this.editCronValue;
       this.dialog.show = false;
     },
     // 右上角关闭
     afterClose() {
-      this.$emit("change", this.value);
-    }
+      this.$emit('change', this.value);
+    },
   },
 };
 </script>
-

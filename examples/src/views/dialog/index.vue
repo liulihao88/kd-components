@@ -2,11 +2,10 @@
   <div class="box">
     <el-button @click="isShow = true">简单弹框</el-button>
     <el-button @click="isShow1 = true">自定义title和footer</el-button>
-    <el-button @click="isShow2 = true" type="primary">复杂弹框</el-button>
-    <kd-dialog :visible.sync="isShow" theme="norm16" title="提示" ref="dialogRef" class="easy_use">
-    </kd-dialog>
+    <el-button type="primary" @click="isShow2 = true">复杂弹框</el-button>
+    <kd-dialog ref="dialogRef" :visible.sync="isShow" theme="norm16" title="提示" class="easy_use"> </kd-dialog>
 
-    <kd-dialog :visible.sync="isShow1" title="提示" ref="dialogRef">
+    <kd-dialog ref="dialogRef" :visible.sync="isShow1" title="提示">
       <template slot="title">
         <div>自定义title <span style="color: red">开心</span></div>
       </template>
@@ -17,25 +16,25 @@
     </kd-dialog>
 
     <kd-dialog
+      ref="dialogRef2"
       :visible.sync="isShow2"
       title="复杂提示"
-      showFullscreen
-      ref="dialogRef2"
+      show-fullscreen
       width="1000"
-      :confirmAttrs="{
+      :confirm-attrs="{
         type: 'danger',
         size: 'mini',
         disabled: true,
       }"
     >
-      <el-button @click="isShow3 = true" type="primary">复杂用法</el-button>
+      <el-button type="primary" @click="isShow3 = true">复杂用法</el-button>
       <kd-dialog
         :visible.sync="isShow3"
-        showFullscreen
+        show-fullscreen
         append-to-body
         :close-on-click-modal="false"
-        confirmText="提交按钮1"
-        cancelText="取消按钮2"
+        confirm-text="提交按钮1"
+        cancel-text="取消按钮2"
         title="哈哈"
         top="25vh"
       >
@@ -48,26 +47,24 @@
 <script>
 export default {
   name: 'Index',
+  components: {},
   props: {},
   data() {
     return {
       isShow: false,
       isShow2: false,
       isShow3: false,
-      isShow1: false
+      isShow1: false,
     };
   },
   watch: {},
-  components: {},
   created() {},
   mounted() {},
-  methods: {
-   
-  }
+  methods: {},
 };
 </script>
 <style scoped lang="scss">
-.easy_use ::v-deep .el-dialog__footer{
+.easy_use ::v-deep .el-dialog__footer {
   border-top: none;
 }
 </style>

@@ -6,21 +6,18 @@
       </div>
       <div class="jt_btns">
         <slot name="create"></slot>
-        <el-tooltip
-          :content="defaultProps.createTitle || '创建分组'"
-          placement="top"
-        >
+        <el-tooltip :content="defaultProps.createTitle || '创建分组'" placement="top">
           <i
             v-if="defaultProps.showCreate !== false"
             class="kd-icon-xinjianwenjianjia cp"
             :class="defaultProps.createIcon || 'kd-icon-xinjianwenjianjia'"
             @click="create"
-          />
+          ></i>
         </el-tooltip>
       </div>
     </div>
     <!-- 搜索框上边的插槽 -->
-    <slot name="top" />
+    <slot name="top"></slot>
     <div v-if="defaultProps.showSearch !== false" class="jt_search">
       <el-input
         v-model="queryTxt"
@@ -28,7 +25,7 @@
         size="small"
         :placeholder="defaultProps.placeholder || '请输入'"
         suffix-icon="el-icon-search"
-      />
+      ></el-input>
     </div>
     <div ref="treeScrollComp" class="jt_body">
       <el-tree
@@ -38,11 +35,11 @@
         :data="sTreeData"
         :node-key="nodeKey"
         v-bind="$attrs"
-        v-on="$listeners"
         highlight-current
         :expand-on-click-node="!($attrs.expandOnClickNode !== false)"
         :default-expanded-keys="expandedKeys"
         :filter-node-method="filterNode"
+        v-on="$listeners"
         @node-click="nodeClick"
         @node-expand="nodeExpand"
         @node-collapse="nodeCollapse"
@@ -56,9 +53,9 @@
                   :class="[
                     node.expanded
                       ? defaultProps.openIcon || 'kd-icon-wenjianjiazhankai'
-                      : defaultProps.closeIcon || 'kd-icon-wenjianjia'
+                      : defaultProps.closeIcon || 'kd-icon-wenjianjia',
                   ]"
-                />
+                ></i>
               </slot>
             </div>
             <div class="slot_box">
@@ -70,11 +67,7 @@
           <!-- @click.stop="() => {}" -->
           <slot name="btns" :data="data" :node="node">
             <div
-              v-if="
-                defaultProps.btns &&
-                defaultProps.btns.length > 0 &&
-                showBtns(data, node)
-              "
+              v-if="defaultProps.btns && defaultProps.btns.length > 0 && showBtns(data, node)"
               class="right_icon_box"
               @click.stop="() => {}"
             >
@@ -84,24 +77,18 @@
                 :hide-on-click="false"
                 @visible-change="btnShowHandler($event, node, data)"
               >
-                <i
-                  class="kd-icon-ellipsis"
-                  style="color: #365edf"
-                  @click="ellipsisHandler(node, data)"
-                />
+                <i class="kd-icon-ellipsis" style="color: #365edf" @click="ellipsisHandler(node, data)"></i>
                 <el-dropdown-menu slot="dropdown">
                   <div v-for="(btn, index) in defaultProps.btns" :key="index">
                     <template v-if="btn.useSlot">
                       <el-dropdown-item v-if="btn.useSlot">
-                        <slot :name="btn.key" :data="data" :node="node" />
+                        <slot :name="btn.key" :data="data" :node="node"></slot>
                       </el-dropdown-item>
                     </template>
                     <template v-else-if="btn.confirmInfo">
                       <el-dropdown-item>
                         <el-popover
-                          v-if="
-                            btn.confirmInfo && operatorBtnFn(btn.isShow, data)
-                          "
+                          v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
                           :key="index"
                           :ref="`popoverOut-${index}`"
                           :disabled="btn.disabled ? btn.disabled(data) : false"
@@ -111,27 +98,12 @@
                           popper-class="popover_btn"
                         >
                           <p>{{ confirmInfoFn(btn.confirmInfo, data) }}</p>
-                          <div
-                            style="
-                              text-align: right;
-                              margin: 0;
-                              margin-top: 16px;
-                            "
-                          >
-                            <el-button
-                              size="mini"
-                              type="info"
-                              @click="handleCloseOut(index)"
-                            >
-                              取消
-                            </el-button>
+                          <div style="text-align: right; margin: 0; margin-top: 16px">
+                            <el-button size="mini" type="info" @click="handleCloseOut(index)"> 取消 </el-button>
                             <el-button
                               type="primary"
                               size="mini"
-                              @click="
-                                handleCloseOut(index) ||
-                                  (btn.confirm && btn.confirm(node, data))
-                              "
+                              @click="handleCloseOut(index) || (btn.confirm && btn.confirm(node, data))"
                             >
                               确定
                             </el-button>
@@ -140,9 +112,7 @@
                             slot="reference"
                             type="text"
                             size="small"
-                            :disabled="
-                              btn.disabled ? btn.disabled(data) : false
-                            "
+                            :disabled="btn.disabled ? btn.disabled(data) : false"
                           >
                             删除
                           </el-button>
@@ -150,11 +120,7 @@
                       </el-dropdown-item>
                     </template>
                     <template v-else>
-                      <el-dropdown-item
-                        @click.native.stop.prevent="
-                          btn.handler && btn.handler(node, data)
-                        "
-                      >
+                      <el-dropdown-item @click.native.stop.prevent="btn.handler && btn.handler(node, data)">
                         {{ btn.content }}==
                       </el-dropdown-item>
                     </template>
@@ -194,52 +160,52 @@ defaultProps: {
   ],
 },
 */
-import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from 'lodash/cloneDeep';
 export default {
-  name: "KdJobTree",
+  name: 'KdJobTree',
   components: {},
   props: {
     // 大部分配置都在defaultProps里
     defaultProps: {
       type: [Object],
-      default: () => {}
+      default: () => {},
     },
     data: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     nodeKey: {
       type: String,
-      default: "id"
+      default: 'id',
     },
     treeProps: {
       type: Object,
       default: () => {
         return {
-          children: "children",
-          label: "label"
+          children: 'children',
+          label: 'label',
         };
-      }
+      },
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 自定义展开的项
     customExpand: {
       type: [Function, String],
-      default: ""
-    }
+      default: '',
+    },
   },
   data() {
     return {
-      queryTxt: "",
+      queryTxt: '',
       // 当前选中的节点
-      currentKey: "",
+      currentKey: '',
       // 当前展开的节点
       expandedKeys: [],
       expandKeys: [], //展开的节点
-      sTreeData: this.data
+      sTreeData: this.data,
     };
   },
   computed: {},
@@ -250,21 +216,19 @@ export default {
     async data(val) {
       this.sTreeData = cloneDeep(val);
       // 展开我的标准树&&获取根目录我的标准下的所有标准
-      if (typeof this.customExpand === "function") {
+      if (typeof this.customExpand === 'function') {
         this.customExpand(val);
       } else {
         if (val && val.length) {
           let rootId = val[0][this.nodeKey];
-          this.expandedKeys = this.expandedKeys.length
-            ? this.expandedKeys
-            : [rootId];
+          this.expandedKeys = this.expandedKeys.length ? this.expandedKeys : [rootId];
           this.$nextTick(() => {
             this.$refs.treeRef.setCurrentKey(this.currentKey || rootId);
           });
         }
-        this.$emit("nodeHandler", this.sTreeData[0] || {});
+        this.$emit('nodeHandler', this.sTreeData[0] || {});
       }
-    }
+    },
   },
   created() {},
   mounted() {},
@@ -275,21 +239,21 @@ export default {
     },
     btnShowHandler(event, node, data) {
       if (event) {
-        this.$emit("btnHandler", node, data);
+        this.$emit('btnHandler', node, data);
       }
     },
     // 表格confirmInfo判断函数还是String
     confirmInfoFn(confirmInfo, data) {
       if (!confirmInfo) {
-        return "您确定要删除当前行嘛";
-      } else if (typeof confirmInfo === "string") {
+        return '您确定要删除当前行嘛';
+      } else if (typeof confirmInfo === 'string') {
         return confirmInfo;
-      } else if (typeof confirmInfo === "function") {
+      } else if (typeof confirmInfo === 'function') {
         return confirmInfo(data);
       }
     },
-    operatorBtnFn(cont, row = "") {
-      if (typeof cont === "function") {
+    operatorBtnFn(cont, row = '') {
+      if (typeof cont === 'function') {
         if (!row) {
           return true;
         }
@@ -305,7 +269,7 @@ export default {
     editRow() {},
     // 创建目录
     create() {
-      this.$emit("create");
+      this.$emit('create');
     },
 
     sleep(time = 0) {
@@ -330,10 +294,7 @@ export default {
               .reduce((acc, cur) => acc.concat(cur), []);
             return getMaxDepth(nextAllChildren, layer);
           };
-          return (
-            maxLayerNum -
-            getMaxDepth(exceptNode[this.treeProps.children] || [], 1)
-          );
+          return maxLayerNum - getMaxDepth(exceptNode[this.treeProps.children] || [], 1);
         })();
       }
       let makePaths = (mys, layer) => {
@@ -369,7 +330,7 @@ export default {
      */
     async nodeClick(data) {
       this.currentKey = data[this.nodeKey];
-      this.$emit("nodeHandler", data);
+      this.$emit('nodeHandler', data);
     },
 
     nodeExpand(data) {
@@ -398,7 +359,7 @@ export default {
       } else {
         return true;
       }
-    }
-  }
+    },
+  },
 };
 </script>

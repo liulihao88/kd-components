@@ -6,14 +6,13 @@
 
     <h5>用法示例</h5>
     <div class="w-300">
-      <el-input placeholder="输入关键字进行过滤" v-model="filterText">
-      </el-input>
+      <el-input v-model="filterText" placeholder="输入关键字进行过滤"> </el-input>
       <kd-tree
         ref="tree"
         :data="data"
         :props="defaultProps"
-        @node-click="handleNodeClick"
         :filter-node-method="filterNode"
+        @node-click="handleNodeClick"
       ></kd-tree>
     </div>
     <example-code :source="source1">
@@ -24,84 +23,84 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
-import source1 from "./source/source1.md";
+import ExampleCode from '../../components/ExampleCode';
+import source1 from './source/source1.md';
 export default {
-  name: "Index",
+  name: 'Index',
   components: {
-    ExampleCode
+    ExampleCode,
   },
   data() {
     return {
       source1,
-      filterText: "",
+      filterText: '',
       data: [
         {
-          label: "一级 1",
+          label: '一级 1',
           children: [
             {
-              label: "二级 1-1",
+              label: '二级 1-1',
               children: [
                 {
-                  label: "三级 1-1-1"
-                }
-              ]
-            }
-          ]
+                  label: '三级 1-1-1',
+                },
+              ],
+            },
+          ],
         },
         {
-          label: "一级 2",
+          label: '一级 2',
           children: [
             {
-              label: "二级 2-1",
+              label: '二级 2-1',
               children: [
                 {
-                  label: "三级 2-1-1"
-                }
-              ]
+                  label: '三级 2-1-1',
+                },
+              ],
             },
             {
-              label: "二级 2-2",
+              label: '二级 2-2',
               children: [
                 {
-                  label: "三级 2-2-1"
-                }
-              ]
-            }
-          ]
+                  label: '三级 2-2-1',
+                },
+              ],
+            },
+          ],
         },
         {
-          label: "一级 3",
+          label: '一级 3',
           children: [
             {
-              label: "二级 3-1",
+              label: '二级 3-1',
               children: [
                 {
-                  label: "三级 3-1-1"
-                }
-              ]
+                  label: '三级 3-1-1',
+                },
+              ],
             },
             {
-              label: "二级 3-2",
+              label: '二级 3-2',
               children: [
                 {
-                  label: "三级 3-2-1"
-                }
-              ]
-            }
-          ]
-        }
+                  label: '三级 3-2-1',
+                },
+              ],
+            },
+          ],
+        },
       ],
       defaultProps: {
-        children: "children",
-        label: "label"
-      }
+        children: 'children',
+        label: 'label',
+      },
     };
   },
   watch: {
     filterText(val) {
       this.$refs.tree.filter(val);
-    }
+    },
   },
   methods: {
     filterNode(value, data) {
@@ -110,8 +109,8 @@ export default {
     },
     handleNodeClick(data) {
       console.log(data);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import DateRange from "./src/index.vue";
+import DateRange from './src/index.vue';
 
 DateRange.install = (Vue) => Vue.component(DateRange.name, DateRange);
 

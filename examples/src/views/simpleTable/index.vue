@@ -1,15 +1,14 @@
 <template>
   <div>
-    <example-title :data="{title: '简单表格',maintenance: '刘云'}">
-      <template>
-        基于el-table封装，与kd-filter-table不同的是，simple-table没有把过多的逻辑与交互行为封装在组件内部，只提供了必要的样式覆盖、默认属性改写。
-        目的是为了让el-table与el-table-column <b>解耦</b>，在保证样式统一的基础上可以更灵活的使用el-table，满足可能出现的更多场景。
-        kd-simple-table可能比较简单，尤其是对表格搜索、筛选等仍需要使用者在外部处理相关逻辑。<br />
-        内部的el-table-column，针对不同特性又封装为展示列组件（kd-column-show）、操作列组件（kd-column-operate）、编辑列组件（kd-column-form）。
-        <br />
-        当kd-filter-table不能满足需求时，可以考虑使用kd-simple-table，它至少提供了基本的样式，并且不限制你使用原生的组件、属性、方法去自由发挥，
-        实现一些特殊的需求。
-      </template>
+    <example-title :data="{ title: '简单表格', maintenance: '刘云' }">
+      基于el-table封装，与kd-filter-table不同的是，simple-table没有把过多的逻辑与交互行为封装在组件内部，只提供了必要的样式覆盖、默认属性改写。
+      目的是为了让el-table与el-table-column
+      <b>解耦</b>，在保证样式统一的基础上可以更灵活的使用el-table，满足可能出现的更多场景。
+      kd-simple-table可能比较简单，尤其是对表格搜索、筛选等仍需要使用者在外部处理相关逻辑。<br />
+      内部的el-table-column，针对不同特性又封装为展示列组件（kd-column-show）、操作列组件（kd-column-operate）、编辑列组件（kd-column-form）。
+      <br />
+      当kd-filter-table不能满足需求时，可以考虑使用kd-simple-table，它至少提供了基本的样式，并且不限制你使用原生的组件、属性、方法去自由发挥，
+      实现一些特殊的需求。
     </example-title>
 
     <h5>基础用法</h5>
@@ -25,22 +24,22 @@
     </example-code>
 
     <h5>特殊列</h5>
-    <div class="" style="display: flex;width: 100%;">
-      <div style="position:relative;flex:1;">
-        <div style="margin-bottom: 10px;">type="index"</div>
+    <div class="" style="display: flex; width: 100%">
+      <div style="position: relative; flex: 1">
+        <div style="margin-bottom: 10px">type="index"</div>
         <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="index">
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
-      <div style="position:relative;flex:1;">
-        <div style="margin-bottom: 10px;">type="selection"</div>
-        <kd-simple-table :data="tableData" :show-paging="false"  pre-col-type="selection">
+      <div style="position: relative; flex: 1">
+        <div style="margin-bottom: 10px">type="selection"</div>
+        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="selection">
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
-      <div style="position:relative;flex:1;">
-        <div style="margin-bottom: 10px;">type="expand"</div>
-        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="expand" :pre-col-conf="{width:'80px'}">
+      <div style="position: relative; flex: 1">
+        <div style="margin-bottom: 10px">type="expand"</div>
+        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="expand" :pre-col-conf="{ width: '80px' }">
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
@@ -51,7 +50,7 @@
     </example-code>
 
     <h5>行拖拽</h5>
-    <kd-simple-table :data="tableData" draggable :pre-col-conf="{width:'40px'}" @onSort="onSortHandler">
+    <kd-simple-table :data="tableData" draggable :pre-col-conf="{ width: '40px' }" @onSort="onSortHandler">
       <el-table-column label="接口名称" prop="name"></el-table-column>
       <kd-column-show p-l="url,地址"></kd-column-show>
     </kd-simple-table>
@@ -75,97 +74,97 @@
 </template>
 
 <script>
-import source1 from "./source/source1.md";
-import source2 from "./source/source2.md";
-import source3 from "./source/source3.md";
-  export default {
-    name: 'Index',
-    data() {
-      return {
-        source1,
-        source2,
-        source3,
-        preColType:'',
-        pagingConf:{
-          pageSize: 40,
-          currentPage: 1,
-          total: 89
+import source1 from './source/source1.md';
+import source2 from './source/source2.md';
+import source3 from './source/source3.md';
+export default {
+  name: 'Index',
+  data() {
+    return {
+      source1,
+      source2,
+      source3,
+      preColType: '',
+      pagingConf: {
+        pageSize: 40,
+        currentPage: 1,
+        total: 89,
+      },
+      statusFilter: [
+        {
+          label: '成功',
+          value: true,
         },
-        statusFilter:[
-          {
-            label:'成功',
-            value:true
+        {
+          label: '失败',
+          value: false,
+        },
+      ],
+      tableData: [
+        {
+          id: '1',
+          name: '获取用户信息',
+          url: '/userinfo',
+          methods: 'GET',
+          status: true,
+        },
+        {
+          id: '2',
+          name: '编辑用户信息',
+          url: '/userinfo',
+          methods: 'UPDATE',
+          status: false,
+        },
+      ],
+      btnList: [
+        {
+          label: '编辑',
+          key: 'update',
+          permission: 'edit',
+        },
+        {
+          label: '删除',
+          key: 'del',
+          permission: 'delete',
+          popover: true,
+        },
+        {
+          label: '导出',
+          key: 'export',
+          permission: 'config',
+          dropdown: true,
+          popover: true,
+          popConfig: {
+            popoverAttrs: { title: '提示' },
+            contentText: '是否导出？',
+            confirmText: '导出',
           },
-          {
-            label:'失败',
-            value:false
-          }
-        ],
-        tableData:[
-          {
-            id:'1',
-            name:'获取用户信息',
-            url:'/userinfo',
-            methods: 'GET',
-            status:true,
-          },
-          {
-            id:'2',
-            name:'编辑用户信息',
-            url:'/userinfo',
-            methods: 'UPDATE',
-            status:false,
-          }
-        ],
-        btnList:[
-          {
-            label: "编辑",
-            key: "update",
-            permission: "edit"
-          },
-          {
-            label: "删除",
-            key: "del",
-            permission: "delete",
-            popover: true,
-          },
-          {
-            label: "导出",
-            key: "export",
-            permission: "config",
-            dropdown: true,
-            popover: true,
-            popConfig:{
-              popoverAttrs:{title:'提示'},
-              contentText:'是否导出？',
-              confirmText:'导出'
-            }
-          },
-        ]
+        },
+      ],
+    };
+  },
+  methods: {
+    operateConfirm({ scope, key }) {
+      switch (key) {
+        case 'update':
+          this.$message.success('当前操作 --> update，id = ' + scope.row.id);
+          break;
+        case 'del':
+          this.$message.success('当前操作 --> del，id = ' + scope.row.id);
+          break;
+        case 'export':
+          this.$message.success('当前操作 --> export，id = ' + scope.row.id);
+          break;
+        default:
+          return;
       }
     },
-    methods: {
-      operateConfirm({ scope, key }) {
-        switch (key) {
-          case "update":
-            this.$message.success('当前操作 --> update，id = '+scope.row.id)
-            break;
-          case "del":
-            this.$message.success('当前操作 --> del，id = '+scope.row.id)
-            break;
-          case "export":
-            this.$message.success('当前操作 --> export，id = '+scope.row.id)
-            break;
-          default:
-            return;
-        }
-      },
-      onPageChange(e){
-        this.$message.success(JSON.stringify(e))
-      },
-      onSortHandler(e) {
-        console.log(e)
-      }
+    onPageChange(e) {
+      this.$message.success(JSON.stringify(e));
     },
-  }
+    onSortHandler(e) {
+      console.log(e);
+    },
+  },
+};
 </script>

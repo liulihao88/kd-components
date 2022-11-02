@@ -4,16 +4,11 @@
 
 <script>
 export default {
-  name: "testStep",
+  name: 'TestStep',
   data() {
     return {
-      steps: [
-        { name: "同步配置" },
-        { name: "读取配置" },
-        { name: "任务设置" },
-      ]
-    }
-  }
-}
+      steps: [{ name: '同步配置' }, { name: '读取配置' }, { name: '任务设置' }],
+    };
+  },
+};
 </script>
-

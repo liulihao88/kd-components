@@ -1,4 +1,4 @@
-import Dialog from "./src/index.vue";
+import Dialog from './src/index.vue';
 
 Dialog.install = (Vue) => Vue.component(Dialog.name, Dialog);
 

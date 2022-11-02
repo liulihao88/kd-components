@@ -7,22 +7,17 @@
     <h5>用法示例</h5>
     <div class="w-1000">
       <div class="test-tree f-bt">
-        <kd-job-tree
-          ref="jobTreeRef"
-          :defaultProps="defaultProps"
-          :data="data"
-          @nodeHandler="nodeHandler"
-        >
+        <kd-job-tree ref="jobTreeRef" :default-props="defaultProps" :data="data" @nodeHandler="nodeHandler">
           <template #data="{ data, nodes }">
             <span class="fs-12">{{ data.label }}</span>
           </template>
         </kd-job-tree>
 
         <kd-job-tree
-          class="m-l-100"
           ref="jobTreeRef"
-          :defaultProps="defaultProps2"
-          :data="data"
+          class="m-l-100"
+          :default-props="defaultProps2"
+          :data="treeData"
           @nodeHandler="nodeHandler"
           @btnClick="btnClick"
         >
@@ -44,133 +39,133 @@
 </template>
 
 <script>
-import ExampleCode from "../../components/ExampleCode";
-import source1 from "./source/source1.md";
+import ExampleCode from '../../components/ExampleCode';
+import source1 from './source/source1.md';
 export default {
-  label: "Index",
+  label: 'Index',
   components: {
-    ExampleCode
+    ExampleCode,
   },
   data() {
     return {
       source1: source1,
       defaultProps2: {
-        title: "资源管理2",
+        title: '资源管理2',
         showCreate: false,
         btns: [
           {
-            content: "编辑11",
-            handler: this.editTree
+            content: '编辑11',
+            handler: this.editTree,
           },
           {
-            content: "删除11",
+            content: '删除11',
             confirm: this.deleteTree,
-            confirmInfo: "确认删除本条数据吗"
-          }
-        ]
+            confirmInfo: '确认删除本条数据吗',
+          },
+        ],
       },
 
       defaultProps: {
-        title: "资源管理",
+        title: '资源管理',
         btns: [
           {
-            content: "编辑11",
-            handler: this.editTree
+            content: '编辑11',
+            handler: this.editTree,
           },
           {
-            content: "删除11",
+            content: '删除11',
             confirm: this.deleteTree,
-            confirmInfo: "确认删除本条数据吗"
-          }
-        ]
+            confirmInfo: '确认删除本条数据吗',
+          },
+        ],
       },
-      data: []
+      treeData: [],
     };
   },
   watch: {},
-  mounted(){
+  mounted() {
     setTimeout(() => {
-       this.data = [
+      this.treeData = [
         {
-          id: "1551899237577396292",
+          id: '1551899237577396292',
           parentId: null,
-          label: "DD",
-          path: "/DD",
+          label: 'DD',
+          path: '/DD',
           children: [
             {
-              id: "1555115624034734129",
-              parentId: "1551899237577396292",
-              label: "dd2",
-              path: "/DD/dd2",
+              id: '1555115624034734129',
+              parentId: '1551899237577396292',
+              label: 'dd2',
+              path: '/DD/dd2',
               children: [
                 {
-                  id: "1555115691147792393",
-                  parentId: "1555115624034734129",
-                  label: "dd3",
-                  path: "/DD/dd2/dd3"
-                }
-              ]
-            }
-          ]
+                  id: '1555115691147792393',
+                  parentId: '1555115624034734129',
+                  label: 'dd3',
+                  path: '/DD/dd2/dd3',
+                },
+              ],
+            },
+          ],
         },
         {
-          id: "1551894041832984635",
+          id: '1551894041832984635',
           parentId: null,
-          label: "gbgh",
-          path: "/gbgh",
+          label: 'gbgh',
+          path: '/gbgh',
           children: [
             {
-              id: "1552484508060618790",
-              parentId: "1551894041832984635",
-              label: "11",
-              path: "/gbgh/11"
-            }
-          ]
-        }
-      ]
+              id: '1552484508060618790',
+              parentId: '1551894041832984635',
+              label: '11',
+              path: '/gbgh/11',
+            },
+          ],
+        },
+      ];
     }, 500);
   },
   methods: {
     btnClick([node, data]) {
-      if (node.data.label == "DD") {
+      if (node.data.label === 'DD') {
         this.defaultProps2.btns = [
           {
-            content: "编辑22",
-            handler: this.editTree
+            content: '编辑22',
+            handler: this.editTree,
           },
           {
-            content: "删除11",
+            content: '删除11',
             confirm: this.deleteTree,
-            confirmInfo: "确认删除本条数据吗111"
+            confirmInfo: '确认删除本条数据吗111',
           },
           {
-            content: "自定义",
+            content: '自定义',
             confirm: this.deleteTree,
-            confirmInfo: "自定义文本"
-          }
+            confirmInfo: '自定义文本',
+          },
         ];
       } else {
         this.defaultProps2.btns = [
           {
-            content: "编辑3332",
-            handler: this.editTree
+            content: '编辑3332',
+            handler: this.editTree,
           },
           {
-            content: "测试2",
+            content: '测试2',
             confirm: this.deleteTree,
-            confirmInfo: "确认测试2"
-          }
+            confirmInfo: '确认测试2',
+          },
         ];
       }
     },
     deleteTree() {
-      console.log("deleteTree");
+      console.log('deleteTree');
     },
     editTree() {
-      console.log("editTree");
+      console.log('editTree');
     },
-    nodeHandler() {}
-  }
+    nodeHandler() {},
+  },
 };
 </script>
 <style lang="scss" scoped>

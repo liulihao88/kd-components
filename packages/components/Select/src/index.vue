@@ -4,8 +4,8 @@
       {{ title }}
     </div>
     <el-select
-      class="right_box"
       v-loading="loading"
+      class="right_box"
       :filterable="$attrs.filterable !== false"
       :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
       :clearable="$attrs.clearable !== false"
@@ -14,12 +14,12 @@
       @change="changeHandler"
     >
       <el-option
-        size="small"
         v-for="item in options"
         :key="type === 'simple' ? item : handleValue(item)"
+        size="small"
         :label="type === 'simple' ? item : handleLabel(item)"
         :value="type === 'simple' ? item : handleValue(item)"
-      />
+      ></el-option>
     </el-select>
   </div>
 </template>
@@ -80,53 +80,53 @@
     />
 */
 export default {
-  name: "KdSelect",
+  name: 'KdSelect',
   components: {},
   props: {
     defaultProps: {
       type: Object,
       default: () => {
         return {
-          value: "value",
-          label: "label"
+          value: 'value',
+          label: 'label',
         };
-      }
+      },
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 是简单的options 还是复杂options。默认复杂
     type: {
       type: String,
-      default: "" // 简单选项'simple'
+      default: '', // 简单选项'simple'
     },
     title: {
       type: String,
-      default: ""
+      default: '',
     },
     // 如果label显示多个参数的连接符
     connect: {
       type: String,
-      default: "/"
+      default: '/',
     },
     // 自定义label显示多个参数的函数
     customLabel: {
       type: [Function, String],
-      default: ""
+      default: '',
     },
     width: {
       type: [String, Number],
-      default: ''
+      default: '',
     },
     block: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {};
@@ -139,12 +139,12 @@ export default {
     // 将label作为多个值连接起来。 比如 admin/管理员, 这是两个属性拼接出来的
     handleLabel(item) {
       // 如果customLabel是函数就执行customLabel的函数去处理label显示
-      if (typeof this.customLabel === "function") {
+      if (typeof this.customLabel === 'function') {
         return this.customLabel(item);
       } else {
         // 如果label是数组, 就拼接数组。
         if (Array.isArray(this.defaultProps.label)) {
-          let str = "";
+          let str = '';
           this.defaultProps.label.forEach((v) => {
             str += item[v] + this.connect;
           });
@@ -152,30 +152,30 @@ export default {
           return res;
         } else {
           // 直接显示label
-          const label = this.defaultProps.label || "label";
+          const label = this.defaultProps.label || 'label';
           return item[label];
         }
       }
     },
     // 处理value的值
     handleValue(item) {
-      const value = this.defaultProps.value || "value";
+      const value = this.defaultProps.value || 'value';
       return item[value];
     },
     // 处理多选的返回情况
     changeMulty(arr) {
       let selectLabel = [];
       const selectObj = this.options.filter((v) => {
-        const value = this.defaultProps.value || "value";
+        const value = this.defaultProps.value || 'value';
         if (arr.includes(v[value])) {
-          const label = this.defaultProps.label || "label";
+          const label = this.defaultProps.label || 'label';
           selectLabel.push(v[label]);
           return true;
         } else {
           return false;
         }
       });
-      this.$emit("changeSelect", [arr, selectObj, selectLabel]);
+      this.$emit('changeSelect', [arr, selectObj, selectLabel]);
     },
     // 有些场景， 下拉框不仅需要获取value, 还需要获取选择的对象或者label, el-select原生没有这个属性， 所以changeHandler就做了下处理， 返回的数组包含3个属性， 第一个value, 第二个选中对象， 第三个选中的label。
     changeHandler(val) {
@@ -185,22 +185,22 @@ export default {
         return;
       }
       if (!val) {
-        this.$emit("changeSelect", []);
+        this.$emit('changeSelect', []);
         return;
       }
       let selectObj = this.options.filter((v) => {
-        if (this.type === "simple") {
+        if (this.type === 'simple') {
           return v === val;
         } else {
-          const value = this.defaultProps.value || "value";
+          const value = this.defaultProps.value || 'value';
           return v[value] === val;
         }
       })[0];
-      const optLabel = this.defaultProps.label || "label";
+      const optLabel = this.defaultProps.label || 'label';
       let selectLabel = selectObj[optLabel];
 
-      this.$emit("changeSelect", [val, selectObj, selectLabel]);
-    }
-  }
+      this.$emit('changeSelect', [val, selectObj, selectLabel]);
+    },
+  },
 };
 </script>

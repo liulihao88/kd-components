@@ -11,16 +11,16 @@
             :style="{ width: searchareaWidth + 'px' }"
             :class="{ filter_active: advancedSearchFlag }"
           >
-            <slot />
+            <slot></slot>
 
             <div class="searchopers f">
               <kd-input
                 v-model="search.word"
                 :width="500"
                 :clearable="clearable"
-                @clear="toClear"
                 :placeholder="placeholder"
                 :disabled="advancedSearchFlag"
+                @clear="toClear"
                 @keyup.enter.native="toSearch"
               >
                 <div slot="prepend">
@@ -28,14 +28,7 @@
                 </div>
               </kd-input>
               <!-- :disabled="mDisabled('LOAD')" -->
-              <el-button
-                type="primary"
-                class="ml"
-                size="small"
-                @click="toSearch"
-              >
-                查询
-              </el-button>
+              <el-button type="primary" class="ml" size="small" @click="toSearch"> 查询 </el-button>
               <!-- :disabled="mDisabled('LOAD')" -->
               <el-button size="small" @click="toReset"> 重置 </el-button>
               <el-button
@@ -48,15 +41,15 @@
                 <i
                   :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
-                    'el-icon-arrow-down': !advancedSearchFlag
+                    'el-icon-arrow-down': !advancedSearchFlag,
                   }"
-                />
+                ></i>
                 {{ !advancedSearchFlag ? '高级搜索' : '收起' }}
               </el-button>
             </div>
           </div>
           <div class="operations">
-            <slot name="operation" />
+            <slot name="operation"></slot>
           </div>
         </div>
         <div
@@ -65,11 +58,7 @@
           class="f"
           :style="{ 'flex-wrap': 'wrap', width: searchareaWidth + 'px' }"
         >
-          <slot
-            name="search"
-            :search="search"
-            :disabled="!advancedSearchFlag"
-          />
+          <slot name="search" :search="search" :disabled="!advancedSearchFlag"></slot>
         </div>
       </template>
       <!-- 自定义搜索框 -->
@@ -81,59 +70,38 @@
             :style="{ width: searchareaWidth + 'px' }"
             :class="{ filter_active: advancedSearchFlag }"
           >
-            <slot />
-            <div class="searchopers search_btn ">
+            <slot></slot>
+            <div class="searchopers search_btn">
               <div ref="searchBoxRef" class="f" style="flex-wrap: wrap">
-                <slot
-                  name="search"
-                  :search="search"
-                  :disabled="!advancedSearchFlag"
-                />
+                <slot name="search" :search="search" :disabled="!advancedSearchFlag"></slot>
               </div>
               <!-- :disabled="mDisabled('LOAD')" -->
-              <el-button
-                type="primary"
-                class="ml"
-                size="small"
-                @click="toSearch"
-              >
-                查询
-              </el-button>
+              <el-button type="primary" class="ml" size="small" @click="toSearch"> 查询 </el-button>
               <!-- :disabled="mDisabled('LOAD')" -->
               <el-button size="small" @click="toReset"> 重置 </el-button>
-              <el-button
-                v-if="openSearchFlag"
-                type="text"
-                size="small"
-                class="expandbtn"
-                @click="toggleMoreSearch"
-              >
+              <el-button v-if="openSearchFlag" type="text" size="small" class="expandbtn" @click="toggleMoreSearch">
                 <i
                   :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
-                    'el-icon-arrow-down': !advancedSearchFlag
+                    'el-icon-arrow-down': !advancedSearchFlag,
                   }"
-                />
+                ></i>
                 {{ !advancedSearchFlag ? '展开' : '收起' }}
               </el-button>
             </div>
           </div>
-          <div class="operations ">
-            <slot name="operation" />
+          <div class="operations">
+            <slot name="operation"></slot>
           </div>
         </div>
         <div>
-          <slot
-            v-if="advancedSearchFlag"
-            name="searchSpread"
-            :search="search"
-          />
+          <slot v-if="advancedSearchFlag" name="searchSpread" :search="search"></slot>
         </div>
       </template>
     </template>
     <!-- 表格和搜索框中间的插槽 -->
     <template>
-      <slot name="tableInsert" />
+      <slot name="tableInsert"></slot>
     </template>
     <!-- :row-key="(row) => row.id || ''" -->
     <div class="tablewraper" :class="showSearch && 'mt2'">
@@ -152,7 +120,7 @@
         :class="{ unfoldable: tableExpand }"
         :header-cell-style="{
           background: 'var(--table-th-bg)',
-          color: 'var(--text-color)'
+          color: 'var(--text-color)',
         }"
         v-on="$listeners"
         @sort-change="handleSort"
@@ -167,13 +135,9 @@
             :width="col.width"
             :selectable="col.selectableFn"
             :reserve-selection="col.type === 'selection'"
-          />
+          ></el-table-column>
           <el-table-column
-            v-else-if="
-              col.baseBtns &&
-              col.baseBtns.length > 0 &&
-              operatorBtnFn(col.isShow)
-            "
+            v-else-if="col.baseBtns && col.baseBtns.length > 0 && operatorBtnFn(col.isShow)"
             :key="col.prop"
             :prop="col.prop"
             :label="col.label"
@@ -196,18 +160,8 @@
                   <!-- <p>{{btn.confirmInfo(scope.row) || '您确定要删除当前数据嘛？'}}</p> -->
                   <p>{{ confirmInfoFn(btn.confirmInfo, scope) }}</p>
                   <div style="text-align: right; margin: 0; margin-top: 16px">
-                    <el-button
-                      size="mini"
-                      type="info"
-                      @click="handleCloseOut(scope.$index)"
-                    >
-                      取消
-                    </el-button>
-                    <el-button
-                      type="primary"
-                      size="mini"
-                      @click="confirmBtn(btn, this, scope)"
-                    >
+                    <el-button size="mini" type="info" @click="handleCloseOut(scope.$index)"> 取消 </el-button>
+                    <el-button type="primary" size="mini" @click="confirmBtn(btn, this, scope)">
                       {{ btn.contentText || btn.content }}
                     </el-button>
                   </div>
@@ -221,19 +175,16 @@
                   </el-button>
                 </el-popover>
                 <el-button
-                  v-if="
-                    !!!btn.confirmInfo && operatorBtnFn(btn.isShow, scope.row)
-                  "
+                  v-if="!!!btn.confirmInfo && operatorBtnFn(btn.isShow, scope.row)"
                   :key="btn.confirmInfo"
                   type="text"
                   size="small"
                   class="txt_btn"
                   :class="{
-                    disabled: btn.disabled ? btn.disabled(scope.row) : false
+                    disabled: btn.disabled ? btn.disabled(scope.row) : false,
                   }"
                   @click="
-                    ((btn.disabled && !btn.disabled(scope.row)) ||
-                      !btn.disabled) &&
+                    ((btn.disabled && !btn.disabled(scope.row)) || !btn.disabled) &&
                       btn.handler &&
                       btn.handler.call(this, scope.row, scope)
                   "
@@ -244,31 +195,22 @@
 
               <template v-if="col.hideBtns.length > 0">
                 <el-dropdown :hide-on-click="true" trigger="click">
-                  <span
-                    class="po-r"
-                    style="top: -3px; cursor: pointer; font-weight: bold"
-                  >
-                    ...<i class="" />
-                  </span>
+                  <span class="po-r" style="top: -3px; cursor: pointer; font-weight: bold"> ...<i class=""></i> </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item
                       v-for="(btn, idx) in col.hideBtns"
                       :key="idx"
                       :class="{
-                        disabled: btn.disabled ? btn.disabled(scope.row) : false
+                        disabled: btn.disabled ? btn.disabled(scope.row) : false,
                       }"
                       @click.native="
-                        ((btn.disabled && !btn.disabled(scope.row)) ||
-                          !btn.disabled) &&
+                        ((btn.disabled && !btn.disabled(scope.row)) || !btn.disabled) &&
                           btn.handler &&
                           btn.handler.call(this, scope.row)
                       "
                     >
                       <div
-                        v-if="
-                          !!btn.confirmInfo &&
-                          operatorBtnFn(btn.isShow, scope.row)
-                        "
+                        v-if="!!btn.confirmInfo && operatorBtnFn(btn.isShow, scope.row)"
                         class="dropdown-item-custom"
                       >
                         <template>
@@ -281,38 +223,17 @@
                           >
                             <!-- <p>{{btn.confirmInfo(scope.row) || '您确定要删除当前数据嘛？'}}</p> -->
                             <p>{{ confirmInfoFn(btn.confirmInfo, scope) }}</p>
-                            <div
-                              style="
-                                text-align: right;
-                                margin: 0;
-                                margin-top: 16px;
-                              "
-                            >
-                              <el-button
-                                size="mini"
-                                type="info"
-                                @click="handleClose(scope.$index)"
-                              >
-                                取消
-                              </el-button>
-                              <el-button
-                                type="primary"
-                                size="mini"
-                                @click="confirmBtn(btn, this, scope, false)"
-                              >
-                                {{
-                                  btn.contentText ||
-                                  operatorBtnFn(btn.content, scope.row)
-                                }}
+                            <div style="text-align: right; margin: 0; margin-top: 16px">
+                              <el-button size="mini" type="info" @click="handleClose(scope.$index)"> 取消 </el-button>
+                              <el-button type="primary" size="mini" @click="confirmBtn(btn, this, scope, false)">
+                                {{ btn.contentText || operatorBtnFn(btn.content, scope.row) }}
                               </el-button>
                             </div>
                             <el-button
                               slot="reference"
                               type="text"
                               size="small"
-                              :disabled="
-                                btn.disabled ? btn.disabled(scope.row) : false
-                              "
+                              :disabled="btn.disabled ? btn.disabled(scope.row) : false"
                               @click.stop="() => {}"
                             >
                               {{ operatorBtnFn(btn.content, scope.row) }}
@@ -321,15 +242,10 @@
                         </template>
                       </div>
                       <el-button
-                        v-if="
-                          !!!btn.confirmInfo &&
-                          operatorBtnFn(btn.isShow, scope.row)
-                        "
+                        v-if="!!!btn.confirmInfo && operatorBtnFn(btn.isShow, scope.row)"
                         type="text"
                         size="small"
-                        :disabled="
-                          btn.disabled ? btn.disabled(scope.row) : false
-                        "
+                        :disabled="btn.disabled ? btn.disabled(scope.row) : false"
                       >
                         {{ operatorBtnFn(btn.content, scope.row) }}
                       </el-button>
@@ -341,9 +257,7 @@
           </el-table-column>
           <el-table-column
             v-if="
-              !col.type &&
-              (!col.baseBtns || (col.baseBtns && col.baseBtns.length === 0)) &&
-              operatorBtnFn(col.isShow)
+              !col.type && (!col.baseBtns || (col.baseBtns && col.baseBtns.length === 0)) && operatorBtnFn(col.isShow)
             "
             :key="col.prop"
             :prop="col.prop"
@@ -369,26 +283,15 @@
                 :row="scope.row"
                 :index="scope.$index"
                 :column="col"
-              />
-              <slot
-                v-else-if="col.useSlot"
-                :name="col.prop"
-                :row="scope.row"
-                :scope="scope"
-              />
+              ></exSlot>
+              <slot v-else-if="col.useSlot" :name="col.prop" :row="scope.row" :scope="scope"></slot>
               <template v-else>
-                <span
-                  v-if="col.handler"
-                  class="linked"
-                  @click="col.handler.call(null, scope.row)"
-                >
+                <span v-if="col.handler" class="linked" @click="col.handler.call(null, scope.row)">
                   <span v-if="col.filter">
                     {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
-                    {{
-                      scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin)
-                    }}
+                    {{ scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin) }}
                   </span>
                 </span>
                 <span v-else>
@@ -396,30 +299,18 @@
                     {{ col.filter(scope.row[col.prop], scope.row) }}
                   </span>
                   <span v-else>
-                    {{
-                      scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin)
-                    }}
+                    {{ scope.row[col.prop] | addEmpty(col.keepOrigin, keepOrigin) }}
                   </span>
                 </span>
               </template>
             </template>
 
-            <template v-slot:header="slotProps">
-              <slot
-                v-if="col.headerSlot"
-                :name="col.headerSlot"
-                :column="slotProps.column"
-              />
+            <template #header="slotProps">
+              <slot v-if="col.headerSlot" :name="col.headerSlot" :column="slotProps.column"></slot>
               <template v-else-if="col.headerTooltipText">
                 {{ slotProps.column.label }}
-                <el-tooltip
-                  effect="dark"
-                  :content="col.headerTooltipText"
-                  placement="top-start"
-                >
-                  <i
-                    class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"
-                  />
+                <el-tooltip effect="dark" :content="col.headerTooltipText" placement="top-start">
+                  <i class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"></i>
                 </el-tooltip>
               </template>
               <template v-else>
@@ -429,35 +320,21 @@
           </el-table-column>
         </template>
 
-        <el-table-column
-          prop="hidecol"
-          label=""
-          fixed="right"
-          width="1px"
-          :resizable="false"
-        >
+        <el-table-column prop="hidecol" label="" fixed="right" width="1px" :resizable="false">
           <template slot="header">
-            <i
-              v-if="tableExpand"
-              class="kj-iconfont icon-zhankai tableshowall"
-              @click="showallFlag = !showallFlag"
-            />
+            <i v-if="tableExpand" class="kj-iconfont icon-zhankai tableshowall" @click="showallFlag = !showallFlag"></i>
           </template>
           <template slot-scope="scope">
-            <i
-              v-if="trExpand"
-              class="kj-iconfont icon-zhankai"
-              @click="toggleShowAll(scope.row)"
-            />
+            <i v-if="trExpand" class="kj-iconfont icon-zhankai" @click="toggleShowAll(scope.row)"></i>
           </template>
         </el-table-column>
         <!-- 空数据展示 -->
         <template #empty>
-          <kd-empty />
+          <kd-empty></kd-empty>
         </template>
       </el-table>
       <div v-if="pageFlag" style="height: 68px">
-        <slot name="pageleft" />
+        <slot name="pageleft"></slot>
         <el-pagination
           class="tab_pagination"
           background
@@ -468,7 +345,7 @@
           :total="total"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-        />
+        ></el-pagination>
       </div>
     </div>
   </div>
@@ -578,153 +455,23 @@ let exSlot = {
     index: Number,
     column: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   render: (h, data) => {
     const params = {
       row: data.props.row,
-      index: data.props.index
+      index: data.props.index,
     };
     if (data.props.column) params.column = data.props.column;
     return data.props.render(h, params);
-  }
+  },
 };
 import cloneDeep from 'lodash/cloneDeep';
 export default {
   name: 'KdFilterTable',
   components: {
-    exSlot
-  },
-  props: {
-    columns: {
-      type: Array,
-      default: () => []
-    }, // 列描述数据对象
-    data: {
-      type: Array,
-      default: () => []
-    }, // 表格数据
-    totalNum: {
-      type: Number,
-      default: 0
-    },
-    // height: {
-    //   type: Number,
-    //   required: false
-    // },
-    stripe: {
-      // 是否显示间隔斑马纹
-      type: Boolean,
-      default: false
-    },
-    border: {
-      // 是否显示纵向边框
-      type: Boolean,
-      default: false
-    },
-    showOverflowTooltip: {
-      // 内容过长时隐藏，鼠标悬浮显示tooltip
-      type: Boolean,
-      default: true
-    },
-    tableExpand: {
-      // 允许全表切换是否展示全部内容（不用...显示）
-      type: Boolean,
-      default: true
-    },
-    trExpand: {
-      // 允许每行切换是否展示全部内容（不用...显示）
-      type: Boolean,
-      default: true
-    },
-    wordSearchFlag: {
-      // 是否支持关键字筛选
-      type: Boolean,
-      default: true
-    },
-    searchFlag: {
-      // 是否支持精准筛选
-      type: Boolean,
-      default: true
-    },
-    showSearch: {
-      // 是否显示头部搜索
-      type: Boolean,
-      default: true
-    },
-    searchareaWidth: {
-      type: Number,
-      default: 1000
-    },
-    pageFlag: {
-      // 是否包含分页
-      type: Boolean,
-      default: true
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: {
-      type: String,
-      default: '请输入'
-    },
-    searchTitle: {
-      type: String,
-      default: '搜索关键词'
-    },
-    searchTypes: {
-      type: Object, //默认 like：模糊 eq：精确 in：数组 between：日期
-      default: () => ({})
-    },
-    openSearchFlag: {
-      //自定义搜索展开按钮
-      type: Boolean,
-      default: false
-    },
-    maxHeight: {
-      // 表格最大高度
-      type: Number,
-      default: 5000
-    },
-    rowKeys: {
-      type: String || Array,
-      default: ''
-    },
-    addShowAllFlage: {
-      // 是否改变表格源数据，并添加showAll属性
-      type: Boolean,
-      default: true
-    },
-    keepOrigin: {
-      // 空值是否显示原始值
-      type: Boolean,
-      default: false
-    },
-    clearable: {
-      // 搜索框是否显示删除按钮
-      type: Boolean,
-      default: true
-    }
-  },
-  data() {
-    return {
-      searchCopy: {},
-      total: 0,
-      zkColumns: [],
-      search: {}, // 过滤条件保存的对象,就是保存Input框和Select中值
-      advancedSearchFlag: false, //高级搜索是否展开
-      tableData: [],
-      showallFlag: false, //是否全表内容完整显示，不用...
-      pageSizes: [10, 20, 30, 40],
-      pageSize: 10,
-      currentPage: 1,
-      expandExistFlag: true, //是否需要显示展开
-      searchWidth: '416px', //搜索框容器的宽度
-      visiblePopover: false,
-      visible: false
-    };
+    exSlot,
   },
   filters: {
     /**
@@ -747,7 +494,137 @@ export default {
           break;
       }
       return v;
-    }
+    },
+  },
+  props: {
+    columns: {
+      type: Array,
+      default: () => [],
+    }, // 列描述数据对象
+    data: {
+      type: Array,
+      default: () => [],
+    }, // 表格数据
+    totalNum: {
+      type: Number,
+      default: 0,
+    },
+    // height: {
+    //   type: Number,
+    //   required: false
+    // },
+    stripe: {
+      // 是否显示间隔斑马纹
+      type: Boolean,
+      default: false,
+    },
+    border: {
+      // 是否显示纵向边框
+      type: Boolean,
+      default: false,
+    },
+    showOverflowTooltip: {
+      // 内容过长时隐藏，鼠标悬浮显示tooltip
+      type: Boolean,
+      default: true,
+    },
+    tableExpand: {
+      // 允许全表切换是否展示全部内容（不用...显示）
+      type: Boolean,
+      default: true,
+    },
+    trExpand: {
+      // 允许每行切换是否展示全部内容（不用...显示）
+      type: Boolean,
+      default: true,
+    },
+    wordSearchFlag: {
+      // 是否支持关键字筛选
+      type: Boolean,
+      default: true,
+    },
+    searchFlag: {
+      // 是否支持精准筛选
+      type: Boolean,
+      default: true,
+    },
+    showSearch: {
+      // 是否显示头部搜索
+      type: Boolean,
+      default: true,
+    },
+    searchareaWidth: {
+      type: Number,
+      default: 1000,
+    },
+    pageFlag: {
+      // 是否包含分页
+      type: Boolean,
+      default: true,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: '请输入',
+    },
+    searchTitle: {
+      type: String,
+      default: '搜索关键词',
+    },
+    searchTypes: {
+      type: Object, //默认 like：模糊 eq：精确 in：数组 between：日期
+      default: () => ({}),
+    },
+    openSearchFlag: {
+      //自定义搜索展开按钮
+      type: Boolean,
+      default: false,
+    },
+    maxHeight: {
+      // 表格最大高度
+      type: Number,
+      default: 5000,
+    },
+    rowKeys: {
+      type: String || Array,
+      default: '',
+    },
+    addShowAllFlage: {
+      // 是否改变表格源数据，并添加showAll属性
+      type: Boolean,
+      default: true,
+    },
+    keepOrigin: {
+      // 空值是否显示原始值
+      type: Boolean,
+      default: false,
+    },
+    clearable: {
+      // 搜索框是否显示删除按钮
+      type: Boolean,
+      default: true,
+    },
+  },
+  data() {
+    return {
+      searchCopy: {},
+      total: 0,
+      zkColumns: [],
+      search: {}, // 过滤条件保存的对象,就是保存Input框和Select中值
+      advancedSearchFlag: false, //高级搜索是否展开
+      tableData: [],
+      showallFlag: false, //是否全表内容完整显示，不用...
+      pageSizes: [10, 20, 30, 40],
+      pageSize: 10,
+      currentPage: 1,
+      expandExistFlag: true, //是否需要显示展开
+      searchWidth: '416px', //搜索框容器的宽度
+      visiblePopover: false,
+      visible: false,
+    };
   },
   computed: {},
   watch: {
@@ -766,14 +643,14 @@ export default {
           this.tableData = this.data;
         }
       },
-      immediate: true
+      immediate: true,
     },
     totalNum: {
       handler(newVal) {
         this.total = newVal;
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   created() {
     this.updateTable();
@@ -910,7 +787,7 @@ export default {
           filteredValue: item.filteredValue,
           selectableFn: item.selectableFn, // 决定单行多选按钮是否可勾选
           isShow: item.isShow === false ? false : item.isShow, // 列是否显示
-          keepOrigin: item.keepOrigin || '' // 保持原始的值
+          keepOrigin: item.keepOrigin || '', // 保持原始的值
         };
       });
     },
@@ -980,12 +857,12 @@ export default {
       let filterColumns = this.$refs.kTable.columns.map((item) => {
         if (item.filterable) {
           return {
-            [item.columnKey]: item.filteredValue
+            [item.columnKey]: item.filteredValue,
           };
         }
       });
       filterColumns.forEach((item) => {
-        if (item != undefined) {
+        if (item !== undefined) {
           Object.keys(this.search).map((key) => {
             if (key === Object.keys(item)[0]) {
               this.search[key] = item[key];
@@ -1013,17 +890,10 @@ export default {
           let listObj = {
             queryType: this.searchTypes[key] || 'like',
             field: key,
-            queryData: isArr
-              ? JSON.stringify(qData)
-              : isString
-              ? qData.trim()
-              : qData
+            queryData: isArr ? JSON.stringify(qData) : isString ? qData.trim() : qData,
           };
           // word不存在，或者word存在时，仅包装word和下拉框搜索
-          if (
-            !this.searchCopy.word ||
-            (this.searchCopy.word && (listObj.field === 'word' || isArr))
-          ) {
+          if (!this.searchCopy.word || (this.searchCopy.word && (listObj.field === 'word' || isArr))) {
             changeSearchArr.push(listObj);
           }
         }
@@ -1038,13 +908,11 @@ export default {
       let sendSearch = {
         queries: changeSearchArr,
         current: this.currentPage,
-        size: this.pageSize
+        size: this.pageSize,
       };
       this.$emit('updatePage', sendSearch, (data) => {
         this.total = data.total;
-        console.warn(
-          '这个回调函数即将废弃，请在使用表格的地方，自行定义totalNum，并传递到表格组件中'
-        );
+        console.warn('这个回调函数即将废弃，请在使用表格的地方，自行定义totalNum，并传递到表格组件中');
       });
       return sendSearch;
     },
@@ -1092,11 +960,9 @@ export default {
 
     // 确定按钮
     confirmBtn(btn, _this, scope, isOut = true) {
-      isOut
-        ? this.handleCloseOut(scope.$index)
-        : this.handleClose(scope.$index);
+      isOut ? this.handleCloseOut(scope.$index) : this.handleClose(scope.$index);
       btn.confirm && btn.confirm.call(_this, scope.row, scope);
-    }
-  }
+    },
+  },
 };
 </script>

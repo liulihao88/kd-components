@@ -1,4 +1,4 @@
-import ColumnShow from "./src/index.vue";
+import ColumnShow from './src/index.vue';
 
 ColumnShow.install = (Vue) => Vue.component(ColumnShow.name, ColumnShow);
 

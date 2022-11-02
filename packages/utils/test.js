@@ -1,3 +1,3 @@
 export const init = () => {
-    return true
-}
+  return true;
+};

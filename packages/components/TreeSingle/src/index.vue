@@ -14,15 +14,15 @@
         :label="option.label"
         style="height: auto"
         hidden
-      />
-      <div class="tree_single_search_box" v-if="filterable">
+      ></el-option>
+      <div v-if="filterable" class="tree_single_search_box">
         <el-input
           v-model="filterText"
           placeholder="搜索"
           clearable
           suffix-icon="el-icon-search"
           @input="filterMethod"
-        />
+        ></el-input>
       </div>
       <div class="tree_single_tree_box">
         <el-tree
@@ -35,7 +35,7 @@
           highlight-current
           :current-node-key="option.value"
           @node-click="handleClickNode"
-        />
+        ></el-tree>
       </div>
     </el-select>
   </div>
@@ -43,50 +43,50 @@
 
 <script>
 export default {
-  name: "KdTreeSingle",
+  name: 'KdTreeSingle',
   components: {},
   props: {
     value: {
       type: [String, Number],
-      required: true
+      required: true,
     },
     tableData: {
       type: Array,
-      required: true
+      required: true,
     },
     defaultProps: {
       type: Object,
       default: () => {
         return {
-          value: "id",
-          label: "name",
-          children: "children"
+          value: 'id',
+          label: 'name',
+          children: 'children',
         };
-      }
+      },
     },
     //配置是否可以搜索
     filterable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 配置是否可清空选择
     clearable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     nodeKey: {
       type: String,
-      default: "id"
-    }
+      default: 'id',
+    },
   },
   data() {
     return {
       option: {
-        label: "",
-        value: ""
+        label: '',
+        value: '',
       },
       expandedKeys: [],
-      filterText: "" //筛选绑定值
+      filterText: '', //筛选绑定值
     };
   },
   computed: {
@@ -103,18 +103,18 @@ export default {
             }
           });
         }
-        return this.value || "";
+        return this.value || '';
       },
       set(v) {
-        this.$emit("input", v);
-        this.$emit("change", v);
-      }
-    }
+        this.$emit('input', v);
+        this.$emit('change', v);
+      },
+    },
   },
   watch: {
     filterText(newVal) {
       this.$refs.treeRef.filter(newVal);
-    }
+    },
   },
   created() {},
   mounted() {},
@@ -135,10 +135,8 @@ export default {
       if (!value) return true;
       // return data.name.indexOf(value) !== -1;
       // 不区分大小写
-      return data[this.defaultProps.label]
-        .toLowerCase()
-        .includes(value.toLowerCase());
-    }
-  }
+      return data[this.defaultProps.label].toLowerCase().includes(value.toLowerCase());
+    },
+  },
 };
 </script>

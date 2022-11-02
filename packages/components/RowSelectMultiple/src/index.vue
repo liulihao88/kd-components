@@ -1,7 +1,7 @@
 <template>
   <div
-      class="row-select-multiple"
-      :style="{
+    class="row-select-multiple"
+    :style="{
       '--hoverBgColor': hoverBgColor,
       '--hoverTextColor': hoverTextColor,
       '--activeBgColor': activeBgColor,
@@ -13,13 +13,13 @@
       '--overflow': overflow,
       '--fold-height': foldHeight + 'px',
       '--unfold-height': unfoldHeight + 'px',
-      height: isFold ? foldHeight + 'px' : unfoldHeight + 'px'
+      height: isFold ? foldHeight + 'px' : unfoldHeight + 'px',
     }"
   >
     <div
-        class="label-box"
-        :class="{ 'label-separator': separator }"
-        :style="{ width: labelWidth, 'text-align': labelAlign, ...labelStyles }"
+      class="label-box"
+      :class="{ 'label-separator': separator }"
+      :style="{ width: labelWidth, 'text-align': labelAlign, ...labelStyles }"
     >
       {{ labelText }}
     </div>
@@ -31,11 +31,11 @@
       </template>
       <div v-for="(item, index) in options" :key="index">
         <div
-            class="item"
-            :class="{
-            'is-active': !selectAll && selectedKey.includes(item[keyName])
+          class="item"
+          :class="{
+            'is-active': !selectAll && selectedKey.includes(item[keyName]),
           }"
-            :style="itemStyles"
+          :style="itemStyles"
         >
           <div :class="{ break: itemWidth !== 'auto' }" :data-index="item[keyName]">
             {{ item[labelName] }}
@@ -45,10 +45,10 @@
     </div>
     <div class="fold-box">
       <div
-          v-if="showMore"
-          class="fold-inner"
-          :style="{ 'flex-direction': iconPosition === 'left' ? 'row' : 'row-reverse' }"
-          @click="trigger"
+        v-if="showMore"
+        class="fold-inner"
+        :style="{ 'flex-direction': iconPosition === 'left' ? 'row' : 'row-reverse' }"
+        @click="trigger"
       >
         <i v-if="showIcon" class="el-icon-arrow-down" :class="{ 'trans-icon': !isFold }"></i>
         <div class="text" :style="btnStyles">
@@ -104,57 +104,57 @@
 // trigger 切换折叠状态
 
 export default {
-  name: "KdRowSelectMultiple",
+  name: 'KdRowSelectMultiple',
   props: {
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     duration: {
       type: Number,
-      default: 100
+      default: 100,
     },
     defaultLines: {
       type: Number,
-      default: 1
+      default: 1,
     },
     lineHeight: {
       type: Number,
-      default: 24
+      default: 24,
     },
     // 左侧label
     labelWidth: {
       type: String,
-      default: "auto"
+      default: 'auto',
     },
     labelAlign: {
       type: String,
-      default: "left"
+      default: 'left',
     },
     labelText: {
       type: String,
-      default: "选项"
+      default: '选项',
     },
     separator: {
       type: Boolean,
-      default: false
+      default: false,
     },
     labelStyles: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     // 右侧按钮
     foldText: {
       type: String,
-      default: "更多"
+      default: '更多',
     },
     unfoldText: {
       type: String,
-      default: "收起"
+      default: '收起',
     },
     showIcon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     btnStyles: {
       type: Object,
@@ -162,52 +162,52 @@ export default {
         return {
           // css样式
         };
-      }
+      },
     },
     // 选项
     options: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     showAll: {
       type: Boolean,
-      default: true
+      default: true,
     },
     itemWidth: {
       type: String,
-      default: "auto"
+      default: 'auto',
     },
     itemMaxWidth: {
       type: String,
-      default: "auto"
+      default: 'auto',
     },
     overflow: {
       type: String,
-      default: "ellipsis"
+      default: 'ellipsis',
     },
     labelName: {
       type: String,
-      default: "label"
+      default: 'label',
     },
     keyName: {
       type: String,
-      default: "value"
+      default: 'value',
     },
     activeBgColor: {
       type: String,
-      default: "#365edf"
+      default: '#365edf',
     },
     hoverBgColor: {
       type: String,
-      default: ""
+      default: '',
     },
     activeTextColor: {
       type: String,
-      default: "#fff"
+      default: '#fff',
     },
     hoverTextColor: {
       type: String,
-      default: ""
+      default: '',
     },
     itemStyles: {
       type: Object,
@@ -215,28 +215,28 @@ export default {
         return {
           // css样式
         };
-      }
+      },
     },
     forceMoreBtn: {
       type: Boolean,
-      default: false
+      default: false,
     },
     iconPosition: {
       type: String,
-      default: "left",
+      default: 'left',
       validator: function (value) {
-        return ["left", "right"].includes(value);
-      }
-    }
+        return ['left', 'right'].includes(value);
+      },
+    },
   },
   data() {
     return {
       isFold: true, // true收false开
-      optionScrollHeight: "24px",
+      optionScrollHeight: '24px',
       keySet: new Set(),
       showMore: true,
       foldHeight: 24,
-      unfoldHeight: 24
+      unfoldHeight: 24,
     };
   },
   computed: {
@@ -257,8 +257,8 @@ export default {
         return this.value || [];
       },
       set(val) {
-        this.$emit("input", val || []);
-      }
+        this.$emit('input', val || []);
+      },
     },
     selectAll() {
       let b = true;
@@ -268,7 +268,7 @@ export default {
         b = false;
       }
       return b;
-    }
+    },
   },
   watch: {
     // options是要渲染的内容，可能是异步的，所以要使用watch监听
@@ -281,14 +281,14 @@ export default {
         }
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   mounted() {
-    window.addEventListener("resize", this.onResize);
+    window.addEventListener('resize', this.onResize);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener('resize', this.onResize);
   },
   methods: {
     onResize() {
@@ -321,26 +321,26 @@ export default {
       const key = e.target.dataset.index;
       if (!key) return;
       let res;
-      if (key === "$all") {
+      if (key === '$all') {
         this.keySet.clear();
         res = [];
       } else {
         const hasKey = this.keySet.has(key);
-        this.keySet[hasKey ? "delete" : "add"](key);
+        this.keySet[hasKey ? 'delete' : 'add'](key);
         res = Array.from(this.keySet);
       }
       this.selectedKey = res;
-      this.$emit("selectChange", res);
+      this.$emit('selectChange', res);
     },
     trigger(type) {
-      if (type !== "open" && type !== "close") {
+      if (type !== 'open' && type !== 'close') {
         this.isFold = !this.isFold;
       } else {
-        if (type === "open") this.isFold = false;
-        if (type === "close") this.isFold = true;
+        if (type === 'open') this.isFold = false;
+        if (type === 'close') this.isFold = true;
       }
-      this.$emit("foldChange", this.isFold === true ? "close" : "open");
-    }
-  }
+      this.$emit('foldChange', this.isFold === true ? 'close' : 'open');
+    },
+  },
 };
 </script>

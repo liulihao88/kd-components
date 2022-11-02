@@ -1,4 +1,4 @@
-import SimpleTable from "./src/index.vue";
+import SimpleTable from './src/index.vue';
 
 SimpleTable.install = (Vue) => Vue.component(SimpleTable.name, SimpleTable);
 

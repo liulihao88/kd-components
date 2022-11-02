@@ -1,5 +1,5 @@
 <template>
-  <el-popover v-model="show" v-bind="popAttrs" v-on="$listeners" class="kd-popover-button">
+  <el-popover v-model="show" v-bind="popAttrs" class="kd-popover-button" v-on="$listeners">
     <slot slot="reference" name="reference">
       <el-button v-bind="referenceBtnAttrs" :disabled="disabled">
         {{ referenceText }}
@@ -12,7 +12,7 @@
       </p>
     </slot>
 
-    <div style="text-align: right;margin: 16px 4px 4px 4px;">
+    <div style="text-align: right; margin: 16px 4px 4px 4px">
       <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
       <el-button type="primary" :disabled="disConfirm" :loading="loading" @click="confirm">
         {{ confirmText }}
@@ -38,75 +38,75 @@
 // reference 同popover的reference插槽，触发 Popover 显示的 HTML 元素
 
 export default {
-  name: "KdPopoverButton",
+  name: 'KdPopoverButton',
   props: {
     popoverAttrs: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     referenceBtnAttrs: {
       type: Object,
       default: () => {
         return {};
-      }
+      },
     },
     referenceText: {
       type: String,
-      default: "删除"
+      default: '删除',
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     contentText: {
       type: String,
-      default: "确定删除？"
+      default: '确定删除？',
     },
     contentStyles: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     disConfirm: {
       type: Boolean,
-      default: false
+      default: false,
     },
     confirmText: {
       type: String,
-      default: "确定"
+      default: '确定',
     },
     cancelText: {
       type: String,
-      default: "取消"
+      default: '取消',
     },
     loadingConfirm: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       show: false,
-      loading: false
+      loading: false,
     };
   },
   computed: {
     popAttrs() {
       return Object.assign(
         {
-          placement: "bottom",
-          title: "删除",
+          placement: 'bottom',
+          title: '删除',
           width: 260,
-          trigger: "click"
+          trigger: 'click',
         },
         this.popoverAttrs
       );
-    }
+    },
   },
   methods: {
     confirm() {
       if (this.loadingConfirm) {
         this.loading = true;
-        this.$emit("confirm", (err) => {
+        this.$emit('confirm', (err) => {
           if (!err) {
             this.loading = false;
             this.show = false;
@@ -114,14 +114,13 @@ export default {
         });
       } else {
         this.show = false;
-        this.$emit("confirm");
+        this.$emit('confirm');
       }
-      
     },
     cancel() {
       this.show = false;
-      this.$emit("cancel");
-    }
-  }
+      this.$emit('cancel');
+    },
+  },
 };
 </script>

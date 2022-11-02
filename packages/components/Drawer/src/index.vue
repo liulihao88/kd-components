@@ -24,19 +24,19 @@
         <slot name="footer">
           <el-button
             v-if="showConfirm"
+            v-throttle="cancelThrottleNumber"
             :type="confirmAttrs.type || 'primary'"
             v-bind="confirmAttrs"
             class="mr"
-            v-throttle="cancelThrottleNumber"
             @click="confirm"
           >
             {{ confirmText }}
           </el-button>
           <el-button
             v-if="showCancel"
+            v-throttle="confirmThrottleNumber"
             :type="cancelAttrs.type || 'info'"
             v-bind="cancelAttrs"
-            v-throttle="confirmThrottleNumber"
             @click="handleClose"
           >
             {{ cancelText }}
@@ -49,84 +49,84 @@
 
 <script>
 export default {
-  name: "KdDrawer",
+  name: 'KdDrawer',
   props: {
     title: {
       type: String,
-      default: ""
+      default: '',
     },
 
     confirmText: {
       type: String,
-      default: "提交"
+      default: '提交',
     },
     showFooter: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showConfirm: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showCancel: {
       type: Boolean,
-      default: true
+      default: true,
     },
     cancelText: {
       type: String,
-      default: "取消"
+      default: '取消',
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     wrapperClosable: {
       type: Boolean,
-      default: process.env.NODE_ENV === "development"
+      default: process.env.NODE_ENV === 'development',
     },
     cancelThrottleNumber: {
       type: Number,
-      default: 1000
+      default: 1000,
     },
     confirmThrottleNumber: {
       type: Number,
-      default: 2000
+      default: 2000,
     },
     destroyOnClose: {
       type: Boolean,
-      default: true
+      default: true,
     },
     confirmAttrs: {
       type: Object,
       default: () => {
         return {};
-      }
+      },
     },
     cancelAttrs: {
       type: Object,
       default: () => {
         return {};
-      }
-    }
+      },
+    },
   },
   computed: {},
   mounted() {},
   methods: {
     confirm() {
       if (this.$listeners.confirm) {
-        this.$emit("confirm");
+        this.$emit('confirm');
       } else {
-        this.$emit("update:visible", false);
+        this.$emit('update:visible', false);
       }
     },
     handleClose() {
       if (this.$listeners.cancel) {
-        this.$emit("cancel");
+        this.$emit('cancel');
       } else {
-        this.$emit("update:visible", false);
+        this.$emit('update:visible', false);
       }
-    }
-  }
+    },
+  },
 };
 </script>

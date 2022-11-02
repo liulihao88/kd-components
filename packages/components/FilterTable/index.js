@@ -1,4 +1,4 @@
-import FilterTable from "./src/index.vue";
+import FilterTable from './src/index.vue';
 
 FilterTable.install = (Vue) => Vue.component(FilterTable.name, FilterTable);
 

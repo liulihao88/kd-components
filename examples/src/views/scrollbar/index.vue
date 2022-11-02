@@ -2,10 +2,7 @@
   <div class="box-container">
     <el-button @click="positionTop">定位到顶部</el-button>
     <el-button @click="positionBottom">定位到底部</el-button>
-    <kd-scrollbar
-        ref="kdScrollRef"
-        @scrollBottom="scrollBottom"
-        @scrollTop="scrollTop">
+    <kd-scrollbar ref="kdScrollRef" @scrollBottom="scrollBottom" @scrollTop="scrollTop">
       <div class="inner-container">
         <div>top</div>
         <div v-for="item in 30" :key="item">test</div>
@@ -22,7 +19,7 @@ export default {
       this.$nextTick(() => {
         //解决滚动条初始化消失的问题
         this.$refs.kdScrollRef.updateScroll();
-      })
+      });
     },
     /**
      * 定位到顶部
@@ -38,14 +35,14 @@ export default {
     },
     // 滚动到底部事件
     scrollBottom() {
-      console.log('我已经滚动到底部了')
+      console.log('我已经滚动到底部了');
     },
     // 滚动到底部事件
     scrollTop() {
-      console.log('我已经滚动到顶部了')
+      console.log('我已经滚动到顶部了');
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

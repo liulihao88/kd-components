@@ -3,13 +3,7 @@
  * @author: huruirui@keendata.com
  !-->
 <template>
-  <el-select
-    v-model="checkValue"
-    v-bind="$attrs"
-    multiple
-    popper-class="need-table-checkbox"
-    v-on="$listeners"
-  >
+  <el-select v-model="checkValue" v-bind="$attrs" multiple popper-class="need-table-checkbox" v-on="$listeners">
     <el-option
       v-for="item in options"
       :key="item[defaultProps.value]"
@@ -25,19 +19,19 @@
 
 <script>
 export default {
-  name: "KdSelectMultiple",
+  name: 'KdSelectMultiple',
   props: {
     value: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
-    options:{
+    options: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     defaultProps: {
       type: Object,
@@ -45,24 +39,23 @@ export default {
         return {
           value: 'value',
           label: 'label',
-        }
-      }
+        };
+      },
     },
     isObject: {
       type: Boolean, // 绑定value为json格式时为true,默认false
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     checkValue: {
       get() {
-        return this.value
+        return this.value;
       },
       set(v) {
         this.$emit('input', v);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
-

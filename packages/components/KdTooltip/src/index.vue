@@ -1,16 +1,10 @@
 <template>
-  <el-tooltip
-    class="item"
-    effect="dark"
-    :disabled="isShowTooltip"
-    :placement="$attrs.placement"
-    v-bind="$attrs"
-  >
+  <el-tooltip class="item" effect="dark" :disabled="isShowTooltip" :placement="$attrs.placement" v-bind="$attrs">
     <span
-      class="hide-text"
-      v-on="$listeners"
       v-if="!slotShow"
+      class="hide-text"
       :style="{ maxWidth: width }"
+      v-on="$listeners"
       @mouseover="onMouseOver('str')"
     >
       <span ref="str">{{ $attrs.content }}</span>
@@ -25,22 +19,24 @@ export default {
   name: 'KdTooltip',
   components: {},
   props: {
-    width: { // 超过此宽度省略号显示
+    width: {
+      // 超过此宽度省略号显示
       type: String,
       default: () => {
-        return "100%";
+        return '100%';
       },
     },
-    slotShow: { // 是否显示插槽
+    slotShow: {
+      // 是否显示插槽
       type: Boolean,
       default: () => {
         return false;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      isShowTooltip: false
+      isShowTooltip: false,
     };
   },
   methods: {
@@ -51,8 +47,7 @@ export default {
       const parentWidth = tag.parentNode.offsetWidth; // 获取元素父级可视宽度
       const contentWidth = tag.offsetWidth; // 获取元素可视宽度
       this.isShowTooltip = contentWidth <= parentWidth;
-    }
-  }
+    },
+  },
 };
 </script>
-

@@ -2,14 +2,14 @@
   <div class="kd-simple-table-wrap" :style="{ height: wrapHeight + 'px' }">
     <div class="table-inner filter_table">
       <el-table
-          ref="kdSimpleTable"
-          v-loading="loading"
-          class="kd-simple-table"
-          size="small"
-          :border="$attrs.border === undefined ? true : $attrs.border"
-          :header-cell-style="headerCellStyle"
-          v-bind="$attrs"
-          v-on="$listeners"
+        ref="kdSimpleTable"
+        v-loading="loading"
+        class="kd-simple-table"
+        size="small"
+        :border="$attrs.border === undefined ? true : $attrs.border"
+        :header-cell-style="headerCellStyle"
+        v-bind="$attrs"
+        v-on="$listeners"
       >
         <el-table-column v-if="draggable" v-bind="dragColConf">
           <div class="drag-icon">
@@ -24,7 +24,7 @@
           </slot>
         </template>
       </el-table>
-      <div v-if="showPaging" :style="{height:footHeight+'px'}">
+      <div v-if="showPaging" :style="{ height: footHeight + 'px' }">
         <slot name="paging">
           <div class="page-wrap">
             <div class="left-text">
@@ -33,10 +33,10 @@
               项数据
             </div>
             <el-pagination
-                class="tab_pagination"
-                v-bind="pagingConf"
-                @size-change="pageChange('pageSize', $event)"
-                @current-change="pageChange('currentPage', $event)"
+              class="tab_pagination"
+              v-bind="pagingConf"
+              @size-change="pageChange('pageSize', $event)"
+              @current-change="pageChange('currentPage', $event)"
             ></el-pagination>
           </div>
         </slot>
@@ -46,18 +46,18 @@
 </template>
 
 <script>
-import Sortable from "sortablejs";
+import Sortable from 'sortablejs';
 
 export default {
-  name: "KdSimpleTable",
+  name: 'KdSimpleTable',
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPaging: {
       type: Boolean,
-      default: true
+      default: true,
     },
     pagingAttrs: {
       type: Object,
@@ -67,69 +67,69 @@ export default {
           // currentPage: 1,
           // total: 0
         };
-      }
+      },
     },
-    preColType:{
-      type:String,
-      default:"",
+    preColType: {
+      type: String,
+      default: '',
       validator: function (value) {
-        return ["selection", "index","expand",""].includes(value);
-      }
+        return ['selection', 'index', 'expand', ''].includes(value);
+      },
     },
-    preColConf:{
-      type:Object,
-      default:()=> {
+    preColConf: {
+      type: Object,
+      default: () => {
         return {
-          width:"50px"
-        }
-      }
+          width: '50px',
+        };
+      },
     },
     // 可拖拽行
     draggable: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    dragColConf:{
-      type:Object,
-      default:()=> {
+    dragColConf: {
+      type: Object,
+      default: () => {
         return {
-          width:"50px"
-        }
-      }
+          width: '50px',
+        };
+      },
     },
     footHeight: {
       type: Number,
-      default: 64
-    }
+      default: 64,
+    },
   },
   data() {
     return {
       headerCellStyle: {
-        background: "var(--table-th-bg)",
-        color: "var(--text-color)"
+        background: 'var(--table-th-bg)',
+        color: 'var(--text-color)',
       },
       wrapHeight: null,
-      sort:null
+      sort: null,
     };
   },
   computed: {
     pagingConf() {
       return Object.assign(
-          {
-            pageSizes: [10, 20, 30, 40],
-            background: true,
-            layout: "prev, pager, next, sizes, jumper",
-            total: 0
-          },
-          this.pagingAttrs
+        {
+          pageSizes: [10, 20, 30, 40],
+          background: true,
+          layout: 'prev, pager, next, sizes, jumper',
+          total: 0,
+        },
+        this.pagingAttrs
       );
-    }
+    },
   },
   mounted() {
     if (this.draggable) {
       this.$nextTick(() => {
         this.rowDrop();
-      })
+      });
     }
   },
   updated() {
@@ -147,7 +147,7 @@ export default {
   methods: {
     // 分页组件页码、每页数量变量时
     pageChange(type, e) {
-      this.$emit("pageChange", { [type]: e });
+      this.$emit('pageChange', { [type]: e });
     },
     // 动态切换列数据时，需要调用该方法，避免表格在切换过程中布局异常
     doLayout() {
@@ -157,20 +157,20 @@ export default {
     },
     // 行拖拽
     rowDrop() {
-      const tbody = document.querySelector(".kd-simple-table .el-table__body-wrapper tbody");
+      const tbody = document.querySelector('.kd-simple-table .el-table__body-wrapper tbody');
       const _this = this;
       Sortable.create(tbody, {
-        ghostClass: "ghost-drag-table",
-        handle: ".drag-icon",
+        ghostClass: 'ghost-drag-table',
+        handle: '.drag-icon',
         onEnd({ newIndex, oldIndex }) {
           [_this.$attrs.data[newIndex], _this.$attrs.data[oldIndex]] = [
             _this.$attrs.data[oldIndex],
-            _this.$attrs.data[newIndex]
+            _this.$attrs.data[newIndex],
           ];
-          _this.$emit("onSort", _this.$attrs.data);
-        }
+          _this.$emit('onSort', _this.$attrs.data);
+        },
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>

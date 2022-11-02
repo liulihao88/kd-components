@@ -1,4 +1,4 @@
-import Input from "./src/index.vue";
+import Input from './src/index.vue';
 
 Input.install = (Vue) => Vue.component(Input.name, Input);
 

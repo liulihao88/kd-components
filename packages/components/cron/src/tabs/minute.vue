@@ -2,62 +2,46 @@
   <div class="config-list">
     <el-radio-group v-model="type">
       <div class="item">
-        <el-radio
-          label="TYPE_EVERY"
-          class="choice"
-          :disabled="disabled"
-        >
-          每分
-        </el-radio>
+        <el-radio label="TYPE_EVERY" class="choice" :disabled="disabled"> 每分 </el-radio>
       </div>
       <div class="item">
-        <el-radio
-          label="TYPE_RANGE"
-          class="choice"
-          :disabled="disabled"
-        >
-          区间
-        </el-radio>
+        <el-radio label="TYPE_RANGE" class="choice" :disabled="disabled"> 区间 </el-radio>
         从<el-input
           v-model="valueRange.start"
-          :disabled="type!=TYPE_RANGE || disabled"
+          :disabled="type != TYPE_RANGE || disabled"
           :max="maxValue"
           :min="minValue"
           :precision="0"
           class="w60"
           size="small"
-        />分
-        至<el-input
+        ></el-input
+        >分 至<el-input
           v-model="valueRange.end"
-          :disabled="type!=TYPE_RANGE || disabled"
+          :disabled="type != TYPE_RANGE || disabled"
           :max="maxValue"
           :min="minValue"
           :precision="0"
           class="w60"
           size="small"
-        />分
+        ></el-input
+        >分
       </div>
       <div class="item">
-        <el-radio
-          label="TYPE_LOOP"
-          class="choice"
-          :disabled="disabled"
-        >
-          循环
-        </el-radio>
+        <el-radio label="TYPE_LOOP" class="choice" :disabled="disabled"> 循环 </el-radio>
         从
         <el-input
           v-model="valueLoop.start"
-          :disabled="type!=TYPE_LOOP || disabled"
+          :disabled="type != TYPE_LOOP || disabled"
           :max="maxValue"
           :min="minValue"
           :precision="0"
           class="w60"
           size="small"
-        />分开始，间隔
+        ></el-input
+        >分开始，间隔
         <el-input
           v-model="valueLoop.interval"
-          :disabled="type!=TYPE_LOOP || disabled"
+          :disabled="type != TYPE_LOOP || disabled"
           :max="maxValue"
           :min="minValue"
           :precision="0"
@@ -68,21 +52,15 @@
         </el-input>
       </div>
       <div class="item">
-        <el-radio
-          label="TYPE_SPECIFY"
-          class="choice"
-          :disabled="disabled"
-        >
-          指定
-        </el-radio>
+        <el-radio label="TYPE_SPECIFY" class="choice" :disabled="disabled"> 指定 </el-radio>
         <div class="list">
           <el-checkbox-group v-model="valueList">
             <el-checkbox
-              v-for="i in maxValue+1"
-              :key="`key-${i-1}`"
+              v-for="i in maxValue + 1"
+              :key="`key-${i - 1}`"
               class="list-check-item"
-              :label="i-1"
-              :disabled="type!=TYPE_SPECIFY || disabled"
+              :label="i - 1"
+              :disabled="type != TYPE_SPECIFY || disabled"
             >
               {{ i - 1 }}
             </el-checkbox>
@@ -94,30 +72,29 @@
 </template>
 
 <script>
-import mixin from './mixin'
+import mixin from './mixin';
 export default {
   name: 'Minute',
   mixins: [mixin],
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   watch: {
-    value_c (newVal) {
-      this.$emit('change', newVal)
-    }
+    value_c(newVal) {
+      this.$emit('change', newVal);
+    },
   },
-  created () {
-    this.DEFAULT_VALUE = '*'
-    this.minValue = 0
-    this.maxValue = 59
-    this.valueRange.start = 0
-    this.valueRange.end = 59
-    this.valueLoop.start = 0
-    this.valueLoop.interval = 1
-    this.parseProp(this.prop)
-  }
-}
+  created() {
+    this.DEFAULT_VALUE = '*';
+    this.minValue = 0;
+    this.maxValue = 59;
+    this.valueRange.start = 0;
+    this.valueRange.end = 59;
+    this.valueLoop.start = 0;
+    this.valueLoop.interval = 1;
+    this.parseProp(this.prop);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -127,9 +104,9 @@ export default {
 }
 .item {
   margin-top: 5px;
-    &:first-of-type {
-        margin-top: 0;
-    }
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
 .choice {
@@ -143,19 +120,19 @@ export default {
   width: 60px;
 }
 .el-input {
-    margin-left: 5px;
-    width: 60px !important;
-    margin-right: 5px;
+  margin-left: 5px;
+  width: 60px !important;
+  margin-right: 5px;
 }
 .list {
   margin-left: 16px;
-    .list-check-item {
-        padding: 1px 3px;
-        width: 4em;
-    }
-    .el-checkbox {
-        margin-right: 16px;
-    }
+  .list-check-item {
+    padding: 1px 3px;
+    width: 4em;
+  }
+  .el-checkbox {
+    margin-right: 16px;
+  }
 }
 
 .el-radio-group {

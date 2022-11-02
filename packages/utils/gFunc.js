@@ -1,5 +1,5 @@
-import { Message } from "element-ui";
-import _ from "lodash";
+import { Message } from 'element-ui';
+import _ from 'lodash';
 
 export function deepClone(arr) {
   return _.cloneDeep(arr);
@@ -7,7 +7,7 @@ export function deepClone(arr) {
 
 export function setStorage(str, params, isLocalStorage = false) {
   let handleParams;
-  if (typeof params === "number" || typeof params === "string") {
+  if (typeof params === 'number' || typeof params === 'string') {
     handleParams = params;
   } else {
     handleParams = JSON.stringify(params);
@@ -25,7 +25,7 @@ export function getStorage(data) {
   let getSessionData = sessionStorage.getItem(data);
   if (getLocalData) {
     try {
-      if (data !== "curProject") {
+      if (data !== 'curProject') {
         getLocalData = JSON.parse(getLocalData);
       }
     } catch (e) {
@@ -34,7 +34,7 @@ export function getStorage(data) {
     return getLocalData;
   } else if (getSessionData) {
     try {
-      if (data !== "curProject") {
+      if (data !== 'curProject') {
         getSessionData = JSON.parse(getSessionData);
       }
     } catch (e) {
@@ -71,15 +71,12 @@ export function clearStorage(str) {
  * parseTime(new Date().getTime()); //2018-11-11 17:13:21
  */
 
-export function parseTime(
-  time = new Date(),
-  cFormat = "{y}-{m}-{d} {h}:{i}:{s}"
-) {
+export function parseTime(time = new Date(), cFormat = '{y}-{m}-{d} {h}:{i}:{s}') {
   let date;
-  if (typeof time === "object") {
+  if (typeof time === 'object') {
     date = time;
   } else {
-    if (("" + time).length === 10) time = parseInt(time) * 1000;
+    if (('' + time).length === 10) time = parseInt(time) * 1000;
     date = new Date(time);
   }
   const formatObj = {
@@ -89,15 +86,15 @@ export function parseTime(
     h: date.getHours(),
     i: date.getMinutes(),
     s: date.getSeconds(),
-    a: date.getDay()
+    a: date.getDay(),
   };
   const time_str = cFormat.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]; // Note: getDay() returns 0 on Sunday
-    if (key === "a") {
-      return ["日", "一", "二", "三", "四", "五", "六"][value];
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value];
     }
     if (result.length > 0 && value < 10) {
-      value = "0" + value;
+      value = '0' + value;
     }
     return value || 0;
   });
@@ -105,21 +102,21 @@ export function parseTime(
 }
 
 // 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
-export function $toast(str, type = "s", otherParams = {}) {
+export function $toast(str, type = 's', otherParams = {}) {
   let handleType = type;
-  if (type === "s") {
-    handleType = "success";
-  } else if (type === "i") {
-    handleType = "info";
-  } else if (type === "e") {
-    handleType = "error";
-  } else if (type === "w") {
-    handleType = "warning";
+  if (type === 's') {
+    handleType = 'success';
+  } else if (type === 'i') {
+    handleType = 'info';
+  } else if (type === 'e') {
+    handleType = 'error';
+  } else if (type === 'w') {
+    handleType = 'warning';
   }
   Message({
     message: str,
     type: handleType,
-    ...otherParams
+    ...otherParams,
   });
 }
 
@@ -161,31 +158,19 @@ export const debounce = (func, wait, immediate) => {
  */
 
 export function uuid(
-  type = "",
+  type = '',
   length = 4,
-  { emailStr = "@qq.com", timeStr = "{m}-{d} {h}:{i}:{s}", startStr = "" } = {}
+  { emailStr = '@qq.com', timeStr = '{m}-{d} {h}:{i}:{s}', startStr = '' } = {}
 ) {
-  let randomStr = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+  let randomStr = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
   let res = type;
   // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
-  if (judgeType(type) === "array") {
-    return type[0][length === 4 ? "value" : length];
+  if (judgeType(type) === 'array') {
+    return type[0][length === 4 ? 'value' : length];
   }
   // 如果是手机号, 生成随机手机号
-  if (type === "phone") {
-    let prefixArray = new Array(
-      "130",
-      "131",
-      "132",
-      "133",
-      "135",
-      "136",
-      "137",
-      "138",
-      "170",
-      "187",
-      "189"
-    );
+  if (type === 'phone') {
+    let prefixArray = new Array('130', '131', '132', '133', '135', '136', '137', '138', '170', '187', '189');
     let i = parseInt(10 * Math.random());
     let res = prefixArray[i];
     for (var j = 0; j < 8; j++) {
@@ -194,20 +179,20 @@ export function uuid(
     return res;
   }
   // 如果是email, 生成随机email
-  if (type === "email") {
+  if (type === 'email') {
     return uuid(startStr, length) + emailStr;
   }
   // 如果是时间, 生成时间字符串
-  if (type === "time") {
-    return uuid(startStr, length) + " " + parseTime(new Date(), timeStr);
+  if (type === 'time') {
+    return uuid(startStr, length) + ' ' + parseTime(new Date(), timeStr);
   }
-  if(type === 'number'){
+  if (type === 'number') {
     let randomStr = '123456789';
     let res = '';
     for (let i = length; i > 0; --i) {
       res += randomStr[Math.floor(Math.random() * randomStr.length)];
     }
-    
+
     return Number(res);
   }
   for (let i = length; i > 0; --i) {
@@ -222,12 +207,7 @@ export const getDates = () => {
   var nowY = myDate.getFullYear();
   var nowM = myDate.getMonth() + 1;
   var nowD = myDate.getDate();
-  var enddate =
-    nowY +
-    "-" +
-    (nowM < 10 ? "0" + nowM : nowM) +
-    "-" +
-    (nowD < 10 ? "0" + nowD : nowD); //当前日期
+  var enddate = nowY + '-' + (nowM < 10 ? '0' + nowM : nowM) + '-' + (nowD < 10 ? '0' + nowD : nowD); //当前日期
   //获取三十天前日期
   let dateArr = [enddate];
   for (let i = 1; i < 30; i++) {
@@ -235,12 +215,7 @@ export const getDates = () => {
     var lastY = lw.getFullYear();
     var lastM = lw.getMonth() + 1;
     var lastD = lw.getDate();
-    var startdate =
-      lastY +
-      "-" +
-      (lastM < 10 ? "0" + lastM : lastM) +
-      "-" +
-      (lastD < 10 ? "0" + lastD : lastD);
+    var startdate = lastY + '-' + (lastM < 10 ? '0' + lastM : lastM) + '-' + (lastD < 10 ? '0' + lastD : lastD);
     dateArr.unshift(startdate);
   }
   return dateArr;
@@ -256,11 +231,8 @@ export const getDates = () => {
  * judgeType(null) null
  */
 export function judgeType(val) {
-  if (typeof val === "object") {
-    const objVal = Object.prototype.toString
-      .call(val)
-      .slice(8, -1)
-      .toLowerCase();
+  if (typeof val === 'object') {
+    const objVal = Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
     return objVal;
   } else {
     return typeof val;
@@ -273,20 +245,20 @@ export function judgeType(val) {
  */
 export function isEmpty(v) {
   switch (typeof v) {
-    case "undefined":
+    case 'undefined':
       return true;
-    case "string":
-      if (v.trim().length == 0) return true;
+    case 'string':
+      if (v.trim().length === 0) return true;
       break;
-    case "boolean":
+    case 'boolean':
       if (!v) return true;
       break;
-    case "number":
+    case 'number':
       if (0 === v) return true;
       break;
-    case "object":
+    case 'object':
       if (null === v) return true;
-      if (undefined !== v.length && v.length == 0) return true;
+      if (undefined !== v.length && v.length === 0) return true;
       for (var k in v) {
         return false;
       }
@@ -317,12 +289,12 @@ export const checkForm = (formName, self) => {
  * this.$pub.validateForm(this, ()=>{})
  * this.$pub.validateForm(this, ()=>{}, 'form2Ref')
  */
-export function validateForm(_this, sucCb, ref = "formRef") {
+export function validateForm(_this, sucCb, ref = 'formRef') {
   _this.$refs[ref].validate((valid) => {
     if (valid) {
       sucCb();
     } else {
-      return $toast("验证未通过", "e");
+      return $toast('验证未通过', 'e');
     }
   });
 }

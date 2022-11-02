@@ -1,4 +1,4 @@
-import TableSearch from "./src/index.vue";
+import TableSearch from './src/index.vue';
 
 TableSearch.install = (Vue) => Vue.component(TableSearch.name, TableSearch);
 

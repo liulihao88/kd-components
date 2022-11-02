@@ -1,4 +1,4 @@
-import AdvancedSearch from "./src/index.vue";
+import AdvancedSearch from './src/index.vue';
 
 AdvancedSearch.install = (Vue) => Vue.component(AdvancedSearch.name, AdvancedSearch);
 

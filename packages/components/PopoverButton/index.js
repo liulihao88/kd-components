@@ -1,4 +1,4 @@
-import PopoverButton from "./src/index.vue";
+import PopoverButton from './src/index.vue';
 
 PopoverButton.install = (Vue) => Vue.component(PopoverButton.name, PopoverButton);
 

@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  export default {
-    name: 'KdIcon',
-    props: {
-      name: String
-    }
-  };
+export default {
+  name: 'KdIcon',
+  props: {
+    name: String,
+  },
+};
 </script>

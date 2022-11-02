@@ -2,7 +2,7 @@
   <div class="kd-empty">
     <div>
       <img :src="img" :style="{ ...mHandleWidth() }" alt="" />
-      <p>{{title}}</p>
+      <p>{{ title }}</p>
     </div>
   </div>
 </template>
@@ -15,18 +15,18 @@ export default {
       type: String,
       default: () => {
         return group_null;
-      }
+      },
     },
     width: {
       type: [String, Number],
       default: () => {
         return '100px';
-      }
+      },
     },
     title: {
       type: String,
-      default: '暂无数据'
-    }
-  }
+      default: '暂无数据',
+    },
+  },
 };
 </script>

@@ -8,17 +8,13 @@
         :default-time="['00:00:00', '23:59:59']"
         type="datetimerange"
         value-format="yyyy-MM-dd HH:mm:ss"
-        :start-placeholder="
-          $attrs.disabled ? '' : $attrs['start-placeholder'] || '请选择日期'
-        "
-        :end-placeholder="
-          $attrs.disabled ? '' : $attrs['end-placeholder'] || '请选择日期'
-        "
+        :start-placeholder="$attrs.disabled ? '' : $attrs['start-placeholder'] || '请选择日期'"
+        :end-placeholder="$attrs.disabled ? '' : $attrs['end-placeholder'] || '请选择日期'"
         :picker-options="mergePickerOptions"
         v-bind="$attrs"
         v-on="$listeners"
         @change="dateChange"
-      />
+      ></el-date-picker>
     </div>
   </div>
 </template>
@@ -29,17 +25,17 @@ export default {
   props: {
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     // 只能选择现在现在以前的时间
     futureDisabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     const oneDay = 3600 * 1000 * 24;
@@ -51,41 +47,31 @@ export default {
           {
             text: '今天',
             onClick(picker) {
-              const start = new Date(
-                new Date(new Date().toLocaleDateString()).getTime()
-              );
+              const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
               picker.$emit('pick', [start, end]);
-            }
+            },
           },
           {
             text: '昨天',
             onClick(picker) {
-              const start = new Date(
-                new Date(new Date().toLocaleDateString()).getTime() - oneDay
-              );
-              const yesEnd = new Date(
-                new Date(new Date().toLocaleDateString()).getTime() - 1
-              );
+              const start = new Date(new Date(new Date().toLocaleDateString()).getTime() - oneDay);
+              const yesEnd = new Date(new Date(new Date().toLocaleDateString()).getTime() - 1);
               picker.$emit('pick', [start, yesEnd]);
-            }
+            },
           },
           {
             text: '最近一周',
             onClick(picker) {
-              const start = new Date(
-                new Date(new Date().toLocaleDateString()).getTime() - oneDay * 6
-              );
+              const start = new Date(new Date(new Date().toLocaleDateString()).getTime() - oneDay * 6);
               picker.$emit('pick', [start, end]);
-            }
+            },
           },
           {
             text: '本月',
             onClick(picker) {
-              const start = new Date(
-                new Date(new Date().toLocaleDateString()).setDate(1)
-              );
+              const start = new Date(new Date(new Date().toLocaleDateString()).setDate(1));
               picker.$emit('pick', [start, new Date()]);
-            }
+            },
           },
           {
             text: '最近一个月',
@@ -93,7 +79,7 @@ export default {
               const start = new Date();
               start.setTime(start.getTime() - oneDay * 30);
               picker.$emit('pick', [start, end]);
-            }
+            },
           },
           {
             text: '最近三个月',
@@ -101,10 +87,10 @@ export default {
               const start = new Date();
               start.setTime(start.getTime() - oneDay * 90);
               picker.$emit('pick', [start, end]);
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -116,7 +102,7 @@ export default {
         // 如果futureDisabled为true, 不能选择将来的日期
         if (this.futureDisabled) {
           let res = Object.assign(this.pickerOptions, {
-            disabledDate: this.disabledDate
+            disabledDate: this.disabledDate,
           });
           return res;
         }
@@ -133,8 +119,8 @@ export default {
       },
       set(v) {
         this.$emit('input', v);
-      }
-    }
+      },
+    },
   },
   methods: {
     dateChange(v) {
@@ -147,7 +133,7 @@ export default {
         return false;
       }
       return true;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -5,11 +5,11 @@
       'el-tree--highlight-current': highlightCurrent,
       'is-dragging': !!dragState.draggingNode,
       'is-drop-not-allow': !dragState.allowDrop,
-      'is-drop-inner': dragState.dropType === 'inner'
+      'is-drop-inner': dragState.dropType === 'inner',
     }"
     role="tree"
   >
-    <div class="el-tree__empty-block" v-if="isEmpty">
+    <div v-if="isEmpty" class="el-tree__empty-block">
       <span class="el-tree__empty-text">{{ emptyText }}</span>
     </div>
     <virtual-list
@@ -24,32 +24,28 @@
         showCheckbox,
         renderContent,
         props,
-        onNodeExpand: handleNodeExpand
+        onNodeExpand: handleNodeExpand,
       }"
-    />
-    <div
-      v-show="dragState.showDropIndicator"
-      class="el-tree__drop-indicator"
-      ref="dropIndicator"
-    ></div>
+    ></virtual-list>
+    <div v-show="dragState.showDropIndicator" ref="dropIndicator" class="el-tree__drop-indicator"></div>
   </div>
 </template>
 
 <script>
-import TreeStore from "./model/tree-store";
-import * as VirtualList from "vue-virtual-scroll-list";
-import { getNodeKey, findNearestComponent } from "./model/util";
+import TreeStore from './model/tree-store';
+import * as VirtualList from 'vue-virtual-scroll-list';
+import { getNodeKey, findNearestComponent } from './model/util';
 // import ElTreeNode from './tree-node.vue'
-import ElVirtualNode from "./tree-virtual-node.vue";
-import { t } from "element-ui/src/locale";
-import emitter from "element-ui/src/mixins/emitter";
-import { addClass, removeClass } from "element-ui/src/utils/dom";
+import ElVirtualNode from './tree-virtual-node.vue';
+import { t } from 'element-ui/src/locale';
+import emitter from 'element-ui/src/mixins/emitter';
+import { addClass, removeClass } from 'element-ui/src/utils/dom';
 
 export default {
-  name: "KdTree",
+  name: 'KdTree',
 
   components: {
-    VirtualList
+    VirtualList,
     // ElTreeNode
   },
 
@@ -57,33 +53,33 @@ export default {
 
   props: {
     data: {
-      type: Array
+      type: Array,
     },
     emptyText: {
       type: String,
       default() {
-        return t("el.tree.emptyText");
-      }
+        return t('el.tree.emptyText');
+      },
     },
     renderAfterExpand: {
       type: Boolean,
-      default: true
+      default: true,
     },
     nodeKey: String,
     checkStrictly: Boolean,
     defaultExpandAll: Boolean,
     expandOnClickNode: {
       type: Boolean,
-      default: true
+      default: true,
     },
     checkOnClickNode: Boolean,
     checkDescendants: {
       type: Boolean,
-      default: false
+      default: false,
     },
     autoExpandParent: {
       type: Boolean,
-      default: true
+      default: true,
     },
     defaultCheckedKeys: Array,
     defaultExpandedKeys: Array,
@@ -91,26 +87,26 @@ export default {
     renderContent: Function,
     showCheckbox: {
       type: Boolean,
-      default: false
+      default: false,
     },
     draggable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     allowDrag: Function,
     allowDrop: Function,
     props: {
       default() {
         return {
-          children: "children",
-          label: "label",
-          disabled: "disabled"
+          children: 'children',
+          label: 'label',
+          disabled: 'disabled',
         };
-      }
+      },
     },
     lazy: {
       type: Boolean,
-      default: false
+      default: false,
     },
     highlightCurrent: Boolean,
     load: Function,
@@ -118,13 +114,13 @@ export default {
     accordion: Boolean,
     indent: {
       type: Number,
-      default: 18
+      default: 18,
     },
     iconClass: String,
     extraLine: {
       type: Number,
-      default: 8
-    }
+      default: 8,
+    },
   },
 
   data() {
@@ -138,9 +134,9 @@ export default {
         showDropIndicator: false,
         draggingNode: null,
         dropNode: null,
-        allowDrop: true
+        allowDrop: true,
       },
-      itemComponent: ElVirtualNode
+      itemComponent: ElVirtualNode,
     };
   },
 
@@ -151,7 +147,7 @@ export default {
       },
       get() {
         return this.data;
-      }
+      },
     },
 
     treeItemArray() {
@@ -160,16 +156,12 @@ export default {
 
     isEmpty() {
       const { childNodes } = this.root;
-      return (
-        !childNodes ||
-        childNodes.length === 0 ||
-        childNodes.every(({ visible }) => !visible)
-      );
+      return !childNodes || childNodes.length === 0 || childNodes.every(({ visible }) => !visible);
     },
 
     visibleList() {
       return this.flattenTree(this.root.childNodes);
-    }
+    },
   },
 
   watch: {
@@ -190,13 +182,13 @@ export default {
 
     checkboxItems(val) {
       Array.prototype.forEach.call(val, (checkbox) => {
-        checkbox.setAttribute("tabindex", -1);
+        checkbox.setAttribute('tabindex', -1);
       });
     },
 
     checkStrictly(newVal) {
       this.store.checkStrictly = newVal;
-    }
+    },
   },
 
   created() {
@@ -215,37 +207,34 @@ export default {
       defaultExpandedKeys: this.defaultExpandedKeys,
       autoExpandParent: this.autoExpandParent,
       defaultExpandAll: this.defaultExpandAll,
-      filterNodeMethod: this.filterNodeMethod
+      filterNodeMethod: this.filterNodeMethod,
     });
 
     this.root = this.store.root;
 
     const { dragState } = this;
-    this.$on("tree-node-drag-start", (event, treeNode) => {
-      if (
-        typeof this.allowDrag === "function" &&
-        !this.allowDrag(treeNode.node)
-      ) {
+    this.$on('tree-node-drag-start', (event, treeNode) => {
+      if (typeof this.allowDrag === 'function' && !this.allowDrag(treeNode.node)) {
         event.preventDefault();
         return false;
       }
-      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.effectAllowed = 'move';
 
       // wrap in try catch to address IE's error when first param is 'text/plain'
       try {
         // setData is required for draggable to work in FireFox
         // the content has to be '' so dragging a node out of the tree won't open a new tab in FireFox
-        event.dataTransfer.setData("text/plain", "");
+        event.dataTransfer.setData('text/plain', '');
       } catch (e) {}
       dragState.draggingNode = treeNode;
-      this.$emit("node-drag-start", treeNode.node, event);
+      this.$emit('node-drag-start', treeNode.node, event);
     });
 
-    this.$on("tree-node-drag-over", (event, treeNode) => {
-      const dropNode = findNearestComponent(event.target, "ElTreeNode");
+    this.$on('tree-node-drag-over', (event, treeNode) => {
+      const dropNode = findNearestComponent(event.target, 'ElTreeNode');
       const oldDropNode = dragState.dropNode;
       if (oldDropNode && oldDropNode !== dropNode) {
-        removeClass(oldDropNode.$el, "is-drop-inner");
+        removeClass(oldDropNode.$el, 'is-drop-inner');
       }
       const { draggingNode } = dragState;
       if (!draggingNode || !dropNode) return;
@@ -254,26 +243,17 @@ export default {
       let dropInner = true;
       let dropNext = true;
       let userAllowDropInner = true;
-      if (typeof this.allowDrop === "function") {
-        dropPrev = this.allowDrop(draggingNode.node, dropNode.node, "prev");
-        userAllowDropInner = dropInner = this.allowDrop(
-          draggingNode.node,
-          dropNode.node,
-          "inner"
-        );
-        dropNext = this.allowDrop(draggingNode.node, dropNode.node, "next");
+      if (typeof this.allowDrop === 'function') {
+        dropPrev = this.allowDrop(draggingNode.node, dropNode.node, 'prev');
+        userAllowDropInner = dropInner = this.allowDrop(draggingNode.node, dropNode.node, 'inner');
+        dropNext = this.allowDrop(draggingNode.node, dropNode.node, 'next');
       }
-      event.dataTransfer.dropEffect = dropInner ? "move" : "none";
+      event.dataTransfer.dropEffect = dropInner ? 'move' : 'none';
       if ((dropPrev || dropInner || dropNext) && oldDropNode !== dropNode) {
         if (oldDropNode) {
-          this.$emit(
-            "node-drag-leave",
-            draggingNode.node,
-            oldDropNode.node,
-            event
-          );
+          this.$emit('node-drag-leave', draggingNode.node, oldDropNode.node, event);
         }
-        this.$emit("node-drag-enter", draggingNode.node, dropNode.node, event);
+        this.$emit('node-drag-enter', draggingNode.node, dropNode.node, event);
       }
 
       if (dropPrev || dropInner || dropNext) {
@@ -289,10 +269,7 @@ export default {
       if (dropNode.node.contains(draggingNode.node, false)) {
         dropInner = false;
       }
-      if (
-        draggingNode.node === dropNode.node ||
-        draggingNode.node.contains(dropNode.node)
-      ) {
+      if (draggingNode.node === dropNode.node || draggingNode.node.contains(dropNode.node)) {
         dropPrev = false;
         dropInner = false;
         dropNext = false;
@@ -302,100 +279,73 @@ export default {
       const treePosition = this.$el.getBoundingClientRect();
 
       let dropType;
-      const prevPercent = dropPrev
-        ? dropInner
-          ? 0.25
-          : dropNext
-          ? 0.45
-          : 1
-        : -1;
-      const nextPercent = dropNext
-        ? dropInner
-          ? 0.75
-          : dropPrev
-          ? 0.55
-          : 0
-        : 1;
+      const prevPercent = dropPrev ? (dropInner ? 0.25 : dropNext ? 0.45 : 1) : -1;
+      const nextPercent = dropNext ? (dropInner ? 0.75 : dropPrev ? 0.55 : 0) : 1;
 
       let indicatorTop = -9999;
       const distance = event.clientY - targetPosition.top;
       if (distance < targetPosition.height * prevPercent) {
-        dropType = "before";
+        dropType = 'before';
       } else if (distance > targetPosition.height * nextPercent) {
-        dropType = "after";
+        dropType = 'after';
       } else if (dropInner) {
-        dropType = "inner";
+        dropType = 'inner';
       } else {
-        dropType = "none";
+        dropType = 'none';
       }
 
-      const iconPosition = dropNode.$el
-        .querySelector(".el-tree-node__expand-icon")
-        .getBoundingClientRect();
+      const iconPosition = dropNode.$el.querySelector('.el-tree-node__expand-icon').getBoundingClientRect();
       const { dropIndicator } = this.$refs;
-      if (dropType === "before") {
+      if (dropType === 'before') {
         indicatorTop = iconPosition.top - treePosition.top;
-      } else if (dropType === "after") {
+      } else if (dropType === 'after') {
         indicatorTop = iconPosition.bottom - treePosition.top;
       }
-      dropIndicator.style.top = indicatorTop + "px";
-      dropIndicator.style.left = iconPosition.right - treePosition.left + "px";
+      dropIndicator.style.top = indicatorTop + 'px';
+      dropIndicator.style.left = iconPosition.right - treePosition.left + 'px';
 
-      if (dropType === "inner") {
-        addClass(dropNode.$el, "is-drop-inner");
+      if (dropType === 'inner') {
+        addClass(dropNode.$el, 'is-drop-inner');
       } else {
-        removeClass(dropNode.$el, "is-drop-inner");
+        removeClass(dropNode.$el, 'is-drop-inner');
       }
 
-      dragState.showDropIndicator =
-        dropType === "before" || dropType === "after";
+      dragState.showDropIndicator = dropType === 'before' || dropType === 'after';
       dragState.allowDrop = dragState.showDropIndicator || userAllowDropInner;
       dragState.dropType = dropType;
-      this.$emit("node-drag-over", draggingNode.node, dropNode.node, event);
+      this.$emit('node-drag-over', draggingNode.node, dropNode.node, event);
     });
 
-    this.$on("tree-node-drag-end", (event) => {
+    this.$on('tree-node-drag-end', (event) => {
       const { draggingNode, dropType, dropNode } = dragState;
       event.preventDefault();
-      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.dropEffect = 'move';
 
       if (draggingNode && dropNode) {
         const draggingNodeCopy = { data: draggingNode.node.data };
-        if (dropType !== "none") {
+        if (dropType !== 'none') {
           draggingNode.node.remove();
         }
-        if (dropType === "before") {
+        if (dropType === 'before') {
           dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node);
-        } else if (dropType === "after") {
+        } else if (dropType === 'after') {
           dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node);
-        } else if (dropType === "inner") {
+        } else if (dropType === 'inner') {
           dropNode.node.insertChild(draggingNodeCopy);
         }
-        if (dropType !== "none") {
+        if (dropType !== 'none') {
           this.store.registerNode(draggingNodeCopy);
         }
 
-        removeClass(dropNode.$el, "is-drop-inner");
+        removeClass(dropNode.$el, 'is-drop-inner');
 
-        this.$emit(
-          "node-drag-end",
-          draggingNode.node,
-          dropNode.node,
-          dropType,
-          event
-        );
-        if (dropType !== "none") {
-          this.$emit(
-            "node-drop",
-            draggingNode.node,
-            dropNode.node,
-            dropType,
-            event
-          );
+        this.$emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event);
+        if (dropType !== 'none') {
+          this.$emit('node-drop', draggingNode.node, dropNode.node, dropType, event);
         }
       }
       if (draggingNode && !dropNode) {
-        this.$emit("node-drag-end", draggingNode.node, null, dropType, event);
+        this.$emit('node-drag-end', draggingNode.node, null, dropType, event);
       }
 
       dragState.showDropIndicator = false;
@@ -407,12 +357,12 @@ export default {
 
   mounted() {
     this.initTabIndex();
-    this.$el.addEventListener("keydown", this.handleKeydown);
+    this.$el.addEventListener('keydown', this.handleKeydown);
   },
 
   updated() {
-    this.treeItems = this.$el.querySelectorAll("[role=treeitem]");
-    this.checkboxItems = this.$el.querySelectorAll("input[type=checkbox]");
+    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
+    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
   },
 
   methods: {
@@ -440,8 +390,7 @@ export default {
       return keys;
     },
     filter(value) {
-      if (!this.filterNodeMethod)
-        throw new Error("[Tree] filterNodeMethod is required when filter");
+      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
       this.store.filter(value);
     },
 
@@ -450,8 +399,7 @@ export default {
     },
 
     getNodePath(data) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in getNodePath");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getNodePath');
       const node = this.store.getNode(data);
       if (!node) return [];
       const path = [node.data];
@@ -477,21 +425,18 @@ export default {
     },
 
     getCurrentKey() {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in getCurrentKey");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
       const currentNode = this.getCurrentNode();
       return currentNode ? currentNode[this.nodeKey] : null;
     },
 
     setCheckedNodes(nodes, leafOnly) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in setCheckedNodes");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedNodes');
       this.store.setCheckedNodes(nodes, leafOnly);
     },
 
     setCheckedKeys(keys, leafOnly) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in setCheckedKeys");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCheckedKeys');
       this.store.setCheckedKeys(keys, leafOnly);
     },
 
@@ -508,14 +453,12 @@ export default {
     },
 
     setCurrentNode(node) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in setCurrentNode");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentNode');
       this.store.setUserCurrentNode(node);
     },
 
     setCurrentKey(key) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in setCurrentKey");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
       this.store.setCurrentNodeKey(key);
     },
 
@@ -540,38 +483,31 @@ export default {
     },
 
     handleNodeExpand(nodeData, node, instance) {
-      this.broadcast("ElTreeNode", "tree-node-expand", node);
-      this.$emit("node-expand", nodeData, node, instance);
+      this.broadcast('ElTreeNode', 'tree-node-expand', node);
+      this.$emit('node-expand', nodeData, node, instance);
     },
 
     updateKeyChildren(key, data) {
-      if (!this.nodeKey)
-        throw new Error("[Tree] nodeKey is required in updateKeyChild");
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
       this.store.updateChildren(key, data);
     },
 
     initTabIndex() {
-      this.treeItems = this.$el.querySelectorAll(
-        ".is-focusable[role=treeitem]"
-      );
-      this.checkboxItems = this.$el.querySelectorAll("input[type=checkbox]");
-      const checkedItem = this.$el.querySelectorAll(
-        ".is-checked[role=treeitem]"
-      );
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+      const checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
       if (checkedItem.length) {
-        checkedItem[0].setAttribute("tabindex", 0);
+        checkedItem[0].setAttribute('tabindex', 0);
         return;
       }
-      this.treeItems[0] && this.treeItems[0].setAttribute("tabindex", 0);
+      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
     },
 
     handleKeydown(ev) {
       const currentItem = ev.target;
-      if (currentItem.className.indexOf("el-tree-node") === -1) return;
+      if (currentItem.className.indexOf('el-tree-node') === -1) return;
       const { keyCode } = ev;
-      this.treeItems = this.$el.querySelectorAll(
-        ".is-focusable[role=treeitem]"
-      );
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
       const currentIndex = this.treeItemArray.indexOf(currentItem);
       let nextIndex;
       if ([38, 40].indexOf(keyCode) > -1) {
@@ -581,8 +517,7 @@ export default {
           // up
           nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
         } else {
-          nextIndex =
-            currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
+          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
         }
         this.treeItemArray[nextIndex].focus(); // 选中
       }
@@ -597,8 +532,8 @@ export default {
         ev.preventDefault();
         hasInput.click();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -809,7 +744,7 @@ ul li .el-tree .el-tree-node__content {
 }
 
 .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   background-color: #fff;
@@ -849,7 +784,7 @@ ul li .el-tree .el-tree-node__content {
 .el-checkbox__inner::after {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  content: "";
+  content: '';
   border: 1px solid #fff;
   border-left: 0;
   border-top: 0;
@@ -863,8 +798,7 @@ ul li .el-tree .el-tree-node__content {
   -webkit-transition: -webkit-transform 0.15s ease-in 0.05s;
   transition: -webkit-transform 0.15s ease-in 0.05s;
   transition: transform 0.15s ease-in 0.05s;
-  transition: transform 0.15s ease-in 0.05s,
-    -webkit-transform 0.15s ease-in 0.05s;
+  transition: transform 0.15s ease-in 0.05s, -webkit-transform 0.15s ease-in 0.05s;
   -webkit-transform-origin: center;
   transform-origin: center;
 }
@@ -926,11 +860,11 @@ ul li .el-tree .el-tree-node__content {
   color: #409eff;
 }
 
-.el-checkbox-button__inner [class*="el-icon-"] {
+.el-checkbox-button__inner [class*='el-icon-'] {
   line-height: 0.9;
 }
 
-.el-checkbox-button__inner [class*="el-icon-"] + span {
+.el-checkbox-button__inner [class*='el-icon-'] + span {
   margin-left: 5px;
 }
 

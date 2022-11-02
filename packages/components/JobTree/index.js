@@ -1,4 +1,4 @@
-import JobTree from "./src/index.vue";
+import JobTree from './src/index.vue';
 
 JobTree.install = (Vue) => Vue.component(JobTree.name, JobTree);
 
