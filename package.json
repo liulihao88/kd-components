@@ -20,7 +20,7 @@
     "pub": "node cmd/index.js",
     "build:exm": "vue-cli-service build",
     "lint": "eslint examples/ --fix --ext .js,.vue",
-    "lint:ly": "eslint examples/ packages/ --fix --ext .js,.vue",
+    "lint:strict": "eslint examples/ packages/ --fix --ext .js,.vue",
     "prepare": "husky install"
   },
   "main": "dist/kd-components.esm.js",
