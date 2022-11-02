@@ -17,7 +17,7 @@
           ref="jobTreeRef"
           class="m-l-100"
           :default-props="defaultProps2"
-          :data="treeData"
+          :data="data"
           @nodeHandler="nodeHandler"
           @btnClick="btnClick"
         >
@@ -79,13 +79,13 @@ export default {
           },
         ],
       },
-      treeData: [],
+      data: [],
     };
   },
   watch: {},
   mounted() {
     setTimeout(() => {
-      this.treeData = [
+      this.data = [
         {
           id: '1551899237577396292',
           parentId: null,
