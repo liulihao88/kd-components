@@ -38,10 +38,6 @@
         @click="scrollNext"
       ></el-button>
     </div>
-
-    <div class="test" style="position: absolute; bottom: -20px">
-      偏移量={{ navOffset }} 容器尺寸={{ containerSize }} 内容尺寸={{ navSize }}
-    </div>
   </div>
 </template>
 
