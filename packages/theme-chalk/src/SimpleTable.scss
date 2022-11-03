@@ -1,11 +1,19 @@
 .kd-simple-table-wrap{
   position: relative;
-  flex: 1;
 
   .table-inner {
-    position: absolute;
     width: 100%;
+    height:100%;
     box-sizing: border-box;
+  }
+
+  &.no-border{
+    .filter_table .el-table{
+      border-style:none !important;
+    }
+    .page-wrap{
+      border-style:none !important;
+    }
   }
 
   .filter_table .el-table {

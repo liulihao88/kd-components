@@ -1,10 +1,11 @@
 <template>
-  <div class="kd-simple-table-wrap" :style="{ height: wrapHeight + 'px' }">
+  <div class="kd-simple-table-wrap" :class="{ 'no-border': !outBorder }">
     <div class="table-inner filter_table">
       <el-table
         ref="kdSimpleTable"
         v-loading="loading"
         class="kd-simple-table"
+        width="90%"
         size="small"
         :border="$attrs.border === undefined ? true : $attrs.border"
         :header-cell-style="headerCellStyle"
@@ -16,7 +17,6 @@
             <kd-icon class="kd-icon-move"></kd-icon>
           </div>
         </el-table-column>
-        <el-table-column v-if="preColType" :type="preColType" v-bind="preColConf"></el-table-column>
         <slot></slot>
         <template slot="empty">
           <slot name="empty">
@@ -51,6 +51,10 @@ import Sortable from 'sortablejs';
 export default {
   name: 'KdSimpleTable',
   props: {
+    outBorder: {
+      type: Boolean,
+      default: true,
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -69,21 +73,24 @@ export default {
         };
       },
     },
-    preColType: {
-      type: String,
-      default: '',
-      validator: function (value) {
-        return ['selection', 'index', 'expand', ''].includes(value);
-      },
-    },
-    preColConf: {
-      type: Object,
-      default: () => {
-        return {
-          width: '50px',
-        };
-      },
-    },
+    // preColType: {
+    //   type: String,
+    //   default: '',
+    //   validator: function (value) {
+    //     if (value) {
+    //       return ['selection', 'index'].includes(value);
+    //     }
+    //     return true;
+    //   },
+    // },
+    // preColConf: {
+    //   type: Object,
+    //   default: () => {
+    //     return {
+    //       width: '50px',
+    //     };
+    //   },
+    // },
     // 可拖拽行
     draggable: {
       type: Boolean,
@@ -108,7 +115,7 @@ export default {
         background: 'var(--table-th-bg)',
         color: 'var(--text-color)',
       },
-      wrapHeight: null,
+      // wrapHeight: null,
       sort: null,
     };
   },
@@ -136,15 +143,31 @@ export default {
     // 为了保证表格组件在flex布局下宽度可以自适应，需要给表格父元素relative，表格本身absolute
     // 这样会造成表格组件高度丢失问题，虽然不影响视觉，但是会不爽，
     // 所以通过js计算表格高度并赋值给父元素，避免高度丢失的问题
-    this.$nextTick(() => {
-      let bodyHeight = this.$refs.kdSimpleTable.$el.offsetHeight;
-      if (!this.$attrs.data || this.$attrs.data.length === 0) {
-        bodyHeight = 231;
-      }
-      this.wrapHeight = this.showPaging ? bodyHeight + this.footHeight : bodyHeight;
-    });
+    // this.$refs.kdSimpleTable.
+    // console.log(this.$el.getBoundingClientRect().height);
+    // this.$nextTick(() => {
+    //   let bodyHeight = this.$refs.kdSimpleTable.$el.offsetHeight;
+    //   if (!this.$attrs.data || this.$attrs.data.length === 0) {
+    //     bodyHeight = 231;
+    //   }
+    //   // this.wrapHeight = this.showPaging ? bodyHeight + this.footHeight : bodyHeight;
+    // });
   },
   methods: {
+    // 表格嵌套时，如果column上有fixed属性，则有可能出现两个table，用这种方法进行解决
+    // @hook:mounted="tableMounted
+    // tableMounted() {
+    //   let dom = this.$el.querySelectorAll('.kd-simple-table');
+    //   // console.log(dom);
+    //   if (dom.length === 2) {
+    //     dom[1].remove();
+    //   }
+    // },
+    // expandChange() {
+    //   console.log('expandChange');
+    //   console.log(this.$el.offsetHeight);
+    //   // console.log(this.$el.getBoundingClientRect().height);
+    // },
     // 分页组件页码、每页数量变量时
     pageChange(type, e) {
       this.$emit('pageChange', { [type]: e });

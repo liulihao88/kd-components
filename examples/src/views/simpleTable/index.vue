@@ -12,7 +12,7 @@
     </example-title>
 
     <h5>基础用法</h5>
-    <kd-simple-table :data="tableData">
+    <kd-simple-table :data="tableData" :border="false" :out-border="false">
       <el-table-column label="接口名称" prop="name"></el-table-column>
       <kd-column-show p-l="url,地址"></kd-column-show>
       <kd-column-show p-l="status,状态" is-status :filters="statusFilter"></kd-column-show>
@@ -27,19 +27,22 @@
     <div class="" style="display: flex; width: 100%">
       <div style="position: relative; flex: 1">
         <div style="margin-bottom: 10px">type="index"</div>
-        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="index">
+        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="index" :border="false">
+          <el-table-column type="index" width="50"> </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
       <div style="position: relative; flex: 1">
         <div style="margin-bottom: 10px">type="selection"</div>
-        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="selection">
+        <kd-simple-table :data="tableData" :show-paging="false" :border="false" @selection-change="onSelection">
+          <el-table-column type="selection" width="55"> </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
       <div style="position: relative; flex: 1">
         <div style="margin-bottom: 10px">type="expand"</div>
-        <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="expand" :pre-col-conf="{ width: '80px' }">
+        <kd-simple-table :data="tableData" :show-paging="false" :border="false">
+          <el-table-column type="expand"> 展开行 </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
       </div>
@@ -164,6 +167,9 @@ export default {
     },
     onSortHandler(e) {
       console.log(e);
+    },
+    onSelection() {
+      console.log('type=selection');
     },
   },
 };
