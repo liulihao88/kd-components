@@ -12,14 +12,14 @@
           type="text"
           :icon="isFold ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
           @click="onFold"
-          >{{ isFold ? '高级搜索' : '收起' }}</el-button
+          >{{ isFold ? foldText : unFoldText }}</el-button
         >
       </div>
       <div class="right">
         <slot name="right"></slot>
       </div>
     </div>
-    <div v-show="!isFold" ref="moreRow" class="more-row">
+    <div ref="moreRow" class="more-row" :style="{ height: isFold ? '0' : scrollHeight + 'px' }">
       <slot name="more"></slot>
     </div>
   </div>
@@ -30,15 +30,29 @@ import { get } from 'lodash';
 
 export default {
   name: 'KdTableSearch',
+  props: {
+    foldText: { type: String, default: '高级搜索' },
+    unFoldText: { type: String, default: '收起' },
+  },
   data() {
     return {
       isFold: true, // 是否折叠
+      scrollHeight: 0,
     };
   },
   computed: {
     hasMore() {
       return get(this.$slots, 'more.length') > 0;
     },
+  },
+  mounted() {
+    if (this.hasMore) {
+      window.addEventListener('resize', this.onResize);
+      this.onResize();
+    }
+  },
+  beforeDestroy() {
+    if (this.hasMore && this.onResize) window.removeEventListener('resize', this.onResize);
   },
   methods: {
     onFold() {
@@ -50,6 +64,10 @@ export default {
     },
     onReset() {
       this.$emit('onReset');
+    },
+    onResize() {
+      // 获取内容实际高度
+      this.scrollHeight = this.$refs.moreRow.scrollHeight;
     },
   },
 };

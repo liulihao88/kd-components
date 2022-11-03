@@ -25,7 +25,8 @@
   .more-row{
     display: flex;
     flex-wrap: wrap;
-    transition: all 0.5s;
+    overflow: hidden;
+    transition: height 0.2s;
     &>*{
       margin-right:8px;
       margin-top:16px;
