@@ -3,7 +3,6 @@
     ref="column"
     class="kd-column-operate"
     :label="$attrs.label || '操作'"
-    :fixed="$attrs.fixed || 'right'"
     :resizable="$attrs.resizable || false"
     v-bind="$attrs"
     v-on="$listeners"
