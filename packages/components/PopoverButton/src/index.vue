@@ -6,40 +6,44 @@
       </el-button>
     </slot>
 
-    <slot slot="default">
-      <p :style="contentStyles">
-        {{ contentText }}
-      </p>
-    </slot>
+    <template v-if="type === 'content'">
+      <slot slot="default">
+        <p :style="contentStyles">
+          {{ contentText }}
+        </p>
+      </slot>
 
-    <div style="text-align: right; margin: 16px 4px 4px 4px">
-      <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
-      <el-button type="primary" :disabled="disConfirm" :loading="loading" @click="confirm">
-        {{ confirmText }}
-      </el-button>
-    </div>
+      <div style="text-align: right; margin: 16px 4px 4px 4px">
+        <el-button type="info" @click="cancel">{{ cancelText }}</el-button>
+        <el-button type="primary" :disabled="disConfirm" :loading="loading" @click="confirm">
+          {{ confirmText }}
+        </el-button>
+      </div>
+    </template>
+    <template v-if="type === 'dropdown'">
+      <el-button
+        v-for="item in btnList"
+        :key="item.key"
+        v-bind="item.attrs"
+        class="kd-popover-button__dropdown-button"
+        @click="btnsClick(item.key)"
+        >{{ item.label }}</el-button
+      >
+    </template>
   </el-popover>
 </template>
 
 <script>
-// Attributes
-// popupAttrs {Object} popover的属性对象
-// referenceBtnAttrs {Object} 触发popup的按钮属性对象
-// referenceText {String} 按钮文本；不使用reference插槽时，默认为按钮样式；使用reference插槽后该属性失效
-// disabled {Boolean} 同el-button的disabled，控制按钮能否点击
-// contentText {String} 默认'确定删除？'，主体文本
-// contentStyles {Object} 默认null，主体文本样式
-// disConfirm {Boolean} 默认false，弹出框确认按钮disabled
-// confirmText {String} 默认'确认',
-// cancelText {String} 默认'取消'
-
-// 插槽
-// default 同popover的default插槽，Popover 内嵌 HTML 文本
-// reference 同popover的reference插槽，触发 Popover 显示的 HTML 元素
-
 export default {
   name: 'KdPopoverButton',
   props: {
+    type: {
+      type: String,
+      default: 'content',
+      validator: function (value) {
+        return ['content', 'dropdown'].includes(value);
+      },
+    },
     popoverAttrs: {
       type: Object,
       default: () => {},
@@ -82,6 +86,12 @@ export default {
       type: Boolean,
       default: false,
     },
+    btnList: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
   },
   data() {
     return {
@@ -91,15 +101,25 @@ export default {
   },
   computed: {
     popAttrs() {
-      return Object.assign(
-        {
+      let obj;
+      if (this.type === 'content') {
+        obj = {
           placement: 'bottom',
           title: '删除',
           width: 260,
           trigger: 'click',
-        },
-        this.popoverAttrs
-      );
+        };
+      }
+      if (this.type === 'dropdown') {
+        obj = {
+          placement: 'bottom-end',
+          width: 143,
+          trigger: 'click',
+          'popper-class': 'kd-popover-button__dropdown',
+        };
+      }
+
+      return Object.assign(obj, this.popoverAttrs);
     },
   },
   methods: {
@@ -120,6 +140,9 @@ export default {
     cancel() {
       this.show = false;
       this.$emit('cancel');
+    },
+    btnsClick(key) {
+      this.$emit('btnsClick', key);
     },
   },
 };

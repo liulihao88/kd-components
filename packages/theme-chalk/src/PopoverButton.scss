@@ -1,3 +1,15 @@
-.kd-popover-button + .kd-popover-button{
-  margin-left:8px;
+.kd-popover-button + .kd-popover-button {
+  margin-left: 8px;
+}
+
+.kd-popover-button__dropdown {
+  padding:16px;
+  box-sizing: border-box;
+  .kd-popover-button__dropdown-button {
+    width:100%;
+  }
+  .kd-popover-button__dropdown-button +.kd-popover-button__dropdown-button{
+    margin-top:8px;
+    margin-left: 0;
+  }
 }
