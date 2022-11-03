@@ -1,7 +1,6 @@
 <template>
   <div class="kd-scroll-group" :style="{ '--height': height + 'px', '--space': space + 'px' }" :type="type">
     <div :class="['kd-scroll-group__wrap', forceShow || scrollable ? 'is-scrollable' : '']">
-      <!--      :disabled="!scrollable.prev"-->
       <el-button
         v-show="forceShow || scrollable"
         :style="btnStyles"
@@ -27,7 +26,6 @@
           </template>
         </div>
       </div>
-      <!--      :disabled="!scrollable.next"-->
       <el-button
         v-show="forceShow || scrollable"
         :disabled="navOffset >= navSize - containerSize"
@@ -42,7 +40,7 @@
 </template>
 
 <script>
-import { removeResizeListener } from 'element-ui/src/utils/resize-event';
+import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 import { cloneDeep } from 'lodash';
 
 const firstUpperCase = (str) => {
@@ -145,16 +143,9 @@ export default {
     forceShow() {
       this.update();
     },
-    value() {
-      console.log('value');
-      // this.$nextTick(() => {
-      //   this.scrollToActiveTab()
-      // })
-    },
   },
   mounted() {
-    // this.update()
-    addEventListener(this.$el, this.update);
+    addResizeListener(this.$el, this.update);
     setTimeout(() => {
       this.scrollToActiveTab();
     }, 0);
@@ -163,9 +154,7 @@ export default {
     if (this.$el && this.update) removeResizeListener(this.$el, this.update);
   },
   updated() {
-    console.log('updated');
     this.update();
-    // console.log(this.scrollable)
   },
   methods: {
     update() {
@@ -202,20 +191,14 @@ export default {
     scrollPrev() {
       const containerSize = this.$refs.navScroll[`offset${firstUpperCase(this.sizeName)}`];
       const currentOffset = this.navOffset;
-      if (!currentOffset) {
-        console.log(currentOffset);
-        return;
-      }
+      if (!currentOffset) return;
       this.navOffset = currentOffset > containerSize ? currentOffset - containerSize : 0;
     },
     scrollNext() {
       const navSize = this.$refs.nav[`offset${firstUpperCase(this.sizeName)}`];
       const containerSize = this.$refs.navScroll[`offset${firstUpperCase(this.sizeName)}`];
       const currentOffset = this.navOffset;
-      if (navSize - currentOffset <= containerSize) {
-        console.log(navSize - currentOffset, containerSize);
-        return;
-      }
+      if (navSize - currentOffset <= containerSize) return;
       this.navOffset =
         navSize - currentOffset > containerSize * 2 ? currentOffset + containerSize : navSize - containerSize;
     },
