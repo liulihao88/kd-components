@@ -48,8 +48,9 @@
       </div>
     </div>
     <example-code :source="source2">
-      通过pre-col-type控制表格第一列为特殊功能的类型，对应el-table-column的type属性，通过pre-col-conf控制其他属性。<br />
-      如果有其他自定义需求，可以设置pre-col-type为空（默认值），然后通过el-table-column进行自定义。
+      通过el-table-column为表格添加特殊列。<br />
+      <span style="color: red; font-weight: bold">注意：</span
+      >当表格外部容器为flex布局时，表格横向只能放大不能缩小，并且没有完美的解决方案
     </example-code>
 
     <h5>行拖拽</h5>
@@ -73,6 +74,21 @@
       pageChange事件用来处理分页组件内当前页改变或者每页显示数量改变时的事件。<br />
       name=paging的插槽可以自定义底部内容。
     </example-code>
+
+    <!--    <h5>固定表头及分页行</h5>-->
+    <!--    <kd-simple-table-->
+    <!--      :data="tableData2"-->
+    <!--      :paging-attrs="pagingConf2"-->
+    <!--      :fixed="['header', 'footer']"-->
+    <!--      @pageChange="onPageChange2"-->
+    <!--    >-->
+    <!--      <el-table-column label="接口名称" prop="name"></el-table-column>-->
+    <!--      <kd-column-show p-l="url,地址"></kd-column-show>-->
+    <!--    </kd-simple-table>-->
+    <!--    <example-code :source="source3">-->
+    <!--      结合现有业务，当表格显示内容过多时，可通过fixed属性配置，使表头行吸顶、分页行吸底<br />-->
+    <!--      <br />-->
+    <!--    </example-code>-->
   </div>
 </template>
 
@@ -93,6 +109,12 @@ export default {
         currentPage: 1,
         total: 89,
       },
+      pagingConf2: {
+        pageSize: 20,
+        currentPage: 1,
+        total: 300,
+        pageSizes: [10, 20, 30, 40, 80],
+      },
       statusFilter: [
         {
           label: '成功',
@@ -104,6 +126,22 @@ export default {
         },
       ],
       tableData: [
+        {
+          id: '1',
+          name: '获取用户信息',
+          url: '/userinfo',
+          methods: 'GET',
+          status: true,
+        },
+        {
+          id: '2',
+          name: '编辑用户信息',
+          url: '/userinfo',
+          methods: 'UPDATE',
+          status: false,
+        },
+      ],
+      tableData2: [
         {
           id: '1',
           name: '获取用户信息',
@@ -164,6 +202,22 @@ export default {
     },
     onPageChange(e) {
       this.$message.success(JSON.stringify(e));
+    },
+    onPageChange2(e) {
+      this.$message.success(JSON.stringify(e));
+      let obj = Object.assign({}, this.pagingConf2, e);
+      console.log(obj);
+      let arr = [];
+      for (let i = 0; i < obj.pageSize; i++) {
+        arr.push({
+          id: i + '',
+          name: '获取用户信息',
+          url: '/userinfo',
+          methods: 'GET',
+          status: true,
+        });
+      }
+      this.tableData2 = arr;
     },
     onSortHandler(e) {
       console.log(e);
