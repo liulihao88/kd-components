@@ -72,4 +72,3 @@
 |search|筛选项|search对象|
 |searchSpread|？？|search对象|
 |tableInsert|表格和搜索框中间的插槽|无|
-|pageleft|分页左边的位置插槽|无|
