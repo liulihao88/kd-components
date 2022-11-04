@@ -38,13 +38,13 @@
                 class="expandbtn"
                 @click="toggleMoreSearch"
               >
+                {{ !advancedSearchFlag ? '高级搜索' : '收起' }}
                 <i
-                  :class="{
+                    :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
                     'el-icon-arrow-down': !advancedSearchFlag,
                   }"
                 ></i>
-                {{ !advancedSearchFlag ? '高级搜索' : '收起' }}
               </el-button>
             </div>
           </div>
@@ -80,13 +80,13 @@
               <!-- :disabled="mDisabled('LOAD')" -->
               <el-button size="small" @click="toReset"> 重置 </el-button>
               <el-button v-if="openSearchFlag" type="text" size="small" class="expandbtn" @click="toggleMoreSearch">
+                {{ !advancedSearchFlag ? '展开' : '收起' }}
                 <i
-                  :class="{
+                    :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
                     'el-icon-arrow-down': !advancedSearchFlag,
                   }"
                 ></i>
-                {{ !advancedSearchFlag ? '展开' : '收起' }}
               </el-button>
             </div>
           </div>
@@ -333,19 +333,23 @@
           <kd-empty></kd-empty>
         </template>
       </el-table>
-      <div v-if="pageFlag" style="height: 68px">
-        <slot name="pageleft"></slot>
-        <el-pagination
-          class="tab_pagination"
-          background
-          :current-page="currentPage"
-          :page-sizes="pageSizes"
-          :page-size="pageSize"
-          layout="total, prev, pager, next, sizes, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        ></el-pagination>
+      <div v-if="pageFlag" style="height: 64px">
+        <div class="page-wrap">
+          <div class="page-left">
+            <span>共</span><span class="m-lr-5">{{ total }}</span><span>项数据</span>
+          </div>
+          <el-pagination
+            class="tab_pagination"
+            background
+            :current-page="currentPage"
+            :page-sizes="pageSizes"
+            :page-size="pageSize"
+            layout="prev, pager, next, sizes, jumper"
+            :total="total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          ></el-pagination>
+        </div>
       </div>
     </div>
   </div>

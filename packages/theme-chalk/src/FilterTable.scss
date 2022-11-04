@@ -175,14 +175,22 @@
 .filter_table .operations .el-button {
   margin-right: 0;
 }
-.filter_table .tab_pagination {
-  display: inline-block;
-  float: right;
-  text-align: right;
-  padding-right: 0;
-  margin: 16px 0;
+// 分页器样式
+.filter_table .page-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--table-border);
+  border-top-style: none;
+  height: 64px;
+  padding: 0 24px;
+  box-sizing: border-box;
   font-size: 12px;
 }
+.filter_table .page-wrap .page-left {
+  color: var(--text-color);
+}
+
 .filter_table .table_oper_box .disabled {
   color: var(--disabled-color) !important;
   cursor: not-allowed;
