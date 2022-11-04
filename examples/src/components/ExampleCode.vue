@@ -10,7 +10,7 @@
         <vue-markdown v-show="fold" :source="source"></vue-markdown>
       </transition>
     </div>
-    <div v-if="source" class="footer" @click="triggerFold">
+    <div v-if="source" class="footer" :class="{ 'is-sticky': fold }" @click="triggerFold">
       <i :class="fold ? 'el-icon-caret-top' : 'el-icon-caret-bottom'"></i>
       {{ fold ? '隐藏代码' : '显示代码' }}
     </div>
@@ -91,9 +91,15 @@ export default {
     cursor: pointer;
     font-size: 14px;
     transition: 0.3s;
+
     &:hover {
       color: #409eff;
       background-color: #f9fafc;
+    }
+
+    &.is-sticky {
+      position: sticky;
+      bottom: 0;
     }
   }
 }

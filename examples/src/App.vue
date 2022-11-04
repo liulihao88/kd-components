@@ -197,7 +197,7 @@ export default {
 }
 .container {
   box-sizing: border-box;
-  padding: 30px 30px 60px 30px;
+  padding: 30px 30px 10px 30px;
   flex: 1;
   height: calc(100vh - 1px);
   overflow: auto;
