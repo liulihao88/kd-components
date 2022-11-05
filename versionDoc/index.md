@@ -1,11 +1,13 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-
+- 【重构】将kd-row-select-multiple整合进kd-row-select组件
+- 【优化】element-variables.scss：整理样式文件，删除重复代码；增加页面进度条样式覆盖；
+- 【优化】kd-column-operate：内部dropdown按钮水平居中
+- 【优化】kd-table-search：调整“更多”按钮图标位置
 
 ###  V0.1.72 (2022-11-04)
 - 【新增】kd-popover-button组件：增加type=dropdown显示模式（类似el-dropdown）
 - 【优化】【内部】example-cole：底部代码隐藏按钮增加吸底效果
-- 【优化】kd-column-operate：内部dropdown按钮水平居中
 - 【优化】kd-table-search组件：增加折叠动画效果，增加展开/折叠文字props
 - 【优化】kd-simple-table组件逻辑优化，去掉内部对type=index/selection/expand特殊列的处理
 - 【文档】清除scroll-group组件冗余代码
