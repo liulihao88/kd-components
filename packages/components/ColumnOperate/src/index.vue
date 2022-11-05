@@ -5,6 +5,7 @@
     :label="$attrs.label || '操作'"
     :resizable="$attrs.resizable || false"
     v-bind="$attrs"
+    :min-width="$attrs['min-width'] || '100'"
     v-on="$listeners"
   >
     <template v-if="showBtnsFun !== null ? showBtnsFun(scope) : true" slot-scope="scope">

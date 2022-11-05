@@ -1,5 +1,5 @@
 <template>
-  <el-table-column :prop="prop" v-bind="colAttrs">
+  <el-table-column :prop="prop" v-bind="colAttrs" :min-width="$attrs['min-width'] || '120'" v-on="$listeners">
     <template slot-scope="scope">
       <component :is="editorType" v-if="noForm" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
       <el-form-item v-else v-bind="formItemAttrs" :key="scope.row[keyField]" :prop="`${tName}.${scope.$index}.${prop}`">
