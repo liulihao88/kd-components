@@ -7,13 +7,10 @@
         </div>
         <el-button type="primary" @click="onSearch">查询</el-button>
         <el-button @click="onReset">重置</el-button>
-        <el-button
-          v-if="hasMore"
-          type="text"
-          :icon="isFold ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
-          @click="onFold"
-          >{{ isFold ? foldText : unFoldText }}</el-button
-        >
+        <el-button v-if="hasMore" type="text" @click="onFold">
+          {{ isFold ? foldText : unFoldText }}
+          <i class="el-icon--right"></i>
+        </el-button>
       </div>
       <div class="right">
         <slot name="right"></slot>

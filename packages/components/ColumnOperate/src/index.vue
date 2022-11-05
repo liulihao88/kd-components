@@ -54,7 +54,7 @@
       <el-dropdown
         v-if="dropdownList.length > 0"
         class="dropdown kd-column-operate__btn-item"
-        placement="bottom"
+        placement="bottom-end"
         :hide-on-click="false"
         trigger="click"
         @command="handleCommand(scope, $event)"
