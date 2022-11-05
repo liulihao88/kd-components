@@ -1,5 +1,9 @@
-// cover some element-ui styles
+// 页面顶部进度条颜色
+#nprogress .bar {
+  background:#365edf !important;
+}
 
+// cover some element-ui styles
 .el-input-group__prepend {
   border-radius: 1px;
   padding: 0 8px;
