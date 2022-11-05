@@ -97,6 +97,16 @@
   }
 }
 
+.el-table .cell {
+  width: 100%;
+  .el-input{
+    width:100%;
+  }
+  .kd-select,.el-select{
+    width:100%!important;
+  }
+}
+
 // 单选框字号
 // 表单中radio选项
 .el-radio {
