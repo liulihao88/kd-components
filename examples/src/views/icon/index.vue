@@ -3,11 +3,88 @@
     <example-title
       :data="{
         title: 'Icon 图标',
-        subTitle: '提供了一套常用的图标集合。挑选相应图标并获取类名，应用于页面：',
-        maintenance: '胡瑞瑞',
+        subTitle: '提供了一套常用的图标集合class类名。提供功能丰富的kd-icon组件。',
+        maintenance: '胡瑞瑞（图标）刘云（组件）',
         author: '胡瑞瑞',
       }"
     ></example-title>
+
+    <h5>组件用法</h5>
+    <div class="wrap">
+      <div>
+        <span>名称简写</span>
+        <div>
+          <kd-icon name="a-1bi1"></kd-icon>
+          <kd-icon name="kd-icon-kuguanli"></kd-icon>
+        </div>
+      </div>
+      <div>
+        <span>兼容el-icon</span>
+        <div>
+          <kd-icon name="el-icon-platform-eleme"></kd-icon>
+          <kd-icon name="el-icon-goods"></kd-icon>
+        </div>
+      </div>
+      <div>
+        <span>尺寸size</span>
+        <kd-icon name="el-icon-goods" size="26"></kd-icon>
+      </div>
+      <div>
+        <span>pointer样式</span>
+        <kd-icon name="xuanzhong" pointer size="18"></kd-icon>
+      </div>
+      <div>
+        <span>hover颜色</span>
+        <kd-icon name="el-icon-upload" pointer hover-color="blue" size="26"></kd-icon>
+      </div>
+      <div>
+        <span>tooltip</span>
+        <kd-icon name="add" pointer hover-color="blue" size="26" tooltip="新建"></kd-icon>
+      </div>
+      <div>
+        <span>多值切换</span>
+        <kd-icon :names="names" pointer hover-color="blue" size="26" tooltip="新建" @click="onClick"></kd-icon>
+      </div>
+      <div>
+        <span>占位</span>
+        <div style="background: #eee; padding: 10px">
+          <kd-icon is-place style="background: #fff"></kd-icon>
+        </div>
+      </div>
+      <div>
+        <span>外边距控制</span>
+        <div>
+          <kd-icon name="add" mr="8"></kd-icon>
+          图标在前
+        </div>
+      </div>
+    </div>
+    <example-code :source="source2">
+      kd-icon在图标<i></i>标签的外部增加了div和el-tooltip组件，提供了更多的可利用功能。<br />
+      属性配置如下：<br />
+      - name：string,指定图标名称，kd图标可使用全名或省略"kd-icon-"；el图标必须使用全名；<br />
+      - <b>names</b>：数组，格式{name:'',key:'',tooltip:
+      ''}；当一个位置需要动态切换图标时，可使用该属性，name的优先级高于names。<br />
+      ---- item.name：同name属性用法 <br />
+      ---- item.tooltip：图标对应的tooltip，如果未设置，会使用组件的tooltip属性值 <br />
+      ---- item.key：用来区分图标对应的操作，以参数形式返回给click事件 <br />
+      - size：string | number，默认值16；指定图标大小，同font-size属性作用；同时还会作用于图标容器，影响占位大小<br />
+      - pointer：boolean，默认值false；是否为pointer样式<br />
+      - tooltip：string，默认值''；tooltip要显示的内容，默认为空时不显示<br />
+      - tooltip-attrs：object，默认值{ effect: 'dark', placement: 'top', 'open-delay':
+      200}；作用在el-tooltip上的属性，<br />
+      - default-color：string，默认值'inherit'；颜色<br />
+      - hover-color：string，默认值''；hover时颜色<br />
+      - is-place：boolean，默认值false；是否占位，当没有name或names值时，是否占位，就是图标不显示但空间仍被占居<br />
+      - wrap-style：object，用于自定义kd-icon容器的样式<br />
+      - wrap-class：string，自定义kd-icon容器的类名<br />
+      - mt/mr/mb/ml：string，默认值0；不带px单位的边距值，分别控制图标各个方向的外边距<br /><br />
+
+      事件：<br />
+      - click：图标点击回调，如果有key，则返回key
+    </example-code>
+
+    <h5>图标示例</h5>
     <example-code :source="source1Md">
       <i class="kd-icon-cangku"></i>
       <span class="m-r-10"></span>
@@ -18,7 +95,9 @@
         <span class="ft-14">搜索</span>
       </el-button>
     </example-code>
+
     <h3>图标集合</h3>
+    <h5>点击图标类名可自动复制</h5>
     <div class="content font-class">
       <ul class="icon_lists dib-box">
         <li class="dib">
@@ -669,16 +748,80 @@
 
 <script>
 import source1Md from './source/source1.md';
+import source2 from './source/source2.md';
+
 export default {
   data() {
     return {
       source1Md: source1Md,
+      source2,
+      names: [
+        {
+          name: 'chevron-up',
+          key: 'up',
+          tooltip: '上',
+        },
+        {
+          name: 'chevron-right',
+          key: 'right',
+          tooltip: '右',
+        },
+        {
+          name: 'chevron-down',
+          key: 'down',
+          tooltip: '下',
+        },
+        {
+          name: 'chevron-left',
+          key: 'left',
+          tooltip: '左',
+        },
+      ],
     };
+  },
+  mounted() {
+    let doms = this.$el.getElementsByClassName('code-name');
+    Array.from(doms).forEach((item) => {
+      item.onclick = this.onCopy;
+    });
+  },
+  methods: {
+    onClick(key) {
+      this.$message.success('多值切换：当前点击' + key);
+    },
+    onCopy(e) {
+      const innerText = e.target.innerText;
+      const text = innerText.replace('.', '');
+      if (!text) return;
+      this.$copyText(text)
+        .then(() => {
+          this.$message.success('复制成功 ' + text);
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$message.error('复制失败');
+        });
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.wrap {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > span {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+}
 .icon_lists {
   width: 100% !important;
   overflow: hidden;
@@ -688,7 +831,7 @@ export default {
 }
 
 .icon_lists li {
-  width: 150px;
+  width: 100px;
   margin-bottom: 10px;
   margin-right: 20px;
   text-align: center;
