@@ -1,9 +1,7 @@
 <template>
   <div>
-    <example-title :data="{ title: '行选择器（多选）', maintenance: '刘云' }" warning>
-      行选择器（多选），由于业务场景中目前只有多选情况，所以原row-select即将弃用且不再更新。
-      如果有单选场景，会再增加row-select-single组件。单选与多选逻辑混合在一起时过于复杂，不便维护。
-      <template #warning>row-select即将弃用且不再更新</template>
+    <example-title :data="{ title: '行选择器（多选）', maintenance: '刘云' }">
+      行选择器（多选），由于业务场景中目前只有多选情况，单选场景的row-select-single组件正在开发中。
     </example-title>
 
     <h5>基础用法</h5>
