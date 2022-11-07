@@ -6,7 +6,7 @@
 
     <h5>用法示例</h5>
     <div class="w-300">
-      <el-input v-model="filterText" placeholder="输入关键字进行过滤"> </el-input>
+      <el-input v-model="filterText" class="mb" placeholder="输入关键字进行过滤"> </el-input>
       <kd-tree
         ref="tree"
         :data="data"
