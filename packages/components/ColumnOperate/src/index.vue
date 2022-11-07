@@ -5,6 +5,7 @@
     :label="$attrs.label || '操作'"
     :resizable="$attrs.resizable || false"
     v-bind="$attrs"
+    :min-width="$attrs['min-width'] || '100'"
     v-on="$listeners"
   >
     <template v-if="showBtnsFun !== null ? showBtnsFun(scope) : true" slot-scope="scope">
@@ -54,12 +55,12 @@
       <el-dropdown
         v-if="dropdownList.length > 0"
         class="dropdown kd-column-operate__btn-item"
-        placement="bottom"
+        placement="bottom-end"
         :hide-on-click="false"
         trigger="click"
         @command="handleCommand(scope, $event)"
       >
-        <kd-icon class="kd-icon-ellipsis kd-column-operate__icon"></kd-icon>
+        <kd-icon name="ellipsis" class="kd-column-operate__icon"></kd-icon>
         <el-dropdown-menu slot="dropdown" :ref="'innerDropdown' + scope.$index">
           <template v-for="item in dropdownList">
             <template v-if="item.popover">

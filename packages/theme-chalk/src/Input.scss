@@ -1,9 +1,18 @@
-.kd-ipt{
+.kd-ipt {
   width: 316px;
 }
-.kd-textarea {
+.kd-ipt {
   width: 424px;
-}
-.kd-ipt ::v-deep .el-textarea__inner {
-  padding: 8px 8px 16px 8px;
+  min-height: 72px;
+  max-height: 155px;
+
+  .el-textarea__inner {
+    min-height: 72px;
+    height: 155px;
+    padding: 8px 8px 16px 8px;
+  }
+  .el-input__count {
+    background: transparent;
+    bottom: 5px;
+  }
 }

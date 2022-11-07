@@ -14,7 +14,7 @@
       >
         <el-table-column v-if="draggable" v-bind="dragColConf">
           <div class="drag-icon">
-            <kd-icon class="kd-icon-move"></kd-icon>
+            <kd-icon name="move"></kd-icon>
           </div>
         </el-table-column>
         <slot></slot>
@@ -24,7 +24,7 @@
           </slot>
         </template>
       </el-table>
-      <div v-if="showPaging" :style="{ height: footHeight + 'px' }" class="page-wrap">
+      <div v-if="showPaging" :style="{ height: footHeight + 'px' }" class="kd-simple-table__page-wrap">
         <slot name="paging">
           <div class="page-inner">
             <div class="left-text">

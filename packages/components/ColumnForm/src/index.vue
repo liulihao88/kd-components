@@ -1,7 +1,8 @@
 <template>
-  <el-table-column :prop="prop" v-bind="colAttrs">
+  <el-table-column :prop="prop" v-bind="colAttrs" :min-width="$attrs['min-width'] || '120'" v-on="$listeners">
     <template slot-scope="scope">
-      <el-form-item v-bind="formItemAttrs" :key="scope.row[keyField]" :prop="`${tName}.${scope.$index}.${prop}`">
+      <component :is="editorType" v-if="noForm" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
+      <el-form-item v-else v-bind="formItemAttrs" :key="scope.row[keyField]" :prop="`${tName}.${scope.$index}.${prop}`">
         <component :is="editorType" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
       </el-form-item>
     </template>
@@ -12,6 +13,11 @@
 export default {
   name: 'KdColumnForm',
   props: {
+    // 不需要包裹在el-form-item
+    noForm: {
+      type: Boolean,
+      default: false,
+    },
     // 字段名，用于column.prop、form-item.prop、内部表单绑定值
     prop: {
       type: String,
@@ -20,7 +26,7 @@ export default {
     // form中table字段名，用于绑定校验
     tName: {
       type: String,
-      required: true,
+      default: '',
     },
     // el-table-column的属性，除prop字段
     colAttrs: {

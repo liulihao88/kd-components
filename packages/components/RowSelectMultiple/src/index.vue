@@ -103,6 +103,8 @@
 // 方法，父组件可通过ref调用
 // trigger 切换折叠状态
 
+import { get } from 'lodash';
+
 export default {
   name: 'KdRowSelectMultiple',
   props: {
@@ -293,7 +295,7 @@ export default {
   methods: {
     onResize() {
       // 获取内容实际高度
-      const scrollHeight = this.$refs.optionsBox.scrollHeight;
+      const scrollHeight = get(this.$refs, 'optionsBox.scrollHeight') || 0;
       let canMore = true; // 是否可以出现更多按钮
       // 判断是否需要更多按钮
       // 如果选项不够lineNum,那么按最小值显示

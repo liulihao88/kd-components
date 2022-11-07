@@ -5,6 +5,7 @@ import VueI18n from 'vue-i18n';
 import './directives/index';
 import 'github-markdown-css/github-markdown.css';
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
+import Clipboard from 'clipboard';
 // import "element-ui/lib/theme-chalk/index.css";
 // 重置el 样式
 import '../../packages/theme-chalk/element-theme/index.css';
@@ -16,8 +17,10 @@ import '../../packages/theme-chalk/element-theme/index.css';
 import kjComponents from '../../packages/components/index';
 import '../../packages/theme-chalk/src/index.scss';
 import { zhCn, ja } from '../../packages/locale/index';
+import VueClipboard from 'vue-clipboard2';
 Vue.config.productionTip = false;
 
+Vue.use(VueClipboard);
 Vue.use(ElementUI, {
   size: 'small',
 });

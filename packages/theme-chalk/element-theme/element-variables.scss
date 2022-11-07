@@ -1,108 +1,42 @@
-// cover some element-ui styles
+// 页面顶部进度条颜色
+#nprogress .bar {
+  background: #365edf !important;
+}
 
-.el-input-group__prepend {
-  border-radius: 1px;
-  padding: 0 8px;
-  background: #fff;
-  box-sizing: border-box;
-  color: rgba(39, 48, 75, 0.85);
-  border: 1px solid #e3e6eb;
-  border-right: none;
+// tooltip最大宽度
+.el-tooltip__popper {
+  max-width: 316px;
 }
-.el-input__inner {
-  border-radius: 1px;
-}
-.el-textarea__inner {
-  border-radius: 1px;
-}
+
+// 按钮样式
 .el-button {
   border-radius: 1px !important;
 }
-.el-input--small {
-  font-size: 12px;
-}
-.el-form-item__label {
-  font-size: 12px;
-}
-// form行间距24px
-.el-form-item--small.el-form-item {
-  margin-bottom: 24px;
-}
-.el-button--text {
+
+.el-button--text,
+.el-button--text:focus {
   color: var(--primary-color);
 }
+
 .el-button--info {
   background: #ebedf0;
   border: 1px solid #ebedf0;
   color: rgba(39, 48, 75, 0.85);
 }
 
-.el-descriptions-item__label:not(.is-bordered-label) {
-  margin-right: 0;
-}
-.el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
-  padding-bottom: 16px;
+.el-button [class*='kd-icon-'] + span {
+  margin-left: 5px;
 }
 
-// 带时分秒格式日期样式重置
-.kj-datepicker {
-  .el-time-spinner__item.active:not(.disabled) {
-    background: #365edf;
-    border-radius: 3px;
-    margin: 0 8px;
-    color: #ffffff;
-  }
-  .el-time-panel__content::before {
-    border-bottom: none;
-    border-top: none;
-  }
-  .el-date-table td.today::after {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: #0052d9;
-    border-radius: 50%;
-  }
-  .el-picker-panel__footer {
-    > button:first-child {
-      float: left;
-      margin-left: 24px;
-    }
-    > button:last-child,
-    > button:last-child:hover {
-      background: #365edf;
-      border-radius: 1px;
-      color: #ffffff;
-    }
-  }
+//input输入框
+.el-input--small {
+  font-size: 12px;
 }
 
-// el描述
-.el-descriptions-item__container {
-  width: 90%;
-  .el-descriptions-item__content {
-    width: 80%;
-  }
+.el-input__inner,
+.el-textarea__inner {
+  border-radius: 1px;
 }
-
-// Popover 弹出框
-.el-popover__title {
-  font-size: 14px;
-  font-weight: 500;
-}
-.el-table--border .el-table__cell:first-child .cell {
-  padding-left: 16px;
-}
-.el-popover {
-  padding: 16px;
-  min-width: 100px;
-}
-
-// cover some element-ui styles
 
 .el-input-group__prepend {
   border-radius: 1px;
@@ -113,87 +47,11 @@
   border: 1px solid #e3e6eb;
   border-right: none;
 }
-.el-input__inner {
-  border-radius: 1px;
-}
-.el-textarea__inner {
-  border-radius: 1px;
-}
-.el-button {
-  border-radius: 1px !important;
-}
-.el-input--small {
-  font-size: 12px;
-}
-.el-form-item__label {
-  font-size: 12px;
-}
-// form行间距24px
+
+// 表单el-form和el-form-item
+// 行间距24px
 .el-form-item--small.el-form-item {
   margin-bottom: 24px;
-}
-.el-button--text {
-  color: var(--primary-color);
-}
-
-.el-descriptions-item__label:not(.is-bordered-label) {
-  margin-right: 0;
-}
-.el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
-  padding-bottom: 16px;
-}
-
-// 带时分秒格式日期样式重置
-.kj-datepicker {
-  .el-time-spinner__item.active:not(.disabled) {
-    background: #365edf;
-    border-radius: 3px;
-    margin: 0 8px;
-    color: #ffffff;
-  }
-  .el-time-panel__content::before {
-    border-bottom: none;
-    border-top: none;
-  }
-  .el-date-table td.today::after {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: #0052d9;
-    border-radius: 50%;
-  }
-  .el-picker-panel__footer {
-    > button:first-child {
-      float: left;
-      margin-left: 24px;
-    }
-    > button:last-child,
-    > button:last-child:hover {
-      background: #365edf;
-      border-radius: 1px;
-      color: #ffffff;
-    }
-  }
-}
-
-// el描述
-.el-descriptions-item__container {
-  width: 90%;
-  .el-descriptions-item__content {
-    width: 80%;
-  }
-}
-
-//// 表格按钮
-.btnlist > * {
-  margin-left: 8px;
-}
-.btnlist > *:first-child {
-  margin-left: 0 !important;
 }
 
 // ElForm样式
@@ -239,10 +97,193 @@
   }
 }
 
+.el-table .cell {
+  width: 100%;
+  .el-input{
+    width:100%;
+  }
+  .kd-select,.el-select{
+    width:100%!important;
+  }
+}
+
+// 单选框字号
+// 表单中radio选项
+.el-radio {
+  margin-right: 16px;
+
+  .el-radio__label {
+    padding-left: 10px;
+    font-size: 12px;
+  }
+
+  .el-radio__inner {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+//radio按钮
+.el-radio-button {
+  .el-radio-button__inner {
+    color: var(--text-color-secondary);
+    background-color: var(--table-th-bg);
+    border-color: var(--line-color);
+    border-width: 1px;
+  }
+
+  &:first-child .el-radio-button__inner {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-child .el-radio-button__inner {
+    border-radius: 0 2px 2px 0;
+  }
+
+  &.is-active .el-radio-button__inner {
+    color: var(--primary-color);
+    background-color: var(--bg-fff);
+    border-color: var(--primary-color);
+  }
+}
+
+// 下拉字号
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    span {
+      font-size: 12px;
+    }
+  }
+}
+// 修改下拉选择字号
+.el-checkbox__label {
+  font-size: 12px;
+}
+
+
+// 带时分秒格式日期样式重置
+.kj-datepicker {
+  .el-time-spinner__item.active:not(.disabled) {
+    background: #365edf;
+    border-radius: 3px;
+    margin: 0 8px;
+    color: #ffffff;
+  }
+  .el-time-panel__content::before {
+    border-bottom: none;
+    border-top: none;
+  }
+  .el-date-table td.today::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #0052d9;
+    border-radius: 50%;
+  }
+  .el-picker-panel__footer {
+    > button:first-child {
+      float: left;
+      margin-left: 24px;
+    }
+    > button:last-child,
+    > button:last-child:hover {
+      background: #365edf;
+      border-radius: 1px;
+      color: #ffffff;
+    }
+  }
+}
+
+// el描述
+.el-descriptions-item__label:not(.is-bordered-label) {
+  margin-right: 0;
+}
+.el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
+  padding-bottom: 16px;
+}
+// el描述
+.el-descriptions-item__container {
+  width: 90%;
+  .el-descriptions-item__content {
+    width: 80%;
+  }
+}
+
 // Popover 弹出框
 .el-popover__title {
   font-size: 14px;
   font-weight: 500;
+}
+.el-popover {
+  padding: 16px;
+  min-width: 100px;
+}
+// 修改全局message样式
+.el-message {
+  min-width: 0;
+  padding-right: 20px;
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(197, 197, 197, 0.5);
+  font-size: 16px;
+  z-index: 9999 !important;
+  .el-message__content {
+    font-size: 12px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(39, 48, 75, 0.85);
+    line-height: 18px;
+  }
+  .el-icon-warning {
+    color: #ffb51f;
+  }
+  .el-icon-success {
+    color: #30bd82;
+  }
+  .el-icon-error {
+    color: #e94c35;
+  }
+}
+
+// 带时分秒格式日期样式重置
+.kj-datepicker {
+  .el-time-spinner__item.active:not(.disabled) {
+    background: #365edf;
+    border-radius: 3px;
+    margin: 0 8px;
+    color: #ffffff;
+  }
+  .el-time-panel__content::before {
+    border-bottom: none;
+    border-top: none;
+  }
+  .el-date-table td.today::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #0052d9;
+    border-radius: 50%;
+  }
+  .el-picker-panel__footer {
+    > button:first-child {
+      float: left;
+      margin-left: 24px;
+    }
+    > button:last-child,
+    > button:last-child:hover {
+      background: #365edf;
+      border-radius: 1px;
+      color: #ffffff;
+    }
+  }
 }
 
 // 离线开发element-ui样式
@@ -262,40 +303,16 @@
   }
 }
 
-// 下拉字号
-.el-select-dropdown {
-  .el-select-dropdown__item {
-    span {
-      font-size: 12px;
-    }
-  }
+//// 表格按钮
+.btnlist > * {
+  margin-left: 8px;
 }
-// 修改下拉选择字号
-.el-checkbox__label {
-  font-size: 12px;
-}
-// 单选框字号
-.el-radio__label {
-  font-size: 12px;
-}
-// 修改全局message样式
-.el-message {
-  min-width: 0px;
-  padding-right: 20px;
-  background: #fff;
-  border-color: #fff;
-  box-shadow: 0px 2px 8px 0px rgba(197, 197, 197, 0.5);
-  .el-message__content {
-    font-size: 12px;
-    font-family: PingFangSC, PingFangSC-Regular;
-    font-weight: 400;
-    color: rgba(39, 48, 75, 0.85);
-    line-height: 18px;
-  }
+.btnlist > *:first-child {
+  margin-left: 0 !important;
 }
 
-.test-blue {
-  background: blue;
+.el-table--border .el-table__cell:first-child .cell {
+  padding-left: 16px;
 }
 // 表格右下角多一条线
 .el-table__fixed-right::before,
@@ -303,19 +320,6 @@
   margin-bottom: -1px;
 }
 
-.el-message {
-  font-size: 16px;
-  z-index: 9999 !important;
-  .el-icon-warning {
-    color: #ffb51f;
-  }
-  .el-icon-success {
-    color: #30bd82;
-  }
-  .el-icon-error {
-    color: #e94c35;
-  }
-}
-.el-button [class*=kd-icon-]+span{
-  margin-left:5px;
+.test-blue {
+  background: blue;
 }

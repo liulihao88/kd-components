@@ -88,7 +88,7 @@ export default {
           permission: 'del',
         },
         {
-          label: '日志',
+          label: '日志日志',
           key: 'log',
           dropdown: true,
         },

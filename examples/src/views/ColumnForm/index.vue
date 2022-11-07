@@ -45,6 +45,13 @@
               editor-type="el-switch"
               :editor-attrs="{ 'active-text': '是', 'inactive-text': '否' }"
             ></kd-column-form>
+            <kd-column-form no-form prop="other" :col-attrs="{ label: '不使用form-item包裹' }"></kd-column-form>
+            <kd-column-form
+              no-form
+              prop="other"
+              editor-type="kd-select"
+              :col-attrs="{ label: '不使用form-item包裹' }"
+            ></kd-column-form>
           </kd-simple-table>
         </div>
       </el-form-item>

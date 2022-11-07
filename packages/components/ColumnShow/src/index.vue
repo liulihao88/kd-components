@@ -200,7 +200,7 @@ export default {
         'column-key': this.colKey,
         'show-overflow-tooltip': !this.noTip,
         'min-width': 100,
-        width: 120,
+        width: 'auto',
       };
       // if (this.colFilters.length !== 0) customAttr.filters = this.colFilters;
       return assign({}, this.$attrs, customAttr);

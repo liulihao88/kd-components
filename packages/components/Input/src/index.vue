@@ -9,6 +9,7 @@
     :style="{ ...mHandleWidth() }"
     :maxlength="handleMaxLength"
     :show-word-limit="handleShowWordLimit()"
+    :resize="$attrs.type === 'textarea' ? 'none' : ''"
     v-on="$listeners"
     @focus="focusHandler($event)"
     @keyup.delete.native="keyUpDeleteHandler()"

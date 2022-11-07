@@ -1,121 +1,13 @@
 <template>
   <div>
     <example-title :data="{ title: '行选择器', maintenance: '刘云' }" warning>
-      <template #warning>即将弃用且不再更新</template>
+      kd-row-select是将kd-row-select-multiple（多选）和kd-row-select-single（单选，未开发）整合在一起，通过type来控制最终渲染哪个组件<br />
+      - type=multiple：默认，为kd-row-select-multiple
+      行级多选组件，在目前情况下，使用kd-row-select和kd-row-select-multiple是相同的效果<br />
+      - type=single：单选，目前无需求，未开发<br />
+      这样的好处是保证了原有组件的全部属性，同时在使用时又比较方便。<br />
+      查看：<a href="#testRowSelectMultiple">kd-row-select-multiple</a>
+      <template #warning>row-select计划支持多选和单选模式，目前只支持多选，单选模式正在开发中</template>
     </example-title>
-
-    <h4>多选模式</h4>
-    <kd-row-select
-      ref="rowSelect1"
-      v-model="value1"
-      class="m-b-24"
-      label-text="必选"
-      separator=":"
-      :options="tagData"
-      :line-height="40"
-    >
-    </kd-row-select>
-    <kd-row-select
-      ref="rowSelect2"
-      v-model="value2"
-      class="m-b-24"
-      label-text="非必选"
-      :options="tagData"
-      :required="false"
-      :line-height="40"
-    >
-    </kd-row-select>
-    <div class="btns">
-      <el-button @click="selectArr('$all')">set('$all')</el-button>
-      <el-button @click="selectArr(['0', '7'])">set(['0','7'])</el-button>
-      <el-button @click="addArr(['6'])">add(['6'])</el-button>
-      <el-button @click="reduceArr(['0', '6', '7'])">reduce(['0','6','7'])</el-button>
-    </div>
-
-    <h4>单选模式</h4>
-    <kd-row-select
-      ref="rowSelect3"
-      v-model="value3"
-      class="m-b-24"
-      label-text="必选"
-      :options="tagData"
-      :multiple="false"
-      :line-height="40"
-    >
-    </kd-row-select>
-    <kd-row-select
-      ref="rowSelect4"
-      v-model="value4"
-      class="m-b-24"
-      label-text="非必选"
-      :options="tagData"
-      :multiple="false"
-      :required="false"
-      :duration="1000"
-      :line-height="40"
-    >
-    </kd-row-select>
-    <div class="btns">
-      <el-button @click="trigger">切换状态trigger()</el-button>
-      <el-button @click="trigger('open')">打开trigger('open')</el-button>
-      <el-button @click="trigger('close')">关闭trigger('close')</el-button>
-      <el-button @click="add('8')">add('8')</el-button>
-      <el-button @click="reduce('8')">reduce('8')</el-button>
-    </div>
   </div>
 </template>
-
-<script>
-let arr = [];
-for (let i = 0; i < 20; i++) {
-  arr.push({ label: 'item' + i, value: i + '' });
-}
-export default {
-  name: 'Index',
-  data() {
-    return {
-      value1: ['2', '4'],
-      value2: [],
-      value3: '',
-      value4: '',
-      tagData: arr,
-    };
-  },
-  methods: {
-    selectArr(keys) {
-      this.$refs.rowSelect1.set(keys);
-      this.$refs.rowSelect2.set(keys);
-    },
-    addArr(keys) {
-      this.$refs.rowSelect1.add(keys);
-      this.$refs.rowSelect2.add(keys);
-    },
-    reduceArr(keys) {
-      this.$refs.rowSelect1.reduce(keys);
-      this.$refs.rowSelect2.reduce(keys);
-    },
-    trigger(type) {
-      this.$refs.rowSelect3.trigger(type);
-      this.$refs.rowSelect4.trigger(type);
-    },
-    add(key) {
-      this.$refs.rowSelect3.add(key);
-      this.$refs.rowSelect4.add(key);
-    },
-    reduce(key) {
-      this.$refs.rowSelect3.reduce(key);
-      this.$refs.rowSelect4.reduce(key);
-    },
-  },
-};
-</script>
-<style lang="scss" scoped>
-.part {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-.btns {
-  display: flex;
-}
-</style>

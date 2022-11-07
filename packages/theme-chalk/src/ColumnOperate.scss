@@ -1,8 +1,4 @@
-// 按钮文字水平居中，默认颜色修改
-.kd-column-operate__btn-item .kd-column-operate__dd-item{
-  text-align: center;
-}
-  .kd-column-operate__btn-item + .kd-column-operate__btn-item {
+ .kd-column-operate__btn-item + .kd-column-operate__btn-item {
     margin-left: 8px;
   }
 
@@ -17,6 +13,7 @@
     padding: 0 15px!important;
     height: 32px;
     color: #5e7ee5;
+    text-align: center;
 
     &:not(.is-disabled):hover,
     &:focus {

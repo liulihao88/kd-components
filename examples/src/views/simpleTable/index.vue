@@ -5,7 +5,10 @@
       目的是为了让el-table与el-table-column
       <b>解耦</b>，在保证样式统一的基础上可以更灵活的使用el-table，满足可能出现的更多场景。
       kd-simple-table可能比较简单，尤其是对表格搜索、筛选等仍需要使用者在外部处理相关逻辑。<br />
-      内部的el-table-column，针对不同特性又封装为展示列组件（kd-column-show）、操作列组件（kd-column-operate）、编辑列组件（kd-column-form）。
+      内部的el-table-column，针对不同特性又封装为展示列组件（<a href="#testColumnShow">kd-column-show</a
+      >）、操作列组件（<a href="#testColumnOperate">kd-column-operate</a>）、编辑列组件（<a href="#testColumnForm"
+        >kd-column-form</a
+      >）。
       <br />
       当kd-filter-table不能满足需求时，可以考虑使用kd-simple-table，它至少提供了基本的样式，并且不限制你使用原生的组件、属性、方法去自由发挥，
       实现一些特殊的需求。

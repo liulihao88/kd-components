@@ -14,6 +14,7 @@
     </div>
     <virtual-list
       v-else
+      class="virtual-list"
       :style="{ height: 'calc(100% - 5px)', 'overflow-y': 'auto' }"
       :data-key="getNodeKey"
       :data-sources="visibleList"
@@ -544,6 +545,16 @@ export default {
   background: #fff;
   color: #606266;
 }
+
+/*每项有下边距*/
+.el-tree .virtual-list ::v-deep div[role='listitem'] {
+  margin-bottom: 4px !important;
+}
+/*每项默认高度32*/
+.el-tree .virtual-list ::v-deep .el-tree-node__content {
+  height: 32px !important;
+}
+
 .el-scrollbar .el-scrollbar__view .el-select-dropdown__item {
   height: auto;
 
