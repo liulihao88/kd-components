@@ -86,6 +86,12 @@ export default {
                 {
                   label: '三级 3-2-1',
                 },
+                {
+                  label: 'AAAA',
+                },
+                {
+                  label: 'bbbb',
+                },
               ],
             },
           ],
