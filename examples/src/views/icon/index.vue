@@ -63,14 +63,16 @@
       kd-icon在图标<i></i>标签的外部增加了div和el-tooltip组件，提供了更多的可利用功能。<br />
       属性配置如下：<br />
       - name：string,指定图标名称，kd图标可使用全名或省略"kd-icon-"；el图标必须使用全名；<br />
+      - tooltip：string，默认值''；tooltip要显示的内容，默认为空时不显示<br />
+      - local：boolean，默认值false；是否为项目本地引入的图标<br />
       - <b>names</b>：数组，格式{name:'',key:'',tooltip:
-      ''}；当一个位置需要动态切换图标时，可使用该属性，name的优先级高于names。<br />
+      '',local:Boolean}；当一个位置需要动态切换图标时，可使用该属性，name的优先级高于names。<br />
       ---- item.name：同name属性用法 <br />
       ---- item.tooltip：图标对应的tooltip，如果未设置，会使用组件的tooltip属性值 <br />
+      ---- local：boolean，默认值false；是否为项目本地引入的图标<br />
       ---- item.key：用来区分图标对应的操作，以参数形式返回给click事件 <br />
       - size：string | number，默认值16；指定图标大小，同font-size属性作用；同时还会作用于图标容器，影响占位大小<br />
       - pointer：boolean，默认值false；是否为pointer样式<br />
-      - tooltip：string，默认值''；tooltip要显示的内容，默认为空时不显示<br />
       - tooltip-attrs：object，默认值{ effect: 'dark', placement: 'top', 'open-delay':
       200}；作用在el-tooltip上的属性，<br />
       - default-color：string，默认值'inherit'；颜色<br />

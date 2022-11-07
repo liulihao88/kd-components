@@ -19,8 +19,7 @@
         <i
           v-show="clickNum === index"
           :key="index"
-          class="kd-icon"
-          :class="[getName(item.name)]"
+          :class="[getName(item)]"
           :style="{
             'font-size': comSize,
             'line-height': comSize,
@@ -47,13 +46,22 @@ export default {
           //   name:'',
           //   tooltip:'',
           //   key:''
+          // local:true
           // }
         ];
       },
     },
+    local: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: [String, Number],
       default: 16,
+      validator(val) {
+        // 参数校验，必为2位数字或带单位的4位字符
+        return /^[1-9]\d(px|em)?$/.test(String(val));
+      },
     },
     mt: {
       type: String,
@@ -111,7 +119,6 @@ export default {
   data() {
     return {
       clickNum: 0,
-      curTooltip: '',
     };
   },
   computed: {
@@ -121,8 +128,10 @@ export default {
         this.names.forEach((item) => {
           arr.push({
             name: item.name,
+            // this.tooltip优先级高于item.tooltip
             tooltip: item.tooltip || this.tooltip || '',
             key: item.key || '',
+            local: item.local || this.local || false,
           });
         });
       }
@@ -133,41 +142,27 @@ export default {
             name: this.name,
             tooltip: this.tooltip || '',
             key: '',
+            local: this.local,
           },
         ];
       }
       return arr;
     },
     comSize() {
-      let r;
-      if (typeof this.size === 'string') {
-        if (this.size.endsWith('px')) {
-          r = this.size;
-        } else {
-          r = this.size + 'px!important';
-        }
-      }
-      if (typeof this.size === 'number') {
-        r = this.size + 'px!important';
-      }
-      return r;
+      // 字体最小12px，最大应该不会超过99，所以使用padEnd补充单位
+      return String(this.size).padEnd(4, 'px') + '!important';
     },
+    // 合并tooltip属性配置，增加默认配置，不合并tooltip属性
     mergeTooltipAttrs() {
-      let obj = {};
-      if (this.tooltip) {
-        Object.assign(
-          obj,
-          {
-            effect: 'dark',
-            placement: 'top',
-            'open-delay': 200,
-          },
-          this.tooltipAttrs
-        );
-      } else {
-        obj.disabled = true;
-      }
-      return obj;
+      return Object.assign(
+        {},
+        {
+          effect: 'dark',
+          placement: 'top',
+          'open-delay': 200,
+        },
+        this.tooltipAttrs
+      );
     },
     statusLength() {
       return this.names.length;
@@ -177,20 +172,30 @@ export default {
     },
   },
   methods: {
+    // 点击事件：
     onClick() {
       if (this.isPlace) return;
       let key = this.iconArr[this.clickNum] ? this.iconArr[this.clickNum].key : '';
       this.$emit('click', key);
+      // 如果是多个图标的组合，点击后下一个生效
       if (this.clickNum < this.statusLength - 1) {
         this.clickNum++;
       } else {
         this.clickNum = 0;
       }
     },
-    getName(name) {
+    // 获取图标名称：全局el图标、全局kd-icon、项目中的icon图标
+    getName({ name, local }) {
       let showName = name;
+      // 非el图标
       if (!name.startsWith('el-icon-')) {
-        showName = name.startsWith('kd-icon-') ? name : `kd-icon-${name}`;
+        if (local) {
+          // 项目本地图标，class形式为"iconfont icon-xxxxx"
+          showName = 'iconfont ' + (name.startsWith('icon-') ? name : 'icon-' + name);
+        } else {
+          // 全局kd-icon-xxxxx
+          showName = name.startsWith('kd-icon-') ? name : `kd-icon-${name}`;
+        }
       }
       return showName;
     },
