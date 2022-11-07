@@ -23,7 +23,7 @@
           :class="[getName(item.name)]"
           :style="{
             'font-size': comSize,
-            height: comSize,
+            'line-height': comSize,
           }"
         ></i>
       </el-tooltip>
