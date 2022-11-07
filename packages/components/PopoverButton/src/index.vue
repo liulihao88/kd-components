@@ -114,7 +114,7 @@ export default {
         obj = {
           placement: 'bottom-end',
           width: 143,
-          trigger: 'click',
+          trigger: 'hover',
           'popper-class': 'kd-popover-button__dropdown',
         };
       }
