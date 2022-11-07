@@ -179,7 +179,8 @@ export default {
   methods: {
     onClick() {
       if (this.isPlace) return;
-      this.$emit('click', this.iconArr[this.clickNum]?.key);
+      let key = this.iconArr[this.clickNum] ? this.iconArr[this.clickNum].key : '';
+      this.$emit('click', key);
       if (this.clickNum < this.statusLength - 1) {
         this.clickNum++;
       } else {
