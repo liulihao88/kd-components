@@ -44,6 +44,7 @@ export default {
       if (this.slotShow) return;
       // 内容超出，显示文字提示内容
       const tag = this.$refs[str];
+      if (!tag) return;
       const parentWidth = tag.parentNode.offsetWidth; // 获取元素父级可视宽度
       const contentWidth = tag.offsetWidth; // 获取元素可视宽度
       this.isShowTooltip = contentWidth <= parentWidth;

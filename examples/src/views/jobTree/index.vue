@@ -29,6 +29,11 @@
             <span class="fs-12">{{ data.label }}</span>
           </template> -->
         </kd-job-tree>
+        <div class="three">
+          <div class="tree-wrap">
+            <kd-job-tree ref="jobTreeRef3" :default-props="defaultProps3" :data="data"></kd-job-tree>
+          </div>
+        </div>
       </div>
     </div>
     <example-code :source="source1">
@@ -52,17 +57,6 @@ export default {
       defaultProps2: {
         title: '资源管理2',
         showCreate: false,
-        btns: [
-          {
-            content: '编辑11',
-            handler: this.editTree,
-          },
-          {
-            content: '删除11',
-            confirm: this.deleteTree,
-            confirmInfo: '确认删除本条数据吗',
-          },
-        ],
       },
 
       defaultProps: {
@@ -75,11 +69,31 @@ export default {
           {
             content: '删除11',
             confirm: this.deleteTree,
-            confirmInfo: '确认删除本条数据吗',
+            confirmInfo: '确认删除本条数据吗？',
           },
         ],
       },
       data: [],
+      defaultProps3: {
+        showTitle: false,
+        btns: [
+          {
+            content: '新建',
+            disabled: true,
+            handler: this.editTree,
+          },
+          {
+            content: '查看',
+            handler: this.editTree,
+          },
+          {
+            content: '删除',
+            disabled: true,
+            confirm: this.deleteTree,
+            confirmInfo: '确认删除本条数据吗？',
+          },
+        ],
+      },
     };
   },
   watch: {},
@@ -105,6 +119,20 @@ export default {
                   path: '/DD/dd2/dd3',
                 },
               ],
+            },
+          ],
+        },
+        {
+          id: '1551899237572',
+          parentId: null,
+          label: 'dd',
+          path: '/dd',
+          children: [
+            {
+              id: '155189927572',
+              parentId: null,
+              label: 'aa',
+              path: '/aa',
             },
           ],
         },
@@ -186,5 +214,13 @@ export default {
 }
 .test-tree ::v-deep .kd-job-tree {
   height: unset;
+}
+.three {
+  .tree-wrap {
+    width: 270px;
+    border: 1px solid #e3e6eb;
+    border-left: none;
+    border-bottom: none;
+  }
 }
 </style>

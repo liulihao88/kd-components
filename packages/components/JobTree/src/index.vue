@@ -1,6 +1,6 @@
 <template>
   <div class="kd-job-tree">
-    <div class="jt_operation">
+    <div v-if="defaultProps.showTitle === undefined || defaultProps.showTitle !== false" class="jt_operation">
       <div class="jt_title">
         {{ defaultProps.title }}
       </div>
@@ -23,6 +23,7 @@
         v-model="queryTxt"
         width="100%"
         size="small"
+        clearable
         :placeholder="defaultProps.placeholder || '请输入'"
         suffix-icon="el-icon-search"
       ></el-input>
@@ -77,51 +78,56 @@
                 :hide-on-click="false"
                 @visible-change="btnShowHandler($event, node, data)"
               >
-                <i class="kd-icon-ellipsis" style="color: #365edf" @click="ellipsisHandler(node, data)"></i>
+                <i class="kd-icon-ellipsis po-r" style="color: #365edf" @click="ellipsisHandler(node, data)"></i>
                 <el-dropdown-menu slot="dropdown">
                   <div v-for="(btn, index) in defaultProps.btns" :key="index">
                     <template v-if="btn.useSlot">
-                      <el-dropdown-item v-if="btn.useSlot">
+                      <el-dropdown-item
+                        v-if="btn.useSlot"
+                        :class="{
+                          disabled: btn.disabled ? btn.disabled : false,
+                        }"
+                      >
                         <slot :name="btn.key" :data="data" :node="node"></slot>
                       </el-dropdown-item>
                     </template>
                     <template v-else-if="btn.confirmInfo">
-                      <el-dropdown-item>
-                        <el-popover
-                          v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
-                          :key="index"
-                          :ref="`popoverOut-${index}`"
-                          :disabled="btn.disabled ? btn.disabled(data) : false"
-                          placement="bottom-start"
-                          width="224"
-                          :title="btn.popoverTitle || '删除'"
-                          popper-class="popover_btn"
-                        >
-                          <p>{{ confirmInfoFn(btn.confirmInfo, data) }}</p>
-                          <div style="text-align: right; margin: 0; margin-top: 16px">
-                            <el-button size="mini" type="info" @click="handleCloseOut(index)"> 取消 </el-button>
-                            <el-button
-                              type="primary"
-                              size="mini"
-                              @click="handleCloseOut(index) || (btn.confirm && btn.confirm(node, data))"
-                            >
-                              确定
-                            </el-button>
-                          </div>
+                      <el-popover
+                              v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
+                              :key="index"
+                              :ref="`popoverOut-${index}`"
+                              :disabled="btn.disabled ? btn.disabled : false"
+                              placement="bottom-start"
+                              width="224"
+                              :title="btn.popoverTitle || '删除'"
+                              popper-class="popover_btn"
+                      >
+                        <p>{{ confirmInfoFn(btn.confirmInfo, data) }}</p>
+                        <div style="text-align: right; margin: 0; margin-top: 16px">
+                          <el-button size="mini" type="info" @click="handleCloseOut(index)"> 取消 </el-button>
                           <el-button
-                            slot="reference"
-                            type="text"
-                            size="small"
-                            :disabled="btn.disabled ? btn.disabled(data) : false"
+                                  type="primary"
+                                  size="mini"
+                                  @click="handleCloseOut(index) || (btn.confirm && btn.confirm(node, data))"
                           >
-                            删除
+                            确定
                           </el-button>
-                        </el-popover>
-                      </el-dropdown-item>
+                        </div>
+                        <el-dropdown-item
+                          slot="reference"
+                          :class="{
+                            disabled: btn.disabled ? btn.disabled : false,
+                          }">{{ btn.content }}</el-dropdown-item>
+                      </el-popover>
                     </template>
                     <template v-else>
-                      <el-dropdown-item @click.native.stop.prevent="btn.handler && btn.handler(node, data)">
-                        {{ btn.content }}==
+                      <el-dropdown-item
+                        :class="{
+                          disabled: btn.disabled ? btn.disabled : false,
+                        }"
+                        @click.native.stop.prevent="!btn.disabled && btn.handler && btn.handler(node, data)"
+                      >
+                        {{ btn.content }}
                       </el-dropdown-item>
                     </template>
                   </div>
@@ -147,6 +153,7 @@ defaultProps: {
   closeIcon: '',
   showCreate: false, // 隐藏新增按钮
   showSearch: false, // 隐藏搜索框
+  showTitle: true, // 显示标题
   btns: [
     {
       content: "编辑",
@@ -241,6 +248,7 @@ export default {
       if (event) {
         this.$emit('btnHandler', node, data);
       }
+      console.log(event)
     },
     // 表格confirmInfo判断函数还是String
     confirmInfoFn(confirmInfo, data) {
@@ -323,7 +331,9 @@ export default {
      */
     filterNode(value, data) {
       if (!value) return true;
-      return data.name.indexOf(value) !== -1;
+      // return data.label.indexOf(value) !== -1;
+      // 搜索不区分大小写
+      return data.label.toLowerCase().includes(value.toLowerCase());
     },
     /**
      * 点击树节点

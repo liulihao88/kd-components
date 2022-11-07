@@ -21,47 +21,35 @@
     }
   }
   .jt_search {
-    position: relative;
-    padding: 0 8px;
-    height: 62px;
-    line-height: 54px;
-    font-size: 14px;
-    border-bottom: 1px solid #e3e6eb;
-  }
-  .table_search {
-    position: relative;
-    height: 102px;
-    line-height: 40px;
-    padding: 10px 8px 15px;
-    border-bottom: 1px solid #e3e6eb;
-    ::v-deep .dbtable_ipt {
-      top: -4px;
-    }
-    ::v-deep .el-select {
-      width: 100%;
-      margin-bottom: 3px;
-    }
+    padding: 16px 16px 8px 16px;
+    font-size: 12px;
   }
   .jt_body {
+    padding: 0 16px;
     .job_tree_node {
       display: flex;
       justify-content: space-between;
       width: 100%;
       .left_txt_box {
         display: flex;
-        height: 26px;
-        line-height: 26px;
+        height: 32px;
+        line-height: 32px;
       }
     }
   }
+  .el-tree-node__content {
+    height: 32px;
+    margin-bottom: 4px;
+  }
   .el-tree-node__content:hover .right_icon_box {
-    display: inline-block;
+    opacity: 1;
   }
   .right_icon_box {
-    display: none;
+    opacity: 0;
     font-size: 12px;
-    height: 26px;
-    line-height: 26px;
+    padding-right: 8px;
+    height: 32px;
+    line-height: 32px;
     font-weight: 500;
     color: #365edf;
   }
@@ -69,7 +57,14 @@
     margin-left: 8px;
   }
   .is-current > .el-tree-node__content {
-    color: var(--blue);
+    //color: var(--blue);
     background: #f5f7fd !important;
   }
+}
+.disabled {
+  color: var(--disabled-color) !important;
+  cursor: not-allowed;
+}
+.el-dropdown-menu--small .el-dropdown-menu__item {
+  line-height: 32px;
 }
