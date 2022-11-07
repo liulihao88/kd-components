@@ -9,7 +9,7 @@
         <el-button @click="onReset">重置</el-button>
         <el-button v-if="hasMore" type="text" @click="onFold">
           {{ isFold ? foldText : unFoldText }}
-          <i class="el-icon--right"></i>
+          <i :class="['el-icon-arrow-' + (isFold ? 'down' : 'up')]" style="margin-left: 8px"></i>
         </el-button>
       </div>
       <div class="right">
