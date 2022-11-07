@@ -31,11 +31,7 @@
         </kd-job-tree>
         <div class="three">
           <div class="tree-wrap">
-            <kd-job-tree
-                    ref="jobTreeRef3"
-                    :default-props="defaultProps3"
-                    :data="data"
-            ></kd-job-tree>
+            <kd-job-tree ref="jobTreeRef3" :default-props="defaultProps3" :data="data"></kd-job-tree>
           </div>
         </div>
       </div>
@@ -60,7 +56,7 @@ export default {
       source1: source1,
       defaultProps2: {
         title: '资源管理2',
-        showCreate: false
+        showCreate: false,
       },
 
       defaultProps: {
@@ -92,13 +88,12 @@ export default {
           },
           {
             content: '删除',
-            disabled:  true,
+            disabled: true,
             confirm: this.deleteTree,
             confirmInfo: '确认删除本条数据吗？',
           },
-
-        ]
-      }
+        ],
+      },
     };
   },
   watch: {},
@@ -138,8 +133,8 @@ export default {
               parentId: null,
               label: 'aa',
               path: '/aa',
-            }
-          ]
+            },
+          ],
         },
         {
           id: '1551894041832984635',
@@ -220,13 +215,12 @@ export default {
 .test-tree ::v-deep .kd-job-tree {
   height: unset;
 }
-  .three {
-    .tree-wrap {
-      width: 270px;
-      border: 1px solid #e3e6eb;
-      border-left: none;
-      border-bottom: none;
-    }
-
+.three {
+  .tree-wrap {
+    width: 270px;
+    border: 1px solid #e3e6eb;
+    border-left: none;
+    border-bottom: none;
   }
+}
 </style>
