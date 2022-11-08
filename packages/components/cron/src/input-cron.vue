@@ -1,6 +1,13 @@
 <template>
   <div class="input-cron">
-    <el-input v-model="editCronValueTrunk" :placeholder="placeholder" style="width: auto" :disabled="disabled">
+    <el-input
+      v-model="editCronValueTrunk"
+      :placeholder="placeholder"
+      :style="`width: ${inputWidth}`"
+      :disabled="disabled"
+      v-bind="$attrs"
+      v-on="$listeners"
+    >
       <template slot="append">
         <el-button type="primary" :disabled="disabled" @click="showDialog"> 配置cron </el-button>
       </template>
@@ -46,6 +53,10 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    inputWidth: {
+      type: String,
+      default: '316px',
     },
     width: {
       type: String,
