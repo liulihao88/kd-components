@@ -9,3 +9,9 @@
 | editor-attrs    | object  | {}       | 对应内部表单组件的属性，按具体的组件定义                                                                   |
 | key-field       | string  | "key"    | 表格行唯一标识，类似vue的key的作用，**目前好像可以不传**                                                      |
 | no-form         | boolean | false    | 内部表单项是否用el-form-item包裹（外层没有el-form时el-form-item不可用）。<br/>true时t-name、form-item-attrs失效 |
+
+### 插槽
+| 名称        | 说明        | 参数                      |
+|-----------|-----------|-------------------------|
+| -/default | 自定义列单元格内容 | { row, column, $index } |
+| header    | 自定义表头的内容  | { column, $index }      |

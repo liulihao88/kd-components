@@ -1,28 +1,31 @@
 <template>
   <el-table-column v-bind="manageAttrs" :filters="colFilters" v-on="$listeners">
     <template slot-scope="scope">
-      <template v-if="isLink">
-        <span class="kd-column-show__link" @click="onClick(scope)">
-          {{ formatText(scope) }}
-        </span>
-      </template>
-      <template v-else>
-        <template v-if="isStatus">
-          <span
-            class="kd-column-show__status-box"
-            :style="isStatus ? mergeStatusStyles[scope.row[propLabel.prop]] : ''"
-            @click="onClick(scope)"
-          >
+      <slot v-bind="scope">
+        <template v-if="isLink">
+          <span class="kd-column-show__link" @click="onClick(scope)">
             {{ formatText(scope) }}
           </span>
         </template>
         <template v-else>
-          <span @click="onClick(scope)">
-            {{ formatText(scope) }}
-          </span>
+          <template v-if="isStatus">
+            <span
+              class="kd-column-show__status-box"
+              :style="isStatus ? mergeStatusStyles[scope.row[propLabel.prop]] : ''"
+              @click="onClick(scope)"
+            >
+              {{ formatText(scope) }}
+            </span>
+          </template>
+          <template v-else>
+            <span @click="onClick(scope)">
+              {{ formatText(scope) }}
+            </span>
+          </template>
         </template>
-      </template>
+      </slot>
     </template>
+    <slot slot="header" slot-scope="scope" name="header" v-bind="scope">{{ scope.column.label }}</slot>
   </el-table-column>
 </template>
 
