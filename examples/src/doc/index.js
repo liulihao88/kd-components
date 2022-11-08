@@ -4,6 +4,7 @@ import gStyleMd from './gStyle.md';
 import directiveMd from './directive.md';
 import mixinMd from './mixin.md';
 import FAQSMd from './FAQS.md';
+import updateCom from './updateCom.md';
 
 export default {
   guideMd,
@@ -12,6 +13,7 @@ export default {
   mixinMd,
   addComponentsMd,
   FAQSMd,
+  updateCom,
 };
 
 export const docMd = {
@@ -21,6 +23,7 @@ export const docMd = {
   mixin: mixinMd,
   addComponents: addComponentsMd,
   faq: FAQSMd,
+  updateCpt: updateCom,
 };
 
 export const docName = {
@@ -30,4 +33,5 @@ export const docName = {
   directive: '全局指令',
   mixin: '全局mixins',
   faq: '常见问题汇总',
+  updateCpt: '组件前缀kj迁移为kd',
 };
