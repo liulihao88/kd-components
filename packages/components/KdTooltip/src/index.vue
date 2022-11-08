@@ -1,5 +1,5 @@
 <template>
-  <el-tooltip class="item" effect="dark" :disabled="isShowTooltip" :placement="$attrs.placement" v-bind="$attrs">
+  <el-tooltip class="item" effect="dark" :disabled="isShowTooltip" :placement="placement" v-bind="$attrs">
     <span
       v-if="!slotShow"
       class="hide-text"
@@ -32,6 +32,10 @@ export default {
       default: () => {
         return false;
       },
+    },
+    placement: {
+      type: String,
+      default: 'top',
     },
   },
   data() {

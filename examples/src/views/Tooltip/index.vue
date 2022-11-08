@@ -17,7 +17,7 @@
       <div class="divider"></div>
 
       <div style="width: 100px">
-        <kd-tooltip width="70px" :content="textPx" placement="top"></kd-tooltip>
+        <kd-tooltip width="70px" :content="textPx" placement="bottom"></kd-tooltip>
       </div>
 
       <!-- 分割线 -->

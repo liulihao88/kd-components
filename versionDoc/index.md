@@ -2,8 +2,9 @@
 
 
 
+- 【优化】 kd-tooltip 的出现位置默认改为top
 ###  V0.1.76 (2022-11-07)
-- [fix] kd-tooltip,解决tag为undefined时报错的问题
+- 【fix】 kd-tooltip,解决tag为undefined时报错的问题
 ###  V0.1.75 (2022-11-07)
 - 【fix】kd-icon 使用?.,删除?.方式，更换其它方式
 ###  V0.1.73 (2022-11-07)
