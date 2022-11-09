@@ -83,18 +83,6 @@
   .el-input-number .el-input {
     width: 100%;
   }
-  .el-input,
-  .el-select {
-    width: 316px;
-  }
-  .el-textarea {
-    width: 424px;
-  }
-  .el-select {
-    .el-input {
-      width: unset;
-    }
-  }
 }
 
 .el-table .cell {
