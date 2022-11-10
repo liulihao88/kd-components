@@ -60,7 +60,7 @@
         trigger="click"
         @command="handleCommand(scope, $event)"
       >
-        <kd-icon name="ellipsis" class="kd-column-operate__icon"></kd-icon>
+        <kd-icon name="kd-icon-ellipsis" class="kd-column-operate__icon"></kd-icon>
         <el-dropdown-menu slot="dropdown" :ref="'innerDropdown' + scope.$index">
           <template v-for="item in dropdownList">
             <template v-if="item.popover">
