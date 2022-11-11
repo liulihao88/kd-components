@@ -1,6 +1,17 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-
+- 【fix】 kd-filter-table：searchTitle配置后不显示
+###  V0.1.79 (2022-11-10)
+- 【feat】kd-icon：修改name传递icon类名方式；删除local属性；增加next()方法可手动控制图标切换；增加custom-next标识是否自动切换图标；
+###  V0.1.78 (2022-11-09)
+- 【优化】kd-column-form/kd-column-form-show：增加对header、default插槽的支持
+- 【fix】 kd-input：高度错误问题
+- 【优化】 kd-cron 的宽度默认为316px
+###  V0.1.77 (2022-11-08)
+- 【feat】kd-icon：支持组件内使用项目本地图标
+- 【优化】 kd-tooltip 的出现位置默认改为top
+###  V0.1.76 (2022-11-07)
+- 【fix】 kd-tooltip,解决tag为undefined时报错的问题
 ###  V0.1.75 (2022-11-07)
 - 【fix】kd-icon 使用?.,删除?.方式，更换其它方式
 ###  V0.1.73 (2022-11-07)

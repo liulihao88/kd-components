@@ -1,11 +1,19 @@
 <template>
   <el-table-column :prop="prop" v-bind="colAttrs" :min-width="$attrs['min-width'] || '120'" v-on="$listeners">
     <template slot-scope="scope">
-      <component :is="editorType" v-if="noForm" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
-      <el-form-item v-else v-bind="formItemAttrs" :key="scope.row[keyField]" :prop="`${tName}.${scope.$index}.${prop}`">
-        <component :is="editorType" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
-      </el-form-item>
+      <slot v-bind="scope">
+        <component :is="editorType" v-if="noForm" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
+        <el-form-item
+          v-else
+          v-bind="formItemAttrs"
+          :key="scope.row[keyField]"
+          :prop="`${tName}.${scope.$index}.${prop}`"
+        >
+          <component :is="editorType" v-model="scope.row[prop]" v-bind="editorAttrs"></component>
+        </el-form-item>
+      </slot>
     </template>
+    <slot slot="header" slot-scope="scope" name="header" v-bind="scope">{{ scope.column.label }}</slot>
   </el-table-column>
 </template>
 

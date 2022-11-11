@@ -23,7 +23,8 @@
               :col-attrs="{ label: '接口名称' }"
               :form-item-attrs="{ rules: rules.name }"
               :editor-attrs="{ placeholder: '请输入接口名称', clearable: true }"
-            ></kd-column-form>
+            >
+            </kd-column-form>
             <kd-column-form
               t-name="tableData"
               prop="url"

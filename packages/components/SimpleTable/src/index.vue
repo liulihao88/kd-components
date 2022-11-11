@@ -14,7 +14,7 @@
       >
         <el-table-column v-if="draggable" v-bind="dragColConf">
           <div class="drag-icon">
-            <kd-icon name="move"></kd-icon>
+            <kd-icon name="kd-icon-move"></kd-icon>
           </div>
         </el-table-column>
         <slot></slot>

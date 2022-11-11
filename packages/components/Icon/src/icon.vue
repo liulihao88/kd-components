@@ -3,11 +3,11 @@
     class="kd-icon-wrap"
     :class="[wrapClass]"
     :style="{
-      width: isPlace ? comSize : '',
-      height: isPlace ? comSize : '',
-      'line-height': isPlace ? comSize : '',
+      width: place ? comSize : '',
+      height: place ? comSize : '',
+      'line-height': place ? comSize : '',
       margin: margin,
-      cursor: pointer && !isPlace ? 'pointer' : '',
+      cursor: pointer && !place ? 'pointer' : '',
       '--hover-color': hoverColor,
       '--default-color': defaultColor,
       ...wrapStyle,
@@ -19,8 +19,7 @@
         <i
           v-show="clickNum === index"
           :key="index"
-          class="kd-icon"
-          :class="[getName(item.name)]"
+          :class="[getName(item)]"
           :style="{
             'font-size': comSize,
             'line-height': comSize,
@@ -54,6 +53,10 @@ export default {
     size: {
       type: [String, Number],
       default: 16,
+      validator(val) {
+        // 参数校验，必为2位数字或带单位的4位字符
+        return /^[1-9]\d(px|em)?$/.test(String(val));
+      },
     },
     mt: {
       type: String,
@@ -93,7 +96,7 @@ export default {
       type: String,
       default: '', // #365EDF
     },
-    isPlace: {
+    place: {
       type: Boolean,
       default: false,
     },
@@ -107,11 +110,14 @@ export default {
       type: String,
       default: '',
     },
+    customNext: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       clickNum: 0,
-      curTooltip: '',
     };
   },
   computed: {
@@ -121,6 +127,7 @@ export default {
         this.names.forEach((item) => {
           arr.push({
             name: item.name,
+            // this.tooltip优先级高于item.tooltip
             tooltip: item.tooltip || this.tooltip || '',
             key: item.key || '',
           });
@@ -139,35 +146,20 @@ export default {
       return arr;
     },
     comSize() {
-      let r;
-      if (typeof this.size === 'string') {
-        if (this.size.endsWith('px')) {
-          r = this.size;
-        } else {
-          r = this.size + 'px!important';
-        }
-      }
-      if (typeof this.size === 'number') {
-        r = this.size + 'px!important';
-      }
-      return r;
+      // 字体最小12px，最大应该不会超过99，所以使用padEnd补充单位
+      return String(this.size).padEnd(4, 'px') + '!important';
     },
+    // 合并tooltip属性配置，增加默认配置，不合并tooltip属性
     mergeTooltipAttrs() {
-      let obj = {};
-      if (this.tooltip) {
-        Object.assign(
-          obj,
-          {
-            effect: 'dark',
-            placement: 'top',
-            'open-delay': 200,
-          },
-          this.tooltipAttrs
-        );
-      } else {
-        obj.disabled = true;
-      }
-      return obj;
+      return Object.assign(
+        {},
+        {
+          effect: 'dark',
+          placement: 'top',
+          'open-delay': 200,
+        },
+        this.tooltipAttrs
+      );
     },
     statusLength() {
       return this.names.length;
@@ -177,20 +169,46 @@ export default {
     },
   },
   methods: {
+    // 点击事件：
     onClick() {
-      if (this.isPlace) return;
+      if (this.place) return;
       let key = this.iconArr[this.clickNum] ? this.iconArr[this.clickNum].key : '';
       this.$emit('click', key);
-      if (this.clickNum < this.statusLength - 1) {
-        this.clickNum++;
+      if (this.customNext || this.statusLength < 2) return;
+      // 如果是多个图标的组合，点击后下一个生效
+      this.next();
+    },
+    // 跳转到指定图标，索引或key
+    next(target) {
+      const type = typeof target;
+      let nextIndex;
+      // 什么也不传，即undefined，跳下一个
+      if (type === 'undefined') {
+        nextIndex = this.clickNum + 1;
+      }
+      // 如果是数字，判断超限
+      if (type === 'number') {
+        if (target < 0 || target > this.statusLength - 1) {
+          nextIndex = this.clickNum + 1;
+        } else {
+          nextIndex = target;
+        }
+      }
+      // 传字符串，按key处理
+      if (type === 'string') {
+        nextIndex = this.iconArr.findIndex((x) => x.key === target) || this.clickNum + 1;
+      }
+      if (nextIndex < this.statusLength) {
+        this.clickNum = nextIndex;
       } else {
         this.clickNum = 0;
       }
     },
-    getName(name) {
+    // 获取图标名称：全局el-icon-xxx、全局kd-icon-xxx、项目中的icon图标
+    getName({ name }) {
       let showName = name;
-      if (!name.startsWith('el-icon-')) {
-        showName = name.startsWith('kd-icon-') ? name : `kd-icon-${name}`;
+      if (!name.startsWith('el-icon-') && !name.startsWith('kd-icon-')) {
+        showName = 'iconfont ' + name;
       }
       return showName;
     },
