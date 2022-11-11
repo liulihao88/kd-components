@@ -1,22 +1,13 @@
-//.kd-column-show{
-  .kd-column-show__link {
-    color: var(--primary-color);
-    cursor: pointer;
-    font-size: 12px;
-  }
+.kd-column-show__link {
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 12px;
+}
 
-  .kd-column-show__status-box {
-    display: inline-block;
-    border-radius: 1px;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 10px;
-    font-size: 12px;
-  }
-
-  //.overflow {
-  //  overflow: hidden;
-  //  text-overflow: ellipsis;
-  //  white-space: nowrap;
-  //}
-//}
+.kd-column-show__status-box {
+  display: inline-block;
+  border-radius: 1px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+}
