@@ -93,22 +93,22 @@
                     </template>
                     <template v-else-if="btn.confirmInfo">
                       <el-popover
-                              v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
-                              :key="index"
-                              :ref="`popoverOut-${index}`"
-                              :disabled="btn.disabled ? btn.disabled : false"
-                              placement="bottom-start"
-                              width="224"
-                              :title="btn.popoverTitle || '删除'"
-                              popper-class="popover_btn"
+                        v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
+                        :key="index"
+                        :ref="`popoverOut-${index}`"
+                        :disabled="btn.disabled ? btn.disabled : false"
+                        placement="bottom-start"
+                        width="224"
+                        :title="btn.popoverTitle || '删除'"
+                        popper-class="popover_btn"
                       >
                         <p>{{ confirmInfoFn(btn.confirmInfo, data) }}</p>
                         <div style="text-align: right; margin: 0; margin-top: 16px">
                           <el-button size="mini" type="info" @click="handleCloseOut(index)"> 取消 </el-button>
                           <el-button
-                                  type="primary"
-                                  size="mini"
-                                  @click="handleCloseOut(index) || (btn.confirm && btn.confirm(node, data))"
+                            type="primary"
+                            size="mini"
+                            @click="handleCloseOut(index) || (btn.confirm && btn.confirm(node, data))"
                           >
                             确定
                           </el-button>
@@ -117,7 +117,9 @@
                           slot="reference"
                           :class="{
                             disabled: btn.disabled ? btn.disabled : false,
-                          }">{{ btn.content }}</el-dropdown-item>
+                          }"
+                          >{{ btn.content }}</el-dropdown-item
+                        >
                       </el-popover>
                     </template>
                     <template v-else>
@@ -241,6 +243,7 @@ export default {
   mounted() {},
   methods: {
     ellipsisHandler(node, data) {
+      this.$emit('btnClick', node, data);
       // this.$refs.dropdownRef.visible = false;
       // this.$refs.dropdownRef.visible = true;
     },
@@ -248,7 +251,7 @@ export default {
       if (event) {
         this.$emit('btnHandler', node, data);
       }
-      console.log(event)
+      console.log('btnShowHandler', event, node, data);
     },
     // 表格confirmInfo判断函数还是String
     confirmInfoFn(confirmInfo, data) {
@@ -330,10 +333,11 @@ export default {
      * 树节点过滤函数
      */
     filterNode(value, data) {
+      console.log(value, data, this.treeProps.label);
       if (!value) return true;
       // return data.label.indexOf(value) !== -1;
       // 搜索不区分大小写
-      return data.label.toLowerCase().includes(value.toLowerCase());
+      return data[this.treeProps.label].toLowerCase().includes(value.toLowerCase());
     },
     /**
      * 点击树节点
