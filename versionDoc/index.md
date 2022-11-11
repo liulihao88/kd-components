@@ -1,6 +1,6 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-
+- 【fix】 kd-filter-table：searchTitle配置后不显示
 ###  V0.1.78 (2022-11-09)
 - 【优化】kd-column-form/kd-column-form-show：增加对header、default插槽的支持
 - 【fix】 kd-input：高度错误问题

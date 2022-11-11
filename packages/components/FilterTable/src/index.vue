@@ -20,12 +20,10 @@
                 :clearable="clearable"
                 :placeholder="placeholder"
                 :disabled="advancedSearchFlag"
+                :title="searchTitle"
                 @clear="toClear"
                 @keyup.enter.native="toSearch"
               >
-                <div slot="prepend">
-                  {{ searchTitle }}
-                </div>
               </kd-input>
               <!-- :disabled="mDisabled('LOAD')" -->
               <el-button type="primary" class="ml" size="small" @click="toSearch"> 查询 </el-button>
@@ -40,7 +38,7 @@
               >
                 {{ !advancedSearchFlag ? '高级搜索' : '收起' }}
                 <i
-                    :class="{
+                  :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
                     'el-icon-arrow-down': !advancedSearchFlag,
                   }"
@@ -82,7 +80,7 @@
               <el-button v-if="openSearchFlag" type="text" size="small" class="expandbtn" @click="toggleMoreSearch">
                 {{ !advancedSearchFlag ? '展开' : '收起' }}
                 <i
-                    :class="{
+                  :class="{
                     'foldsearch el-icon-arrow-up': advancedSearchFlag,
                     'el-icon-arrow-down': !advancedSearchFlag,
                   }"
@@ -336,7 +334,8 @@
       <div v-if="pageFlag" style="height: 64px">
         <div class="page-wrap">
           <div class="page-left">
-            <span>共</span><span class="m-lr-5">{{ total }}</span><span>项数据</span>
+            <span>共</span><span class="m-lr-5">{{ total }}</span
+            ><span>项数据</span>
           </div>
           <el-pagination
             class="tab_pagination"
