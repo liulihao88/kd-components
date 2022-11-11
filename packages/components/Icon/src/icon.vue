@@ -3,11 +3,11 @@
     class="kd-icon-wrap"
     :class="[wrapClass]"
     :style="{
-      width: isPlace ? comSize : '',
-      height: isPlace ? comSize : '',
-      'line-height': isPlace ? comSize : '',
+      width: place ? comSize : '',
+      height: place ? comSize : '',
+      'line-height': place ? comSize : '',
       margin: margin,
-      cursor: pointer && !isPlace ? 'pointer' : '',
+      cursor: pointer && !place ? 'pointer' : '',
       '--hover-color': hoverColor,
       '--default-color': defaultColor,
       ...wrapStyle,
@@ -46,14 +46,9 @@ export default {
           //   name:'',
           //   tooltip:'',
           //   key:''
-          // local:true
           // }
         ];
       },
-    },
-    local: {
-      type: Boolean,
-      default: false,
     },
     size: {
       type: [String, Number],
@@ -101,7 +96,7 @@ export default {
       type: String,
       default: '', // #365EDF
     },
-    isPlace: {
+    place: {
       type: Boolean,
       default: false,
     },
@@ -114,6 +109,10 @@ export default {
     wrapClass: {
       type: String,
       default: '',
+    },
+    customNext: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -131,7 +130,6 @@ export default {
             // this.tooltip优先级高于item.tooltip
             tooltip: item.tooltip || this.tooltip || '',
             key: item.key || '',
-            local: item.local || this.local || false,
           });
         });
       }
@@ -142,7 +140,6 @@ export default {
             name: this.name,
             tooltip: this.tooltip || '',
             key: '',
-            local: this.local,
           },
         ];
       }
@@ -174,28 +171,44 @@ export default {
   methods: {
     // 点击事件：
     onClick() {
-      if (this.isPlace) return;
+      if (this.place) return;
       let key = this.iconArr[this.clickNum] ? this.iconArr[this.clickNum].key : '';
       this.$emit('click', key);
+      if (this.customNext || this.statusLength < 2) return;
       // 如果是多个图标的组合，点击后下一个生效
-      if (this.clickNum < this.statusLength - 1) {
-        this.clickNum++;
+      this.next();
+    },
+    // 跳转到指定图标，索引或key
+    next(target) {
+      const type = typeof target;
+      let nextIndex;
+      // 什么也不传，即undefined，跳下一个
+      if (type === 'undefined') {
+        nextIndex = this.clickNum + 1;
+      }
+      // 如果是数字，判断超限
+      if (type === 'number') {
+        if (target < 0 || target > this.statusLength - 1) {
+          nextIndex = this.clickNum + 1;
+        } else {
+          nextIndex = target;
+        }
+      }
+      // 传字符串，按key处理
+      if (type === 'string') {
+        nextIndex = this.iconArr.findIndex((x) => x.key === target) || this.clickNum + 1;
+      }
+      if (nextIndex < this.statusLength) {
+        this.clickNum = nextIndex;
       } else {
         this.clickNum = 0;
       }
     },
-    // 获取图标名称：全局el图标、全局kd-icon、项目中的icon图标
-    getName({ name, local }) {
+    // 获取图标名称：全局el-icon-xxx、全局kd-icon-xxx、项目中的icon图标
+    getName({ name }) {
       let showName = name;
-      // 非el图标
-      if (!name.startsWith('el-icon-')) {
-        if (local) {
-          // 项目本地图标，class形式为"iconfont icon-xxxxx"
-          showName = 'iconfont ' + (name.startsWith('icon-') ? name : 'icon-' + name);
-        } else {
-          // 全局kd-icon-xxxxx
-          showName = name.startsWith('kd-icon-') ? name : `kd-icon-${name}`;
-        }
+      if (!name.startsWith('el-icon-') && !name.startsWith('kd-icon-')) {
+        showName = 'iconfont ' + name;
       }
       return showName;
     },

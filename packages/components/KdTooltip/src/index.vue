@@ -1,5 +1,5 @@
 <template>
-  <el-tooltip class="item" effect="dark" :disabled="isShowTooltip" :placement="placement" v-bind="$attrs">
+  <el-tooltip effect="dark" :disabled="isShowTooltip" :placement="placement" v-bind="$attrs">
     <span
       v-if="!slotShow"
       class="hide-text"

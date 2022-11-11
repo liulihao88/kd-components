@@ -12,17 +12,10 @@
     <h5>组件用法</h5>
     <div class="wrap">
       <div>
-        <span>名称简写</span>
+        <span>基本用法</span>
         <div>
-          <kd-icon name="a-1bi1"></kd-icon>
-          <kd-icon name="kd-icon-kuguanli"></kd-icon>
-        </div>
-      </div>
-      <div>
-        <span>兼容el-icon</span>
-        <div>
+          <kd-icon name="kd-icon-a-1bi1"></kd-icon>
           <kd-icon name="el-icon-platform-eleme"></kd-icon>
-          <kd-icon name="el-icon-goods"></kd-icon>
         </div>
       </div>
       <div>
@@ -31,7 +24,7 @@
       </div>
       <div>
         <span>pointer样式</span>
-        <kd-icon name="xuanzhong" pointer size="18"></kd-icon>
+        <kd-icon name="kd-icon-xuanzhong" pointer size="18"></kd-icon>
       </div>
       <div>
         <span>hover颜色</span>
@@ -39,22 +32,27 @@
       </div>
       <div>
         <span>tooltip</span>
-        <kd-icon name="add" pointer hover-color="blue" size="26" tooltip="新建"></kd-icon>
+        <kd-icon name="kd-icon-add" pointer hover-color="blue" size="26" tooltip="新建"></kd-icon>
       </div>
       <div>
-        <span>多值切换</span>
-        <kd-icon :names="names" pointer hover-color="blue" size="26" tooltip="新建" @click="onClick"></kd-icon>
+        <span>多值自动切换</span>
+        <kd-icon :names="names" pointer hover-color="blue" size="26" @click="onClick"></kd-icon>
+      </div>
+      <div>
+        <span>多值手动切换</span>
+        <kd-icon ref="kdIcon" :names="names" pointer hover-color="blue" size="26" custom-next></kd-icon>
+        <el-button type="primary" :loading="loading" @click="toChangeIcon">点击切换</el-button>
       </div>
       <div>
         <span>占位</span>
         <div style="background: #eee; padding: 10px">
-          <kd-icon is-place style="background: #fff"></kd-icon>
+          <kd-icon place style="background: #fff"></kd-icon>
         </div>
       </div>
       <div>
         <span>外边距控制</span>
         <div>
-          <kd-icon name="add" mr="8"></kd-icon>
+          <kd-icon name="kd-icon-add" mr="8"></kd-icon>
           图标在前
         </div>
       </div>
@@ -62,14 +60,13 @@
     <example-code :source="source2">
       kd-icon在图标<i></i>标签的外部增加了div和el-tooltip组件，提供了更多的可利用功能。<br />
       属性配置如下：<br />
-      - name：string,指定图标名称，kd图标可使用全名或省略"kd-icon-"；el图标必须使用全名；<br />
+      - name：string,完整的图标类名：项目公共图标 kd-icon-xxx，el图标 el-icon-xxx，项目本地图标
+      icon-xxx（组件自动补全为"iconfot icon-xxx"）；<b style="color: red">在下方图标列表中点击即可复制类名。</b><br />
       - tooltip：string，默认值''；tooltip要显示的内容，默认为空时不显示<br />
-      - local：boolean，默认值false；是否为项目本地引入的图标<br />
-      - <b>names</b>：数组，格式{name:'',key:'',tooltip:
-      '',local:Boolean}；当一个位置需要动态切换图标时，可使用该属性，name的优先级高于names。<br />
+      - <b>names</b>：数组，格式{name:'',key:'',tooltip: ''}；
+      当一个位置需要动态切换图标时，可使用该属性，name的优先级高于names。<br />
       ---- item.name：同name属性用法 <br />
       ---- item.tooltip：图标对应的tooltip，如果未设置，会使用组件的tooltip属性值 <br />
-      ---- local：boolean，默认值false；是否为项目本地引入的图标<br />
       ---- item.key：用来区分图标对应的操作，以参数形式返回给click事件 <br />
       - size：string | number，默认值16；指定图标大小，同font-size属性作用；同时还会作用于图标容器，影响占位大小<br />
       - pointer：boolean，默认值false；是否为pointer样式<br />
@@ -80,10 +77,17 @@
       - is-place：boolean，默认值false；是否占位，当没有name或names值时，是否占位，就是图标不显示但空间仍被占居<br />
       - wrap-style：object，用于自定义kd-icon容器的样式<br />
       - wrap-class：string，自定义kd-icon容器的类名<br />
-      - mt/mr/mb/ml：string，默认值0；不带px单位的边距值，分别控制图标各个方向的外边距<br /><br />
+      - mt/mr/mb/ml：string，默认值0；不带px单位的边距值，分别控制图标各个方向的外边距<br />
+      - custom-next：boolean，默认值false；是否自定义next事件，如果为true，则必须外部调用next()方法才会切换图标<br /><br />
 
       事件：<br />
-      - click：图标点击回调，如果有key，则返回key
+      - click：图标点击回调，如果有key，则返回key；如果有多个图标，默认情况下自动切换到下一个图标<br /><br />
+
+      方法：<br />
+      - next：当组件进行手动多值切换（custom-next=true）时，通过ref调用next()方法，它接收三种类型参数：<br />
+      ---- undefined：默认，不传参数，切换到下一个图标<br />
+      ---- 数字类型：指定图标索引，如果超限，则切换到下一个图标<br />
+      ---- 字符串类型：指定图标key，如果不存在，则切换到下一个图标<br />
     </example-code>
 
     <h5>图标示例</h5>
@@ -759,26 +763,27 @@ export default {
       source2,
       names: [
         {
-          name: 'chevron-up',
+          name: 'kd-icon-chevron-up',
           key: 'up',
           tooltip: '上',
         },
         {
-          name: 'chevron-right',
+          name: 'kd-icon-chevron-right',
           key: 'right',
           tooltip: '右',
         },
         {
-          name: 'chevron-down',
+          name: 'kd-icon-chevron-down',
           key: 'down',
           tooltip: '下',
         },
         {
-          name: 'chevron-left',
+          name: 'kd-icon-chevron-left',
           key: 'left',
           tooltip: '左',
         },
       ],
+      loading: false,
     };
   },
   mounted() {
@@ -803,6 +808,13 @@ export default {
           console.log(e);
           this.$message.error('复制失败');
         });
+    },
+    toChangeIcon() {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.$refs.kdIcon.next();
+      }, 1000);
     },
   },
 };
