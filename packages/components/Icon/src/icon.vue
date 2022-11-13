@@ -23,6 +23,7 @@
           :style="{
             'font-size': comSize,
             'line-height': comSize,
+            color: 'var(--default-color)',
           }"
         ></i>
       </el-tooltip>
