@@ -27,29 +27,35 @@
     </example-code>
 
     <h5>特殊列</h5>
-    <div class="" style="display: flex; width: 100%">
-      <div style="position: relative; flex: 1">
-        <div style="margin-bottom: 10px">type="index"</div>
+    <el-row>
+      <el-col :span="12">
+        <div style="height: 40px; line-height: 40px">type="index"</div>
         <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="index" :border="false">
           <el-table-column type="index" width="50"> </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
-      </div>
-      <div style="position: relative; flex: 1">
-        <div style="margin-bottom: 10px">type="selection"</div>
+      </el-col>
+      <el-col :span="12">
+        <div style="height: 40px; line-height: 40px">type="selection"</div>
         <kd-simple-table :data="tableData" :show-paging="false" :border="false" @selection-change="onSelection">
           <el-table-column type="selection" width="55"> </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
-      </div>
-      <div style="position: relative; flex: 1">
-        <div style="margin-bottom: 10px">type="expand"</div>
+      </el-col>
+      <el-col :span="12">
+        <div style="height: 40px; line-height: 40px">type="expand"</div>
         <kd-simple-table :data="tableData" :show-paging="false" :border="false">
           <el-table-column type="expand"> 展开行 </el-table-column>
           <el-table-column label="接口名称" prop="name"></el-table-column>
         </kd-simple-table>
-      </div>
-    </div>
+      </el-col>
+      <el-col :span="12">
+        <div style="height: 40px; line-height: 40px">树结构</div>
+        <kd-simple-table :data="tableData3" :show-paging="false" :border="false" row-key="id" default-expand-all>
+          <el-table-column label="名称" prop="name"></el-table-column>
+        </kd-simple-table>
+      </el-col>
+    </el-row>
     <example-code :source="source2">
       通过el-table-column为表格添加特殊列。<br />
       <span style="color: red; font-weight: bold">注意：</span
@@ -158,6 +164,28 @@ export default {
           url: '/userinfo',
           methods: 'UPDATE',
           status: false,
+        },
+      ],
+      tableData3: [
+        {
+          id: '0',
+          name: '一级1',
+          children: [
+            {
+              id: '1',
+              name: '二级1',
+              children: [
+                {
+                  id: '11',
+                  name: '三级1',
+                },
+              ],
+            },
+            {
+              id: '2',
+              name: '二级2',
+            },
+          ],
         },
       ],
       btnList: [
