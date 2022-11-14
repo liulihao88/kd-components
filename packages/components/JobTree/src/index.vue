@@ -28,8 +28,16 @@
         suffix-icon="el-icon-search"
       ></el-input>
     </div>
-    <div ref="treeScrollComp" class="jt_body">
-      <el-tree
+    <div
+      ref="treeScrollComp"
+      class="jt_body"
+      :class="[
+        defaultProps.showTitle === true && defaultProps.showSearch === false ? 'has_title' : '',
+        defaultProps.showSearch === true && defaultProps.showTitle === false ? 'has_search' : '',
+        defaultProps.showSearch === true && defaultProps.showTitle === true ? 'has_all' : '',
+      ]"
+    >
+      <kd-tree
         ref="treeRef"
         v-loading="loading"
         class="job_tree_comp"
@@ -138,7 +146,7 @@
             </div>
           </slot>
         </div>
-      </el-tree>
+      </kd-tree>
     </div>
   </div>
 </template>
@@ -242,6 +250,12 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    setCurrentNode(id) {
+      this.$refs.treeRef.setCurrentKey(id);
+      let node = this.$refs.treeRef.getNode(id);
+      let parent = node.parent.data || {};
+      this.expandedKeys.push(parent.id);
+    },
     ellipsisHandler(node, data) {
       this.$emit('btnClick', node, data);
       // this.$refs.dropdownRef.visible = false;

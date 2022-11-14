@@ -307,6 +307,9 @@ export default {
       nodeHandler() {},
       nodeHandler3(data) {
         console.log('当前选中项', data)
+      },
+      setNode() {
+        this.$refs.jobTreeRef3.setCurrentNode('1555115624034734129');
       }
     },
 };

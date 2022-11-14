@@ -5,7 +5,7 @@
     <div class="sub-title"></div>
 
     <h5>用法示例</h5>
-    <div class="w-300">
+    <div class="w-300" style="height: 200px">
       <el-input v-model="filterText" class="mb" placeholder="输入关键字进行过滤"> </el-input>
       <kd-tree
         ref="tree"

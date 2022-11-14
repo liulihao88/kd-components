@@ -59,6 +59,9 @@
         </div>
       </div>
     </div>
+    <div>
+      <el-button size="mini" @click="setNode"> setNode </el-button>
+    </div>
     <example-code :source="source1">
       <div>上面示例中展示了kd-tree组件的各种使用方法。</div>
       <div></div>
@@ -267,6 +270,14 @@ export default {
                   parentId: null,
                   name: 'aa',
                   path: '/aa',
+                  children: [
+                    {
+                      id: '89927572',
+                      parentId: null,
+                      name: 'aa11',
+                      path: '/aa111',
+                    },
+                  ],
                 },
               ],
             },
@@ -323,6 +334,9 @@ export default {
     nodeHandler3(data) {
       console.log('当前选中项', data);
     },
+    setNode() {
+      this.$refs.jobTreeRef3.setCurrentNode('1555115624034734129');
+    },
   },
 };
 </script>
@@ -348,6 +362,7 @@ export default {
 .three {
   .tree-wrap {
     width: 270px;
+    height: 200px;
     border: 1px solid #e3e6eb;
     border-left: none;
     border-bottom: none;
