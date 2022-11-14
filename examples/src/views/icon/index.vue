@@ -14,7 +14,7 @@
       <div>
         <span>基本用法</span>
         <div>
-          <kd-icon name="kd-icon-a-1bi1"></kd-icon>
+          <kd-icon name="kd-icon-a-1bi1" default-color="blue"></kd-icon>
           <kd-icon name="el-icon-platform-eleme"></kd-icon>
         </div>
       </div>
