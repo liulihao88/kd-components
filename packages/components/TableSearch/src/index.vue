@@ -58,9 +58,11 @@ export default {
     },
     onSearch() {
       this.$emit('onSearch');
+      this.$emit('search');
     },
     onReset() {
       this.$emit('onReset');
+      this.$emit('reset');
     },
     onResize() {
       // 获取内容实际高度
