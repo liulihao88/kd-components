@@ -264,7 +264,7 @@ export default {
       let arr = [];
       if (!this.isLink && this.isStatus) {
         arr = this.statusArr.length === 0 ? [true, false] : this.statusArr;
-        if (this.statusByFilters && get(this.colFilters, 'legnth') > 0) {
+        if (this.statusByFilters && get(this.colFilters, 'length') > 0) {
           arr = this.colFilters.map((x) => x.value);
         }
       }
