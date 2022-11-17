@@ -1,4 +1,4 @@
-.kd-simple-table-wrap{
+.kd-simple-table-wrap {
   position: relative;
 
   //&.sticky-header{
@@ -7,57 +7,79 @@
   //    top:0;
   //  }
   //}
-  &.sticky-footer{
+
+  .table-inner {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    .kd-simple-table {
+      // 表头部分样式
+      .el-table__header {
+        // 筛选列下箭头样式
+        .el-icon-arrow-down {
+          margin-left: 4px;
+
+          &:before {
+            font-size: 14px;
+          }
+        }
+      }
+
+      // 单元格样式
+      .cell {
+        padding: 0 16px;
+        text-align: left;
+        line-height: inherit;
+        white-space: nowrap;
+        // 更换可展开行图标为下三角
+        .el-icon-arrow-right:before {
+          content: '';
+        }
+
+        // 表格内表单样式覆盖
+        .el-form-item__content {
+          margin-left: 0 !important;
+
+          .el-select {
+            width: 100% !important;
+          }
+          .kd-select {
+            width: 100% !important;
+          }
+        }
+
+        .el-form-item {
+          margin-bottom: 1px;
+
+          .el-input {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &.no-border {
+    .filter_table .el-table {
+      border-style: none !important;
+    }
+    .page-inner {
+      border-style: none !important;
+    }
+  }
+
+  &.sticky-footer {
     .page-wrap {
-      position:sticky;
-      bottom:0;
+      position: sticky;
+      bottom: 0;
       box-shadow: 0 -2px 5px #000;
     }
   }
 
-  .table-inner {
-    width: 100%;
-    height:100%;
-    box-sizing: border-box;
-  }
-
-  &.no-border{
-    .filter_table .el-table{
-      border-style:none !important;
-    }
-    .page-inner{
-      border-style:none !important;
-    }
-  }
-
-  .filter_table .el-table {
-    border-bottom: 1px solid var(--line-color);
-  }
-
-  .el-icon-arrow-down {
-    margin-left: 4px;
-
-    &:before {
-      font-size: 14px;
-    }
-  }
-
-  // 更换可展开行图标
-  .cell .el-icon-arrow-right:before {
-    content: "";
-  }
-
-  // 可展开行无子元素时图标处用一个空元素占位，保证缩进
-  .iconfont-null {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 3px;
-    vertical-align: middle;
-  }
-
   .el-table__placeholder {
-    width: 0;
+    width: 20px;
+    margin-right: 3px;
   }
 
   //空数据时提示组件
@@ -66,52 +88,30 @@
   }
 
   //底部分页组件样式
-  .page-wrap{
-    background-color:#fff;
-    display:block;
-  }
-  .page-inner {
-    width:100%;
-    height:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid var(--table-border);
-    border-top-style: none;
-    padding: 0 24px;
-    box-sizing: border-box;
-
-    .left-text {
+  .kd-simple-table__page-wrap {
+    background-color: #fff;
+    display: block;
+    .page-inner {
+      width: 100%;
+      height: 100%;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
-      color: var(--text-color);
-      font-size:12px;
-    }
-
-    .el-select{
-      width:auto;
-    }
-  }
-
-  // 表格内表单样式覆盖
-  .cell {
-    .el-form-item__content {
-      margin-left: 0 !important;
-
-      .el-select {
-        width: 100%!important;
+      border: 1px solid var(--table-border);
+      border-top-style: none;
+      padding: 0 24px;
+      box-sizing: border-box;
+      // 左侧total样式
+      .left-text {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: var(--text-color);
+        font-size: 12px;
       }
-      .kd-select {
-        width: 100%!important;
-      }
-    }
-
-    .el-form-item {
-      margin-bottom: 1px;
-
-      .el-input {
-        width: 100%;
+      // 页码选择下拉样式圆角
+      .el-pagination .el-select .el-input .el-input__inner {
+        border-radius: 1px;
       }
     }
   }
