@@ -1,20 +1,20 @@
 :root {
   --blue: #365edf;
-  --blue2: #ecf2fe;
+  --blue2: #f5f7fd;
   --85: rgba(39, 48, 75, 0.85);
   --65: rgba(39, 48, 75, 0.65);
   --45: rgba(39, 48, 75, 0.45);
   --black: #000;
   --white: #ffffff;
-  --red: #e34d95;
-  --red2: #fdecee;
+  --red: #e94c35;
+  --red2: #fdecea;
   --yellow: #ffb51f;
-  --yellow2: #fef3e6;
-  --green: #00a870;
-  --green2: #e8f8f2;
+  --yellow2: #fff7e8;
+  --green: #30bd82;
+  --green2: #eaf8f2;
   --gray: #ebedf0;
   --gray2: #f7f8fa;
-  --line: #e3e6eb;
+  --line: #EBEDF0;
 }
 @each $cl, $clVar in blue var(--blue), blue2 var(--blue2), 85 var(--85),
   65 var(--65), 45 var(--45), black var(--black), white var(--white),
