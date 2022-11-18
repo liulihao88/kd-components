@@ -1,8 +1,11 @@
 .kd-title {
   background: #fff;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 16px 0;
-  .title {
+  .kd-left-title {
     width: 100%;
     padding-left: 8px;
     height: 12px;
@@ -10,9 +13,10 @@
     position: relative;
     font-weight: 500;
     box-sizing: border-box;
+    display: flex;
     color: #333;
   }
-  .title::before {
+  .kd-left-title::before {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -21,7 +25,7 @@
     width: 2px;
     height: 12px;
     //z-index: 1;
-    background-color: var(--lc, var(--primary-color)); // 左侧的竖条颜色
+    background-color: var(--lc, var(--blue)); // 左侧的竖条颜色
   }
 
   ::v-deep .el-input-group {
