@@ -22,6 +22,12 @@
       <source3></source3>
     </div>
     <example-code :source="sourceMd3"> 支持多选、批量操作 </example-code>
+
+    <h5>兼容老平台的表格（老平台传参方式不一样），需要配置simpleKv:true</h5>
+    <div class="example-wrap">
+      <source4></source4>
+    </div>
+    <example-code :source="sourceMd4"> 兼容老平台的表格，配置simpleKv=true </example-code>
   </div>
 </template>
 
@@ -33,6 +39,8 @@ import source2 from './source/source2.vue';
 import sourceMd2 from './source/source2.md';
 import source3 from './source/source3.vue';
 import sourceMd3 from './source/source3.md';
+import source4 from './source/source4.vue';
+import sourceMd4 from './source/source4.md';
 export default {
   name: 'TestTable',
   components: {
@@ -40,6 +48,7 @@ export default {
     source1,
     source2,
     source3,
+    source4,
   },
   props: {},
   data() {
@@ -47,6 +56,7 @@ export default {
       sourceMd1,
       sourceMd2,
       sourceMd3,
+      sourceMd4,
     };
   },
   created() {},

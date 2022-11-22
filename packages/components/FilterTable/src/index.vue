@@ -610,6 +610,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    simpleKv: {
+      //参数是简单的参数形式{k1: v1, k2: v2}，老平台是这种形式的传参
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -855,7 +860,14 @@ export default {
       this.currentPage = val;
       this._updatePage();
     },
+    _simpleUpdatePage() {
+      this.$emit('updatePage', { ...this.search, page: this.currentPage, pageSize: this.pageSize });
+    },
     _updatePage() {
+      if (this.simpleKv) {
+        this._simpleUpdatePage();
+        return;
+      }
       // 点击查询按钮，获取到表头中的筛选项，使不通过点击表头的筛选也可以筛选
       let filterColumns = this.$refs.kTable.columns.map((item) => {
         if (item.filterable) {
