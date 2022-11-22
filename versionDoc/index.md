@@ -1,6 +1,10 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
-- 【feat】 kd-filter-table：增加simpleKv配置项，true代表兼容老平台的表格（老平台接口传参不一样）
+ 
 
+
+
+### V0.1.81 (2022-11-22)
+- 【feat】 kd-filter-table：增加simpleKv配置项，true代表兼容老平台的表格（老平台接口传参不一样）
 ###  V0.1.80 (2022-11-11)
 - 【优化】 job-tree功能完善
 - 【fix】 kd-filter-table：searchTitle配置后不显示
