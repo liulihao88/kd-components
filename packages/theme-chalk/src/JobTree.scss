@@ -1,5 +1,5 @@
 .kd-job-tree {
-  height: 100vh;
+  height: calc(100vh - 50px);
   font-size: 12px;
   .jt_operation {
     height: 40px;
@@ -37,6 +37,15 @@
       }
     }
   }
+  .has_all {
+    height: calc(100% - 146px);
+  }
+  .has_title {
+    height: calc(100% - 90px);
+  }
+  .has_search {
+    height: calc(100% - 106px);
+  }
   .el-tree-node__content {
     height: 32px;
     margin-bottom: 4px;
@@ -53,8 +62,10 @@
     font-weight: 500;
     color: #365edf;
   }
-  .slot_box {
-    margin-left: 8px;
+  .icon_box {
+    i {
+      margin-right: 6px;
+    }
   }
   .is-current > .el-tree-node__content {
     //color: var(--blue);

@@ -308,7 +308,8 @@
               <template v-else-if="col.headerTooltipText">
                 {{ slotProps.column.label }}
                 <el-tooltip effect="dark" :content="col.headerTooltipText" placement="top-start">
-                  <i class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"></i>
+                  <!--                  <i class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"></i>-->
+                  <i class="kd-icon-help-circle head_help"></i>
                 </el-tooltip>
               </template>
               <template v-else>
