@@ -192,20 +192,20 @@ export function getStorage(data) {
   let getSessionData = sessionStorage.getItem(data);
   if (getLocalData) {
     try {
-      if (data !== 'curProject') {
+      if (typeof JSON.parse(getLocalData) !== 'number') {
         getLocalData = JSON.parse(getLocalData);
       }
     } catch (e) {
-      // console.error(e);
+      console.log(e);
     }
     return getLocalData;
   } else if (getSessionData) {
     try {
-      if (data !== 'curProject') {
+      if (typeof JSON.parse(getSessionData) !== 'number') {
         getSessionData = JSON.parse(getSessionData);
       }
     } catch (e) {
-      // console.error(e);
+      console.log(e);
     }
     return getSessionData;
   }
