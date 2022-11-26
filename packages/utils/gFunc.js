@@ -1,58 +1,129 @@
 import { Message } from 'element-ui';
 import _ from 'lodash';
 
+// 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
+export function $toast(str, type = 's', otherParams = {}) {
+  let handleType = type;
+  if (type === 's') {
+    handleType = 'success';
+  } else if (type === 'i') {
+    handleType = 'info';
+  } else if (type === 'e') {
+    handleType = 'error';
+  } else if (type === 'w') {
+    handleType = 'warning';
+  }
+  Message({
+    message: str,
+    type: handleType,
+    ...otherParams,
+  });
+}
+
 export function deepClone(arr) {
   return _.cloneDeep(arr);
 }
 
-export function setStorage(str, params, isLocalStorage = false) {
-  let handleParams;
-  if (typeof params === 'number' || typeof params === 'string') {
-    handleParams = params;
-  } else {
-    handleParams = JSON.stringify(params);
+/**
+ * 生成随机数, 第一个参数可传字符串, 空 或者数组
+ * uuid("名字") => 名字hc8f
+ * uuid() => abcd
+ * uuid('time') => 25MR 10-27 17:34:01
+ * uuid('time', 0, {startStr:'andy', timeStr:"{h}:{i}:{s}"}) => andy 17:38:23
+ * uuid('phone') => 13603312460
+ * uuid('email') => cBZA@qq.com
+ * uuid('number') => 2319
+ * uuid([ { label: "小泽泽", value: "xzz" },{ label: "小月月", value: "xyy" }]) => xzz
+ */
+export function uuid(
+  type = '',
+  length = 4,
+  { emailStr = '@qq.com', timeStr = '{m}-{d} {h}:{i}:{s}', startStr = '' } = {}
+) {
+  let randomStr = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+  let res = type;
+  // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
+  if (judgeType(type) === 'array') {
+    return type[0][length === 4 ? 'value' : length];
   }
-  if (isLocalStorage) {
-    localStorage.setItem(str, handleParams);
+  // 如果是手机号, 生成随机手机号
+  if (type === 'phone') {
+    let prefixArray = new Array('130', '131', '132', '133', '135', '136', '137', '138', '170', '187', '189');
+    let i = parseInt(10 * Math.random());
+    let res = prefixArray[i];
+    for (var j = 0; j < 8; j++) {
+      res = res + Math.floor(Math.random() * 10);
+    }
+    return res;
+  }
+  // 如果是email, 生成随机email
+  if (type === 'email') {
+    return uuid(startStr, length) + emailStr;
+  }
+  // 如果是时间, 生成时间字符串
+  if (type === 'time') {
+    return uuid(startStr, length) + ' ' + parseTime(new Date(), timeStr);
+  }
+  // 如果是数字, 生成除了0的随机数字
+  if (type === 'number') {
+    let randomStr = '123456789';
+    let res = '';
+    for (let i = length; i > 0; --i) {
+      res += randomStr[Math.floor(Math.random() * randomStr.length)];
+    }
+    return Number(res);
+  }
+  for (let i = length; i > 0; --i) {
+    res += randomStr[Math.floor(Math.random() * randomStr.length)];
+  }
+  return res;
+}
+
+/**
+ * 判断传入参数的类型
+ * @param {*} type
+ * judgeType(new RegExp()) regexp
+ * judgeType(new Date()) date
+ * judgeType([]) array
+ * judgeType({}) object
+ * judgeType(null) null
+ * judgeType(123) number
+ */
+export function judgeType(type) {
+  if (typeof type === 'object') {
+    const objType = Object.prototype.toString.call(type).slice(8, -1).toLowerCase();
+    return objType;
   } else {
-    sessionStorage.setItem(str, handleParams);
+    return typeof type;
   }
 }
 
-export function getStorage(data) {
-  // 先获取localStorage数据, 如果没有再获取sessionStorage数据。 如果都没有， null;
-  let getLocalData = localStorage.getItem(data);
-  let getSessionData = sessionStorage.getItem(data);
-  if (getLocalData) {
-    try {
-      if (data !== 'curProject') {
-        getLocalData = JSON.parse(getLocalData);
+/**
+ * 判断变量是否空值
+ * undefined, null, '', '   ', false, 0, [], {} 均返回true，否则返回false
+ */
+export function isEmpty(v) {
+  switch (typeof v) {
+    case 'undefined':
+      return true;
+    case 'string':
+      if (v.trim().length === 0) return true;
+      break;
+    case 'boolean':
+      if (!v) return true;
+      break;
+    case 'number':
+      if (0 === v) return true;
+      break;
+    case 'object':
+      if (null === v) return true;
+      if (undefined !== v.length && v.length === 0) return true;
+      for (var k in v) {
+        return false;
       }
-    } catch (e) {
-      // console.error(e);
-    }
-    return getLocalData;
-  } else if (getSessionData) {
-    try {
-      if (data !== 'curProject') {
-        getSessionData = JSON.parse(getSessionData);
-      }
-    } catch (e) {
-      // console.error(e);
-    }
-    return getSessionData;
+      return true;
   }
-  return null;
-}
-
-export function clearStorage(str) {
-  if (!str) {
-    sessionStorage.clear();
-    localStorage.clear();
-    return;
-  }
-  sessionStorage.removeItem(str);
-  localStorage.removeItem(str);
+  return false;
 }
 
 /**
@@ -101,23 +172,54 @@ export function parseTime(time = new Date(), cFormat = '{y}-{m}-{d} {h}:{i}:{s}'
   return time_str;
 }
 
-// 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
-export function $toast(str, type = 's', otherParams = {}) {
-  let handleType = type;
-  if (type === 's') {
-    handleType = 'success';
-  } else if (type === 'i') {
-    handleType = 'info';
-  } else if (type === 'e') {
-    handleType = 'error';
-  } else if (type === 'w') {
-    handleType = 'warning';
+export function setStorage(str, params, isLocalStorage = false) {
+  let handleParams;
+  if (typeof params === 'number' || typeof params === 'string') {
+    handleParams = params;
+  } else {
+    handleParams = JSON.stringify(params);
   }
-  Message({
-    message: str,
-    type: handleType,
-    ...otherParams,
-  });
+  if (isLocalStorage) {
+    localStorage.setItem(str, handleParams);
+  } else {
+    sessionStorage.setItem(str, handleParams);
+  }
+}
+
+export function getStorage(data) {
+  // 先获取localStorage数据, 如果没有再获取sessionStorage数据。 如果都没有， null;
+  let getLocalData = localStorage.getItem(data);
+  let getSessionData = sessionStorage.getItem(data);
+  if (getLocalData) {
+    try {
+      if (typeof JSON.parse(getLocalData) !== 'number') {
+        getLocalData = JSON.parse(getLocalData);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return getLocalData;
+  } else if (getSessionData) {
+    try {
+      if (typeof JSON.parse(getSessionData) !== 'number') {
+        getSessionData = JSON.parse(getSessionData);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return getSessionData;
+  }
+  return null;
+}
+
+export function clearStorage(str) {
+  if (!str) {
+    sessionStorage.clear();
+    localStorage.clear();
+    return;
+  }
+  sessionStorage.removeItem(str);
+  localStorage.removeItem(str);
 }
 
 /**
@@ -145,61 +247,6 @@ export const debounce = (func, wait, immediate) => {
     return result;
   };
 };
-/**
- * 生成随机数, 第一个参数可传字符串, 空 或者数组
- * uuid("名字") => 名字hc8f
- * uuid() => abcd
- * uuid('time') => 25MR 10-27 17:34:01
- * uuid('time', 0, {startStr:'andy', timeStr:"{h}:{i}:{s}"}) => andy 17:38:23
- * uuid('phone') => 13603312460
- * uuid('email') => cBZA@qq.com
- * uuid('number') => 2319
- * uuid([ { label: "小泽泽", value: "xzz" },{ label: "小月月", value: "xyy" }]) => xzz
- */
-
-export function uuid(
-  type = '',
-  length = 4,
-  { emailStr = '@qq.com', timeStr = '{m}-{d} {h}:{i}:{s}', startStr = '' } = {}
-) {
-  let randomStr = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
-  let res = type;
-  // 如果传的第一个参数的数组， 说明是下拉框。 下拉框获取的是数组的第一项的值
-  if (judgeType(type) === 'array') {
-    return type[0][length === 4 ? 'value' : length];
-  }
-  // 如果是手机号, 生成随机手机号
-  if (type === 'phone') {
-    let prefixArray = new Array('130', '131', '132', '133', '135', '136', '137', '138', '170', '187', '189');
-    let i = parseInt(10 * Math.random());
-    let res = prefixArray[i];
-    for (var j = 0; j < 8; j++) {
-      res = res + Math.floor(Math.random() * 10);
-    }
-    return res;
-  }
-  // 如果是email, 生成随机email
-  if (type === 'email') {
-    return uuid(startStr, length) + emailStr;
-  }
-  // 如果是时间, 生成时间字符串
-  if (type === 'time') {
-    return uuid(startStr, length) + ' ' + parseTime(new Date(), timeStr);
-  }
-  if (type === 'number') {
-    let randomStr = '123456789';
-    let res = '';
-    for (let i = length; i > 0; --i) {
-      res += randomStr[Math.floor(Math.random() * randomStr.length)];
-    }
-
-    return Number(res);
-  }
-  for (let i = length; i > 0; --i) {
-    res += randomStr[Math.floor(Math.random() * randomStr.length)];
-  }
-  return res;
-}
 
 // 获取当前日期前三十天的所有日期
 export const getDates = () => {
@@ -221,51 +268,6 @@ export const getDates = () => {
   return dateArr;
 };
 
-/**
- * 判断传入参数的类型
- * @param {*} val
- * judgeType(new RegExp()) regexp
- * judgeType(new Date()) date
- * judgeType([]) array
- * judgeType({}) object
- * judgeType(null) null
- */
-export function judgeType(val) {
-  if (typeof val === 'object') {
-    const objVal = Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
-    return objVal;
-  } else {
-    return typeof val;
-  }
-}
-
-/**
- * 判断变量是否空值
- * undefined, null, '', '   ', false, 0, [], {} 均返回true，否则返回false
- */
-export function isEmpty(v) {
-  switch (typeof v) {
-    case 'undefined':
-      return true;
-    case 'string':
-      if (v.trim().length === 0) return true;
-      break;
-    case 'boolean':
-      if (!v) return true;
-      break;
-    case 'number':
-      if (0 === v) return true;
-      break;
-    case 'object':
-      if (null === v) return true;
-      if (undefined !== v.length && v.length === 0) return true;
-      for (var k in v) {
-        return false;
-      }
-      return true;
-  }
-  return false;
-}
 //多表单验证
 export const checkForm = (formName, self) => {
   // console.log(formName)
@@ -299,6 +301,9 @@ export function validateForm(_this, sucCb, ref = 'formRef') {
   });
 }
 
+/**
+ * 返回一个promise的睡眠函数
+ */
 export function sleep(time = 0) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }

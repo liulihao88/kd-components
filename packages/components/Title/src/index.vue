@@ -1,12 +1,10 @@
 <template>
-  <div class="kd-title f-bt" :style="{ ...handleMargin, ...customStyle }">
-    <div ref="titleRef" class="title f">
+  <div class="kd-title" :style="{ ...handleMargin, ...customStyle }">
+    <div ref="titleRef" class="kd-left-title">
       <div>{{ title }}</div>
       <slot></slot>
     </div>
-    <div class="title_right">
-      <slot name="right"></slot>
-    </div>
+    <slot name="right"></slot>
   </div>
 </template>
 
@@ -27,11 +25,6 @@ export default {
   components: {},
   props: {
     title: {
-      type: String,
-      default: '',
-    },
-    // 左侧竖条颜色
-    color: {
       type: String,
       default: '',
     },
