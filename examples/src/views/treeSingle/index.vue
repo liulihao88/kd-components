@@ -33,6 +33,7 @@ export default {
           },
           {
             name: 'aaa',
+            disabled: true,
             children: [
               {
                 name: 'a111',

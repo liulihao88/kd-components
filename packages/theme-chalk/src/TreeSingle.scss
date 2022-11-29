@@ -8,7 +8,17 @@
 .tree_single_tree_box {
   padding: 0 12px 12px;
 }
-
-.kd_tree_single {
+.el-tree-node__content {
+  height: 28px;
+  line-height: 28px;
 }
 
+.single_node {
+  width: 100%;
+  font-size: 12px;
+  color: var(--text-color);
+}
+.disabled {
+  cursor: not-allowed;
+  color: var(--disabled-color);
+}
