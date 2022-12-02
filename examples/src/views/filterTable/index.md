@@ -22,6 +22,8 @@
 |loading|Boolean|false|表格loading|
 |maxHeight|Number|5000|表格最大高度，超出滚动|
 |rowKeys|String/Array|''|行数据的key，可以是数组，作为联合key|
+|simpleKv|Boolean|false|默认为false，true表示查询参数是简单的key-value形式，仅用于老产品迁移时兼容原来的查询接口|
+
 
 #### column属性
 |选项|类型|默认值|说明|

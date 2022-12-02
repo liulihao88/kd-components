@@ -10,7 +10,7 @@
       v-bind="$attrs"
       v-model="pIds"
       multiple
-      collapse-tags
+      :collapse-tags="collapseTags"
       :clearable="false"
       :value-key="nodeKey"
       placeholder="请选择..."
@@ -80,6 +80,11 @@ export default {
       type: Boolean,
       default: false, // true,说明拿到的数据，在外部会再次被增删改，不设置不进行比对。节省资源
     },
+    collapseTags: {
+      // 是否以tag形式展示，true表示合并显示
+      type: Boolean,
+      default: true,
+    },
     defaultProps: {
       type: Object,
       default() {
@@ -107,6 +112,7 @@ export default {
     pIds: {
       get() {
         let nowValue = Array.isArray(this.value) ? this.value.slice() : [];
+        // eslint-disable-next-line vue/no-async-in-computed-properties
         this.$nextTick(() => {
           if (this.isObject) {
             this.checkList = nowValue;

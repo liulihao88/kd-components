@@ -5,6 +5,11 @@
   .kj-owner {
     display: flex;
     align-items: center;
+
+    .el-select>.el-input .el-input__inner {
+      width: var(--owner-width);
+      max-width: var(--owner-max-width);
+    }
     .no_drop{
       cursor: no-drop;
     }

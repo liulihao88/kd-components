@@ -308,7 +308,8 @@
               <template v-else-if="col.headerTooltipText">
                 {{ slotProps.column.label }}
                 <el-tooltip effect="dark" :content="col.headerTooltipText" placement="top-start">
-                  <i class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"></i>
+                  <!--                  <i class="kj-iconfont icon-wendang icon-zhushi icon_tooltip"></i>-->
+                  <i class="kd-icon-help-circle head_help"></i>
                 </el-tooltip>
               </template>
               <template v-else>
@@ -610,6 +611,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    simpleKv: {
+      //参数是简单的参数形式{k1: v1, k2: v2}，老平台是这种形式的传参
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -855,7 +861,14 @@ export default {
       this.currentPage = val;
       this._updatePage();
     },
+    _simpleUpdatePage() {
+      this.$emit('updatePage', { ...this.search, page: this.currentPage, pageSize: this.pageSize });
+    },
     _updatePage() {
+      if (this.simpleKv) {
+        this._simpleUpdatePage();
+        return;
+      }
       // 点击查询按钮，获取到表头中的筛选项，使不通过点击表头的筛选也可以筛选
       let filterColumns = this.$refs.kTable.columns.map((item) => {
         if (item.filterable) {

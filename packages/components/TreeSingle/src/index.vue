@@ -35,7 +35,11 @@
           highlight-current
           :current-node-key="option.value"
           @node-click="handleClickNode"
-        ></el-tree>
+        >
+          <div slot-scope="{ data }" :class="['single_node', { disabled: data.disabled }]">
+            <span class="tree-node-span">{{ data[defaultProps.label] }}</span>
+          </div>
+        </el-tree>
       </div>
     </el-select>
   </div>
@@ -93,6 +97,7 @@ export default {
     pId: {
       get() {
         if (this.tableData.length > 0) {
+          // eslint-disable-next-line vue/no-async-in-computed-properties
           this.$nextTick(() => {
             if (this.value) {
               const node = this.$refs.treeRef.getNode(this.value);
@@ -121,10 +126,14 @@ export default {
   methods: {
     //节点点击事件
     handleClickNode(data, node) {
-      var node = this.$refs.treeRef.getNode(node.key);
-      this.pId = node.data[this.defaultProps.value];
-      // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
-      this.$refs.selectTree.blur();
+      if (data.disabled) {
+        return;
+      } else {
+        // var node = this.$refs.treeRef.getNode(node.key);
+        this.pId = node.data[this.defaultProps.value];
+        // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
+        this.$refs.selectTree.blur();
+      }
     },
     // 下拉框搜索
     filterMethod(query) {

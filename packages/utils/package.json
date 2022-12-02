@@ -1,7 +1,7 @@
 {
   "name": "@kd/utils",
   "alias": "kd-utils",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "private": false,
   "description": "科杰大数据工具库",
   "license": "MIT",

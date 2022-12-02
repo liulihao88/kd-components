@@ -5,7 +5,31 @@
       <el-form-item ref="kjOwnerRef" :prop="`owners[${index}][${defaultProps.value}]`" :rules="rules.owners">
         <div class="kj-owner">
           <el-select
+            v-if="!isObject"
             v-model="ownerItem[defaultProps.value]"
+            :style="customStyle"
+            filterable
+            remote
+            reserve-keyword
+            :clearable="false"
+            :disabled="disabledFn(index)"
+            placeholder="请输入关键词"
+            size="small"
+            :remote-method="remoteMethod"
+            :loading="loading"
+            v-bind="$attrs"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item[rowKey]"
+              :label="item[defaultProps.label]"
+              :value="item[defaultProps.value]"
+            ></el-option>
+          </el-select>
+          <el-select
+            v-else
+            v-model="form.owners[index]"
+            :value-key="valueKey"
             filterable
             remote
             reserve-keyword
@@ -20,7 +44,7 @@
               v-for="item in options"
               :key="item[rowKey]"
               :label="item[defaultProps.label]"
-              :value="item[defaultProps.value]"
+              :value="item"
             ></el-option>
           </el-select>
           <i v-if="index === 0" class="add" :class="[disabled ? 'no_drop' : 'pointer']" @click="add">+</i>
@@ -55,6 +79,22 @@ export default {
     rowKey: {
       type: String,
       default: 'id',
+    },
+    valueKey: {
+      type: String,
+      default: 'username',
+    },
+    width: {
+      type: String,
+      default: '316px',
+    },
+    maxWidth: {
+      type: String,
+      default: '316px',
+    },
+    isObject: {
+      type: Boolean,
+      default: false,
     },
     defaultProps: {
       type: Object,
@@ -96,6 +136,12 @@ export default {
       set(v) {
         this.$emit('input', v);
       },
+    },
+    customStyle() {
+      return {
+        '--owner-max-width': this.maxWidth,
+        '--owner-width': this.width,
+      };
     },
     rules() {
       return this.rule ? this.ruleObject : {};

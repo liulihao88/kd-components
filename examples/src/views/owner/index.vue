@@ -9,7 +9,6 @@
         v-model="form"
         :options="ownerOptions"
         :default-props="defaultProps"
-        :disabled="true"
         @remoteMethod="remoteMethod"
       ></kd-owner>
     </el-form>

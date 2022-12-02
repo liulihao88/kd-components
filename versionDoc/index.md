@@ -1,9 +1,11 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-- 【fix】 kd-column-show：修改单词错误引起的属性不生效问题；修复状态展示时内边距问题
-- 【优化】 kd-table-search：增加内部触发方法兼容写法
-- 【优化】 kd-simple-table：整理并优化样式，保持与filter-table统一
-
+### V0.1.83 (2022-11-29)
+- 【feat】 下拉树单选: 加禁止选择功能
+### V0.1.82 (2022-11-26)
+- 【feat】 kd-owner 新增isObject属性，兼容手机号
+### V0.1.81 (2022-11-22)
+- 【feat】 kd-filter-table：增加simpleKv配置项，true代表兼容老平台的表格（老平台接口传参不一样）
 ###  V0.1.80 (2022-11-11)
 - 【优化】 job-tree功能完善
 - 【fix】 kd-filter-table：searchTitle配置后不显示
