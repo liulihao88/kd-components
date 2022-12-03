@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-    :wrapper-closable="wrapperClosable"
+    :wrapper-closable="mergeAttrs.wrapperClosable"
     :destroy-on-close="destroyOnClose !== false"
     :with-header="true"
     :size="mergeAttrs.size"
@@ -135,6 +135,7 @@ export default {
         size: this.$attrs.size || 640,
         confirmText: this.confirmText,
         showCancel: this.showCancel,
+        wrapperClosable: this.wrapperClosable,
       };
       if (this.type === 'detail') {
         changeAttrs = Object.assign(
@@ -142,6 +143,7 @@ export default {
             size: 400,
             confirmText: '关闭',
             showCancel: false,
+            wrapperClosable: true,
           },
           this.detailAttrs
         );
