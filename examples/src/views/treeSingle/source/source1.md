@@ -1,12 +1,13 @@
 ```vue
 <template>
   <kd-tree-single
-    v-model="form.checkFiled"
-    :tableData="form.option"
-    :default-props="defaultProps"
-    node-key="name"
-    placeholder="请选择要映射的字段"
-  />
+      v-model="form.checkFiled"
+      :table-data="form.option"
+      :disabledTreeCheck="disabledTreeCheck"
+      :default-props="defaultProps"
+      node-key="name"
+      placeholder="请选择要映射的字段"
+  ></kd-tree-single>
 </template>
 
 <script>
@@ -39,7 +40,16 @@ export default {
         label: "name"
       }
     };
-  }
+  },
+  methods: {
+    disabledTreeCheck(data, node) {
+      if(node.level === 1) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
 };
 </script>
 ```

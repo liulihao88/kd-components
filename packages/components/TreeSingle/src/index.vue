@@ -54,6 +54,16 @@ export default {
       type: [String, Number],
       required: true,
     },
+    leafOnlyNode: {
+      type: Boolean,
+      default: false,
+    },
+    disabledTreeCheck: {
+      type: Function,
+      default() {
+        return false;
+      },
+    },
     tableData: {
       type: Array,
       required: true,
@@ -128,12 +138,17 @@ export default {
     handleClickNode(data, node) {
       if (data.disabled) {
         return;
-      } else {
-        // var node = this.$refs.treeRef.getNode(node.key);
-        this.pId = node.data[this.defaultProps.value];
-        // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
-        this.$refs.selectTree.blur();
       }
+      if (this.leafOnlyNode && node.childNodes.length > 0) {
+        return;
+      }
+      if (typeof this.disabledTreeCheck === 'function' && this.disabledTreeCheck(data, node)) {
+        return;
+      }
+      // var node = this.$refs.treeRef.getNode(node.key);
+      this.pId = node.data[this.defaultProps.value];
+      // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
+      this.$refs.selectTree.blur();
     },
     // 下拉框搜索
     filterMethod(query) {

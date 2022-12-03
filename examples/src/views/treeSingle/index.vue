@@ -7,6 +7,7 @@
     <kd-tree-single
       v-model="form.checkFiled"
       :table-data="form.option"
+      :disabled-tree-check="disabledTreeCheck"
       :default-props="defaultProps"
       node-key="name"
       placeholder="请选择要映射的字段"
@@ -33,7 +34,7 @@ export default {
           },
           {
             name: 'aaa',
-            disabled: true,
+            disabled: false,
             children: [
               {
                 name: 'a111',
@@ -52,7 +53,15 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    disabledTreeCheck(data, node) {
+      if (node.level === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
