@@ -3,13 +3,16 @@
     :wrapper-closable="wrapperClosable"
     :destroy-on-close="destroyOnClose !== false"
     :with-header="true"
-    :size="$attrs.size || 640"
+    :size="mergeAttrs.size"
     v-bind="$attrs"
     v-on="$listeners"
   >
     <template slot="title">
       <slot name="title">
-        <div>{{ title }}</div>
+        <div>
+          <span>{{ title }}</span>
+          <span v-if="mIsDev && subTitle" class="m-l-4 cl-blue">({{ subTitle }})</span>
+        </div>
       </slot>
     </template>
 
@@ -30,10 +33,10 @@
             class="mr"
             @click="confirm"
           >
-            {{ confirmText }}
+            {{ mergeAttrs.confirmText }}
           </el-button>
           <el-button
-            v-if="showCancel"
+            v-if="mergeAttrs.showCancel"
             v-throttle="confirmThrottleNumber"
             :type="cancelAttrs.type || 'info'"
             v-bind="cancelAttrs"
@@ -109,8 +112,43 @@ export default {
         return {};
       },
     },
+    // 自定义详情属性
+    detailAttrs: {
+      type: Object,
+      default: () => {},
+    },
+    // 可选值: detail, ''
+    type: {
+      type: String,
+      default: '',
+    },
+    // 本地开发, 用来对drawer命名的, 可以快速定位到drawer的文件名
+    subTitle: {
+      type: String,
+      default: '',
+    },
   },
-  computed: {},
+  computed: {
+    mergeAttrs() {
+      // 如果type不是detail, 走默认的逻辑
+      let changeAttrs = {
+        size: this.$attrs.size || 640,
+        confirmText: this.confirmText,
+        showCancel: this.showCancel,
+      };
+      if (this.type === 'detail') {
+        changeAttrs = Object.assign(
+          {
+            size: 400,
+            confirmText: '关闭',
+            showCancel: false,
+          },
+          this.detailAttrs
+        );
+      }
+      return changeAttrs;
+    },
+  },
   mounted() {},
   methods: {
     confirm() {
