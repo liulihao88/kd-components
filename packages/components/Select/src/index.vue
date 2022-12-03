@@ -8,6 +8,7 @@
       class="right_box"
       :filterable="$attrs.filterable !== false"
       :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
+      popper-class="kd-custom-multiple-checkbox"
       :clearable="$attrs.clearable !== false"
       v-bind="$attrs"
       v-on="$listeners"
@@ -19,7 +20,11 @@
         size="small"
         :label="type === 'simple' ? item : handleLabel(item)"
         :value="type === 'simple' ? item : handleValue(item)"
-      ></el-option>
+      >
+        <el-checkbox v-if="$attrs.multiple === true || $attrs.multiple === ''" @click.prevent.native>
+          {{ handleLabel(item) }}
+        </el-checkbox>
+      </el-option>
     </el-select>
   </div>
 </template>

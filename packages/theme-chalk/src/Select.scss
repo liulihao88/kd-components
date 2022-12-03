@@ -28,3 +28,31 @@
     display: inline-block;
   }
 }
+
+.kd-custom-multiple-checkbox.is-multiple .el-select-dropdown__item {
+  &.selected::after {
+    left: 21px;
+    z-index: 10;
+    width: 16px;
+    height: 16px;
+    background: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    color: #ffffff;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 16px;
+    text-align: center;
+  }
+  .el-checkbox__inner {
+    width: 16px;
+    height: 16px;
+  }
+  &.selected .el-checkbox__label {
+    color: var(--blue);
+  }
+  &.hover {
+    background-color: #f5f7fd;
+    border-radius: 1px;
+  }
+}
