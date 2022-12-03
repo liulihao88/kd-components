@@ -1,6 +1,5 @@
 <template>
   <div class="kd-dialog">
-    <!-- :close-on-click-modal="mIsDev ? true : false" -->
     <el-dialog
       v-el-drag-dialog
       :fullscreen="fullscreen"
