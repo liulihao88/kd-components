@@ -152,7 +152,12 @@ export default {
     // 按钮disabled处理：行数据的permissionTypes||按钮本身的disabled
     getDisabled(scope, item) {
       let rowDisabled = false;
-      let itemDisabled = item.disabled || false;
+      let itemDisabled;
+      if (typeof item.disabled === 'function') {
+        itemDisabled = item.disabled(scope, item);
+      } else {
+        itemDisabled = Boolean(item.disabled);
+      }
       if (item.permission && get(scope, 'row.permissionTypes')) {
         rowDisabled = !scope.row.permissionTypes.includes(item.permission.toLowerCase());
       }

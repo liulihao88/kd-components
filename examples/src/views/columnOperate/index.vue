@@ -53,6 +53,9 @@ export default {
           key: 'del',
           popover: true,
           permission: 'del',
+          disabled: (scope, item) => {
+            return scope.$index === 1;
+          },
           hidden: (scope, item) => {
             return scope.$index === 0;
           },
