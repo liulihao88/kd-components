@@ -1,5 +1,11 @@
 <template>
-  <el-table-column :prop="prop" v-bind="colAttrs" :min-width="$attrs['min-width'] || '120'" v-on="$listeners">
+  <el-table-column
+    :prop="prop"
+    v-bind="colAttrs"
+    :width="$attrs.width || 'auto'"
+    :min-width="$attrs['min-width'] || '120'"
+    v-on="$listeners"
+  >
     <template slot-scope="scope">
       <slot v-bind="scope">
         <component :is="editorType" v-if="noForm" v-model="scope.row[prop]" v-bind="editorAttrs"></component>

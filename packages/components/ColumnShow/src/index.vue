@@ -84,7 +84,7 @@ export default {
     // 两个默认属性：prop,label合并为一个字符串
     pL: {
       type: String,
-      required: true,
+      default: '',
       validator: function (value) {
         // 约定以英文逗号分隔prop和label
         return value.includes(',');
@@ -170,13 +170,10 @@ export default {
   computed: {
     propLabel() {
       let obj = {
-        prop: '',
-        label: '',
+        prop: this.$attrs.prop,
+        label: this.$attrs.label,
       };
-      if (!this.pL) {
-        obj.prop = this.$attrs.prop;
-        obj.label = this.$attrs.label;
-      } else {
+      if (this.pL) {
         try {
           let arr = this.pL.split(',');
           obj.prop = arr[0];
@@ -202,8 +199,8 @@ export default {
         'row-key': this.rowKey,
         'column-key': this.colKey,
         'show-overflow-tooltip': !this.noTip,
-        'min-width': 100,
-        width: 'auto',
+        'min-width': this.$attrs['min-width'] || 100,
+        width: this.$attrs.width || 'auto',
       };
       // if (this.colFilters.length !== 0) customAttr.filters = this.colFilters;
       return assign({}, this.$attrs, customAttr);
