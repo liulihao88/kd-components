@@ -1,9 +1,11 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+
+### V0.1.86 (2022-12-05)
 - 【优化】 kd-column-operate：按钮disabled属性支持函数
 - 【优化】 kd-column-show/kd-column-form：优化列宽配置
 
-### V0.1.83 (2022-11-29)
+### V0.1.85 (2022-12-03)
 - 【feat】 下拉树单选: 加leafOnlyNode、disabledTreeCheck属性
 - 【fix】 kd-column-show：修改单词错误引起的属性不生效问题；修复状态展示时内边距问题
 - 【优化】 kd-table-search：增加内部触发方法兼容写法
