@@ -136,6 +136,10 @@ export const pageMixin = {
       }
       return this.$route.meta.menuKey;
     },
+    // 是否是本地环境
+    mIsDev() {
+      return process.env.NODE_ENV === 'development';
+    },
 
     // 清空form表单的校验
     mClearValidate(formRef = 'formRef') {

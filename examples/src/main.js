@@ -59,14 +59,6 @@ const setTheme = (theme) => {
 };
 setTheme('');
 
-// 全局混入mixins。 mixins的变量和方法前缀都有个m。
-Vue.mixin({
-  data() {
-    return {
-      mIsDev: process.env.NODE_ENV === 'development',
-    };
-  },
-});
 new Vue({
   render: (h) => h(App),
   i18n,
