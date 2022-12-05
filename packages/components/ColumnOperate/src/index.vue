@@ -166,12 +166,14 @@ export default {
     // 普通按钮点击，不在dropdown，也不popover
     onClick(scope, key) {
       this.$emit('click', { scope, key });
+      this.$emit('operate', { scope, key });
     },
     // dropdown中按钮点击，
     handleCommand(scope, event) {
       // 非popover按钮，手动关闭它
       if (!this.popoverKeys.includes(event)) {
         this.$emit('click', { scope, key: event });
+        this.$emit('operate', { scope, key: event });
         if (this.$refs['innerDropdown' + scope.$index]) {
           this.$refs['innerDropdown' + scope.$index].showPopper = false;
         }
@@ -180,6 +182,7 @@ export default {
     // popover确认按钮点击
     onPopoverConfirm(scope, key) {
       this.$emit('click', { scope, key });
+      this.$emit('operate', { scope, key });
     },
   },
 };
