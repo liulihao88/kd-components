@@ -8,6 +8,7 @@
       v-bind="$attrs"
       :width="$attrs.width || '640px'"
       :class="!border && 'hide-title-border'"
+      :before-close="handleClose"
       v-on="$listeners"
     >
       <template slot="title">
