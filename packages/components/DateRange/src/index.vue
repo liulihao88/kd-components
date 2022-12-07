@@ -1,21 +1,20 @@
 <template>
-  <div class="kd-daterange">
-    <div>
-      <span v-if="title" class="title">{{ title }}</span>
-      <el-date-picker
-        v-model="rangeVal"
-        :size="$attrs.size || 'small'"
-        :default-time="['00:00:00', '23:59:59']"
-        type="datetimerange"
-        value-format="yyyy-MM-dd HH:mm:ss"
-        :start-placeholder="$attrs.disabled ? '' : $attrs['start-placeholder'] || '请选择日期'"
-        :end-placeholder="$attrs.disabled ? '' : $attrs['end-placeholder'] || '请选择日期'"
-        :picker-options="mergePickerOptions"
-        v-bind="$attrs"
-        v-on="$listeners"
-        @change="dateChange"
-      ></el-date-picker>
-    </div>
+  <div class="kd-daterange" :style="{ ...mHandleWidth() }">
+    <span v-if="title" class="left_box">{{ title }}</span>
+    <el-date-picker
+      v-model="rangeVal"
+      class="right_box"
+      :size="$attrs.size || 'small'"
+      :default-time="$attrs['default-time'] || ['00:00:00', '23:59:59']"
+      type="datetimerange"
+      :value-format="$attrs['default-time'] || 'yyyy-MM-dd HH:mm:ss'"
+      :start-placeholder="$attrs.disabled ? '' : $attrs['start-placeholder'] || '请选择日期'"
+      :end-placeholder="$attrs.disabled ? '' : $attrs['end-placeholder'] || '请选择日期'"
+      :picker-options="mergePickerOptions"
+      v-bind="$attrs"
+      v-on="$listeners"
+      @change="dateChange"
+    ></el-date-picker>
   </div>
 </template>
 
@@ -35,6 +34,10 @@ export default {
     futureDisabled: {
       type: Boolean,
       default: false,
+    },
+    width: {
+      type: [String, Number],
+      default: '',
     },
   },
   data() {

@@ -1,20 +1,29 @@
 .kd-daterange {
-  font-size: 0;
-  .title {
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
-    font-size: 12px;
-    vertical-align: top;
-    border-radius: 1px;
-    padding: 0 8px;
-    background: #fff;
-    color: rgba(39, 48, 75, 0.85);
-    border: 1px solid #e3e6eb;
+  display: inline-flex;
+  width: 424px;
+  vertical-align: top;
+  .left_box {
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #dcdfe6;
     border-right: 0 none;
     box-sizing: border-box;
+    padding: 0 8px;
+    white-space: nowrap;
+    border-radius: 2px 0 0 2px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    background: #fff;
+    color: #909399;
   }
-  .el-date-editor {
-    border-radius: 0 1px 1px 0;
+  // .el-date-editor {
+  //   border-radius: 0 1px 1px 0;
+  // }
+  .right_box {
+    flex-grow: 1;
+    // display: inline-block;
   }
+  
 }

@@ -9,8 +9,11 @@
       }"
     ></example-title>
     <example-code :source="source1Md">
-      <kd-date-range v-model="val" title="基础用法"></kd-date-range>
-      <kd-date-range v-model="dateValue" class="mt" title="只能选择过去的时间" future-disabled></kd-date-range>
+      <kd-date-range v-model="val" title="默认424px"></kd-date-range>
+
+      <span class="mlr">中间</span>
+
+      <kd-date-range v-model="dateValue" title="支持width" future-disabled></kd-date-range>
     </example-code>
   </div>
 </template>
