@@ -4,7 +4,7 @@
     <el-table-column label="姓名" prop="name"></el-table-column>
     <kd-column-show p-l="age,年龄"></kd-column-show>
     <el-table-column label="性别" prop="gender"></el-table-column>
-    <kd-column-operate2 :btn-list="btnList"></kd-column-operate2>
+    <kd-column-action :btn-list="btnList"></kd-column-action>
   </kd-simple-table>
 </template>
 

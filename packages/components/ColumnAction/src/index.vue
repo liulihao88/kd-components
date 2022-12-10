@@ -1,7 +1,7 @@
 <template>
   <el-table-column
     ref="column"
-    class="kd-column-operate2"
+    class="kd-column-action"
     :label="$attrs.label || '操作'"
     :resizable="$attrs.resizable || false"
     v-bind="$attrs"
@@ -13,7 +13,7 @@
       <template v-for="item in unDropdownList">
         <template v-if="btnShow(scope, item)">
           <template v-if="btnHidden(scope, item)">
-            <span :key="item.key" class="kd-column-operate2__btn-item btn-hidden no-dropdown">{{
+            <span :key="item.key" class="kd-column-action__btn-item btn-hidden no-dropdown">{{
               btnLabel(scope, item)
             }}</span>
           </template>
@@ -21,7 +21,7 @@
             <template v-if="item.popover">
               <popover-item
                 :key="item.key"
-                class="kd-column-operate2__btn-item no-dropdown"
+                class="kd-column-action__btn-item no-dropdown"
                 :disabled="btnDisabled(scope, item)"
                 :btn-item="item"
                 :scope="scope"
@@ -30,7 +30,7 @@
             <template v-else>
               <el-button
                 :key="item.key"
-                class="kd-column-operate2__btn-item no-dropdown"
+                class="kd-column-action__btn-item no-dropdown"
                 type="text"
                 :disabled="btnDisabled(scope, item)"
                 @click="onClick(scope, item)"
@@ -44,12 +44,12 @@
 
       <template v-if="dropdownList.length > 0">
         <el-dropdown
-          class="dropdown kd-column-operate2__btn-item no-dropdown"
+          class="dropdown kd-column-action__btn-item no-dropdown"
           placement="bottom-end"
           :hide-on-click="false"
           trigger="click"
         >
-          <kd-icon name="kd-icon-ellipsis" class="kd-column-operate2__icon"></kd-icon>
+          <kd-icon name="kd-icon-ellipsis" class="kd-column-action__icon"></kd-icon>
           <el-dropdown-menu slot="dropdown" :ref="'innerDropdown' + scope.$index" trigger="manual">
             <template v-for="item in dropdownList">
               <template v-if="btnShow(scope, item)">
@@ -65,7 +65,7 @@
                 <template v-else>
                   <el-dropdown-item
                     :key="item.key"
-                    class="kd-column-operate2__btn-item"
+                    class="kd-column-action__btn-item"
                     :command="item.key"
                     :disabled="btnDisabled(scope, item)"
                     @click.native="onClick(scope, item)"
@@ -87,7 +87,7 @@ import PopoverItem from './PopoverItem';
 import { get } from 'lodash';
 
 export default {
-  name: 'KdColumnOperate2',
+  name: 'KdColumnAction',
   components: { PopoverItem },
   props: {
     btnList: {

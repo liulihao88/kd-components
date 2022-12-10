@@ -9,7 +9,7 @@
     popper-class="kd-column-operate__popover-body"
   >
     <div @click.stop>
-      <p slot="default" class="kd-column-operate2__content">{{ popoverConfig.content }}</p>
+      <p slot="default" class="kd-column-action__content">{{ popoverConfig.content }}</p>
       <div style="text-align: right; margin: 16px 0 0">
         <el-button v-if="popoverConfig.showCancel" type="info" size="mini" @click="cancel">{{
           popoverConfig.cancelText || '取消'
@@ -20,12 +20,12 @@
 
     <template slot="reference">
       <template v-if="type === 'button'">
-        <el-button class="kd-column-operate2__btn-item" :disabled="disabled" type="text">{{
+        <el-button class="kd-column-action__btn-item" :disabled="disabled" type="text">{{
           btnLabel(scope, btnItem)
         }}</el-button>
       </template>
       <template v-if="type === 'dropdown'">
-        <el-dropdown-item :disabled="disabled" :command="btnItem.key" class="kd-column-operate2__btn-item">
+        <el-dropdown-item :disabled="disabled" :command="btnItem.key" class="kd-column-action__btn-item">
           {{ btnLabel(scope, btnItem) }}
         </el-dropdown-item>
       </template>
