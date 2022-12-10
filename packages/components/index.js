@@ -25,6 +25,7 @@ import RowSelectMultiple from './RowSelectMultiple';
 import SimpleTable from './SimpleTable';
 import ColumnShow from './ColumnShow';
 import ColumnOperate from './ColumnOperate';
+import ColumnOperate2 from './ColumnOperate2';
 import ColumnForm from './ColumnForm';
 import PopoverButton from './PopoverButton';
 import PageTitle from './PageTitle';
@@ -61,6 +62,7 @@ const components = [
   SimpleTable,
   ColumnShow,
   ColumnOperate,
+  ColumnOperate2,
   ColumnForm,
   ScrollGroup,
   scrollbar,
