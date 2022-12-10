@@ -1,21 +1,8 @@
 ```vue
 <template>
-  <!--type="index"-->
-  <kd-simple-table :data="tableData" :show-paging="false" pre-col-type="index" :border="false">
-    <el-table-column type="index" width="50"> </el-table-column>
+  <kd-simple-table :data="tableData" draggable :pre-col-conf="{ width: '40px' }" @onSort="onSortHandler">
     <el-table-column label="接口名称" prop="name"></el-table-column>
-  </kd-simple-table>
-  
-  <!--type="selection"-->
-  <kd-simple-table :data="tableData" :show-paging="false" :border="false" @selection-change="onSelection">
-    <el-table-column type="selection" width="55"> </el-table-column>
-    <el-table-column label="接口名称" prop="name"></el-table-column>
-  </kd-simple-table>
-  
-  <!--type="expand"-->
-  <kd-simple-table :data="tableData" :show-paging="false" :border="false">
-    <el-table-column type="expand"> 展开行 </el-table-column>
-    <el-table-column label="接口名称" prop="name"></el-table-column>
+    <kd-column-show p-l="url,地址"></kd-column-show>
   </kd-simple-table>
 </template>
 
@@ -31,9 +18,21 @@ export default {
           methods: 'GET',
           status: true,
         },
+        {
+          id: '2',
+          name: '编辑用户信息',
+          url: '/userinfo',
+          methods: 'UPDATE',
+          status: false,
+        },
       ],
     };
   },
+  methods: {
+    onSortHandler(newData) {
+      console.log('重新排序后的数据',newData);
+    },
+  }
 };
 </script>
 ```

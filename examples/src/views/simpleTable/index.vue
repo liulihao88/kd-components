@@ -69,8 +69,11 @@
     </kd-simple-table>
     <example-code :source="source2">
       通过draggable控制表格的行是否可以被拖拽，通过drag-col-conf控制该列的其他属性。<br />
-      行拖拽功能依赖sortablejs，组件内部进行了排序逻辑处理，并赋值了新的表格数据，通过onSort接收拖拽后的新数据。<br />
-      <b>注意：</b>本示例中的行拖拽功能仍有问题，目前仍在测试中。
+      行拖拽功能依赖
+      <a href="http://www.sortablejs.com/">sortablejs</a
+      >，组件内部进行了排序逻辑处理，并自动赋值了排序后的新数据，通过onSort可以获取新数据并进行额外操作。<br />
+      <b>注意：</b
+      >本示例中的行拖拽功能不能正常演示，它需要sortablejs依赖，因为不是高频需求，并没有在组件库中预装，所以项目中需要单独安装
     </example-code>
 
     <h5>分页配置</h5>
@@ -244,8 +247,8 @@ export default {
       }
       this.tableData2 = arr;
     },
-    onSortHandler(e) {
-      console.log(e);
+    onSortHandler(newData) {
+      console.log(newData);
     },
     onSelection() {
       console.log('type=selection');
