@@ -24,6 +24,7 @@ import RowSelect from './RowSelect';
 import RowSelectMultiple from './RowSelectMultiple';
 import SimpleTable from './SimpleTable';
 import ColumnShow from './ColumnShow';
+import ColumnText from './ColumnText';
 import ColumnOperate from './ColumnOperate';
 import ColumnAction from './ColumnAction';
 import ColumnForm from './ColumnForm';
@@ -61,6 +62,7 @@ const components = [
   PageTitle,
   SimpleTable,
   ColumnShow,
+  ColumnText,
   ColumnOperate,
   ColumnAction,
   ColumnForm,
@@ -106,6 +108,7 @@ export {
   PageTitle,
   SimpleTable,
   ColumnShow,
+  ColumnText,
   ColumnOperate,
   ColumnAction,
   ColumnForm,
