@@ -83,7 +83,7 @@
 </template>
 
 <script>
-// import PopoverItem from './PopoverItem';
+// 所有组件的引入方式如下
 import PopoverItem from '@kd/components/ColumnAction/src/PopoverItem.vue';
 import { get } from 'lodash';
 
@@ -102,10 +102,6 @@ export default {
     return {
       dropdownList: [],
       unDropdownList: [],
-      // popoverKeys: [],
-      // hideOnClick: false, // 是否点击按钮后关闭
-      // showPopper: false,
-      // refDropdown: null,
     };
   },
   watch: {

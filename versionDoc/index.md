@@ -1,5 +1,6 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+- 【优化】 kd-page-title：no-border属性可代替border属性（是否显示底边框）
 
 ### V0.1.88 (2022-12-11)
 - 【refactor】kd-column-action：新增列操作组件，重构并代替kd-column-operate组件

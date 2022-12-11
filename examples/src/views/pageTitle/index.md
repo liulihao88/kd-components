@@ -4,7 +4,8 @@
 | show         | boolean | true     | 是否显示，用于动态切换            |
 | height       | string  | "44px"   | 组件高度，因为在某些情况下，可能需要调整高度 |
 | padding      | string  | "0 24px" | 内边距，默认状态下左右各24px       |
-| border       | boolean | false    | 是否显示底边线                |
+| border       | boolean | true     | 是否显示底边线                |
+| no-border    | boolean | false    | 是否显示底边线，可以代替border     |
 | title        | string  | ""       | 自定义title文本             |
 | title-styles | object  | {}       | 自定义title文本样式           |
 
