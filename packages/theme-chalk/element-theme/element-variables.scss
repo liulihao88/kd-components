@@ -87,11 +87,12 @@
 
 .el-table .cell {
   width: 100%;
-  .el-input{
-    width:100%;
+  .el-input {
+    width: 100%;
   }
-  .kd-select,.el-select{
-    width:100%!important;
+  .kd-select,
+  .el-select {
+    width: 100% !important;
   }
 }
 
@@ -148,7 +149,6 @@
   font-size: 12px;
 }
 
-
 // 带时分秒格式日期样式重置
 .kj-datepicker {
   .el-time-spinner__item.active:not(.disabled) {
@@ -187,18 +187,18 @@
 }
 
 // el描述
-.el-descriptions-item__label:not(.is-bordered-label) {
-  margin-right: 0;
+.el-descriptions-item__label:not(.is-bordered) {
+  margin-right: 8px;
+}
+.el-descriptions-item__content {
+  color: rgba(39, 48, 75, 0.45);
+}
+.el-descriptions-item__label.has-colon::after {
+  top: -1.5px;
+  right: -2px;
 }
 .el-descriptions--small:not(.is-bordered) .el-descriptions-item__cell {
-  padding-bottom: 16px;
-}
-// el描述
-.el-descriptions-item__container {
-  width: 90%;
-  .el-descriptions-item__content {
-    width: 80%;
-  }
+  padding-bottom: 8px;
 }
 
 // Popover 弹出框
