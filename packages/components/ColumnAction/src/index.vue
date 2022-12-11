@@ -83,7 +83,8 @@
 </template>
 
 <script>
-import PopoverItem from './PopoverItem';
+// import PopoverItem from './PopoverItem';
+import PopoverItem from '@kd/components/ColumnAction/src/PopoverItem.vue';
 import { get } from 'lodash';
 
 export default {
