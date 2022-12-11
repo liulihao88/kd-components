@@ -1,6 +1,8 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-
+- 【refactor】kd-column-action：新增列操作组件，重构并代替kd-column-operate组件
+- 【feat】新增kd-column-text列文件展示组件，从kd-column-show中分离，满足较复杂的列展示场景，原组件仍可使用
+- 【docs】完善kd-simple-table组件文档及示例代码
 
 ### V0.1.87 (2022-12-05)
 - 【fix】 kd-column-operate：内部click事件造成的按钮偶尔触发
