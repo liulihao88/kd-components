@@ -66,11 +66,7 @@ export default {
     },
   },
   data() {
-    return {
-      colFilters: null,
-      mergeStatus: [],
-      mergeStatusStyles: {},
-    };
+    return {};
   },
   computed: {
     propLabel() {
@@ -114,7 +110,7 @@ export default {
         {
           effect: 'dark',
           placement: 'right-start',
-          content: scope.row[this.propLabel.prop],
+          content: scope.row[this.propLabel.prop].toString(),
           offset: -10,
         },
         this.tipConfig
