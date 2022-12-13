@@ -112,19 +112,34 @@ export default {
         if (!isEmpty(val)) {
           Object.keys(val).forEach((key) => {
             const value = val[key];
-            if (showFilter) {
-              filters.push({
-                text: noFormat ? key : value.label || value.text || key,
-                value: key,
-              });
-            }
             if (showStatus) {
               styles[key] = {
                 color: value.color,
                 background: value.bg,
               };
+              showFilter &&
+                filters.push({
+                  text: noFormat ? key : value.text || value.label,
+                  value: key,
+                });
+              formatter[key] = value.text || value.label;
+            } else {
+              if (showFilter) {
+                if (typeof value !== 'object') {
+                  filters.push({
+                    text: noFormat ? key : value,
+                    value: key,
+                  });
+                  formatter[key] = value;
+                } else {
+                  filters.push({
+                    text: noFormat ? key : value.text || value.label,
+                    value: key,
+                  });
+                  formatter[key] = value.text || value.label;
+                }
+              }
             }
-            formatter[key] = value.text || value.label || key;
           });
         }
         this.defaultFormatter = formatter;
