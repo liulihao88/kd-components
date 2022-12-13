@@ -4,9 +4,9 @@
       基于el-table封装，与kd-filter-table不同的是，simple-table没有把过多的逻辑与交互行为封装在组件内部，只提供了必要的样式覆盖、默认属性改写。
       目的是为了让el-table与el-table-column
       <b>解耦</b>，在保证样式统一的基础上可以更灵活的使用el-table，满足可能出现的更多场景。
-      kd-simple-table可能比较简单，尤其是对表格搜索、筛选等仍需要使用者在外部处理相关逻辑。<br />
-      内部的el-table-column，针对不同特性又封装为文本列组件（<a href="#testColumnText">kd-column-text</a
-      >）、状态筛选列组件（<a href="#testColumnShow">kd-column-show</a>）、操作列组件（<a href="#testColumnAction"
+      kd-simple-table可能比较简单，尤其是对表格搜索、筛选等仍需要使用者在外部处理相关逻辑。<br /><br />
+      内部的el-table-column，针对不同应用场景又按列封装为文本列组件（<a href="#testColumnText">kd-column-text</a
+      >）、状态和筛选列组件（<a href="#testColumnFilter">kd-column-filter</a>）、操作列组件（<a href="#testColumnAction"
         >kd-column-action</a
       >）、编辑列组件（<a href="#testColumnForm">kd-column-form</a>）。
       <br />

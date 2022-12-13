@@ -121,7 +121,7 @@ export default {
         this.$emit('click', scope, scope.row[this.propLabel.prop], this.formatText(scope), event);
       }
     },
-    // 显示内容转换：如果有formatter转换，否则使用filters（columnFilters）转换
+    // 显示内容转换：
     formatText(scope) {
       const value = scope.row[this.propLabel.prop];
       // 默认情况下，显示内容就是原始内容

@@ -24,6 +24,7 @@ import RowSelect from './RowSelect';
 import RowSelectMultiple from './RowSelectMultiple';
 import SimpleTable from './SimpleTable';
 import ColumnShow from './ColumnShow';
+import ColumnFilter from './ColumnFilter';
 import ColumnText from './ColumnText';
 import ColumnOperate from './ColumnOperate';
 import ColumnAction from './ColumnAction';
@@ -62,6 +63,7 @@ const components = [
   PageTitle,
   SimpleTable,
   ColumnShow,
+  ColumnFilter,
   ColumnText,
   ColumnOperate,
   ColumnAction,
@@ -108,6 +110,7 @@ export {
   PageTitle,
   SimpleTable,
   ColumnShow,
+  ColumnFilter,
   ColumnText,
   ColumnOperate,
   ColumnAction,

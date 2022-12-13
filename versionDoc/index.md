@@ -1,7 +1,8 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+- 【feat】kd-column-filter：新增状态及筛选列组件，专注于状态及筛选功能，简化配置项，用于代替kd-column-show的部分功能；
 - 【fix】kd-column-text：数据为非string类型时不能直接赋值给tooltip的content属性，必须转为string
-- 【优化】 kd-page-title：no-border属性可代替border属性（是否显示底边框）
+- 【优化】kd-page-title：no-border属性可代替border属性（是否显示底边框）
 
 ### V0.1.88 (2022-12-11)
 - 【refactor】kd-column-action：新增列操作组件，重构并代替kd-column-operate组件
