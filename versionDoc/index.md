@@ -1,5 +1,9 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+
+
+
+### V0.1.90 (2022-12-13)
 - 【fix】kd-column-text：数据为非string类型时不能直接赋值给tooltip的content属性，必须转为string
 - 【feat】kd-column-filter：优化config参数处理逻辑，no-status时可简写属性
 
