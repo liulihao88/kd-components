@@ -2,7 +2,7 @@
   <div
     v-show="show"
     class="kd-page-title"
-    :class="{ 'border-bottom': !noBorder || border }"
+    :class="{ 'border-bottom': border }"
     :style="{ height: height, padding: padding }"
   >
     <div class="left">
@@ -41,11 +41,6 @@ export default {
     border: {
       type: Boolean,
       default: true,
-    },
-    // 代替border属性
-    noBorder: {
-      type: Boolean,
-      default: false,
     },
     title: {
       type: String,
