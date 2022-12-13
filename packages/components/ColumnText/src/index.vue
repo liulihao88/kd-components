@@ -110,11 +110,27 @@ export default {
         {
           effect: 'dark',
           placement: 'right-start',
-          content: scope.row[this.propLabel.prop].toString(),
+          content: this.getContent(scope),
           offset: -10,
         },
         this.tipConfig
       );
+    },
+    getContent(scope) {
+      const cellValue = scope.row[this.propLabel.prop];
+      let str = '';
+      if (cellValue === null) {
+        str = '';
+      } else {
+        switch (typeof cellValue) {
+          case 'undefined':
+            str = '';
+            break;
+          default:
+            str = cellValue.toString();
+        }
+      }
+      return str;
     },
     onClick(scope, event) {
       if (this.$listeners.click) {

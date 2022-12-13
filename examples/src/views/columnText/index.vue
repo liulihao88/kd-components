@@ -42,6 +42,7 @@
       <kd-column-text p-l="text2,样式对象" :text-styles="cellStylesJson" min-width="180"></kd-column-text>
       <!--自定义样式字符串用法-->
       <kd-column-text p-l="text3,样式字符串" :text-styles="cellStylesStr" min-width="180"></kd-column-text>
+      <kd-column-text p-l="s,测试非字符串" custom-tip></kd-column-text>
     </kd-simple-table>
     <example-code :source="source1">
       <b style="color: red">注意：</b><br />
@@ -69,6 +70,7 @@ export default {
           text3: '使用字符串定义样式',
           collectMode: 'MANUAL',
           text: '这是文本',
+          s: 12,
         },
         {
           t1: '但是也支持prop和label属性',
@@ -80,6 +82,7 @@ export default {
           text3: "如：'font-size:20px;'",
           collectMode: 'AUTO',
           text: '这是文本2',
+          s: null,
         },
         {
           t1: '并且它们优化级更高',
@@ -91,6 +94,7 @@ export default {
           text3: '',
           collectMode: 'AUTO',
           text: '这是比较长的一段文本',
+          s: undefined,
         },
       ],
       cellStylesJson: {
