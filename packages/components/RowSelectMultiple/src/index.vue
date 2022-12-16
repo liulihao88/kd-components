@@ -104,6 +104,7 @@
 // trigger 切换折叠状态
 
 import { get } from 'lodash';
+import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 
 export default {
   name: 'KdRowSelectMultiple',
@@ -287,10 +288,10 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('resize', this.onResize);
+    addResizeListener(this.$el, this.onResize);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
+    if (this.onResize) removeResizeListener(this.$el, this.onResize);
   },
   methods: {
     onResize() {
