@@ -7,7 +7,7 @@
       v-loading="loading"
       class="right_box"
       :filterable="$attrs.filterable !== false"
-      :placeholder="$attrs.disabled ? '' : $attrs.placeholder || '请选择'"
+      :placeholder="handlePlaceholder()"
       popper-class="kd-custom-multiple-checkbox"
       :clearable="$attrs.clearable !== false"
       v-bind="$attrs"
@@ -132,6 +132,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // placeholder在disabled的情况下是不显示的. 如果想要在这种情况下显示placeholder, 那么就用这个属性
+    disPlaceholder: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {};
@@ -141,6 +146,11 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    handlePlaceholder() {
+      const { $attrs } = this;
+      let res = $attrs.disabled ? this.disPlaceholder : $attrs.placeholder || '请输入';
+      return res;
+    },
     // 将label作为多个值连接起来。 比如 admin/管理员, 这是两个属性拼接出来的
     handleLabel(item) {
       // 如果customLabel是函数就执行customLabel的函数去处理label显示

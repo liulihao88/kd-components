@@ -40,6 +40,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // placeholder在disabled的情况下是不显示的. 如果想要在这种情况下显示placeholder, 那么就用这个属性
+    disPlaceholder: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     // 主要是为了处理， 如果type是password的情况, 值的修改
@@ -64,7 +69,7 @@ export default {
   methods: {
     handlePlaceholder() {
       const { $attrs } = this;
-      let res = $attrs.disabled ? '' : $attrs.placeholder || '请输入';
+      let res = $attrs.disabled ? this.disPlaceholder : $attrs.placeholder || '请输入';
       return res;
     },
     // 如果是密码输入框, 删除直接清空所有文本
