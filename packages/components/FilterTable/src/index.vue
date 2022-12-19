@@ -772,7 +772,7 @@ export default {
           width: item.width,
           fixed: item.fixed || false, // 'right' 右侧固定, true 默认左侧固定
           sortable: item.sortable || false,
-          filters: itemFilters,
+          filters: itemFilters || [],
           filter: item.filter || null,
           minWidth: item.minWidth,
           render: item.render, // 渲染函数
