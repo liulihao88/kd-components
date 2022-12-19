@@ -11,6 +11,14 @@
       一般表格，包含关键字搜索，高级搜索，operation插槽，分页，字段插槽，列下拉搜索，每行操作按钮配置等
     </example-code>
 
+    <h5>一般用法(没有关键字搜索，只有高级搜索)</h5>
+    <div class="example-wrap">
+      <source5></source5>
+    </div>
+    <example-code :source="sourceMd5">
+      一般表格，包含高级搜索，operation插槽，分页，字段插槽，列下拉搜索，每行操作按钮配置等
+    </example-code>
+
     <h5>简单用法</h5>
     <div class="example-wrap">
       <source2></source2>
@@ -41,6 +49,8 @@ import source3 from './source/source3.vue';
 import sourceMd3 from './source/source3.md';
 import source4 from './source/source4.vue';
 import sourceMd4 from './source/source4.md';
+import source5 from './source/source5.vue';
+import sourceMd5 from './source/source5.md';
 export default {
   name: 'TestTable',
   components: {
@@ -49,6 +59,7 @@ export default {
     source2,
     source3,
     source4,
+    source5,
   },
   props: {},
   data() {
@@ -57,6 +68,7 @@ export default {
       sourceMd2,
       sourceMd3,
       sourceMd4,
+      sourceMd5,
     };
   },
   created() {},
