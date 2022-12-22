@@ -763,16 +763,16 @@ export default {
         }
         // 如果是空数组, 将item的filters设为null, 没有下拉框
         let itemFilters = item.filters || null;
-        if (Array.isArray(item.filters) && item.filters.length === 0) {
-          itemFilters = null;
-        }
+        // if (Array.isArray(item.filters) && item.filters.length === 0) {
+        //   itemFilters = [];
+        // }
         return {
           label: item.title,
           prop: item.key,
           width: item.width,
           fixed: item.fixed || false, // 'right' 右侧固定, true 默认左侧固定
           sortable: item.sortable || false,
-          filters: itemFilters || [],
+          filters: itemFilters,
           filter: item.filter || null,
           minWidth: item.minWidth,
           render: item.render, // 渲染函数
