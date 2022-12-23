@@ -107,6 +107,78 @@
     <div class="content font-class">
       <ul class="icon_lists dib-box">
         <li class="dib">
+          <span class="icon iconfont kd-icon-ai-users"></span>
+          <div class="name">用户组</div>
+          <div class="code-name">.kd-icon-ai-users</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-ziyuan"></span>
+          <div class="name">组织架构</div>
+          <div class="code-name">.kd-icon-ziyuan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yonghuming"></span>
+          <div class="name">用户名</div>
+          <div class="code-name">.kd-icon-yonghuming</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuzidian"></span>
+          <div class="name">数据字典</div>
+          <div class="code-name">.kd-icon-shujuzidian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-rizhi"></span>
+          <div class="name">日志</div>
+          <div class="code-name">.kd-icon-rizhi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guize"></span>
+          <div class="name">规则</div>
+          <div class="code-name">.kd-icon-guize</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yunweipeizhi"></span>
+          <div class="name">运维配置</div>
+          <div class="code-name">.kd-icon-yunweipeizhi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-gaojingzhongxin"></span>
+          <div class="name">告警中心</div>
+          <div class="code-name">.kd-icon-gaojingzhongxin</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-chushihua"></span>
+          <div class="name">初始化</div>
+          <div class="code-name">.kd-icon-chushihua</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-chakanguize"></span>
+          <div class="name">查看规则</div>
+          <div class="code-name">.kd-icon-chakanguize</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhiliangpinggu1"></span>
+          <div class="name">质量评估</div>
+          <div class="code-name">.kd-icon-zhiliangpinggu1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhiliangguize"></span>
+          <div class="name">质量规则</div>
+          <div class="code-name">.kd-icon-zhiliangguize</div>
+        </li>
+
+        <li class="dib">
           <span class="icon iconfont kd-icon-shanchu"></span>
           <div class="name">删除</div>
           <div class="code-name">.kd-icon-shanchu</div>
@@ -748,6 +820,27 @@
           <div class="code-name">.kd-icon-lixian</div>
         </li>
       </ul>
+      <div class="article markdown">
+        <h2 id="font-class-">font-class 引用</h2>
+        <hr />
+
+        <p>font-class 是 Unicode 使用方式的一种变种，主要是解决 Unicode 书写不直观，语意不明确的问题。</p>
+        <p>与 Unicode 使用方式相比，具有如下特点：</p>
+        <ul>
+          <li>相比于 Unicode 语意明确，书写更直观。可以很容易分辨这个 icon 是什么。</li>
+          <li>因为使用 class 来定义图标，所以当要替换图标时，只需要修改 class 里面的 Unicode 引用。</li>
+        </ul>
+        <p>使用步骤如下：</p>
+        <h3 id="-fontclass-">第一步：引入项目下面生成的 fontclass 代码：</h3>
+        <pre><code class="language-html">&lt;link rel="stylesheet" href="./iconfont.css"&gt;
+</code></pre>
+        <h3 id="-">第二步：挑选相应图标并获取类名，应用于页面：</h3>
+        <pre><code class="language-html">&lt;span class="iconfont kd-icon-xxx"&gt;&lt;/span&gt;
+</code></pre>
+        <blockquote>
+          <p>" iconfont" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
+        </blockquote>
+      </div>
     </div>
   </div>
 </template>
