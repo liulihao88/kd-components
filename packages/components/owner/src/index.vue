@@ -1,6 +1,6 @@
 <!-- 负责人 -->
 <template>
-  <el-form-item label="负责人" style="margin-bottom: 0">
+  <el-form-item label="负责人" style="margin-bottom: 0" required>
     <div v-for="(ownerItem, index) in form.owners" :key="index" class="owner-item" style="display: flex">
       <el-form-item ref="kjOwnerRef" :prop="`owners[${index}][${defaultProps.value}]`" :rules="rules.owners">
         <div class="kj-owner">
@@ -185,7 +185,6 @@ export default {
      * 校验负责人是否有重复
      */
     validateOwner(rule, value, callback) {
-      console.log('........1');
       let owns = this.form.owners.filter((own) => own[this.defaultProps.value] === value);
       if (owns.length > 1) {
         callback(new Error('负责人重复'));
