@@ -1,7 +1,12 @@
 import { Message } from 'element-ui';
 import _ from 'lodash';
 
-// 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
+/**
+ * 全局的提示， 注册到全局 使用方法
+ * $pub.$toast("不关闭其他", "e", { closeAll: false });
+ * $pub.$toast("错误提示", "e");
+ * $pub.$toast("成功提示", "s", { offset: 200, showClose: true, duration: 4000 });
+ *  */
 export function $toast(str, type = 's', otherParams = {}) {
   let handleType = type;
   if (type === 's') {
@@ -12,6 +17,9 @@ export function $toast(str, type = 's', otherParams = {}) {
     handleType = 'error';
   } else if (type === 'w') {
     handleType = 'warning';
+  }
+  if (otherParams.closeAll !== false) {
+    Message.closeAll();
   }
   Message({
     message: str,
