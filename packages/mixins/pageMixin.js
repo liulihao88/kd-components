@@ -204,16 +204,19 @@ export const pageMixin = {
 
     /**
      * 验证表单是否可以提交
-     * this.mValidForm()
-     * this.mValidForm("formRef", {errorText: "不允许提交"})
+     * await this.mValidForm() 异步校验表单提交
+     * this.mValidForm("formRef", {errorText: "不允许提交"}) 更改错误提示文案
+     * this.mValidForm("formRef", {showMessage: false}) 不显示错误提示
      */
-    mValidForm(formName = 'formRef', { errorText = '验证未通过' } = {}) {
+    mValidForm(formName = 'formRef', { errorText = '验证未通过', showMessage = true } = {}) {
       return new Promise((resolve, reject) => {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             resolve();
           } else {
-            this.$pub.$toast(errorText, 'e');
+            if (showMessage) {
+              this.$pub.$toast(errorText, 'e');
+            }
             reject();
           }
         });

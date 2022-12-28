@@ -13,7 +13,10 @@
     >
       <template slot="title">
         <slot name="title">
-          <div>{{ title }}</div>
+          <div>
+            <span>{{ title }}</span>
+            <span v-if="mIsDev && subTitle" class="m-l-4 cl-blue">({{ subTitle }})</span>
+          </div>
         </slot>
         <button
           v-if="showFullscreen"
@@ -122,6 +125,11 @@ export default {
     cancelAttrs: {
       type: Object,
       default: () => ({}),
+    },
+    // 本地开发, 用来对drawer命名的, 可以快速定位到drawer的文件名
+    subTitle: {
+      type: String,
+      default: '',
     },
   },
   data() {
