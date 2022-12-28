@@ -48,6 +48,10 @@ export default {
           title: '负责人',
           key: 'owner',
           useSlot: true,
+          filters: [
+            { text: 'aaaa', value: 'aaaa' },
+            { text: 'bbbb', value: 'bbbb' },
+          ],
         },
         {
           title: '状态',
