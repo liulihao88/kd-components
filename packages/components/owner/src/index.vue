@@ -1,6 +1,6 @@
 <!-- 负责人 -->
 <template>
-  <el-form-item label="负责人" style="margin-bottom: 0" required>
+  <el-form-item :label="labelText" style="margin-bottom: 0" required>
     <div v-for="(ownerItem, index) in form.owners" :key="index" class="owner-item" style="display: flex">
       <el-form-item ref="kjOwnerRef" :prop="`owners[${index}][${defaultProps.value}]`" :rules="rules.owners">
         <div class="kj-owner">
@@ -118,6 +118,10 @@ export default {
     firstDisabled: {
       type: Boolean,
       default: false,
+    },
+    labelText: {
+      type: String,
+      default: '负责人',
     },
   },
   data() {
