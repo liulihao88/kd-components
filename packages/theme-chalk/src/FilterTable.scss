@@ -99,7 +99,6 @@
 .filter_table .el-table td,
 .filter_table .el-table th {
   height: 44px;
-  line-height: 44px;
   padding: 0;
   font-size: 12px;
 }
@@ -125,6 +124,10 @@
   text-align: center;
   line-height: inherit;
   white-space: nowrap;
+}
+.filter_table .el-table th.is-left .cell:hover {
+  padding: 8px;
+  white-space: normal;
 }
 .filter_table .el-table:before {
   height: 0;
