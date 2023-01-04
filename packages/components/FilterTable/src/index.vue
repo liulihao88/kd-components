@@ -860,7 +860,18 @@ export default {
       this._updatePage();
     },
     _simpleUpdatePage() {
-      this.$emit('updatePage', { ...this.search, page: this.currentPage, pageSize: this.pageSize });
+      this.columns.forEach((col) => {
+        if (col.filters) {
+          this.search[col.key] = this.search[col.key] || [];
+        }
+      });
+      this.$emit('updatePage', {
+        ...this.search,
+        page: this.currentPage,
+        pageSize: this.pageSize,
+        current: this.currentPage,
+        size: this.pageSize,
+      });
     },
     _updatePage() {
       if (this.simpleKv) {

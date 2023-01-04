@@ -9,6 +9,7 @@
 | rowKey | string | id       | 与el-option key 同理                              |
 | isObject | string | false    | 值为true,获取选中的整个JSON数据                           |
 | value-key      | string | realName | isObject值为true时，需要配合使用，回显用的                    |
+| labelText     | string | '负责人' | 表单的label默认负责人                   |
 #### Methods
 | 选项            | 类型     | 默认值 | 说明                 |
 |---------------|--------|-----|--------------------|
