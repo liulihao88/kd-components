@@ -1,4 +1,13 @@
 .kd-table-search{
+  .old-left{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    >*{
+      margin-right:8px;
+      padding-bottom:8px;
+    }
+  }
   .first-row{
     display:flex;
     justify-content: space-between;
@@ -29,7 +38,7 @@
     transition: height 0.2s;
     &>*{
       margin-right:8px;
-      margin-top:16px;
+      margin-top:8px;
     }
   }
 }

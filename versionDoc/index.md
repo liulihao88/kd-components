@@ -2,6 +2,7 @@
 
 - 【重构】kd-row-select：整合kd-row-select-multiple组件功能，支持单选模式；增加选项插槽；
 - 【优化】kd-column-action：popConfig支持函数式配置
+- 【优化】kd-table-search：增加对旧项目改造时表格搜索栏的兼容处理
 - 【新增】mMaxLength：校验指定长度字段串
 
 ### V0.1.99 (2023-1-05)
