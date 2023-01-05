@@ -47,8 +47,10 @@
               :value="item"
             ></el-option>
           </el-select>
-          <i v-if="index === 0" class="add" :class="[disabled ? 'no_drop' : 'pointer']" @click="add">+</i>
-          <i v-else class="del" :class="[disabled ? 'no_drop' : 'pointer']" @click="deleteOwner(index)">-</i>
+          <template v-if="!noIcon">
+            <i v-if="index === 0" class="add" :class="[disabled ? 'no_drop' : 'pointer']" @click="add">+</i>
+            <i v-else class="del" :class="[disabled ? 'no_drop' : 'pointer']" @click="deleteOwner(index)">-</i>
+          </template>
         </div>
       </el-form-item>
     </div>
@@ -122,6 +124,10 @@ export default {
     labelText: {
       type: String,
       default: '负责人',
+    },
+    noIcon: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
