@@ -1,7 +1,10 @@
 <template>
   <div class="kd-title" :style="{ ...handleMargin, ...customStyle }">
     <div ref="titleRef" class="kd-left-title">
-      <div>{{ title }}</div>
+      <div>
+        <span>{{ title }}</span>
+        <span v-if="mIsDev && subTitle" class="m-l-4 cl-blue">({{ subTitle }})</span>
+      </div>
       <slot></slot>
     </div>
     <slot name="right"></slot>
@@ -35,6 +38,11 @@ export default {
     size: {
       type: String,
       default: '', // 默认margin 16px 0
+    },
+    // 本地开发. 用来对文件命名. 可以快速定位到文件的名字
+    subTitle: {
+      type: String,
+      default: '',
     },
   },
   data() {

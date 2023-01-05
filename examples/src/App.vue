@@ -85,7 +85,7 @@ export default {
     this.prodHideTest();
 
     // 是否隐藏组件. 因为把全部组件加载到页面上调试麻烦, 所以定义一个变量来只显示想显示的组件
-    // this.hideComps();
+    this.hideComps();
   },
   mounted() {
     this.$nextTick(() => {

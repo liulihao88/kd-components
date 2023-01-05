@@ -99,6 +99,7 @@
 .filter_table .el-table td,
 .filter_table .el-table th {
   height: 44px;
+  // line-height: 44px;
   padding: 0;
   font-size: 12px;
 }
@@ -112,8 +113,9 @@
   line-height: 44px;
   color: var(--table-td-color);
   border-bottom: 1px solid var(--table-td-bottom-line);
+  
 }
-.filter_table .el-table .is-left .cell {
+.filter_table .el-table th.is-left .cell {
   padding-left: 16px;
   padding-right: 16px;
   text-align: left;
@@ -126,7 +128,6 @@
   white-space: nowrap;
 }
 .filter_table .el-table th.is-left .cell:hover {
-  padding: 8px;
   white-space: normal;
 }
 .filter_table .el-table:before {
@@ -144,7 +145,7 @@
   display: inline-block;
   position: absolute;
   right: 0;
-  top: 16px;
+  top: 12px;
   width: 1px;
   height: 16px;
   background: var(--table-th-split-line);
