@@ -1,6 +1,7 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
-- 【优化】kd-column-action：popConfig支持函数配置
+- 【重构】kd-row-select：整合kd-row-select-multiple组件功能，支持单选模式；增加选项插槽；
+- 【优化】kd-column-action：popConfig支持函数式配置
 - 【新增】mMaxLength：校验指定长度字段串
 
 ### V0.1.99 (2023-1-05)

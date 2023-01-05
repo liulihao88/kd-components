@@ -11,6 +11,8 @@
       item-width="20"
       item-max-width="50"
   >
+    <!--选项插槽，按需使用-->
+    <template #default="{ item, index }">选项{{ index }}的插槽</template>
   </kd-row-select-multiple>
 </template>
 
