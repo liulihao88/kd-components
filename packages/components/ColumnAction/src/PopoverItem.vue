@@ -80,7 +80,8 @@ export default {
   },
   computed: {
     popoverConfig() {
-      let obj = {
+      let result = {};
+      let defaultConf = {
         title: '删除',
         placement: 'bottom',
         content: '确定删除？',
@@ -88,7 +89,12 @@ export default {
         cancelText: '取消',
         showCancel: true,
       };
-      return Object.assign({}, obj, this.btnItem.popConfig);
+      if (typeof this.btnItem.popConfig === 'function') {
+        result = Object.assign({}, defaultConf, this.btnItem.popConfig(this.scope, this.btnItem));
+      } else {
+        result = Object.assign({}, defaultConf, this.btnItem.popConfig);
+      }
+      return result;
     },
   },
   watch: {},
