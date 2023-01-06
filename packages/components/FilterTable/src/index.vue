@@ -962,7 +962,7 @@ export default {
         this.$emit('toReset');
       } else {
         for (let key in this.search) {
-          this.search[key] = Array.isArray(this.search[key]) ? [] : '';
+          this.search[key] = Array.isArray(this.search[key]) ? [] : null;
         }
         this.$refs.kTable.clearFilter();
         this.toSearch();

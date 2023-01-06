@@ -10,6 +10,17 @@ export const validateMixin = {
     mNameLength(str = '长度最大为64个字符') {
       return { min: 1, max: 64, message: str, trigger: ['blur', 'change'] };
     },
+    mMaxLength(max = 64, str) {
+      let message = '';
+      if (typeof str === 'function') {
+        message = str(max);
+      } else if (typeof str === 'string') {
+        message = str;
+      } else {
+        message = `长度最大为${max}个字符`;
+      }
+      return { min: 1, max, message, trigger: ['blur', 'change'] };
+    },
     // 通用
     // 校验英文
     // 请输入支持英文、下划线、数字,且不能以下划线开头和结尾

@@ -25,6 +25,7 @@
       <kd-column-action :btn-list="btnList5" label="按钮占位"></kd-column-action>
       <kd-column-action :btn-list="btnList6" label="按钮显示/隐藏"></kd-column-action>
       <kd-column-action :btn-list="btnList7" label="dropdown按钮组"></kd-column-action>
+      <kd-column-action :btn-list="btnList8" label="popConfig支持函数"></kd-column-action>
     </kd-simple-table>
     <example-code :source="source1"> 上面示例中展示了操作列组件的各种情况下的使用方法。 </example-code>
   </div>
@@ -215,62 +216,20 @@ export default {
           },
         },
       ],
-      btnList: [
-        {
-          label: '编辑',
-          key: 'update',
-          permission: 'edit',
-          callback: () => {
-            this.$message.success('编辑updata 执行');
-          },
-        },
-        // 隐藏按钮
-        {
-          label: '删除',
-          key: 'del',
-          popover: true,
-          permission: 'del',
-          // disabled: (scope, item) => {
-          //   return scope.$index === 1;
-          // },
-          // hidden: (scope, item) => {
-          //   return scope.$index === 0;
-          // },
-        },
+      btnList8: [
         {
           label: '停止',
           key: 'stop',
           permission: 'config',
           popover: true,
-          popConfig: {
-            popoverAttrs: { placement: 'left', title: '停止' },
-            contentText: '是否停止抢救？',
-            confirmText: '停了吧',
-            cancelText: '再想想',
+          popConfig: (scope, item) => {
+            return {
+              title: '停止',
+              content: `是否停止抢救${scope.row.name}？`,
+              confirmText: '停了吧',
+              cancelText: '再想想',
+            };
           },
-          // show: function (scope) {
-          //   return scope.row.status === 'START';
-          // },
-        },
-        {
-          label: '启用',
-          key: 'start',
-          permission: 'config',
-          // show: function (scope) {
-          //   return scope.row.status !== 'START';
-          // },
-        },
-        {
-          label: '删除',
-          key: 'del',
-          popover: true,
-          dropdown: true,
-          permission: 'del',
-        },
-        {
-          label: '日志日志',
-          key: 'log',
-          dropdown: true,
         },
       ],
     };

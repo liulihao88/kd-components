@@ -15,6 +15,14 @@
   >
     <template #search="{ search }">
       <kd-input v-model="search.name" title="名称" class="mb"></kd-input>
+      <kd-date-range
+        v-model="search.endTime"
+        title="最近更新时间"
+        prefix-icon="iconfont icon-riqi"
+        start-placeholder="请选择"
+        end-placeholder="请选择"
+        class="w-500 mb"
+      ></kd-date-range>
     </template>
     <template #operation>
       <div>

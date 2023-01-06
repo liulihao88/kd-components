@@ -5,12 +5,25 @@
     <div class="sub-title">添加一个或多个负责人</div>
     <h5>基础用法</h5>
     <el-form :model="form" label-width="auto">
-      <kd-owner
-        v-model="form"
-        :options="ownerOptions"
-        :default-props="defaultProps"
-        @remoteMethod="remoteMethod"
-      ></kd-owner>
+      <el-row>
+        <el-col :span="12">
+          <kd-owner
+            v-model="form"
+            :options="ownerOptions"
+            :default-props="defaultProps"
+            @remoteMethod="remoteMethod"
+          ></kd-owner>
+        </el-col>
+        <el-col :span="12">
+          <kd-owner
+            v-model="form"
+            :options="ownerOptions"
+            :default-props="defaultProps"
+            no-icon
+            @remoteMethod="remoteMethod"
+          ></kd-owner>
+        </el-col>
+      </el-row>
     </el-form>
     <example-code :source="source1">
       <!-- 设置 v-model/value 和 options 选项数组即可； -->

@@ -15,7 +15,7 @@
 | show       | boolean/(scope,item)=>boolean | true      | 是否渲染按钮，与hidden的区别在于不会占位                                   |
 | dropdown   | boolean                       | false     | 是否以dropdown形式展示按钮，内部使用el-dropdown处理                       |
 | popover    | boolean                       | false     | 是否以popover形式展示按钮，内部使用el-popover处理，设置了默认样式                 |
-| popConfig  | object                        | popConfig | 对应el-popover的部分配置，因为它的样式是统一的                              |
+| popConfig  | object/(scope,item)=>{}       | popConfig | 对应el-popover的部分配置，因为它的样式是统一的                              |
 | confirm    | function                      | -         | 确认回调，非popover时，点击后直接执行；在popover中，对应确认按钮                   |
 | cancel     | function                      | -         | 取消回调，非popover时无效；在popover中，对应取消按钮                         |
 

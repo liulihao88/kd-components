@@ -11,6 +11,19 @@
     </kd-table-search>
     <example-code :source="source1" style="margin-top: 20px"></example-code>
 
+    <h5>兼容旧系统迁移</h5>
+    <kd-table-search old-model>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="220"></kd-input>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="220"></kd-input>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="220"></kd-input>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="300"></kd-input>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="500"></kd-input>
+      <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="160"></kd-input>
+    </kd-table-search>
+    <example-code :source="source3" style="margin-top: 20px">
+      旧系统的搜索框通常没有模糊搜索功能，各个表单按照正常水平布局平铺，设置old-model即可
+    </example-code>
+
     <h5>高级搜索</h5>
     <kd-table-search>
       <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="400"></kd-input>
@@ -39,12 +52,14 @@
 <script>
 import source1 from './source/source1.md';
 import source2 from './source/source2.md';
+import source3 from './source/source3.md';
 export default {
   name: 'Index',
   data() {
     return {
       source1,
       source2,
+      source3,
     };
   },
 };
