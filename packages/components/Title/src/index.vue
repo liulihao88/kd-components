@@ -1,5 +1,5 @@
 <template>
-  <div class="kd-title" :style="{ ...handleMargin, ...customStyle }">
+  <div class="kd-title" :style="{ ...handleMargin }">
     <div ref="titleRef" class="kd-left-title">
       <div>
         <span>{{ title }}</span>
@@ -13,15 +13,25 @@
 
 <script>
 /**
-* @描述
 * 公共title组件。可以设置title,  可以设置左侧竖条颜色, 可设置默认插槽和右侧插槽
 * @使用方法
 <kd-title title="4. 回到顶部"></kd-title>
 <kd-title ttitle="左侧粉色" style="--lc: pink"/>
 <kd-title
-  title="自定义titile"
-  style="--lc: yellow"
-></kd-title>
+  title="我是title测试"
+  subTitle="只是本地显示"
+  style="--lc: red; margin-bottom: 30px"
+  class="bd-b-1"
+  size="none"
+>
+  <span class="ml2 cl-blue"> 这是默认插槽 </span>
+  <template #right>
+    <div class="f">
+      <el-button>这是右侧插槽的值1</el-button>
+      <el-button>这是右侧插槽的值2</el-button>
+    </div>
+  </template>
+</kd-title>
 */
 export default {
   name: 'KdTitle',
@@ -30,10 +40,6 @@ export default {
     title: {
       type: String,
       default: '',
-    },
-    customStyle: {
-      type: Object,
-      default: () => {},
     },
     size: {
       type: String,
@@ -64,8 +70,6 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {
-    t1() {},
-  },
+  methods: {},
 };
 </script>
