@@ -1,5 +1,6 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
+### V2.0.2 (2023-1-08)
 - 【fix】kd-table-search：修复old-model模式下，布局异常问题
 - 【优化】kd-date-range, kd-select：title颜色调整
 
