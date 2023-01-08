@@ -3,27 +3,25 @@
   justify-content: space-between;
   align-items: flex-start;
 
-  .el-button + .el-button{
+  .el-button + .el-button {
     margin-left: 8px;
   }
 
   .kd-table-search_left-wrap {
-
-    >.old-model-row{
+    > .old-model-row {
       display: flex;
       flex: 1;
       flex-wrap: wrap;
       > * {
         margin-right: 8px;
-        padding-bottom: 8px;
+        padding-bottom: 16px;
       }
     }
 
-    >.first-row{
+    > .first-row {
       display: flex;
       align-items: center;
-      //height: 32px;
-      >.input-wrap{
+      > .input-wrap {
         display: flex;
         align-items: center;
         margin-right: 8px;
@@ -37,29 +35,6 @@
     align-items: center;
   }
 
-  .first-row {
-    display: flex;
-    //justify-content: space-between;
-    align-items: center;
-    height: 32px;
-
-    .left {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      .form {
-        margin-right: 8px;
-      }
-    }
-
-    .right {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-  }
-
   .more-row {
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +42,7 @@
     transition: height 0.2s;
     & > * {
       margin-right: 8px;
-      margin-top: 8px;
+      margin-top: 16px;
     }
   }
 }
