@@ -1,44 +1,73 @@
-.kd-table-search{
-  .old-left{
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    >*{
-      margin-right:8px;
-      padding-bottom:8px;
+.kd-table-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .el-button + .el-button{
+    margin-left: 8px;
+  }
+
+  .kd-table-search_left-wrap {
+
+    >.old-model-row{
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      > * {
+        margin-right: 8px;
+        padding-bottom: 8px;
+      }
+    }
+
+    >.first-row{
+      display: flex;
+      align-items: center;
+      //height: 32px;
+      >.input-wrap{
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+      }
     }
   }
-  .first-row{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    height:32px;
 
-    .left{
+  .kd-table-search_right-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .first-row {
+    display: flex;
+    //justify-content: space-between;
+    align-items: center;
+    height: 32px;
+
+    .left {
       display: flex;
       justify-content: flex-start;
       align-items: center;
 
-      .form{
-        margin-right:8px;
+      .form {
+        margin-right: 8px;
       }
     }
 
-    .right{
+    .right {
       display: flex;
       justify-content: flex-end;
       align-items: center;
     }
   }
 
-  .more-row{
+  .more-row {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
     transition: height 0.2s;
-    &>*{
-      margin-right:8px;
-      margin-top:8px;
+    & > * {
+      margin-right: 8px;
+      margin-top: 8px;
     }
   }
 }

@@ -1,43 +1,45 @@
 <template>
   <div class="kd-table-search">
-    <template v-if="oldModel">
-      <div class="old-left">
-        <slot></slot>
-        <div>
-          <el-button type="primary" @click="onSearch">查询</el-button>
-          <el-button @click="onReset">重置</el-button>
+    <div class="kd-table-search_left-wrap">
+      <!--旧系统，无模糊搜索-->
+      <template v-if="oldModel">
+        <div class="old-model-row">
+          <slot></slot>
+          <div>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="onReset">重置</el-button>
+          </div>
         </div>
-      </div>
-      <div class="right">
-        <slot name="right"></slot>
-      </div>
-    </template>
-    <template v-else>
-      <div class="first-row">
-        <div class="left">
-          <div class="form">
+      </template>
+      <!--新系统，有模糊搜索-->
+      <template v-else>
+        <div class="first-row">
+          <div class="input-wrap">
             <slot></slot>
           </div>
-          <el-button type="primary" @click="onSearch">查询</el-button>
-          <el-button @click="onReset">重置</el-button>
-          <el-button v-if="hasMore" type="text" @click="onFold">
-            {{ isFold ? foldText : unFoldText }}
-            <i :class="['el-icon-arrow-' + (isFold ? 'down' : 'up')]" style="margin-left: 8px"></i>
-          </el-button>
+          <div>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="onReset">重置</el-button>
+            <el-button v-if="hasMore" type="text" @click="onFold">
+              {{ isFold ? foldText : unFoldText }}
+              <i :class="['el-icon-arrow-' + (isFold ? 'down' : 'up')]" style="margin-left: 8px"></i>
+            </el-button>
+          </div>
         </div>
-        <div class="right">
-          <slot name="right"></slot>
+        <div ref="moreRow" class="more-row" :style="{ height: isFold ? '0' : scrollHeight + 'px' }">
+          <slot name="more"></slot>
         </div>
-      </div>
-      <div ref="moreRow" class="more-row" :style="{ height: isFold ? '0' : scrollHeight + 'px' }">
-        <slot name="more"></slot>
-      </div>
-    </template>
+      </template>
+    </div>
+    <div class="kd-table-search_right-wrap">
+      <slot name="right"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 import { get } from 'lodash';
+import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 
 export default {
   name: 'KdTableSearch',
@@ -59,12 +61,11 @@ export default {
   },
   mounted() {
     if (this.hasMore) {
-      window.addEventListener('resize', this.onResize);
-      this.onResize();
+      addResizeListener(this.$el, this.onResize);
     }
   },
   beforeDestroy() {
-    if (this.hasMore && this.onResize) window.removeEventListener('resize', this.onResize);
+    if (this.hasMore && this.onResize) removeResizeListener(this.$el, this.onResize);
   },
   methods: {
     onFold() {

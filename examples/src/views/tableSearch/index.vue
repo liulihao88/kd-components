@@ -19,6 +19,10 @@
       <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="300"></kd-input>
       <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="500"></kd-input>
       <kd-input title="搜索关键词" placeholder="请输入服务名称/负责人/描述" width="160"></kd-input>
+      <template slot="right">
+        <el-button type="primary">新增</el-button>
+        <el-button type="primary">批量删除</el-button>
+      </template>
     </kd-table-search>
     <example-code :source="source3" style="margin-top: 20px">
       旧系统的搜索框通常没有模糊搜索功能，各个表单按照正常水平布局平铺，设置old-model即可
