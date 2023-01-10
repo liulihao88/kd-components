@@ -23,7 +23,7 @@ export default {
   name: 'KdDateRange',
   props: {
     value: {
-      type: Array,
+      type: [Array, Object],
       default: () => [],
     },
     title: {
@@ -42,19 +42,20 @@ export default {
   },
   data() {
     const oneDay = 3600 * 1000 * 24;
-    const end = new Date();
     return {
       pickerOptions: {
         // 时间选择器时间段
         shortcuts: [
           {
+            // 0点至23:59:59
             text: '今天',
             onClick(picker) {
-              const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
-              picker.$emit('pick', [start, end]);
+              const startTimestamp = new Date(new Date().toLocaleDateString()).getTime();
+              picker.$emit('pick', [new Date(startTimestamp), new Date(startTimestamp + oneDay - 1)]);
             },
           },
           {
+            // 0点至23:59:59
             text: '昨天',
             onClick(picker) {
               const start = new Date(new Date(new Date().toLocaleDateString()).getTime() - oneDay);
@@ -63,30 +64,42 @@ export default {
             },
           },
           {
+            // 当前时间前推7天
             text: '最近一周',
             onClick(picker) {
-              const start = new Date(new Date(new Date().toLocaleDateString()).getTime() - oneDay * 6);
+              // 今天的0点时间戳
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - oneDay * 7);
               picker.$emit('pick', [start, end]);
             },
           },
           {
+            // 本月起始时间-本月结束
             text: '本月',
             onClick(picker) {
+              const nowTemp = new Date().getTime(); // 当前时间戳-1673325323605
+              const nextMonth = nowTemp + oneDay * 32; // 保证是下个月1676090190150
+              const end = new Date(new Date(new Date(nextMonth).toLocaleDateString()).setDate(1) - 1);
               const start = new Date(new Date(new Date().toLocaleDateString()).setDate(1));
-              picker.$emit('pick', [start, new Date()]);
+              picker.$emit('pick', [start, end]);
             },
           },
           {
+            // 当前时间前推30天
             text: '最近一个月',
             onClick(picker) {
+              const end = new Date();
               const start = new Date();
               start.setTime(start.getTime() - oneDay * 30);
               picker.$emit('pick', [start, end]);
             },
           },
           {
+            // 当前时间前推90天
             text: '最近三个月',
             onClick(picker) {
+              const end = new Date();
               const start = new Date();
               start.setTime(start.getTime() - oneDay * 90);
               picker.$emit('pick', [start, end]);
@@ -104,10 +117,9 @@ export default {
       } else {
         // 如果futureDisabled为true, 不能选择将来的日期
         if (this.futureDisabled) {
-          let res = Object.assign(this.pickerOptions, {
+          return Object.assign(this.pickerOptions, {
             disabledDate: this.disabledDate,
           });
-          return res;
         }
         return this.pickerOptions;
       }
@@ -117,25 +129,22 @@ export default {
         if (this.value && this.value.length) {
           return this.value;
         } else {
-          return '';
+          return [];
         }
       },
       set(v) {
-        this.$emit('input', v);
+        this.$emit('input', v || []);
       },
     },
   },
   methods: {
     dateChange(v) {
-      this.$emit('input', v);
+      this.$emit('input', v || []);
     },
     disabledDate(date) {
       const newDate = new Date().getTime();
       const checkDate = new Date(date).getTime();
-      if (checkDate < newDate) {
-        return false;
-      }
-      return true;
+      return checkDate >= newDate;
     },
   },
 };
