@@ -2,7 +2,7 @@ $--font-path: 'fonts' !default;
 
 @font-face {
   font-family: "kd-iconfont"; /* Project id 3359763 */
-  src: url('#{$--font-path}iconfont.woff?t=1673335428996') format('woff'),
+  src: url('#{$--font-path}/iconfont.woff?t=1673335428996') format('woff'),
   url('#{$--font-path}/iconfont.ttf?t=1673335428996') format('truetype');
 }
 
@@ -673,3 +673,5 @@ $--font-path: 'fonts' !default;
 .kd-icon-jishi:before {
   content: "\e6e3";
 }
+
+
