@@ -7,9 +7,18 @@
     <kd-tree-single
       v-model="form.checkFiled"
       :table-data="form.option"
+      :disabled-tree-check="disabledTreeCheck"
+      :default-props="defaultProps"
+      node-key="name"
+    ></kd-tree-single>
+    <h6>进阶用法</h6>
+    <kd-tree-single
+      v-model="form.checkFiled"
+      :table-data="form.option"
       :search-attrs="{
         clearable: false,
         placeholder: '请搜索',
+        disabled: true,
       }"
       :disabled-tree-check="disabledTreeCheck"
       :default-props="defaultProps"

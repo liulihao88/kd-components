@@ -18,10 +18,9 @@
       <div v-if="filterable" class="tree_single_search_box">
         <el-input
           v-model="filterText"
-          :placeholder="searchAttrs.placeholder || '搜索'"
-          :clearable="searchAttrs.clearable !== false"
+          :placeholder="(searchAttrs && searchAttrs.placeholder) || '搜索'"
+          :clearable="false"
           v-bind="searchAttrs"
-          suffix-icon="el-icon-search"
           @input="filterMethod"
         ></el-input>
       </div>
@@ -59,6 +58,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    searchAttrs: {
+      type: Object,
+      default: () => {},
+    },
     disabledTreeCheck: {
       type: Function,
       default() {
@@ -92,10 +95,6 @@ export default {
     nodeKey: {
       type: String,
       default: 'id',
-    },
-    searchAttrs: {
-      type: Object,
-      default: () => {},
     },
   },
   data() {
