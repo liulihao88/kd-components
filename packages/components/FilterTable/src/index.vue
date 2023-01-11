@@ -747,7 +747,7 @@ export default {
         let baseBtns = [];
         let hideBtns = [];
         if (item.btns) {
-          item.maxBtns = item.maxBtns || 2;
+          item.maxBtns = item.maxBtns || 3;
           item.btns = item.btns.map((v) => {
             if (v.isShow === undefined) {
               v.isShow = true;
@@ -755,8 +755,8 @@ export default {
             return v;
           });
           if (item.btns.length > item.maxBtns) {
-            baseBtns = item.btns.slice(0, item.maxBtns);
-            hideBtns = item.btns.slice(item.maxBtns);
+            baseBtns = item.btns.slice(0, 2);
+            hideBtns = item.btns.slice(2);
           } else {
             baseBtns = item.btns;
           }
