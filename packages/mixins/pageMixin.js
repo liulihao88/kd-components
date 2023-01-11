@@ -1,3 +1,4 @@
+import { $toast } from 'utils';
 export const pageMixin = {
   methods: {
     /**
@@ -215,12 +216,16 @@ export const pageMixin = {
             resolve();
           } else {
             if (showMessage) {
-              this.$pub.$toast(errorText, 'e');
+              $toast(errorText, 'e');
             }
             reject();
           }
         });
       });
+    },
+    // copy成功的提示文案
+    mClipboardSuccess(val) {
+      $toast(`${val.text}复制成功`);
     },
   },
 };

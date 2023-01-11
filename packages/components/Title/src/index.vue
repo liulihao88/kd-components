@@ -3,7 +3,15 @@
     <div ref="titleRef" class="kd-left-title">
       <div>
         <span>{{ title }}</span>
-        <span v-if="mIsDev && subTitle" class="m-l-4 cl-blue">({{ subTitle }})</span>
+
+        <span
+          v-if="mIsDev && subTitle"
+          v-clipboard="subTitle"
+          v-clipboard:success="mClipboardSuccess"
+          class="m-l-4 cl-blue"
+        >
+          ({{ subTitle }})
+        </span>
       </div>
       <slot></slot>
     </div>
