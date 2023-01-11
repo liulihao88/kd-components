@@ -7,6 +7,10 @@
     <kd-tree-single
       v-model="form.checkFiled"
       :table-data="form.option"
+      :search-attrs="{
+        clearable: false,
+        placeholder: '请搜索',
+      }"
       :disabled-tree-check="disabledTreeCheck"
       :default-props="defaultProps"
       node-key="name"
