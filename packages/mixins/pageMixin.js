@@ -1,4 +1,4 @@
-import { $toast } from 'utils';
+import { $toast } from '@kd/utils/index.js';
 export const pageMixin = {
   methods: {
     /**
