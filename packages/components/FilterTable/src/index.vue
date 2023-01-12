@@ -262,7 +262,7 @@
             :min-width="col.minWidth || 100"
             :fixed="col.fixed"
             :sortable="col.sortable ? 'custom' : false"
-            :filters="col.filters"`
+            :filters="col.filters"
             :column-key="col.prop"
             :show-overflow-tooltip="showOverflowTooltip && col.tooltipFlag"
             :resizable="index != zkColumns.length - 1"
