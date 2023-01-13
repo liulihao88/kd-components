@@ -206,8 +206,8 @@ export const pageMixin = {
     /**
      * 验证表单是否可以提交
      * await this.mValidForm() 异步校验表单提交
-     * this.mValidForm("formRef", {errorText: "不允许提交"}) 更改错误提示文案
-     * this.mValidForm("formRef", {showMessage: false}) 不显示错误提示
+     * await this.mValidForm("formRef", {errorText: "不允许提交"}) 更改错误提示文案
+     * await this.mValidForm("formRef", {showMessage: false}) 不显示错误提示
      */
     mValidForm(formName = 'formRef', { errorText = '验证未通过', showMessage = true } = {}) {
       return new Promise((resolve, reject) => {
@@ -225,7 +225,7 @@ export const pageMixin = {
     },
     // copy成功的提示文案
     mClipboardSuccess(val) {
-      $toast(`${val.text}复制成功`);
+      $toast(`${val.text}复制成功`, 's', { duration: 1000 });
     },
   },
 };
