@@ -3,7 +3,6 @@
     <div ref="titleRef" class="kd-left-title">
       <div>
         <span>{{ title }}</span>
-
         <span
           v-if="mIsDev && subTitle"
           v-clipboard="subTitle"

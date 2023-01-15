@@ -218,7 +218,7 @@ export const pageMixin = {
             if (showMessage) {
               $toast(errorText, 'e');
             }
-            reject();
+            reject(errorText);
           }
         });
       });
