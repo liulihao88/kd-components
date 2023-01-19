@@ -740,7 +740,7 @@ export default {
       });
     },
     transformZKColumns() {
-      this.zkColumns = this.columns.map((item) => {
+      this.zkColumns = (this.columns || []).map((item) => {
         if (item.search || item.filters) {
           this.$set(this.search, item.key, this.search[item.key] || '');
         }

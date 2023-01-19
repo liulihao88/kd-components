@@ -16,7 +16,7 @@
       :title="'最常用=>' + t2"
       class="mr mt"
       :options="t2Options"
-      :default-props="{ label: 'name' }"
+      label="name"
       @changeSelect="changeSelect"
     ></kd-select>
     <!-- 改变label -->
@@ -24,7 +24,6 @@
       v-model="t3"
       :title="'改变label=>' + t3"
       class="mr"
-      width="500"
       :options="t3Options"
       :custom-label="(item) => `${item.name}(${item.value})`"
       @changeSelect="changeSelect"
@@ -38,7 +37,21 @@
       width="500"
       :options="t4Options"
       :custom-label="(item) => `${item.name}(${item.value2})`"
-      :default-props="{ label: 'name', value: 'value2' }"
+      label="name"
+      val="value2"
+      @changeSelect="changeSelect"
+    ></kd-select>
+    <!-- 禁用 -->
+    <kd-select
+      v-model="t5"
+      :title="'禁用=>' + t4"
+      class="mr"
+      multiple
+      :options="t4Options"
+      :custom-label="(item) => `${item.name}(${item.value2})`"
+      :option-disabled="optionDisabled"
+      label="name"
+      val="value2"
       @changeSelect="changeSelect"
     ></kd-select>
   </div>
@@ -54,6 +67,7 @@ export default {
       t2: 'mm',
       t3: '',
       t4: ['ss', 'rr'],
+      t5: [],
       t1Options: ['莎莎', '瑞瑞', '梅梅'],
       t2Options: [
         {
@@ -100,6 +114,9 @@ export default {
     };
   },
   methods: {
+    optionDisabled(item) {
+      return item.value2 === 'ss' || item.value2 === 'mm';
+    },
     changeSelect([val, obj, label]) {
       $toast(
         `val: ${JSON.stringify(val)} <br />  obj: ${JSON.stringify(obj)}<br />  label: ${JSON.stringify(label)}`,

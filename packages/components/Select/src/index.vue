@@ -5,6 +5,7 @@
     </div>
     <el-select
       v-loading="loading"
+      :class="options.length === 0 && 'tip_empty'"
       class="right_box"
       :filterable="$attrs.filterable !== false"
       :placeholder="handlePlaceholder()"
@@ -17,9 +18,9 @@
       <el-option
         v-for="item in options"
         :key="type === 'simple' ? item : handleValue(item)"
-        size="small"
         :label="type === 'simple' ? item : handleLabel(item)"
         :value="type === 'simple' ? item : handleValue(item)"
+        :disabled="optionDisabled(item)"
       >
         <el-checkbox v-if="$attrs.multiple === true || $attrs.multiple === ''" @click.prevent.native>
           {{ handleLabel(item) }}
@@ -30,60 +31,6 @@
 </template>
 
 <script>
-/**
-* @描述
-* 下拉选择框的组件封装
-* @使用方法
-   1. 简单的options, 纯数组
-    <kd-select
-      v-model="tt"
-      :options="TEST_DATA2"
-      type="simple"
-    />
-     TEST_DATA2: ['andy', '凌云', 18],
-  2. 复杂的options, 数组对象
-   <kd-select
-      v-model="tt2"
-      :options="TEST_DATA"
-      :defaultProps="{label: 'name'}"
-    />
-    TEST_DATA: [
-    {
-      value: '选项1',
-      name: '去年今日此门中'
-    }, {
-      value: '选项2',
-      name: '人面桃花相映红'
-    }
-  ],
-
-  objConnectValue: [
-    { enName: 'andy', chName: '凌云', id: 111 },
-    { enName: 'andy2', chName: '凌云2', id: 222 },
-  ],
-  3. 如果是多个参数拼接出来的选项
-  <gSelect2
-      v-model="value3"
-      title="拼接下拉框"
-      :options="objConnectValue"
-      connect="|"
-      :defaultProps="{
-        label: ['enName', 'chName'],
-        value: 'id',
-      }"
-    />
-  4. 如果是自定义显示label。 :customLabel="customLabelFunc"
-   <kd-select
-      v-model="value3"
-      title="自定义label下拉框"
-      :options="objConnectValue"
-      :customLabel="(item)=>(`${item.enName}+${item.chName}` )"
-      :defaultProps="{
-        label: ['enName', 'chName'],
-        value: 'id',
-      }"
-    />
-*/
 export default {
   name: 'KdSelect',
   components: {},
@@ -92,14 +39,22 @@ export default {
       type: Object,
       default: () => {
         return {
-          value: 'value',
-          label: 'label',
+          value: '',
+          label: '',
         };
       },
     },
     loading: {
       type: Boolean,
       default: false,
+    },
+    label: {
+      type: String,
+      default: 'label',
+    },
+    val: {
+      type: String,
+      default: 'value',
     },
     options: {
       type: Array,
@@ -137,14 +92,32 @@ export default {
       type: String,
       default: '',
     },
+    optionDisabled: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
-    return {};
+    return {
+      sLabel: this.defaultProps.label || this.label,
+      sValue: this.defaultProps.value || this.val,
+    };
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
+  watch: {
+    defaultProps: {
+      deep: true,
+      handler(val) {
+        this.sLabel = this.defaultProps.label || this.label;
+        this.sValue = this.defaultProps.value || this.val;
+      },
+    },
+    val(val) {
+      this.sValue = this.defaultProps.value || this.val;
+    },
+    label(val) {
+      this.sLabel = this.defaultProps.label || this.label;
+    },
+  },
   methods: {
     handlePlaceholder() {
       const { $attrs } = this;
@@ -158,33 +131,29 @@ export default {
         return this.customLabel(item);
       } else {
         // 如果label是数组, 就拼接数组。
-        if (Array.isArray(this.defaultProps.label)) {
+        if (Array.isArray(this.sLabel)) {
           let str = '';
-          this.defaultProps.label.forEach((v) => {
+          this.sLabel.forEach((v) => {
             str += item[v] + this.connect;
           });
           let res = str.slice(0, -1);
           return res;
         } else {
           // 直接显示label
-          const label = this.defaultProps.label || 'label';
-          return item[label];
+          return item[this.sLabel];
         }
       }
     },
     // 处理value的值
     handleValue(item) {
-      const value = this.defaultProps.value || 'value';
-      return item[value];
+      return item[this.sValue];
     },
     // 处理多选的返回情况
     changeMulty(arr) {
       let selectLabel = [];
       const selectObj = this.options.filter((v) => {
-        const value = this.defaultProps.value || 'value';
-        if (arr.includes(v[value])) {
-          const label = this.defaultProps.label || 'label';
-          selectLabel.push(v[label]);
+        if (arr.includes(v[this.sValue])) {
+          selectLabel.push(v[this.sLabel]);
           return true;
         } else {
           return false;
@@ -193,28 +162,26 @@ export default {
       this.$emit('changeSelect', [arr, selectObj, selectLabel]);
     },
     // 有些场景， 下拉框不仅需要获取value, 还需要获取选择的对象或者label, el-select原生没有这个属性， 所以changeHandler就做了下处理， 返回的数组包含3个属性， 第一个value, 第二个选中对象， 第三个选中的label。
-    changeHandler(val) {
+    changeHandler(item) {
       // 如果val是数组, 证明是多选
-      if (Array.isArray(val)) {
-        this.changeMulty(val);
+      if (Array.isArray(item)) {
+        this.changeMulty(item);
         return;
       }
-      if (!val) {
+      if (!item) {
         this.$emit('changeSelect', []);
         return;
       }
       let selectObj = this.options.filter((v) => {
         if (this.type === 'simple') {
-          return v === val;
+          return v === item;
         } else {
-          const value = this.defaultProps.value || 'value';
-          return v[value] === val;
+          return v[this.sValue] === item;
         }
       })[0];
-      const optLabel = this.defaultProps.label || 'label';
-      let selectLabel = selectObj[optLabel];
+      let selectLabel = selectObj[this.sLabel];
 
-      this.$emit('changeSelect', [val, selectObj, selectLabel]);
+      this.$emit('changeSelect', [item, selectObj, selectLabel]);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>下拉选择（多选）</h3>
+    <h3>下拉选择（多选, 建议再不使用）</h3>
     <div class="author">维护人：刘月鹏</div>
     <div class="sub-title">基于el-select的二次封装，el-select的所有属性与方法均适配。</div>
 

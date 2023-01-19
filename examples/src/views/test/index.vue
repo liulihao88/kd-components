@@ -6,6 +6,8 @@
         <div class="w-200 tr">唱跳 rap 篮球</div>
       </template>
     </kd-title>
+
+    <kd-select v-model="selectValue" :options="options" />
   </div>
 </template>
 
@@ -15,7 +17,12 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
+    return {
+      selectValue: '',
+      options: [
+        
+      ],
+    };
   },
   computed: {},
   watch: {},

@@ -17,7 +17,7 @@
     // line-height: 30px;
     display: flex;
     justify-content: space-around;
-    color: rgba(39,48,75,.85);
+    color: rgba(39, 48, 75, 0.85);
     font-size: 12px;
   }
   ::v-deep .el-input__inner {
@@ -26,6 +26,9 @@
   .right_box {
     flex-grow: 1;
     display: inline-block;
+  }
+  .tip_empty {
+    box-shadow: 0 0 10px #ccc;
   }
 }
 
@@ -54,5 +57,17 @@
   &.hover {
     background-color: #f5f7fd;
     border-radius: 1px;
+  }
+  &.is-disabled {
+    &.selected::after {
+      background: var(--gray);
+      border: 1px solid var(--gray);
+    }
+    .el-checkbox,
+    .el-checkbox__label,
+    .el-checkbox__inner {
+      color: var(--gray);
+      border-color: var(--gray) !important;
+    }
   }
 }
