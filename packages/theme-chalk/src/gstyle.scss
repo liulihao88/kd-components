@@ -14,18 +14,16 @@
   --green2: #eaf8f2;
   --gray: #ebedf0;
   --gray2: #f7f8fa;
-  --line: #EBEDF0;
+  --line: #ebedf0;
 }
-@each $cl, $clVar in blue var(--blue), blue2 var(--blue2), 85 var(--85),
-  65 var(--65), 45 var(--45), black var(--black), white var(--white),
-  red var(--red), red2 var(--red2), yellow var(--yellow), yellow2 var(--yellow2),
-  green var(--green), green2 var(--green2), gray var(--gray), gray2 var(--gray2),
-  line var(--line)
+@each $cl, $clVar in blue var(--blue), blue2 var(--blue2), 85 var(--85), 65 var(--65), 45 var(--45), black var(--black),
+  white var(--white), red var(--red), red2 var(--red2), yellow var(--yellow), yellow2 var(--yellow2), green var(--green),
+  green2 var(--green2), gray var(--gray), gray2 var(--gray2), line var(--line)
 {
-  .cl-#{"" + $cl} {
+  .cl-#{'' + $cl} {
     color: $clVar;
   }
-  .bg-#{"" +$cl} {
+  .bg-#{'' + $cl} {
     background: $clVar;
   }
 }
@@ -40,26 +38,26 @@
     opacity: $num * 0.1;
   }
   @each $short, $long in p padding, m margin, h height, lh line-height {
-    .#{$short}#{"" + $num} {
+    .#{$short}#{'' + $num} {
       #{$long}: $num * 8px;
     }
     @if ($short == p or $short == m) {
-      .#{$short}t#{"" + $num} {
+      .#{$short}t#{'' + $num} {
         #{$long}-top: $num * 8px;
       }
-      .#{$short}r#{"" + $num} {
+      .#{$short}r#{'' + $num} {
         #{$long}-right: $num * 8px;
       }
-      .#{$short}b#{"" + $num} {
+      .#{$short}b#{'' + $num} {
         #{$long}-bottom: $num * 8px;
       }
-      .#{$short}l#{"" + $num} {
+      .#{$short}l#{'' + $num} {
         #{$long}-left: $num * 8px;
       }
-      .#{$short}lr#{"" + $num} {
+      .#{$short}lr#{'' + $num} {
         #{$long}: 0 $num * 8px;
       }
-      .#{$short}tb#{"" + $num} {
+      .#{$short}tb#{'' + $num} {
         #{$long}: $num * 8px 0;
       }
       .#{$short}t {
@@ -106,8 +104,9 @@
   flex-wrap: wrap;
 }
 
-@for $index from 0 through 100 {
-  .ft-#{$index}, .fs-#{$index} {
+@for $index from -100 through 100 {
+  .ft-#{$index},
+  .fs-#{$index} {
     font-size: $index + px;
   }
 
@@ -227,136 +226,137 @@
     left: $index + px;
   }
   .t-#{$index}\% {
-    top: $index * 1px;
+    top: $index * 1%;
   }
   .r-#{$index}\% {
-    right: $index * 1px;
+    right: $index * 1%;
   }
   .b-#{$index}\% {
-    bottom: $index * 1px;
+    bottom: $index * 1%;
   }
   .l-#{$index}\% {
-    left: $index * 1px;
+    left: $index * 1%;
   }
   .z-#{$index} {
     z-index: $index;
   }
 }
 
-@for $index from 101 through 1000 {
-  @if $index % 2 == 0 or $index % 5 == 0 or $index == 1 {
-    .w-#{$index} {
-      width: $index + px;
-    }
-    .h-#{$index} {
-      height: $index + px;
-    }
-    .h-#{$index}\% {
-      height: $index * 1%;
-    }
-    .w-#{$index}\% {
-      width: $index * 1%;
-    }
-    .m-h-#{$index}\% {
-      min-height: $index * 1%;
-    }
-    .m-w-#{$index}\% {
-      min-width: $index * 1%;
-    }
-    .l-h-#{$index}\% {
-      line-height: $index * 1%;
-    }
-    .l-h-#{$index} {
-      line-height: $index + px;
-    }
-    .m-h-#{$index} {
-      min-height: $index + px;
-    }
-    .m-w-#{$index} {
-      min-width: $index + px;
-    }
+@for $index from -1000 through 1000 {
+  @if $index >= 100 or $index < 0 {
+    @if $index % 2 == 0 or $index % 5 == 0 or $index == 1 {
+      .w-#{$index} {
+        width: $index + px;
+      }
+      .h-#{$index} {
+        height: $index + px;
+      }
+      .h-#{$index}\% {
+        height: $index * 1%;
+      }
+      .w-#{$index}\% {
+        width: $index * 1%;
+      }
+      .m-h-#{$index}\% {
+        min-height: $index * 1%;
+      }
+      .m-w-#{$index}\% {
+        min-width: $index * 1%;
+      }
+      .l-h-#{$index}\% {
+        line-height: $index * 1%;
+      }
+      .l-h-#{$index} {
+        line-height: $index + px;
+      }
+      .m-h-#{$index} {
+        min-height: $index + px;
+      }
+      .m-w-#{$index} {
+        min-width: $index + px;
+      }
 
-    // 缩写版，结果如: m-l-30
-    // 定义外边距
-    .m-#{$index} {
-      margin: $index + px;
-    }
-    .m-l-#{$index} {
-      margin-left: $index + px;
-    }
-    .m-t-#{$index} {
-      margin-top: $index + px;
-    }
-    .m-r-#{$index} {
-      margin-right: $index + px;
-    }
-    .m-b-#{$index} {
-      margin-bottom: $index + px;
-    }
-    .m-lr-#{$index} {
-      margin: 0 $index + px;
-    }
-    .m-tb-#{$index} {
-      margin: $index + px 0;
-    }
+      // 缩写版，结果如: m-l-30
+      // 定义外边距
+      .m-#{$index} {
+        margin: $index + px;
+      }
+      .m-l-#{$index} {
+        margin-left: $index + px;
+      }
+      .m-t-#{$index} {
+        margin-top: $index + px;
+      }
+      .m-r-#{$index} {
+        margin-right: $index + px;
+      }
+      .m-b-#{$index} {
+        margin-bottom: $index + px;
+      }
+      .m-lr-#{$index} {
+        margin: 0 $index + px;
+      }
+      .m-tb-#{$index} {
+        margin: $index + px 0;
+      }
 
-    // 定义内边距
-    .p-#{$index} {
-      padding: $index + px;
-    }
-    .p-l-#{$index} {
-      padding-left: $index + px;
-    }
-    .p-t-#{$index} {
-      padding-top: $index + px;
-    }
-    .p-r-#{$index} {
-      padding-right: $index + px;
-    }
-    .p-b-#{$index} {
-      padding-bottom: $index + px;
-    }
-    .p-lr-#{$index} {
-      padding: 0 $index + px;
-    }
-    .p-tb-#{$index} {
-      padding: $index + px 0;
-    }
+      // 定义内边距
+      .p-#{$index} {
+        padding: $index + px;
+      }
+      .p-l-#{$index} {
+        padding-left: $index + px;
+      }
+      .p-t-#{$index} {
+        padding-top: $index + px;
+      }
+      .p-r-#{$index} {
+        padding-right: $index + px;
+      }
+      .p-b-#{$index} {
+        padding-bottom: $index + px;
+      }
+      .p-lr-#{$index} {
+        padding: 0 $index + px;
+      }
+      .p-tb-#{$index} {
+        padding: $index + px 0;
+      }
 
-    // 定义上下左右 l-2 => left: 2px; t-10 => top: 10px;
+      // 定义上下左右 l-2 => left: 2px; t-10 => top: 10px;
 
-    .t-#{$index} {
-      top: $index + px;
-    }
-    .r-#{$index} {
-      right: $index + px;
-    }
-    .b-#{$index} {
-      bottom: $index + px;
-    }
-    .l-#{$index} {
-      left: $index + px;
-    }
-    .t-#{$index}\% {
-      top: $index * 1px;
-    }
-    .r-#{$index}\% {
-      right: $index * 1px;
-    }
-    .b-#{$index}\% {
-      bottom: $index * 1px;
-    }
-    .l-#{$index}\% {
-      left: $index * 1px;
-    }
-    .z-#{$index} {
-      z-index: $index;
+      .t-#{$index} {
+        top: $index + px;
+      }
+      .r-#{$index} {
+        right: $index + px;
+      }
+      .b-#{$index} {
+        bottom: $index + px;
+      }
+      .l-#{$index} {
+        left: $index + px;
+      }
+      .t-#{$index}\% {
+        top: $index * 1%;
+      }
+      .r-#{$index}\% {
+        right: $index * 1%;
+      }
+      .b-#{$index}\% {
+        bottom: $index * 1%;
+      }
+      .l-#{$index}\% {
+        left: $index * 1%;
+      }
+      .z-#{$index} {
+        z-index: $index;
+      }
     }
   }
 }
 
-@each $short, $long in ct center, bt space-between, ar space-around, fe flex-end
-{
+@each $short, $long in ct center, bt space-between, ar space-around, fe flex-end {
   .f-#{$short} {
     display: flex;
     align-items: center;
@@ -370,8 +370,7 @@
   }
 }
 // 垂直对齐相关 vertical-align
-@each $short, $long in t top, b bottom, m middle, bl baseline, sb sub, sp super
-{
+@each $short, $long in t top, b bottom, m middle, bl baseline, sb sub, sp super {
   .v#{$short} {
     vertical-align: $long;
   }
@@ -448,7 +447,7 @@
 //文本超出换行或隐藏，最多5行
 @for $i from 1 through 5 {
   .line-#{$i} {
-    @if $i == "1" {
+    @if $i == '1' {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
