@@ -225,7 +225,7 @@ export const pageMixin = {
     },
     // copy成功的提示文案
     mClipboardSuccess(val) {
-      $toast(`${val.text}复制成功`, 's', { duration: 1000 });
+      $toast(`${val.text}复制成功`, 's', { duration: 500 });
     },
   },
 };

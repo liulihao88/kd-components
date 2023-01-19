@@ -3,10 +3,19 @@
     <el-button @click="popWin">抽屉</el-button>
     <el-button @click="popWin2">自定义title和footer插槽</el-button>
     <el-button type="primary" @click="isShowMulty = true">嵌套抽屉</el-button>
-    <kd-drawer ref="drawerRef" :visible.sync="isShow" title="提示" @confirm="confirm">
+    <kd-drawer
+      ref="drawerRef"
+      :visible.sync="isShow"
+      title="提示"
+      sub-title="examples/drawer/index.vue"
+      @confirm="confirm"
+    >
       <el-form ref="formRef" :model="form" :rules="rules">
         <el-form-item label="中文名" prop="realName">
           <kd-input v-model="form.realName"></kd-input>
+        </el-form-item>
+        <el-form-item label="英文名" prop="enName">
+          <kd-input v-model="form.enName" v-focus></kd-input>
         </el-form-item>
       </el-form>
       <div style="background-color: red; height: 300px"></div>
@@ -70,9 +79,11 @@ export default {
       isShowMulty3: false,
       form: {
         realName: '',
+        enName: '',
       },
       rules: {
         realName: [{ required: true, message: '请输入中文', trigger: 'blur' }],
+        enName: [this.mBlurRequired()],
       },
     };
   },

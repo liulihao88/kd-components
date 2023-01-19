@@ -78,7 +78,12 @@ export default function (app) {
       };
     },
   });
-  // 按钮点击节流 throttle
+  /**
+   * 按钮点击节流 throttle. 默认是1000毫秒节流一次
+   * @example
+   * v-throttle
+   * v-throttle="500"
+   */
   app.directive('throttle', {
     bind: function (el, binding) {
       function handleClick() {
@@ -100,7 +105,19 @@ export default function (app) {
     },
   });
 
-  // 复制文本
+  /**
+ * 复制文本
+ * v-clipboard="testVal"
+ * v-clipboard:success="clipboardSuccess"
+ * v-clipboard:error="errorSuccess"
+ * @example
+ * <div v-clipboard="'小岳岳不服'" v-clipboard:success="clipboardSuccess">出来单挑啊</div>
+*   clipboardSuccess(val) {
+      this.$message({
+        message: `内容(${val.text})复制成功`
+      });
+    }
+ */
   app.directive('clipboard', {
     bind(el, binding) {
       if (binding.arg === 'success') {
@@ -118,11 +135,11 @@ export default function (app) {
         });
         clipboard.on('success', (e) => {
           const callback = el._v_clipboard_success;
-                callback && callback(e) // eslint-disable-line
+          callback && callback(e); // eslint-disable-line
         });
         clipboard.on('error', (e) => {
           const callback = el._v_clipboard_error;
-                callback && callback(e) // eslint-disable-line
+          callback && callback(e); // eslint-disable-line
         });
         el._v_clipboard = clipboard;
       }
@@ -150,6 +167,22 @@ export default function (app) {
         el._v_clipboard.destroy();
         delete el._v_clipboard;
       }
+    },
+  });
+
+  /**
+   * 自动聚焦
+   * v-focus
+   */
+  app.directive('focus', {
+    // 获取光标在inserted中操作，此时元素已经插入到父节点了
+    inserted(el) {
+      el = el.nodeName === 'INPUT' ? el : el.children[0];
+      el.focus();
+    },
+    bind(el) {
+      el = el.nodeName === 'INPUT' ? el : el.children[0];
+      el.focus();
     },
   });
 }
