@@ -298,16 +298,17 @@ export const checkForm = (formName, self) => {
  * @example
  * this.$pub.validateForm(this, ()=>{})
  * this.$pub.validateForm(this, ()=>{}, 'form2Ref')
+ * 这个方法废弃吧, 建议使用mixin的 this.mValidForm()
  */
-export function validateForm(_this, sucCb, ref = 'formRef') {
-  _this.$refs[ref].validate((valid) => {
-    if (valid) {
-      sucCb();
-    } else {
-      return $toast('验证未通过', 'e');
-    }
-  });
-}
+// export function validateForm(_this, sucCb, ref = 'formRef') {
+//   _this.$refs[ref].validate((valid) => {
+//     if (valid) {
+//       sucCb();
+//     } else {
+//       return $toast('验证未通过', 'e');
+//     }
+//   });
+// }
 
 /**
  * 返回一个promise的睡眠函数

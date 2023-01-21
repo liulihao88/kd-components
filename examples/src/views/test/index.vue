@@ -19,9 +19,7 @@ export default {
   data() {
     return {
       selectValue: '',
-      options: [
-        
-      ],
+      options: [],
     };
   },
   computed: {},
