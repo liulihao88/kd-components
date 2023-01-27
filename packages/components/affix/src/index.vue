@@ -10,6 +10,7 @@ export default {
   props: {
     offsetTop: {
       type: [String, Number, undefined],
+      default: undefined,
     },
     offsetBottom: {
       type: [String, Number],
