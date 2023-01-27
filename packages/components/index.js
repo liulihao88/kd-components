@@ -35,6 +35,7 @@ import TableSearch from './TableSearch';
 import ScrollGroup from './ScrollGroup';
 import scrollbar from './scrollbar';
 import cron from './cron';
+import Dev from './Dev';
 
 const components = [
   DetailBtn,
@@ -72,6 +73,7 @@ const components = [
   scrollbar,
   cron,
   TableSearch,
+  Dev,
 ];
 
 const install = (app) => {
@@ -119,6 +121,7 @@ export {
   scrollbar,
   cron,
   TableSearch,
+  Dev,
 };
 
 export default install;
