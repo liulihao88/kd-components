@@ -96,6 +96,11 @@
   }
 }
 
+.el-table th.el-table__cell {
+  user-select: inherit;
+}
+
+
 // 单选框字号
 // 表单中radio选项
 .el-radio {
