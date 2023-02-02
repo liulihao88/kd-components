@@ -59,7 +59,6 @@ export default {
   color: var(--blue);
   opacity: 0.6;
   height: 0px;
-  font-size: 14px;
   font-weight: 700;
   display: inline-block;
 }
@@ -86,7 +85,6 @@ export default {
   position: fixed;
   line-height: 0px;
   height: 0px;
-  // text-align: right;
 }
 
 .outer_top {
