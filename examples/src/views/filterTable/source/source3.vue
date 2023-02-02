@@ -289,7 +289,7 @@ export default {
               permissionTypes: ['create', 'del', 'edit', 'config'],
               projectId: '1542114681269780487',
               nameEn: 'sq1',
-              nameCn: 'sql任务1',
+              nameCn: 'sql任务1sssssssssssssssssssssssssssssssssssssssq',
               realComputationType: 'FLINK_SQL',
               status: 'UNSTART',
               startTime: null,

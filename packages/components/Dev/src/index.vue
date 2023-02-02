@@ -26,7 +26,7 @@
   </kd-dev>
   <kd-dev sub-title="examples/test/index.vue" type="fixed" class="t-40 r-200"></kd-dev>
 */
-import { $toast } from 'utils';
+import { $toast } from '@kd/utils';
 export default {
   name: 'KdDev',
   components: {},
