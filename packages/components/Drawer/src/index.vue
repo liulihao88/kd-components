@@ -34,6 +34,7 @@
         <slot name="footer">
           <el-button
             v-if="showConfirm"
+            id="kdDrawerConfirmBtn"
             v-throttle="cancelThrottleNumber"
             :type="confirmAttrs.type || 'primary'"
             v-bind="confirmAttrs"
@@ -158,8 +159,25 @@ export default {
       return changeAttrs;
     },
   },
-  mounted() {},
+  created() {
+    this.keyupEnter();
+  },
   methods: {
+    // 如果在dialog打开的情况下, 给确定按钮绑定enter事件. 注意, 如果有多个visible的情况, 因为visible变量公用, 无法使用回车, 需要用v-if
+    keyupEnter() {
+      document.onkeydown = (e) => {
+        let hasConfirmBtn = document.getElementById('kdDrawerConfirmBtn');
+        if (!hasConfirmBtn) {
+          return;
+        }
+        if (e.keyCode === 13 && this.$attrs.visible === true) {
+          this.confirm();
+          // 阻止冒泡, 否则el-button等组件也有默认回车事件
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      };
+    },
     confirm() {
       if (this.$listeners.confirm) {
         this.$emit('confirm');
