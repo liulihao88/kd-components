@@ -1,5 +1,10 @@
 import { $toast } from '@kd/utils/index.js';
 export const pageMixin = {
+  data() {
+    return {
+      mIsDev: process.env.NODE_ENV === 'development',
+    };
+  },
   methods: {
     /**
       * ，CREATE： 对应添加，UPDATE：编辑，DELETE：删除，LOAD：搜索和详情，其余的都是CONFIG
@@ -136,10 +141,6 @@ export const pageMixin = {
         return '';
       }
       return this.$route.meta.menuKey;
-    },
-    // 是否是本地环境
-    mIsDev() {
-      return process.env.NODE_ENV === 'development';
     },
 
     // 清空form表单的校验

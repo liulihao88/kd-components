@@ -1,65 +1,30 @@
 <template>
   <div>
-    <kd-dialog ref="drawerRef" title="t1" sub-title="examples/test/t1.vue" :visible.sync="isShow" @confirm="confirm">
-      <el-form ref="formRef" :model="form" :rules="rules">
-        <el-form-item label="名称" prop="name">
-          <kd-input v-model="form.name" />
-        </el-form-item>
-      </el-form>
-    </kd-dialog>
+    t1
   </div>
 </template>
 
 <script>
 export default {
-  name: 'T1',
-  components: {},
+  name: "T1",
+  components: {
+     
+  },
   props: {},
   data() {
     return {
-      isShow: false,
-      type: 'add',
-      form: {
-        name: '',
-      },
-      originForm: {},
-      rules: {
-        name: [this.mBlurRequired()],
-      },
-    };
+       
+    }
   },
   computed: {},
   watch: {},
-  created() {
-    // this.originForm = this.$pub.deepClone(this.form);
-  },
+  created() {},
   mounted() {},
   methods: {
-    isDev() {
-      if (this.mIsDev) {
-        this.form = {
-          name: '',
-        };
-      }
-    },
-    open(row) {
-      if (row) {
-        this.type = 'edit';
-        this.form = Object.assign(this.originForm, row);
-      } else {
-        this.type = 'add';
-        // this.form = this.$pub.deepClone(this.originForm);
-        this.isDev();
-      }
-      this.isShow = true;
-    },
-    async confirm() {
-      await this.mValidForm();
-      let res = await this.$pub.sleep(1000);
-      this.isShow = false;
-      this.$emit('update');
-    },
-  },
-};
+
+  }
+}
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+</style>
