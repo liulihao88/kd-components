@@ -6,6 +6,7 @@
     :size="mergeAttrs.size"
     v-bind="$attrs"
     v-on="$listeners"
+    @closed="_closed"
   >
     <template slot="title">
       <slot name="title">
@@ -59,6 +60,7 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash';
 export default {
   name: 'KdDrawer',
   props: {
@@ -70,6 +72,10 @@ export default {
     confirmText: {
       type: String,
       default: '提交',
+    },
+    cancelText: {
+      type: String,
+      default: '取消',
     },
     showFooter: {
       type: Boolean,
@@ -83,15 +89,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    cancelText: {
-      type: String,
-      default: '取消',
-    },
     loading: {
       type: Boolean,
       default: false,
     },
-
     wrapperClosable: {
       type: Boolean,
       default: process.env.NODE_ENV === 'development',
@@ -135,6 +136,21 @@ export default {
       type: String,
       default: '',
     },
+    // 允许自动清空表单
+    clear: {
+      type: Boolean,
+      default: false,
+    },
+    // 允许自动清空的表单名, 默认form
+    formData: {
+      type: String,
+      default: 'form',
+    },
+  },
+  data() {
+    return {
+      orgForm: {},
+    };
   },
   computed: {
     mergeAttrs() {
@@ -160,29 +176,66 @@ export default {
     },
   },
   created() {
-    this.keyupEnter();
+    window.addEventListener('keydown', this.enterSubmit);
+  },
+  destroyed() {
+    window.removeEventListener('keydown', this.enterSubmit);
   },
   methods: {
+    // 如果form有默认参数, 需要先使用这个方法把默认参数加进来.
+    $clear(oForm) {
+      this.orgForm = cloneDeep(oForm);
+    },
     // 如果在dialog打开的情况下, 给确定按钮绑定enter事件. 注意, 如果有多个visible的情况, 因为visible变量公用, 无法使用回车, 需要用v-if
-    keyupEnter() {
-      document.onkeydown = (e) => {
-        let hasConfirmBtn = document.getElementById('kdDrawerConfirmBtn');
-        if (!hasConfirmBtn) {
-          return;
-        }
-        if (e.keyCode === 13 && this.$attrs.visible === true) {
-          this.confirm();
-          // 阻止冒泡, 否则el-button等组件也有默认回车事件
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      };
+    enterSubmit(e) {
+      if (this.$attrs.visible !== true || !this.mIsDev) {
+        return;
+      }
+      let hasConfirmBtn = document.getElementById('kdDrawerConfirmBtn');
+      if (!hasConfirmBtn) {
+        return;
+      }
+      if (e.keyCode === 13) {
+        this.confirm();
+        // 阻止冒泡, 否则el-button等组件也有默认回车事件
+        e.preventDefault();
+        e.stopPropagation();
+      }
     },
     confirm() {
       if (this.$listeners.confirm) {
         this.$emit('confirm');
       } else {
         this.$emit('update:visible', false);
+      }
+    },
+    _closed() {
+      // 如果clear属性不为真, 或者外部调用了close属性. 返回
+      if (this.clear !== true) {
+        return;
+      }
+      let formData = this.$parent[this.formData];
+      if (Object.keys(this.orgForm).length === 0) {
+        Object.keys(formData).forEach((key) => {
+          let getType = this.judgeType(key);
+          if (getType === 'array') {
+            formData[key] = [];
+          } else if (getType === 'object') {
+            formData[key] = {};
+          } else {
+            formData[key] = '';
+          }
+        });
+      } else {
+        this.$parent[this.formData] = cloneDeep(this.orgForm);
+      }
+    },
+    judgeType(type) {
+      if (typeof type === 'object') {
+        const objType = Object.prototype.toString.call(type).slice(8, -1).toLowerCase();
+        return objType;
+      } else {
+        return typeof type;
       }
     },
     handleClose() {
