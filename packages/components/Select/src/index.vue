@@ -5,7 +5,6 @@
     </div>
     <el-select
       v-loading="loading"
-      :class="options.length === 0 && 'tip_empty'"
       class="right_box"
       :filterable="$attrs.filterable !== false"
       :placeholder="handlePlaceholder()"
@@ -121,7 +120,7 @@ export default {
   methods: {
     handlePlaceholder() {
       const { $attrs } = this;
-      let res = $attrs.disabled ? this.disPlaceholder : $attrs.placeholder || '请输入';
+      let res = $attrs.disabled ? this.disPlaceholder : $attrs.placeholder || '请选择';
       return res;
     },
     // 将label作为多个值连接起来。 比如 admin/管理员, 这是两个属性拼接出来的
