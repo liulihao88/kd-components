@@ -1,5 +1,5 @@
 <template>
-  <div class="kd-title" :style="{ ...handleMargin }">
+  <div class="kd-title" :style="{ ...margin, ...handleMargin }">
     <div ref="titleRef" class="kd-left-title">
       <div>
         <span>{{ title }}</span>
@@ -27,6 +27,7 @@
 <kd-title
   title="我是title测试"
   subTitle="只是本地显示"
+  t="0"
   style="--lc: red; margin-bottom: 30px"
   class="bd-b-1"
   size="none"
@@ -57,11 +58,40 @@ export default {
       type: String,
       default: '',
     },
+    t: {
+      type: [String, Number],
+      default: '',
+    },
+    b: {
+      type: [String, Number],
+      default: '',
+    },
+    l: {
+      type: [String, Number],
+      default: '',
+    },
   },
   data() {
     return {};
   },
   computed: {
+    margin() {
+      if (!this.t && !this.b && !this.l) {
+        return {};
+      } else {
+        let obj = {};
+        if (this.t) {
+          obj.marginTop = this.mHandleUnit(this.t);
+        }
+        if (this.b) {
+          obj.marginBottom = this.mHandleUnit(this.t);
+        }
+        if (this.l) {
+          obj.marginLeft = this.mHandleUnit(this.l);
+        }
+        return obj;
+      }
+    },
     handleMargin() {
       if (this.size === 'none') {
         return { margin: '0' };

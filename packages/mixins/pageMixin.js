@@ -164,6 +164,12 @@ export const pageMixin = {
       }
       return { width: this.width + 'px' };
     },
+    mHandleUnit(inner) {
+      if (typeof inner === 'string' && (inner.indexOf('px') !== -1 || inner.indexOf('%') !== -1)) {
+        return inner;
+      }
+      return inner + 'px';
+    },
     /**
      * 用于不写computed属性来展示删除, 移动个数
      * @param {*} str 要展示的字符串
