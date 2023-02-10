@@ -19,7 +19,6 @@ import '../../packages/theme-chalk/src/index.scss';
 import { zhCn, ja } from '../../packages/locale/index';
 import VueClipboard from 'vue-clipboard2';
 Vue.config.productionTip = false;
-import '@kd/utils/tableTooltipCanCopy.js';
 
 Vue.use(VueClipboard);
 Vue.use(ElementUI, {
