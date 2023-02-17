@@ -5,7 +5,7 @@
       <template v-if="oldModel">
         <div class="old-model-row">
           <slot></slot>
-          <div>
+          <div style="font-size: 0">
             <el-button type="primary" @click="onSearch">查询</el-button>
             <el-button @click="onReset">重置</el-button>
           </div>
@@ -17,7 +17,7 @@
           <div class="input-wrap">
             <slot></slot>
           </div>
-          <div>
+          <div style="font-size: 0">
             <el-button type="primary" @click="onSearch">查询</el-button>
             <el-button @click="onReset">重置</el-button>
             <el-button v-if="hasMore" type="text" @click="onFold">
