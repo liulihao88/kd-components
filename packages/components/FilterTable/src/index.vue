@@ -616,7 +616,7 @@ export default {
     },
     echoFilterData: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
   data() {
