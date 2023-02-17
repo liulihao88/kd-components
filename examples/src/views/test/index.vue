@@ -8,7 +8,7 @@
       :wordSearchFlag="true"
       :searchFlag="true"
       :showSearch="true"
-      :echoFilterData="echoFilterData"
+      
       @updatePage="init"
     >
       <template #operation>
