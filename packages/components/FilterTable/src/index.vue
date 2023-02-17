@@ -614,6 +614,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    echoFilterData: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -661,6 +665,7 @@ export default {
   },
   created() {
     this.updateTable();
+    this.echoAll();
     // this.toSearch()
   },
   methods: {
@@ -987,6 +992,27 @@ export default {
     confirmBtn(btn, _this, scope, isOut = true) {
       isOut ? this.handleCloseOut(scope.$index) : this.handleClose(scope.$index);
       btn.confirm && btn.confirm.call(_this, scope.row, scope);
+    },
+    echoAll() {
+      if (this.showSearch) {
+        const { advancedSearchFlag, word, currentPage, pageSize } = this.echoFilterData;
+        const search = this.echoFilterData.search ?? {};
+        this.advancedSearchFlag = advancedSearchFlag ?? false;
+        if (this.searchFlag && this.advancedSearchFlag) {
+          this.search = {
+            ...this.search,
+            ...search,
+            word: '',
+          };
+        }
+        if (this.wordSearchFlag && !this.advancedSearchFlag) {
+          this.search.word = word ?? '';
+        }
+        if (this.pageFlag) {
+          this.currentPage = currentPage ?? 1;
+          this.pageSize = pageSize ?? 10;
+        }
+      }
     },
   },
 };
