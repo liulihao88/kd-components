@@ -996,8 +996,8 @@ export default {
     echoAll() {
       if (this.showSearch) {
         const { advancedSearchFlag, word, currentPage, pageSize } = this.echoFilterData;
-        const search = this.echoFilterData.search ?? {};
-        this.advancedSearchFlag = advancedSearchFlag ?? false;
+        const search = this.echoFilterData.search || {};
+        this.advancedSearchFlag = advancedSearchFlag || false;
         if (this.searchFlag && this.advancedSearchFlag) {
           this.search = {
             ...this.search,
@@ -1006,11 +1006,11 @@ export default {
           };
         }
         if (this.wordSearchFlag && !this.advancedSearchFlag) {
-          this.search.word = word ?? '';
+          this.search.word = word || '';
         }
         if (this.pageFlag) {
-          this.currentPage = currentPage ?? 1;
-          this.pageSize = pageSize ?? 10;
+          this.currentPage = currentPage || 1;
+          this.pageSize = pageSize || 10;
         }
       }
     },
