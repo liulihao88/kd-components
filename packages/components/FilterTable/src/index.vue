@@ -72,10 +72,10 @@
             <div class="searchopers search_btn">
               <div ref="searchBoxRef" class="f" style="flex-wrap: wrap">
                 <slot name="search" :search="search" :disabled="!advancedSearchFlag"></slot>
-                <el-button type="primary" class="ml mb" size="small" @click="toSearch"> 查询 </el-button>
-                <el-button size="small" class="mb" @click="toReset"> 重置 </el-button>
               </div>
-              <!-- <el-button v-if="openSearchFlag" type="text" size="small" class="expandbtn" @click="toggleMoreSearch">
+              <el-button type="primary" class="ml" size="small" @click="toSearch"> 查询 </el-button>
+              <el-button size="small" @click="toReset"> 重置 </el-button>
+              <el-button v-if="openSearchFlag" type="text" size="small" class="expandbtn" @click="toggleMoreSearch">
                 {{ !advancedSearchFlag ? '展开' : '收起' }}
                 <i
                   :class="{
@@ -83,7 +83,7 @@
                     'el-icon-arrow-down': !advancedSearchFlag,
                   }"
                 ></i>
-              </el-button> -->
+              </el-button>
             </div>
           </div>
           <div class="operations">
