@@ -1,7 +1,7 @@
 {
   "name": "@kd/utils",
   "alias": "kd-utils",
-  "version": "2.0.10",
+  "version": "2.0.13",
   "private": false,
   "description": "工具库",
   "license": "MIT",
