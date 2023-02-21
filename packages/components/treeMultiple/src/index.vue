@@ -1,7 +1,6 @@
 <!--
  * @description: 树形结构 多选, 获取最后一级的数据
  * @params: isObject true 返回数组是[{name:'',id: ''}], false 返回数组 [2,3]
- * @author: huruirui@keendata.com
  !-->
 <template>
   <div class="orgtree">

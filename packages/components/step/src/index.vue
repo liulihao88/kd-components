@@ -1,6 +1,5 @@
 <!--
  * @description: step,根据屏幕宽度和step的数量自适应。
- * @author: huruirui@keendata.com
  !-->
 <template>
   <div class="task-step">

@@ -1,6 +1,5 @@
 <!--
  * @description: 下拉多选
- * @author: huruirui@keendata.com
  !-->
 <template>
   <el-select v-model="checkValue" v-bind="$attrs" multiple popper-class="need-table-checkbox" v-on="$listeners">
