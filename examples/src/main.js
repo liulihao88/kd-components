@@ -57,7 +57,7 @@ const setTheme = (theme) => {
     }
   }
 };
-setTheme('');
+setTheme('light');
 
 new Vue({
   render: (h) => h(App),
