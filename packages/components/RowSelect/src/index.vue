@@ -212,7 +212,7 @@ export default {
     },
     activeBgColor: {
       type: String,
-      default: '#365edf',
+      default: 'var(--primary-color)',
     },
     hoverBgColor: {
       type: String,

@@ -1,6 +1,6 @@
 // 页面顶部进度条颜色
 #nprogress .bar {
-  background: #365edf !important;
+  background: var(--primary-color) !important;
 }
 
 // tooltip最大宽度
@@ -157,7 +157,7 @@
 // 带时分秒格式日期样式重置
 .kj-datepicker {
   .el-time-spinner__item.active:not(.disabled) {
-    background: #365edf;
+    background: var(--primary-color);
     border-radius: 3px;
     margin: 0 8px;
     color: #ffffff;
@@ -174,7 +174,7 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background: #0052d9;
+    background: var(--primary-color2);
     border-radius: 50%;
   }
   .el-picker-panel__footer {
@@ -184,7 +184,7 @@
     }
     > button:last-child,
     > button:last-child:hover {
-      background: #365edf;
+      background: var(--primary-color);
       border-radius: 1px;
       color: #ffffff;
     }
@@ -245,7 +245,7 @@
 // 带时分秒格式日期样式重置
 .kj-datepicker {
   .el-time-spinner__item.active:not(.disabled) {
-    background: #365edf;
+    background: var(--primary-color);
     border-radius: 3px;
     margin: 0 8px;
     color: #ffffff;
@@ -262,7 +262,7 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background: #0052d9;
+    background: var(--primary-color2);
     border-radius: 50%;
   }
   .el-picker-panel__footer {
@@ -272,7 +272,7 @@
     }
     > button:last-child,
     > button:last-child:hover {
-      background: #365edf;
+      background: var(--primary-color);
       border-radius: 1px;
       color: #ffffff;
     }
