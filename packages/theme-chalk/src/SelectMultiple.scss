@@ -4,8 +4,8 @@
     z-index: 10;
     width: 16px;
     height: 16px;
-    background: #365edf;
-    border: 1px solid #365edf;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 2px;
     color: #ffffff;
     top: 50%;
@@ -18,7 +18,7 @@
     height: 16px;
   }
   &.selected .el-checkbox__label {
-    color: #365edf;
+    color: var(--primary-color);
   }
   &.hover {
     background-color: #f5f7fd;

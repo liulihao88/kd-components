@@ -86,7 +86,11 @@
                 :hide-on-click="false"
                 @visible-change="btnShowHandler($event, node, data)"
               >
-                <i class="kd-icon-ellipsis po-r" style="color: #365edf" @click="ellipsisHandler(node, data)"></i>
+                <i
+                  class="kd-icon-ellipsis po-r"
+                  style="color: var(--primary-color)"
+                  @click="ellipsisHandler(node, data)"
+                ></i>
                 <el-dropdown-menu slot="dropdown">
                   <div v-for="(btn, index) in defaultProps.btns" :key="index">
                     <template v-if="btn.useSlot">
