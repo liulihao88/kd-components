@@ -194,10 +194,15 @@ export function setStorage(str, params, isLocalStorage = false) {
   }
 }
 
-export function getStorage(data) {
+export function getStorage(data, isSessionFirst = false) {
   // 先获取localStorage数据, 如果没有再获取sessionStorage数据。 如果都没有， null;
   let getLocalData = localStorage.getItem(data);
   let getSessionData = sessionStorage.getItem(data);
+  // 如果isSessionFirst为true, 先判断sessionStorage, 后判断localStorage
+  if (isSessionFirst) {
+    getLocalData = sessionStorage.getItem(data);
+    getSessionData = localStorage.getItem(data);
+  }
   if (getLocalData) {
     try {
       if (typeof JSON.parse(getLocalData) !== 'number') {

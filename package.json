@@ -1,9 +1,9 @@
 {
   "name": "@kd/components",
   "alias": "kd-components",
-  "version": "2.0.11",
+  "version": "2.0.13",
   "private": false,
-  "description": "科杰大数据组件库",
+  "description": "组件库",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:es && npm run build:umd && npm run build:theme",
