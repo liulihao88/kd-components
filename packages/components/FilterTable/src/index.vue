@@ -665,8 +665,10 @@ export default {
   },
   created() {
     this.updateTable();
-    this.echoAll();
     // this.toSearch()
+  },
+  mounted() {
+    // this.echoAll();
   },
   methods: {
     // 表格confirmInfo判断函数还是String
@@ -995,7 +997,7 @@ export default {
     },
     echoAll() {
       if (this.showSearch) {
-        const { advancedSearchFlag, word, currentPage, pageSize } = this.echoFilterData;
+        const { advancedSearchFlag, currentPage, pageSize } = this.echoFilterData;
         const search = this.echoFilterData.search || {};
         this.advancedSearchFlag = advancedSearchFlag || false;
         if (this.searchFlag && this.advancedSearchFlag) {
@@ -1006,7 +1008,10 @@ export default {
           };
         }
         if (this.wordSearchFlag && !this.advancedSearchFlag) {
-          this.search.word = word || '';
+          this.search = {
+            ...this.search,
+            ...search,
+          };
         }
         if (this.pageFlag) {
           this.currentPage = currentPage || 1;

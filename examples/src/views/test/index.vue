@@ -8,7 +8,7 @@
       :wordSearchFlag="true"
       :searchFlag="true"
       :showSearch="true"
-      
+      :echoFilterData="echoFilterData"
       @updatePage="init"
     >
       <template #operation>
@@ -44,10 +44,11 @@ export default {
         ],
       echoFilterData: {
         advancedSearchFlag: false,
-        word: '11',
+        // word: '11',
         search: {
           name: '高启强',
           id: '1',
+          word: '11',
         },
         currentPage: 2,
         pageSize: 20,
