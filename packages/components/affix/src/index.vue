@@ -16,6 +16,14 @@ export default {
       type: [String, Number],
       default: 0,
     },
+    offsetLeft: {
+      type: [String, Number],
+      default: 184,
+    },
+    offsetRight: {
+      type: [String, Number],
+      default: 0,
+    },
   },
   computed: {
     boxStyle() {
@@ -23,10 +31,14 @@ export default {
       if (typeof this.offsetTop === 'string' || typeof this.offsetTop === 'number') {
         return {
           top: this.offsetTop,
+          left: this.offsetLeft,
+          right: this.offsetRight,
         };
       } else {
         return {
           bottom: this.offsetBottom,
+          left: this.offsetLeft,
+          right: this.offsetRight,
         };
       }
     },
