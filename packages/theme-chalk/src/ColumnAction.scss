@@ -39,9 +39,10 @@ $--primary-color:var(--primary-color);
   cursor: pointer;
 }
 
-.el-dropdown-menu__small.kd-column-action__dropdown-menu {
+.el-dropdown-menu--small.kd-column-action__dropdown-menu {
   min-width: auto;
   padding: 10px 0;
+  margin-top:1px!important;
   .el-dropdown-menu__item {
     line-height: 32px;
     font-size: 12px;
