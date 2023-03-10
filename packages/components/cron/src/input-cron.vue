@@ -119,7 +119,7 @@ export default {
     showDialog() {
       this.dialog.show = true;
       if (!this.value) {
-        this.editCronValue = '* * * * * ? *';
+        this.editCronValue = '0 0 0 * * ? *';
       } else {
         this.editCronValue = this.value;
       }
