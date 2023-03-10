@@ -762,8 +762,8 @@ export default {
             return v;
           });
           if (item.btns.length > item.maxBtns) {
-            baseBtns = item.btns.slice(0, 2);
-            hideBtns = item.btns.slice(2);
+            baseBtns = item.btns.slice(0, item.maxBtns);
+            hideBtns = item.btns.slice(item.maxBtns);
           } else {
             baseBtns = item.btns;
           }
