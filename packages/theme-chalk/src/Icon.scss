@@ -1,13 +1,16 @@
-.kd-icon-wrap{
-  display:inline-flex;
-  justify-content:center;
+.kd-icon-wrap {
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
 
-  &+.kd-icon-wrap{
+  & + .kd-icon-wrap {
     margin-left: 8px;
   }
 
-  &:hover{
-    color:var(--hover-color);
+  &:hover {
+    color: var(--hover-color);
+  }
+  i.disabled {
+    cursor: not-allowed;
   }
 }

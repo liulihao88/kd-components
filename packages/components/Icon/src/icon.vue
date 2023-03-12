@@ -9,7 +9,7 @@
       margin: margin,
       cursor: pointer && !place ? 'pointer' : '',
       '--hover-color': hoverColor,
-      '--default-color': defaultColor,
+      '--default-color': defaultColor2,
       ...wrapStyle,
     }"
     @click="onClick"
@@ -19,7 +19,7 @@
         <i
           v-show="clickNum === index"
           :key="index"
-          :class="[getName(item)]"
+          :class="[getName(item), { disabled: disabled }]"
           :style="{
             'font-size': comSize,
             'line-height': comSize,
@@ -115,6 +115,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -145,6 +149,13 @@ export default {
         ];
       }
       return arr;
+    },
+    defaultColor2() {
+      let color = this.defaultColor;
+      if (this.disabled) {
+        color = '#c0c4cc';
+      }
+      return color;
     },
     comSize() {
       // 字体最小12px，最大应该不会超过99，所以使用padEnd补充单位
