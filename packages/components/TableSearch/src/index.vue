@@ -26,9 +26,11 @@
             </el-button>
           </div>
         </div>
-        <div ref="moreRow" class="more-row" :style="{ height: isFold ? '0' : scrollHeight + 'px' }">
-          <slot name="more"></slot>
-        </div>
+        <el-collapse-transition>
+          <div v-show="!isFold" class="more-row">
+            <slot name="more"></slot>
+          </div>
+        </el-collapse-transition>
       </template>
     </div>
     <div class="kd-table-search_right-wrap">
@@ -51,21 +53,12 @@ export default {
   data() {
     return {
       isFold: true, // 是否折叠
-      scrollHeight: 0,
     };
   },
   computed: {
     hasMore() {
       return get(this.$slots, 'more.length') > 0;
     },
-  },
-  mounted() {
-    if (this.hasMore) {
-      addResizeListener(this.$el, this.onResize);
-    }
-  },
-  beforeDestroy() {
-    if (this.hasMore && this.onResize) removeResizeListener(this.$el, this.onResize);
   },
   methods: {
     onFold() {
@@ -79,10 +72,6 @@ export default {
     onReset() {
       this.$emit('onReset');
       this.$emit('reset');
-    },
-    onResize() {
-      // 获取内容实际高度
-      this.scrollHeight = this.$refs.moreRow.scrollHeight;
     },
   },
 };

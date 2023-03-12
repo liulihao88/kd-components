@@ -13,7 +13,7 @@
       display: flex;
       flex: 1;
       flex-wrap: wrap;
-      margin-bottom:-16px;
+      margin-bottom: -16px;
       > * {
         margin-right: 8px;
         margin-bottom: 8px;
@@ -37,14 +37,8 @@
     align-items: center;
   }
 
-  .more-row {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
-    transition: height 0.2s;
-    & > * {
-      margin-right: 8px;
-      margin-top: 8px;
-    }
+  .more-row > * {
+    margin-right: 8px;
+    margin-top: 8px;
   }
 }
