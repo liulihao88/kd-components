@@ -23,6 +23,7 @@ import Tree from './Tree';
 import RowSelect from './RowSelect';
 import RowSelectMultiple from './RowSelectMultiple';
 import SimpleTable from './SimpleTable';
+import CompositeTable from './CompositeTable';
 import ColumnShow from './ColumnShow';
 import ColumnFilter from './ColumnFilter';
 import ColumnText from './ColumnText';
@@ -64,6 +65,7 @@ const components = [
   PopoverButton,
   PageTitle,
   SimpleTable,
+  CompositeTable,
   ColumnShow,
   ColumnFilter,
   ColumnText,
@@ -113,6 +115,7 @@ export {
   PopoverButton,
   PageTitle,
   SimpleTable,
+  CompositeTable,
   ColumnShow,
   ColumnFilter,
   ColumnText,
