@@ -32,6 +32,7 @@ import ColumnForm from './ColumnForm';
 import PopoverButton from './PopoverButton';
 import PageTitle from './PageTitle';
 import TableSearch from './TableSearch';
+import AutoSearch from './AutoSearch';
 import ScrollGroup from './ScrollGroup';
 import scrollbar from './scrollbar';
 import cron from './cron';
@@ -73,6 +74,7 @@ const components = [
   scrollbar,
   cron,
   TableSearch,
+  AutoSearch,
   Dev,
 ];
 
@@ -121,6 +123,7 @@ export {
   scrollbar,
   cron,
   TableSearch,
+  AutoSearch,
   Dev,
 };
 

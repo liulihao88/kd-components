@@ -1,6 +1,9 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
 
+- 【优化】 kd-table-search：使用el-collapse-transition组件优化折叠/展开动画
+- 【新增】 kd-auto-search：新增数据可内部自动处理的搜索组件
+
 ### V2.0.17 (2023-2-27)
 - 【优化】 gFunc的getStorage, 增加第二个参数区分取的是localStorage还是sessionStorage
 ### V2.0.16 (2023-2-22)
