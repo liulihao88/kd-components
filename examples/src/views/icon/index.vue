@@ -56,6 +56,12 @@
           图标在前
         </div>
       </div>
+      <div>
+        <span>禁用状态</span>
+        <div>
+          <kd-icon name="kd-icon-add" mr="8" size="20" disabled></kd-icon>
+        </div>
+      </div>
     </div>
     <example-code :source="source2">
       kd-icon在图标<i></i>标签的外部增加了div和el-tooltip组件，提供了更多的可利用功能。<br />
@@ -78,7 +84,8 @@
       - wrap-style：object，用于自定义kd-icon容器的样式<br />
       - wrap-class：string，自定义kd-icon容器的类名<br />
       - mt/mr/mb/ml：string，默认值0；不带px单位的边距值，分别控制图标各个方向的外边距<br />
-      - custom-next：boolean，默认值false；是否自定义next事件，如果为true，则必须外部调用next()方法才会切换图标<br /><br />
+      - custom-next：boolean，默认值false；是否自定义next事件，如果为true，则必须外部调用next()方法才会切换图标<br />
+      - disabled：boolean，默认值false；是否为禁用状态，指标样式为not-allowed<br /><br />
 
       事件：<br />
       - click：图标点击回调，如果有key，则返回key；如果有多个图标，默认情况下自动切换到下一个图标<br /><br />

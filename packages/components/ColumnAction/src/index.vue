@@ -50,7 +50,12 @@
           trigger="click"
         >
           <kd-icon name="kd-icon-ellipsis" class="kd-column-action__icon"></kd-icon>
-          <el-dropdown-menu slot="dropdown" :ref="'innerDropdown' + scope.$index" trigger="manual">
+          <el-dropdown-menu
+            slot="dropdown"
+            :ref="'innerDropdown' + scope.$index"
+            trigger="manual"
+            class="kd-column-action__dropdown-menu"
+          >
             <template v-for="item in dropdownList">
               <template v-if="btnShow(scope, item)">
                 <template v-if="item.popover">
@@ -125,6 +130,24 @@ export default {
   },
   mounted() {},
   methods: {
+    renderHeader(h, { column, $index }) {
+      console.log(column);
+      let realWidth = 0;
+      let span = document.createElement('span');
+
+      // span.innerText = column.label;
+      span.innerText = 'column.label,column.labelcolumn.label';
+      document.body.appendChild(span);
+
+      realWidth = span.getBoundingClientRect().width;
+      console.log(realWidth, realWidth - 32);
+      column.minWidth = realWidth - 32; // 可能还有边距/边框等值，需要根据实际情况加上
+      // column.minWidth = realWidth; // 可能还有边距/边框等值，需要根据实际情况加上
+
+      document.body.removeChild(span);
+      // return h('span', column.label);
+      return h('span', 'column.label,column.labelcolumn.label');
+    },
     onClick(scope, item, event) {
       item.confirm && item.confirm(scope, item);
     },

@@ -1,4 +1,5 @@
 const Clipboard = require('clipboard');
+import clickoutside from 'element-ui/src/utils/clickoutside.js';
 export default function (app) {
   // 拖拽移动弹框
   app.directive('el-drag-dialog', {
@@ -185,4 +186,6 @@ export default function (app) {
       el.focus();
     },
   });
+
+  app.directive('clickoutside', clickoutside);
 }

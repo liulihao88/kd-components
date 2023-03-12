@@ -23,6 +23,7 @@ import Tree from './Tree';
 import RowSelect from './RowSelect';
 import RowSelectMultiple from './RowSelectMultiple';
 import SimpleTable from './SimpleTable';
+import CompositeTable from './CompositeTable';
 import ColumnShow from './ColumnShow';
 import ColumnFilter from './ColumnFilter';
 import ColumnText from './ColumnText';
@@ -32,6 +33,7 @@ import ColumnForm from './ColumnForm';
 import PopoverButton from './PopoverButton';
 import PageTitle from './PageTitle';
 import TableSearch from './TableSearch';
+import AutoSearch from './AutoSearch';
 import ScrollGroup from './ScrollGroup';
 import scrollbar from './scrollbar';
 import cron from './cron';
@@ -63,6 +65,7 @@ const components = [
   PopoverButton,
   PageTitle,
   SimpleTable,
+  CompositeTable,
   ColumnShow,
   ColumnFilter,
   ColumnText,
@@ -73,6 +76,7 @@ const components = [
   scrollbar,
   cron,
   TableSearch,
+  AutoSearch,
   Dev,
 ];
 
@@ -111,6 +115,7 @@ export {
   PopoverButton,
   PageTitle,
   SimpleTable,
+  CompositeTable,
   ColumnShow,
   ColumnFilter,
   ColumnText,
@@ -121,6 +126,7 @@ export {
   scrollbar,
   cron,
   TableSearch,
+  AutoSearch,
   Dev,
 };
 
