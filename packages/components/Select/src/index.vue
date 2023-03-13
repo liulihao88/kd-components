@@ -4,7 +4,7 @@
       {{ title }}
     </div>
     <el-select
-      v-loading="loading"
+      ref="rightBox"
       class="right_box"
       :filterable="$attrs.filterable !== false"
       :placeholder="handlePlaceholder()"
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { addClass, removeClass } from 'element-ui/src/utils/dom';
+
 export default {
   name: 'KdSelect',
   components: {},
@@ -100,6 +102,7 @@ export default {
     return {
       sLabel: this.defaultProps.label || this.label,
       sValue: this.defaultProps.value || this.val,
+      originDisabled: null,
     };
   },
   watch: {
@@ -116,6 +119,28 @@ export default {
     label(val) {
       this.sLabel = this.defaultProps.label || this.label;
     },
+    loading: {
+      handler(val) {
+        const dom = this.$refs.rightBox.$el.getElementsByTagName('i');
+        if (val) {
+          if (this.originDisabled === false) {
+            this.$attrs.disabled = true;
+          }
+          addClass(dom[0], 'el-icon-loading');
+          removeClass(dom[0], 'el-icon-arrow-up');
+        } else {
+          if (this.originDisabled === false) {
+            this.$attrs.disabled = false;
+          }
+          removeClass(dom[0], 'el-icon-loading');
+          addClass(dom[0], 'el-icon-arrow-up');
+        }
+      },
+      immediate: false,
+    },
+  },
+  created() {
+    this.originDisabled = this.$attrs.disabled || false;
   },
   methods: {
     handlePlaceholder() {
