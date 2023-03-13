@@ -114,414 +114,6 @@
     <div class="content font-class">
       <ul class="icon_lists dib-box">
         <li class="dib">
-          <span class="icon iconfont kd-icon-tiaodurenwubanben"></span>
-          <div class="name">调度任务版本</div>
-          <div class="code-name">.kd-icon-tiaodurenwubanben</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-huishouzhan"></span>
-          <div class="name">回收站</div>
-          <div class="code-name">.kd-icon-huishouzhan</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-jiekou"></span>
-          <div class="name">接口</div>
-          <div class="code-name">.kd-icon-jiekou</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-pingtaiguanli"></span>
-          <div class="name">平台管理</div>
-          <div class="code-name">.kd-icon-pingtaiguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-tongzhi"></span>
-          <div class="name">通知</div>
-          <div class="code-name">.kd-icon-tongzhi</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-wendang"></span>
-          <div class="name">文档</div>
-          <div class="code-name">.kd-icon-wendang</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yonghu1"></span>
-          <div class="name">用户</div>
-          <div class="code-name">.kd-icon-yonghu1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujutongbu"></span>
-          <div class="name">数据同步</div>
-          <div class="code-name">.kd-icon-shujutongbu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujumoxing"></span>
-          <div class="name">数据模型</div>
-          <div class="code-name">.kd-icon-shujumoxing</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-wenjianjiazhankai"></span>
-          <div class="name">文件夹展开</div>
-          <div class="code-name">.kd-icon-wenjianjiazhankai</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-wenjianjia"></span>
-          <div class="name">文件夹</div>
-          <div class="code-name">.kd-icon-wenjianjia</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-xinjianwenjianjia"></span>
-          <div class="name">新建文件夹</div>
-          <div class="code-name">.kd-icon-xinjianwenjianjia</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-ellipsis"></span>
-          <div class="name">ellipsis</div>
-          <div class="code-name">.kd-icon-ellipsis</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-menu-fold"></span>
-          <div class="name">menu-fold</div>
-          <div class="code-name">.kd-icon-menu-fold</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-menu-unfold"></span>
-          <div class="name">menu-unfold</div>
-          <div class="code-name">.kd-icon-menu-unfold</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-search"></span>
-          <div class="name">search</div>
-          <div class="code-name">.kd-icon-search</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-biaoqianguanli"></span>
-          <div class="name">标签管理</div>
-          <div class="code-name">.kd-icon-biaoqianguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-biaoqianzichan"></span>
-          <div class="name">标签资产</div>
-          <div class="code-name">.kd-icon-biaoqianzichan</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-biaoqianpingtai"></span>
-          <div class="name">标签平台</div>
-          <div class="code-name">.kd-icon-biaoqianpingtai</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuyuanguanli1"></span>
-          <div class="name">数据源管理</div>
-          <div class="code-name">.kd-icon-shujuyuanguanli1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-lixiantongbu"></span>
-          <div class="name">离线同步</div>
-          <div class="code-name">.kd-icon-lixiantongbu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuzhuti"></span>
-          <div class="name">数据主题</div>
-          <div class="code-name">.kd-icon-shujuzhuti</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-gailan"></span>
-          <div class="name">概览</div>
-          <div class="code-name">.kd-icon-gailan</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujufenceng"></span>
-          <div class="name">数据分层</div>
-          <div class="code-name">.kd-icon-shujufenceng</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujucangku"></span>
-          <div class="name">数据仓库</div>
-          <div class="code-name">.kd-icon-shujucangku</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-wenjiandaoru"></span>
-          <div class="name">文件导入</div>
-          <div class="code-name">.kd-icon-wenjiandaoru</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yewuxian"></span>
-          <div class="name">业务线</div>
-          <div class="code-name">.kd-icon-yewuxian</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-renwufabu"></span>
-          <div class="name">任务发布</div>
-          <div class="code-name">.kd-icon-renwufabu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-zhiliangguanli"></span>
-          <div class="name">质量管理</div>
-          <div class="code-name">.kd-icon-zhiliangguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-zhushujuguanli"></span>
-          <div class="name">主数据管理</div>
-          <div class="code-name">.kd-icon-zhushujuguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yunyingguanli1"></span>
-          <div class="name">运营管理</div>
-          <div class="code-name">.kd-icon-yunyingguanli1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuyuanguanli11"></span>
-          <div class="name">数据源管理</div>
-          <div class="code-name">.kd-icon-shujuyuanguanli11</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-jichengguanli1"></span>
-          <div class="name">集成管理</div>
-          <div class="code-name">.kd-icon-jichengguanli1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shenpizhongxin"></span>
-          <div class="name">审批中心</div>
-          <div class="code-name">.kd-icon-shenpizhongxin</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-chaxunfenxi"></span>
-          <div class="name">查询分析</div>
-          <div class="code-name">.kd-icon-chaxunfenxi</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shishitongbunav"></span>
-          <div class="name">实时同步</div>
-          <div class="code-name">.kd-icon-shishitongbunav</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-gerenzhongxin"></span>
-          <div class="name">个人中心</div>
-          <div class="code-name">.kd-icon-gerenzhongxin</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-pandian"></span>
-          <div class="name">盘点</div>
-          <div class="code-name">.kd-icon-pandian</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-guanxitu"></span>
-          <div class="name">关系图</div>
-          <div class="code-name">.kd-icon-guanxitu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yuanshujucaiji"></span>
-          <div class="name">元数据采集</div>
-          <div class="code-name">.kd-icon-yuanshujucaiji</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujubiao"></span>
-          <div class="name">数据表</div>
-          <div class="code-name">.kd-icon-shujubiao</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuzhuti1"></span>
-          <div class="name">数据主题</div>
-          <div class="code-name">.kd-icon-shujuzhuti1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-moxingguanxi"></span>
-          <div class="name">模型关系</div>
-          <div class="code-name">.kd-icon-moxingguanxi</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-gailan1"></span>
-          <div class="name">概览</div>
-          <div class="code-name">.kd-icon-gailan1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yunwei"></span>
-          <div class="name">运维</div>
-          <div class="code-name">.kd-icon-yunwei</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-caidan"></span>
-          <div class="name">菜单</div>
-          <div class="code-name">.kd-icon-caidan</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yunhang"></span>
-          <div class="name">运行</div>
-          <div class="code-name">.kd-icon-yunhang</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-dingyue"></span>
-          <div class="name">订阅</div>
-          <div class="code-name">.kd-icon-dingyue</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-houtui"></span>
-          <div class="name">后退</div>
-          <div class="code-name">.kd-icon-houtui</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-qianjin"></span>
-          <div class="name">前进</div>
-          <div class="code-name">.kd-icon-qianjin</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujubiao1"></span>
-          <div class="name">数据表</div>
-          <div class="code-name">.kd-icon-shujubiao1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-dongjie"></span>
-          <div class="name">冻结</div>
-          <div class="code-name">.kd-icon-dongjie</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-chaxunshezhi"></span>
-          <div class="name">查询设置</div>
-          <div class="code-name">.kd-icon-chaxunshezhi</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-lixian"></span>
-          <div class="name">离线</div>
-          <div class="code-name">.kd-icon-lixian</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shuaxin"></span>
-          <div class="name">刷新</div>
-          <div class="code-name">.kd-icon-shuaxin</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-menu_js_cylb"></span>
-          <div class="name">角色管理-成员列表</div>
-          <div class="code-name">.kd-icon-menu_js_cylb</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-jiaoseguanli"></span>
-          <div class="name">角色管理</div>
-          <div class="code-name">.kd-icon-jiaoseguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-jiaobiao"></span>
-          <div class="name">角标</div>
-          <div class="code-name">.kd-icon-jiaobiao</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-zhiliangpinggu"></span>
-          <div class="name">质量评估</div>
-          <div class="code-name">.kd-icon-zhiliangpinggu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-zhiliangpinggu1"></span>
-          <div class="name">质量评估</div>
-          <div class="code-name">.kd-icon-zhiliangpinggu1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-yonghu"></span>
-          <div class="name">用户</div>
-          <div class="code-name">.kd-icon-yonghu</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shijian"></span>
-          <div class="name">时间</div>
-          <div class="code-name">.kd-icon-shijian</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-weichufa"></span>
-          <div class="name">未触发</div>
-          <div class="code-name">.kd-icon-weichufa</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-chushihua1"></span>
-          <div class="name">初始化</div>
-          <div class="code-name">.kd-icon-chushihua1</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-dengdaizhong"></span>
-          <div class="name">等待中</div>
-          <div class="code-name">.kd-icon-dengdaizhong</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuquanxian"></span>
-          <div class="name">数据权限</div>
-          <div class="code-name">.kd-icon-shujuquanxian</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-ziyuanguanli"></span>
-          <div class="name">资源管理</div>
-          <div class="code-name">.kd-icon-ziyuanguanli</div>
-        </li>
-
-        <li class="dib">
-          <span class="icon iconfont kd-icon-shujuyuanguanli"></span>
-          <div class="name">数据源管理</div>
-          <div class="code-name">.kd-icon-shujuyuanguanli</div>
-        </li>
-
-        <li class="dib">
           <span class="icon iconfont kd-icon-yonghuguanli"></span>
           <div class="name">用户管理</div>
           <div class="code-name">.kd-icon-yonghuguanli</div>
@@ -1101,6 +693,468 @@
           <span class="icon iconfont kd-icon-jishi"></span>
           <div class="name">集市</div>
           <div class="code-name">.kd-icon-jishi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-tiaodurenwubanben"></span>
+          <div class="name">调度任务版本</div>
+          <div class="code-name">.kd-icon-tiaodurenwubanben</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-huishouzhan"></span>
+          <div class="name">回收站</div>
+          <div class="code-name">.kd-icon-huishouzhan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-jiekou"></span>
+          <div class="name">接口</div>
+          <div class="code-name">.kd-icon-jiekou</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-pingtaiguanli"></span>
+          <div class="name">平台管理</div>
+          <div class="code-name">.kd-icon-pingtaiguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-tongzhi"></span>
+          <div class="name">通知</div>
+          <div class="code-name">.kd-icon-tongzhi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-wendang"></span>
+          <div class="name">文档</div>
+          <div class="code-name">.kd-icon-wendang</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yonghu1"></span>
+          <div class="name">用户</div>
+          <div class="code-name">.kd-icon-yonghu1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujutongbu"></span>
+          <div class="name">数据同步</div>
+          <div class="code-name">.kd-icon-shujutongbu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujumoxing"></span>
+          <div class="name">数据模型</div>
+          <div class="code-name">.kd-icon-shujumoxing</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-wenjianjiazhankai"></span>
+          <div class="name">文件夹展开</div>
+          <div class="code-name">.kd-icon-wenjianjiazhankai</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-wenjianjia"></span>
+          <div class="name">文件夹</div>
+          <div class="code-name">.kd-icon-wenjianjia</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-xinjianwenjianjia"></span>
+          <div class="name">新建文件夹</div>
+          <div class="code-name">.kd-icon-xinjianwenjianjia</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-ellipsis"></span>
+          <div class="name">ellipsis</div>
+          <div class="code-name">.kd-icon-ellipsis</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-menu-fold"></span>
+          <div class="name">menu-fold</div>
+          <div class="code-name">.kd-icon-menu-fold</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-menu-unfold"></span>
+          <div class="name">menu-unfold</div>
+          <div class="code-name">.kd-icon-menu-unfold</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-search"></span>
+          <div class="name">search</div>
+          <div class="code-name">.kd-icon-search</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-biaoqianguanli"></span>
+          <div class="name">标签管理</div>
+          <div class="code-name">.kd-icon-biaoqianguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-biaoqianzichan"></span>
+          <div class="name">标签资产</div>
+          <div class="code-name">.kd-icon-biaoqianzichan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-biaoqianpingtai"></span>
+          <div class="name">标签平台</div>
+          <div class="code-name">.kd-icon-biaoqianpingtai</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuyuanguanli1"></span>
+          <div class="name">数据源管理</div>
+          <div class="code-name">.kd-icon-shujuyuanguanli1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-lixiantongbu"></span>
+          <div class="name">离线同步</div>
+          <div class="code-name">.kd-icon-lixiantongbu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuzhuti"></span>
+          <div class="name">数据主题</div>
+          <div class="code-name">.kd-icon-shujuzhuti</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-gailan"></span>
+          <div class="name">概览</div>
+          <div class="code-name">.kd-icon-gailan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujufenceng"></span>
+          <div class="name">数据分层</div>
+          <div class="code-name">.kd-icon-shujufenceng</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujucangku"></span>
+          <div class="name">数据仓库</div>
+          <div class="code-name">.kd-icon-shujucangku</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-wenjiandaoru"></span>
+          <div class="name">文件导入</div>
+          <div class="code-name">.kd-icon-wenjiandaoru</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yewuxian"></span>
+          <div class="name">业务线</div>
+          <div class="code-name">.kd-icon-yewuxian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-renwufabu"></span>
+          <div class="name">任务发布</div>
+          <div class="code-name">.kd-icon-renwufabu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhiliangguanli"></span>
+          <div class="name">质量管理</div>
+          <div class="code-name">.kd-icon-zhiliangguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhushujuguanli"></span>
+          <div class="name">主数据管理</div>
+          <div class="code-name">.kd-icon-zhushujuguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yunyingguanli1"></span>
+          <div class="name">运营管理</div>
+          <div class="code-name">.kd-icon-yunyingguanli1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuyuanguanli11"></span>
+          <div class="name">数据源管理</div>
+          <div class="code-name">.kd-icon-shujuyuanguanli11</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-jichengguanli1"></span>
+          <div class="name">集成管理</div>
+          <div class="code-name">.kd-icon-jichengguanli1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shenpizhongxin"></span>
+          <div class="name">审批中心</div>
+          <div class="code-name">.kd-icon-shenpizhongxin</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-chaxunfenxi"></span>
+          <div class="name">查询分析</div>
+          <div class="code-name">.kd-icon-chaxunfenxi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shishitongbunav"></span>
+          <div class="name">实时同步</div>
+          <div class="code-name">.kd-icon-shishitongbunav</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-gerenzhongxin"></span>
+          <div class="name">个人中心</div>
+          <div class="code-name">.kd-icon-gerenzhongxin</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-pandian"></span>
+          <div class="name">盘点</div>
+          <div class="code-name">.kd-icon-pandian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guanxitu"></span>
+          <div class="name">关系图</div>
+          <div class="code-name">.kd-icon-guanxitu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yuanshujucaiji"></span>
+          <div class="name">元数据采集</div>
+          <div class="code-name">.kd-icon-yuanshujucaiji</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujubiao"></span>
+          <div class="name">数据表</div>
+          <div class="code-name">.kd-icon-shujubiao</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuzhuti1"></span>
+          <div class="name">数据主题</div>
+          <div class="code-name">.kd-icon-shujuzhuti1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-moxingguanxi"></span>
+          <div class="name">模型关系</div>
+          <div class="code-name">.kd-icon-moxingguanxi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-gailan1"></span>
+          <div class="name">概览</div>
+          <div class="code-name">.kd-icon-gailan1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yunwei"></span>
+          <div class="name">运维</div>
+          <div class="code-name">.kd-icon-yunwei</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-caidan"></span>
+          <div class="name">菜单</div>
+          <div class="code-name">.kd-icon-caidan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yunhang"></span>
+          <div class="name">运行</div>
+          <div class="code-name">.kd-icon-yunhang</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-dingyue"></span>
+          <div class="name">订阅</div>
+          <div class="code-name">.kd-icon-dingyue</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-houtui"></span>
+          <div class="name">后退</div>
+          <div class="code-name">.kd-icon-houtui</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-qianjin"></span>
+          <div class="name">前进</div>
+          <div class="code-name">.kd-icon-qianjin</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujubiao1"></span>
+          <div class="name">数据表</div>
+          <div class="code-name">.kd-icon-shujubiao1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-dongjie"></span>
+          <div class="name">冻结</div>
+          <div class="code-name">.kd-icon-dongjie</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-chaxunshezhi"></span>
+          <div class="name">查询设置</div>
+          <div class="code-name">.kd-icon-chaxunshezhi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-lixian"></span>
+          <div class="name">离线</div>
+          <div class="code-name">.kd-icon-lixian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-duobiao"></span>
+          <div class="name">多表</div>
+          <div class="code-name">.kd-icon-duobiao</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-liebiaopaiban"></span>
+          <div class="name">列表排版</div>
+          <div class="code-name">.kd-icon-liebiaopaiban</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-kapianpaiban"></span>
+          <div class="name">卡片排版</div>
+          <div class="code-name">.kd-icon-kapianpaiban</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-kuangxuan"></span>
+          <div class="name">框选</div>
+          <div class="code-name">.kd-icon-kuangxuan</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-renwu"></span>
+          <div class="name">任务</div>
+          <div class="code-name">.kd-icon-renwu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhibanzu"></span>
+          <div class="name">值班组</div>
+          <div class="code-name">.kd-icon-zhibanzu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guanximoxing1"></span>
+          <div class="name">关系模型</div>
+          <div class="code-name">.kd-icon-guanximoxing1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guizefenlei"></span>
+          <div class="name">规则分类</div>
+          <div class="code-name">.kd-icon-guizefenlei</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-guizeceshi"></span>
+          <div class="name">规则测试</div>
+          <div class="code-name">.kd-icon-guizeceshi</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shuaxin"></span>
+          <div class="name">刷新</div>
+          <div class="code-name">.kd-icon-shuaxin</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-menu_js_cylb"></span>
+          <div class="name">角色管理-成员列表</div>
+          <div class="code-name">.kd-icon-menu_js_cylb</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-jiaoseguanli"></span>
+          <div class="name">角色管理</div>
+          <div class="code-name">.kd-icon-jiaoseguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-jiaobiao"></span>
+          <div class="name">角标</div>
+          <div class="code-name">.kd-icon-jiaobiao</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhiliangpinggu"></span>
+          <div class="name">质量评估</div>
+          <div class="code-name">.kd-icon-zhiliangpinggu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-zhiliangpinggu1"></span>
+          <div class="name">质量评估</div>
+          <div class="code-name">.kd-icon-zhiliangpinggu1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-yonghu"></span>
+          <div class="name">用户</div>
+          <div class="code-name">.kd-icon-yonghu</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shijian"></span>
+          <div class="name">时间</div>
+          <div class="code-name">.kd-icon-shijian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-weichufa"></span>
+          <div class="name">未触发</div>
+          <div class="code-name">.kd-icon-weichufa</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-chushihua1"></span>
+          <div class="name">初始化</div>
+          <div class="code-name">.kd-icon-chushihua1</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-dengdaizhong"></span>
+          <div class="name">等待中</div>
+          <div class="code-name">.kd-icon-dengdaizhong</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuquanxian"></span>
+          <div class="name">数据权限</div>
+          <div class="code-name">.kd-icon-shujuquanxian</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-ziyuanguanli"></span>
+          <div class="name">资源管理</div>
+          <div class="code-name">.kd-icon-ziyuanguanli</div>
+        </li>
+
+        <li class="dib">
+          <span class="icon iconfont kd-icon-shujuyuanguanli"></span>
+          <div class="name">数据源管理</div>
+          <div class="code-name">.kd-icon-shujuyuanguanli</div>
         </li>
       </ul>
       <div class="article markdown">
