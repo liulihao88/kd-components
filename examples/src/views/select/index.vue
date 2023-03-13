@@ -54,20 +54,40 @@
       val="value2"
       @changeSelect="changeSelect"
     ></kd-select>
+
+    <h5>异步加载</h5>
+    <div>
+      <kd-select
+        v-model="t6"
+        title="测试"
+        :options="t6Options"
+        class="mr"
+        :loading="selectLoading"
+        @changeSelect="changeSelect"
+      ></kd-select>
+      <el-button @click="showLoading">加载</el-button>
+    </div>
+    <example-code :source="source1">
+      通过 loading 属性可以在组件数据异步加载时增加loading 动画，并且loading 期间是禁用状态
+    </example-code>
   </div>
 </template>
 
 <script>
 import { $toast } from 'utils';
+import source1 from './source/source1.md';
+
 export default {
   name: 'Index',
   data() {
     return {
+      source1,
       t1: '梅梅',
       t2: 'mm',
       t3: '',
       t4: ['ss', 'rr'],
       t5: [],
+      t6: '',
       t1Options: ['莎莎', '瑞瑞', '梅梅'],
       t2Options: [
         {
@@ -111,9 +131,31 @@ export default {
           value2: 'mm',
         },
       ],
+      selectLoading: false,
+      t6Options: [],
     };
   },
   methods: {
+    showLoading() {
+      this.selectLoading = true;
+      setTimeout(() => {
+        this.t6Options = [
+          {
+            name: '莎莎4',
+            value: 'ss',
+          },
+          {
+            name: '瑞瑞4',
+            value: 'rr',
+          },
+          {
+            name: '梅梅4',
+            value: 'mm',
+          },
+        ];
+        this.selectLoading = false;
+      }, 5000);
+    },
     optionDisabled(item) {
       return item.value2 === 'ss' || item.value2 === 'mm';
     },

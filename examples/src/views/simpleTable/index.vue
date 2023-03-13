@@ -234,7 +234,6 @@ export default {
     onPageChange2(e) {
       this.$message.success(JSON.stringify(e));
       let obj = Object.assign({}, this.pagingConf2, e);
-      console.log(obj);
       let arr = [];
       for (let i = 0; i < obj.pageSize; i++) {
         arr.push({

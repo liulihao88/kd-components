@@ -3,6 +3,7 @@
     <h3>下拉选择</h3>
     <div class="author">维护人：刘月鹏</div>
     <div class="sub-title">基于el-select的二次封装，el-select的所有属性与方法均适配。</div>
+    <p style="color: red; font-weight: bold">kd-select 组件已经覆盖了本组件的功能，因此不再维护</p>
 
     <h5>基础用法</h5>
     <div class="example-wrap">
