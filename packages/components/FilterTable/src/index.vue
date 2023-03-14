@@ -8,7 +8,7 @@
           <div
             ref="searchAreaComp"
             class="searcharea"
-            :style="{ width: searchareaWidth + 'px' }"
+            :style="{ width: searchareaWidthFilter }"
             :class="{ filter_active: advancedSearchFlag }"
           >
             <slot></slot>
@@ -54,7 +54,7 @@
           v-if="advancedSearchFlag"
           ref="searchBoxRef"
           class="f"
-          :style="{ 'flex-wrap': 'wrap', width: searchareaWidth + 'px' }"
+          :style="{ 'flex-wrap': 'wrap', width: searchareaWidthFilter }"
         >
           <slot name="search" :search="search" :disabled="!advancedSearchFlag"></slot>
         </div>
@@ -65,7 +65,7 @@
           <div
             ref="searchAreaComp"
             class="searcharea aloneSearcharea"
-            :style="{ width: searchareaWidth + 'px' }"
+            :style="{ width: searchareaWidthFilter }"
             :class="{ filter_active: advancedSearchFlag }"
           >
             <slot></slot>
@@ -556,7 +556,7 @@ export default {
       default: true,
     },
     searchareaWidth: {
-      type: Number,
+      type: [Number, String],
       default: 1000,
     },
     pageFlag: {
@@ -637,7 +637,20 @@ export default {
       visible: false,
     };
   },
-  computed: {},
+  computed: {
+    /**
+     * 优化searchareaWidth,
+     * 之前使用100% 时会报错,原使用方式为 searchareaWidth + “px” 拼接。不能使用px和100%
+     * @returns {string}
+     */
+    searchareaWidthFilter() {
+      let searchareaWidthString = String(this.searchareaWidth);
+      if (searchareaWidthString.indexOf('%') < 0 && searchareaWidthString.indexOf('px') < 0) {
+        return searchareaWidthString + 'px';
+      }
+      return searchareaWidthString;
+    },
+  },
   watch: {
     columns() {
       this.updateTable();
@@ -754,7 +767,7 @@ export default {
         let baseBtns = [];
         let hideBtns = [];
         if (item.btns) {
-          item.maxBtns = item.maxBtns || 3;
+          item.maxBtns = item.maxBtns || 2;
           item.btns = item.btns.map((v) => {
             if (v.isShow === undefined) {
               v.isShow = true;
