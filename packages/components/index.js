@@ -34,6 +34,7 @@ import PageTitle from './PageTitle';
 import TableSearch from './TableSearch';
 import AutoSearch from './AutoSearch';
 import ScrollGroup from './ScrollGroup';
+import StickyPage from './StickyPage';
 import scrollbar from './scrollbar';
 import cron from './cron';
 import Dev from './Dev';
@@ -75,6 +76,7 @@ const components = [
   cron,
   TableSearch,
   AutoSearch,
+  StickyPage,
   Dev,
 ];
 
@@ -124,6 +126,7 @@ export {
   cron,
   TableSearch,
   AutoSearch,
+  StickyPage,
   Dev,
 };
 
