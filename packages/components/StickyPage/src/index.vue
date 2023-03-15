@@ -26,6 +26,7 @@
 
 <script>
 import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
+import get from 'lodash/get';
 
 export default {
   name: 'KdStickyPage',
@@ -103,7 +104,10 @@ export default {
   },
   methods: {
     onResize() {
-      const wrapRect = this?.$el?.getBoundingClientRect();
+      let wrapRect;
+      if (this.$el && this.$el.getBoundingClientRect()) {
+        wrapRect = this.$el.getBoundingClientRect();
+      }
       this.wrapRect = { left: wrapRect.left, width: wrapRect.width };
       const winH = window.innerHeight; // 屏幕高度
       this.toTop = wrapRect.top;
