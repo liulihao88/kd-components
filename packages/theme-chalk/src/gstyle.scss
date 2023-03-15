@@ -55,10 +55,12 @@
         #{$long}-left: $num * 8px;
       }
       .#{$short}lr#{'' + $num} {
-        #{$long}: 0 $num * 8px;
+        #{$long}-left: $num * 8px;
+        #{$long}-right: $num * 8px;
       }
       .#{$short}tb#{'' + $num} {
-        #{$long}: $num * 8px 0;
+        #{$long}-top: $num * 8px;
+        #{$long}-bottom: $num * 8px;
       }
       .#{$short}t {
         #{$long}-top: 8px;
@@ -73,10 +75,12 @@
         #{$long}-left: 8px;
       }
       .#{$short}lr {
-        #{$long}: 0 8px;
+        #{$long}-left: 8px;
+        #{$long}-right: 8px;
       }
       .#{$short}tb {
-        #{$long}: 8px 0;
+        #{$long}-top: 8px;
+        #{$long}-bottom: 8px;
       }
     }
   }
@@ -165,10 +169,12 @@
     margin-bottom: $index + px;
   }
   .m-lr-#{$index} {
-    margin: 0 $index + px;
+    margin-left: $index + px;
+    margin-right: $index + px;
   }
   .m-tb-#{$index} {
-    margin: $index + px 0;
+    margin-top: $index + px;
+    margin-bottom: $index + px;
   }
 
   // 定义内边距
@@ -188,10 +194,12 @@
     padding-bottom: $index + px;
   }
   .p-lr-#{$index} {
-    padding: 0 $index + px;
+    padding-left: $index + px;
+    padding-right: $index + px;
   }
   .p-tb-#{$index} {
-    padding: $index + px 0;
+    padding-top: $index + px;
+    padding-bottom: $index + px;
   }
 
   // 定义border
@@ -294,10 +302,12 @@
         margin-bottom: $index + px;
       }
       .m-lr-#{$index} {
-        margin: 0 $index + px;
+        margin-left: $index + px;
+        margin-right: $index + px;
       }
       .m-tb-#{$index} {
-        margin: $index + px 0;
+        margin-top: $index + px;
+        margin-bottom: $index + px;
       }
 
       // 定义内边距
@@ -317,10 +327,12 @@
         padding-bottom: $index + px;
       }
       .p-lr-#{$index} {
-        padding: 0 $index + px;
+        padding-left: $index + px;
+        padding-right: $index + px;
       }
       .p-tb-#{$index} {
-        padding: $index + px 0;
+        padding-top: $index + px;
+        padding-bottom: $index + px;
       }
 
       // 定义上下左右 l-2 => left: 2px; t-10 => top: 10px;

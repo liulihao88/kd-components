@@ -2,6 +2,7 @@
 
 ### V2.0.22 (2023-3-15)
 - 【新增】kd-sticky-page: 新增 吸顶布局组件
+- 【优化】gStyle: lr 和 mr的不兼容bug修复
 
 ### V2.0.21 (2023-3-14)
 - 【优化】 kd-filter-table maxBtns 默认值改为2
