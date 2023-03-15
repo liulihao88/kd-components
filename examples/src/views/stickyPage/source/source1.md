@@ -3,7 +3,7 @@
   <div>
     <div style="height: 60px; font-size: 24px; text-align: center; line-height: 60px">顶部固定内容区域</div>
     
-    <column-area side-position="left" :scroll-top="scrollTop2" :ext-bottom="60" top-border>
+    <kd-sticky-page side-position="left" :scroll-top="scrollTop2" :ext-bottom="60">
       <!--侧边内容区域，可获取内部动态高度-->
       <template #side="{ height }">
         <div>
@@ -23,7 +23,7 @@
         <div style="height: 300px; background: #eee">模拟滚动</div>
         <div style="height: 400px; background: #fff">模拟滚动</div>
       </div>
-    </column-area>
+    </kd-sticky-page>
     <!--假设底部也有内容-->
     <kd-affix>111</kd-affix>
   </div>
