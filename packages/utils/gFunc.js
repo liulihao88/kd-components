@@ -225,7 +225,7 @@ export function getStorage(data, isSessionFirst = false) {
   return null;
 }
 /**
- * 
+ *
  * @param {*} str 需要清空的localStorage或sessionStorage, 如果不传清空所有
  * @param {*} param1 需要排除的sessionStorage或者localStorage
  * @example
@@ -233,34 +233,34 @@ export function getStorage(data, isSessionFirst = false) {
  * clearStorage('loginId')
  * clearStorage('', {exceptSessions: ['loginId']});
  */
-export function clearStorage(str='', { exceptSessions = [], exceptLocals = [] } = {}) {
+export function clearStorage(str = '', { exceptSessions = [], exceptLocals = [] } = {}) {
   let sessionList = {};
   let localList = {};
   if (exceptSessions.length > 0) {
     exceptSessions.forEach((v) => {
-      sessionList[v] = $pub.getStorage(v, true);
+      sessionList[v] = getStorage(v, true);
     });
   }
   if (exceptLocals.length > 0) {
     exceptLocals.forEach((v) => {
-      localList[v] = $pub.getStorage(v);
+      localList[v] = getStorage(v);
     });
   }
   if (!str) {
     sessionStorage.clear();
     localStorage.clear();
-  }else{
+  } else {
     sessionStorage.removeItem(str);
     localStorage.removeItem(str);
   }
   for (const key in sessionList) {
     const value = sessionList[key];
-    $pub.setStorage(key, value);
+    setStorage(key, value);
   }
   for (const key in localList) {
     const value = localList[key];
-    $pub.setStorage(key, value, true);
-  }}
+    setStorage(key, value, true);
+  }
 }
 
 /**
