@@ -38,6 +38,7 @@
 
 <script>
 import EasyCron from './index.vue';
+import CronParser from 'cron-parser';
 import DragDialog from '@kd/components/Dialog/src/index.vue';
 export default {
   name: 'KdCron',
@@ -121,7 +122,31 @@ export default {
       if (!this.value) {
         this.editCronValue = '0 0 0 * * ? *';
       } else {
-        this.editCronValue = this.value;
+        const validate = this.validateCronValue(this.value);
+        if (validate) {
+          this.editCronValue = this.value;
+        } else {
+          this.editCronValue = '0 0 0 * * ? *';
+        }
+      }
+    },
+    validateCronValue(value) {
+      value = value
+        .split(' ')
+        .filter((el) => el)
+        .join(' ');
+      // 分离出前六子
+      let value6 = value;
+      if (value.split(' ').length === 7) {
+        value6 = value.substring(0, value.lastIndexOf(' '));
+      }
+      try {
+        let interval = CronParser.parseExpression(value6);
+        // console.log('cronDate:', interval.next().toDate());
+        return true;
+      } catch (e) {
+        console.log(e.message);
+        return false;
       }
     },
     cancel() {

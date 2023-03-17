@@ -108,7 +108,7 @@ export default {
       console.log(e, this.value_c);
     },
     parseProp(value) {
-      console.log(value);
+      // console.log(value);
       if (value === this.value_c) {
         // console.info('same ' + value)
         return;
