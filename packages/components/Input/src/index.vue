@@ -67,6 +67,12 @@ export default {
   },
   created() {},
   methods: {
+    // 获取当前的input框的焦点, 举例: 父组件 this.$refs.parent.focus()
+    focus() {
+      let el = this.$el;
+      el = el.nodeName === 'INPUT' ? el : el.children[0];
+      el.focus();
+    },
     handlePlaceholder() {
       const { $attrs } = this;
       let res = $attrs.disabled ? this.disPlaceholder : $attrs.placeholder || '请输入';
