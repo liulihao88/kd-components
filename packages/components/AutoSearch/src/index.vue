@@ -1,5 +1,5 @@
 <template>
-  <div v-if="formArr.length !== 0" class="kd-table-search">
+  <div v-if="formArr.length !== 0" class="kd-table-search" @keyup.enter.stop="onSearch">
     <div class="kd-table-search_left-wrap">
       <!--旧系统，无模糊搜索-->
       <template v-if="oldModel">
@@ -60,14 +60,12 @@
     <div class="kd-table-search_right-wrap">
       <slot name="right"></slot>
     </div>
-    <!--    {{ newFormArr }}-->
   </div>
 </template>
 
 <script>
 import get from 'lodash/get';
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   name: 'KdAutoSearch',
@@ -95,7 +93,6 @@ export default {
   data() {
     return {
       isFold: true, // 是否折叠
-      // scrollHeight: 0,
       form: {},
       newFormArr: [],
       oldForm: [],

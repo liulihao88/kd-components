@@ -7,7 +7,7 @@
     </example-title>
 
     <h5>一般用法</h5>
-    <kd-auto-search :form-arr="formArr0" @change="onChange0">
+    <kd-auto-search :form-arr="formArr0" @change="onChange0" @search="onSearch2">
       <template slot="right">
         <el-button type="primary">新增</el-button>
         <el-button type="primary">批量删除</el-button>
@@ -193,6 +193,9 @@ export default {
       this.params2 = params;
     },
     onSearch(params) {
+      this.$message.success(`查询操作，参数：${JSON.stringify(params)}`);
+    },
+    onSearch2(params) {
       this.$message.success(`查询操作，参数：${JSON.stringify(params)}`);
     },
     onReset(params) {
