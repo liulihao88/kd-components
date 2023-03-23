@@ -43,11 +43,7 @@ export default {
   },
   methods: {
     disabledTreeCheck(data, node) {
-      if(node.level === 1) {
-        return true
-      } else {
-        return false
-      }
+      return node.level === 1;
     }
   },
 };

@@ -1,24 +1,27 @@
-.el-tree-node__label {
-  font-size: 12px;
-  color: var(--text-color);
+.kd_tree_single {
+  display: inline-block;
+  width: var(--width);
 }
+
 .tree_single_search_box {
   padding: 6px 12px 8px;
 }
-.tree_single_tree_box {
-  padding: 0 12px 12px;
-}
-.el-tree-node__content {
-  height: 28px;
-  line-height: 28px;
-}
 
-.single_node {
-  width: 100%;
-  font-size: 12px;
-  color: var(--text-color);
-}
-.disabled {
-  cursor: not-allowed;
-  color: var(--disabled-color);
+.tree_single_tree_box {
+  padding: 0 12px 2px;
+  .el-tree-node__content {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 4px;
+
+    .single_node {
+      width: 100%;
+      font-size: 12px;
+      color: var(--text-color);
+      &.disabled {
+        cursor: not-allowed;
+        color: var(--disabled-color);
+      }
+    }
+  }
 }

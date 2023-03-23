@@ -15,7 +15,7 @@
         ></a>
       </li>
     </ul>
-    <section class="container">
+    <section class="container" @scroll="scrollEvent($event)">
       <div>
         <div v-for="item in Object.keys(docName)" :id="item" :key="item">
           <h5 class="title">{{ docName[item] }}</h5>
@@ -70,6 +70,11 @@ export default {
     VueMarkdown,
     ...components,
   },
+  provide() {
+    return {
+      scrollTop: () => this.scrollTop, // 页面滚动时，跟离顶部的距离
+    };
+  },
   data() {
     return {
       comArr: names,
@@ -78,6 +83,7 @@ export default {
       docMd: docMd,
       isDev: false,
       locationHash: '',
+      scrollTop: 0,
     };
   },
   created() {
@@ -97,6 +103,12 @@ export default {
     });
   },
   methods: {
+    scrollEvent(e) {
+      // const contentHeight = this.$refs?.pageContent?.$el.scrollHeight;
+      // this.scrollHeight = contentHeight || 0;
+      this.scrollTop = e.target.scrollTop;
+      // this.scrollBottom = this.scrollHeight - this.pageHeight - e.target.scrollTop;
+    },
     prodHideTest() {
       if (process.env.NODE_ENV === 'production') {
         this.comArr = this.comArr.filter((v) => {

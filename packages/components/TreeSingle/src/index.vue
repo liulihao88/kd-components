@@ -1,11 +1,11 @@
 <template>
-  <div class="kd_tree_single">
+  <div class="kd_tree_single" :style="{ '--width': width }">
     <el-select
       ref="selectTree"
       :key="option.value"
       v-model="pId"
       v-bind="$attrs"
-      :clearable="clearable"
+      :style="{ width: 'var(--width)' }"
       v-on="$listeners"
     >
       <el-option
@@ -27,17 +27,15 @@
       <div class="tree_single_tree_box">
         <el-tree
           ref="treeRef"
-          :data="tableData"
-          :props="defaultProps"
-          :node-key="nodeKey"
+          :data="finallyData"
           :filter-node-method="filterNode"
-          :default-expanded-keys="expandedKeys"
-          highlight-current
           :current-node-key="option.value"
+          v-bind="mergedTreeAttrs"
           @node-click="handleClickNode"
+          v-on="treeListeners"
         >
           <div slot-scope="{ data }" :class="['single_node', { disabled: data.disabled }]">
-            <span class="tree-node-span">{{ data[defaultProps.label] }}</span>
+            <span class="tree-node-span">{{ data[mergedTreeAttrs.props.label] }}</span>
           </div>
         </el-tree>
       </div>
@@ -46,13 +44,17 @@
 </template>
 
 <script>
+import { addClass, removeClass } from 'element-ui/src/utils/dom';
+import merge from 'lodash/merge';
+import isEmpty from 'lodash/isEmpty';
+
 export default {
   name: 'KdTreeSingle',
   components: {},
   props: {
     value: {
       type: [String, Number],
-      required: true,
+      default: '',
     },
     leafOnlyNode: {
       type: Boolean,
@@ -70,7 +72,15 @@ export default {
     },
     tableData: {
       type: Array,
-      required: true,
+      default: () => {
+        return [];
+      },
+    },
+    treeData: {
+      type: Array,
+      default: () => {
+        return [];
+      },
     },
     defaultProps: {
       type: Object,
@@ -87,14 +97,29 @@ export default {
       type: Boolean,
       default: true,
     },
-    // 配置是否可清空选择
-    clearable: {
-      type: Boolean,
-      default: false,
-    },
     nodeKey: {
       type: String,
       default: 'id',
+    },
+    width: {
+      type: String,
+      default: '316px',
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    treeAttrs: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+    treeListeners: {
+      type: Object,
+      default: () => {
+        return {};
+      },
     },
   },
   data() {
@@ -105,19 +130,23 @@ export default {
       },
       expandedKeys: [],
       filterText: '', //筛选绑定值
+      originDisabled: null,
     };
   },
   computed: {
+    finallyData() {
+      return isEmpty(this.tableData) ? this.treeData : this.tableData;
+    },
     pId: {
       get() {
-        if (this.tableData.length > 0) {
+        if (this.finallyData.length > 0) {
           // eslint-disable-next-line vue/no-async-in-computed-properties
           this.$nextTick(() => {
             if (this.value) {
               const node = this.$refs.treeRef.getNode(this.value);
               this.$refs.treeRef.setCurrentKey(node.key);
-              this.option.label = node.data[this.defaultProps.label];
-              this.option.value = node.data[this.defaultProps.value];
+              this.option.label = node.data[this.mergedTreeAttrs.props.label];
+              this.option.value = node.data[this.mergedTreeAttrs.props.value];
               this.expandedKeys = [this.value];
             }
           });
@@ -129,13 +158,46 @@ export default {
         this.$emit('change', v);
       },
     },
+    mergedTreeAttrs() {
+      return merge(
+        {},
+        {
+          props: this.defaultProps,
+          nodeKey: this.nodeKey,
+          defaultExpandedKeys: this.expandedKeys,
+          highlightCurrent: true,
+        },
+        this.treeAttrs
+      );
+    },
   },
   watch: {
     filterText(newVal) {
       this.$refs.treeRef.filter(newVal);
     },
+    loading: {
+      handler(val) {
+        const dom = this.$refs.selectTree.$el.getElementsByTagName('i');
+        if (val) {
+          if (this.originDisabled === false) {
+            this.$attrs.disabled = true;
+          }
+          addClass(dom[0], 'el-icon-loading');
+          removeClass(dom[0], 'el-icon-arrow-up');
+        } else {
+          if (this.originDisabled === false) {
+            this.$attrs.disabled = false;
+          }
+          removeClass(dom[0], 'el-icon-loading');
+          addClass(dom[0], 'el-icon-arrow-up');
+        }
+      },
+      immediate: false,
+    },
   },
-  created() {},
+  created() {
+    this.originDisabled = this.$attrs.disabled || false;
+  },
   mounted() {},
   methods: {
     //节点点击事件
@@ -150,7 +212,7 @@ export default {
         return;
       }
       // var node = this.$refs.treeRef.getNode(node.key);
-      this.pId = node.data[this.defaultProps.value];
+      this.pId = node.data[this.mergedTreeAttrs.props.value];
       // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
       this.$refs.selectTree.blur();
     },
@@ -163,7 +225,7 @@ export default {
       if (!value) return true;
       // return data.name.indexOf(value) !== -1;
       // 不区分大小写
-      return data[this.defaultProps.label].toLowerCase().includes(value.toLowerCase());
+      return data[this.mergedTreeAttrs.props.label].toLowerCase().includes(value.toLowerCase());
     },
   },
 };
