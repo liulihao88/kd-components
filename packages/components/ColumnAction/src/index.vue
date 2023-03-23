@@ -1,6 +1,5 @@
 <template>
   <el-table-column
-    ref="column"
     class="kd-column-action"
     :label="$attrs.label || '操作'"
     :resizable="$attrs.resizable || false"
@@ -44,12 +43,15 @@
 
       <template v-if="dropdownList.length > 0">
         <el-dropdown
+          :ref="'elDropdown' + scope.$index"
           class="dropdown kd-column-action__btn-item no-dropdown"
           placement="bottom-end"
           :hide-on-click="false"
           trigger="click"
+          @visible-change="visibleChange(scope, $event)"
         >
           <kd-icon name="kd-icon-ellipsis" class="kd-column-action__icon"></kd-icon>
+          <!--          :ref="'innerDropdown' + scope.$index"-->
           <el-dropdown-menu
             slot="dropdown"
             :ref="'innerDropdown' + scope.$index"
@@ -90,11 +92,16 @@
 <script>
 // 所有组件的引入方式如下
 import PopoverItem from '@kd/components/ColumnAction/src/PopoverItem.vue';
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default {
   name: 'KdColumnAction',
   components: { PopoverItem },
+  inject: {
+    scrollTop: {
+      default: () => {},
+    },
+  },
   props: {
     btnList: {
       type: Array,
@@ -107,7 +114,13 @@ export default {
     return {
       dropdownList: [],
       unDropdownList: [],
+      refDrop: null, // dropdown 下拉框出现时的实例，用来手动控制
     };
+  },
+  computed: {
+    scrollTop2() {
+      return this.scrollTop && this.scrollTop();
+    },
   },
   watch: {
     btnList: {
@@ -119,36 +132,35 @@ export default {
           } else {
             this.unDropdownList.push(x);
           }
-          // if (x.popover) {
-          //   this.popoverKeys.push(x.key);
-          // }
         });
       },
       deep: true,
       immediate: true,
     },
-  },
-  mounted() {},
-  methods: {
-    renderHeader(h, { column, $index }) {
-      console.log(column);
-      let realWidth = 0;
-      let span = document.createElement('span');
-
-      // span.innerText = column.label;
-      span.innerText = 'column.label,column.labelcolumn.label';
-      document.body.appendChild(span);
-
-      realWidth = span.getBoundingClientRect().width;
-      console.log(realWidth, realWidth - 32);
-      column.minWidth = realWidth - 32; // 可能还有边距/边框等值，需要根据实际情况加上
-      // column.minWidth = realWidth; // 可能还有边距/边框等值，需要根据实际情况加上
-
-      document.body.removeChild(span);
-      // return h('span', column.label);
-      return h('span', 'column.label,column.labelcolumn.label');
+    scrollTop2() {
+      this.hideDropdown();
     },
-    onClick(scope, item, event) {
+    '$route.fullPath'() {
+      this.hideDropdown();
+    },
+  },
+  methods: {
+    // 下拉框出现时，记录该实例
+    visibleChange(scope, tf) {
+      if (tf) {
+        this.refDrop = this.$refs['elDropdown' + scope.$index];
+      } else {
+        this.refDrop = null;
+      }
+    },
+    hideDropdown() {
+      this.refDrop && this.refDrop.hide();
+    },
+    onClick(scope, item) {
+      // 如果是非 popover 弹框，则点击后关闭dropdown
+      if (!item.popover) {
+        this.hideDropdown();
+      }
       item.confirm && item.confirm(scope, item);
     },
     btnLabel(scope, item) {

@@ -38,6 +38,11 @@ export default {
   name: 'PopoverItem',
   components: {},
   mixins: [],
+  inject: {
+    scrollTop: {
+      default: () => {},
+    },
+  },
   props: {
     type: {
       type: String,
@@ -96,8 +101,18 @@ export default {
       }
       return result;
     },
+    scrollTop2() {
+      return this.scrollTop && this.scrollTop();
+    },
   },
-  watch: {},
+  watch: {
+    scrollTop2() {
+      this.$refs.popover && this.$refs.popover.doClose();
+    },
+    '$route.fullPath'() {
+      this.$refs.popover && this.$refs.popover.doClose();
+    },
+  },
   created() {},
   mounted() {},
   beforeDestroy() {},
@@ -107,6 +122,7 @@ export default {
       this.$refs.popover.doClose();
     },
     confirm() {
+      console.log('popoverItem click');
       this.btnItem.confirm && this.btnItem.confirm(this.scope, this.btnItem);
       this.$refs.popover.doClose();
     },
