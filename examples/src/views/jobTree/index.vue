@@ -2,7 +2,10 @@
   <div>
     <h3>job-tree组件</h3>
     <div class="author">维护人：刘力豪</div>
-    <div class="sub-title"></div>
+    <div class="sub-title">
+      <p>1. btns和btns中的content, disabled支持使用函数</p>
+      <p>2. 可以给内容设置宽度, 不设的话是自动计算, 超长加tooltip</p>
+    </div>
 
     <h5>用法示例</h5>
     <div class="w-1000">
@@ -41,6 +44,7 @@
               ref="jobTreeRef3"
               :default-props="defaultProps3"
               :data="data3"
+              :indent="4"
               :tree-props="treeProps"
               @nodeHandler="nodeHandler3"
             >
@@ -51,8 +55,8 @@
                   :class="[node.expanded ? 'kd-icon-wenjianjiazhankai' : 'kd-icon-wenjianjia']"
                 ></i>
               </template>
-              <template #data="{ data, node }">
-                <span class="fs-12">{{ data.name }}</span>
+              <template #data="{ data, node, width }">
+                <kd-tooltip :content="'插槽' + data.name" :width="width"></kd-tooltip>
               </template>
             </kd-job-tree>
           </div>
@@ -82,6 +86,7 @@ export default {
       source1: source1,
       defaultProps2: {
         title: '资源管理2',
+        width: 400,
         showCreate: false,
         btns: [
           {
@@ -114,23 +119,31 @@ export default {
       data3: [],
       defaultProps3: {
         showTitle: false,
-        btns: [
-          {
-            content: '新建',
-            disabled: true,
-            handler: this.editTree,
-          },
-          {
-            content: '查看',
-            handler: this.editTree,
-          },
-          {
-            content: '删除',
-            disabled: true,
-            confirm: this.deleteTree,
-            confirmInfo: '确认删除本条数据吗？',
-          },
-        ],
+        btns: (node, data) => {
+          if (node.level === 1) {
+            return [
+              {
+                content: '新建',
+                disabled: true,
+                handler: this.editTree,
+              },
+              {
+                content: '删除',
+                disabled: true,
+                confirm: this.deleteTree,
+                confirmInfo: '确认删除本条数据吗？',
+              },
+            ];
+          } else {
+            return [
+              {
+                content: (node, data) => (node.level === 2 ? '第二层新增' : '其他新增'),
+                disabled: (node, data) => (node.level === 2 ? true : false),
+                handler: this.editTree,
+              },
+            ];
+          }
+        },
       },
       treeProps: {
         children: 'children',
@@ -151,7 +164,8 @@ export default {
             {
               id: '1555115624034734129',
               parentId: '1551899237577396292',
-              label: 'dd2',
+              label:
+                'dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2dd2',
               path: '/DD/dd2',
               children: [
                 {
@@ -240,7 +254,7 @@ export default {
             {
               id: '1551899237577396292',
               parentId: null,
-              name: 'DD',
+              name: 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
               path: '/DD',
               children: [
                 {

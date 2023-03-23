@@ -1,5 +1,5 @@
 <template>
-  <div class="kd-job-tree">
+  <div class="kd-job-tree" :style="{ width: mHandleUnit(defaultProps.width || parentWidth) }">
     <div v-if="defaultProps.showTitle === undefined || defaultProps.showTitle !== false" class="jt_operation">
       <div class="jt_title">
         {{ defaultProps.title }}
@@ -67,16 +67,15 @@
                 ></i>
               </slot>
             </div>
-            <div class="slot_box">
-              <slot name="data" :data="data" :node="node">
-                {{ data[treeProps.label] }}
+            <div style="width: contentWidth(node, data)">
+              <slot name="data" :data="data" :node="node" :width="contentWidth(node, data)">
+                <kd-tooltip :content="data[treeProps.label]" :width="contentWidth(node, data)"></kd-tooltip>
               </slot>
             </div>
           </div>
-          <!-- @click.stop="() => {}" -->
           <slot name="btns" :data="data" :node="node">
             <div
-              v-if="defaultProps.btns && defaultProps.btns.length > 0 && showBtns(data, node)"
+              v-if="handleBtns(defaultProps.btns, node, data) && showBtns(data, node)"
               class="right_icon_box"
               @click.stop="() => {}"
             >
@@ -92,12 +91,14 @@
                   @click="ellipsisHandler(node, data)"
                 ></i>
                 <el-dropdown-menu slot="dropdown">
-                  <div v-for="(btn, index) in defaultProps.btns" :key="index">
+                  <div v-for="(btn, index) in handleBtns(defaultProps.btns, node, data)" :key="index">
                     <template v-if="btn.useSlot">
                       <el-dropdown-item
                         v-if="btn.useSlot"
                         :class="{
-                          disabled: btn.disabled ? btn.disabled : false,
+                          disabled: handleDisabled(btn.disabled, node, data)
+                            ? handleDisabled(btn.disabled, node, data)
+                            : false,
                         }"
                       >
                         <slot :name="btn.key" :data="data" :node="node"></slot>
@@ -108,7 +109,9 @@
                         v-if="btn.confirmInfo && operatorBtnFn(btn.isShow, data)"
                         :key="index"
                         :ref="`popoverOut-${index}`"
-                        :disabled="btn.disabled ? btn.disabled : false"
+                        :disabled="
+                          handleDisabled(btn.disabled, node, data) ? handleDisabled(btn.disabled, node, data) : false
+                        "
                         placement="bottom-start"
                         width="224"
                         :title="btn.popoverTitle || '删除'"
@@ -128,20 +131,26 @@
                         <el-dropdown-item
                           slot="reference"
                           :class="{
-                            disabled: btn.disabled ? btn.disabled : false,
+                            disabled: handleDisabled(btn.disabled, node, data)
+                              ? handleDisabled(btn.disabled, node, data)
+                              : false,
                           }"
-                          >{{ btn.content }}</el-dropdown-item
+                          >{{ handleContent(btn.content, node, data) }}</el-dropdown-item
                         >
                       </el-popover>
                     </template>
                     <template v-else>
                       <el-dropdown-item
                         :class="{
-                          disabled: btn.disabled ? btn.disabled : false,
+                          disabled: handleDisabled(btn.disabled, node, data)
+                            ? handleDisabled(btn.disabled, node, data)
+                            : false,
                         }"
-                        @click.native.stop.prevent="!btn.disabled && btn.handler && btn.handler(node, data)"
+                        @click.native.stop.prevent="
+                          !handleDisabled(btn.disabled, node, data) && btn.handler && btn.handler(node, data)
+                        "
                       >
-                        {{ btn.content }}
+                        {{ handleContent(btn.content, node, data) }}
                       </el-dropdown-item>
                     </template>
                   </div>
@@ -227,6 +236,7 @@ export default {
       expandedKeys: [],
       expandKeys: [], //展开的节点
       sTreeData: this.data,
+      parentWidth: '',
     };
   },
   computed: {},
@@ -251,9 +261,46 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+    this.getParentWidth();
+  },
   mounted() {},
   methods: {
+    // 处理btns, 既可以传递函数, 也可以直接传递数组
+    handleBtns(defaultBtns, node, data) {
+      if (typeof defaultBtns === 'function') {
+        return defaultBtns(node, data);
+      } else {
+        return defaultBtns;
+      }
+    },
+    handleDisabled(defaultDisabled, node, data) {
+      if (typeof defaultDisabled === 'function') {
+        return defaultDisabled(node, data);
+      } else {
+        return defaultDisabled;
+      }
+    },
+    // 如果content是字符串, 返回字符串. 否则返回函数
+    handleContent(content, node, data) {
+      if (typeof content === 'function') {
+        return content(node, data);
+      } else {
+        return content;
+      }
+    },
+    // 由于内容宽度是由顶层元素宽度计算出来的, 所以在不设置宽度的情况下, 以当前组件父元素的宽度为准
+    getParentWidth() {
+      this.$nextTick(() => {
+        let pEl = this.$el.parentNode;
+        this.parentWidth = window.getComputedStyle(pEl).width;
+      });
+    },
+    // 自动计算内容宽度. 如果
+    contentWidth(node, data) {
+      let jobTreeWidth = this.mHandleUnit(this.defaultProps.width || this.parentWidth);
+      return jobTreeWidth.replace('px', '') - 100 - (node.level - 1) * (this.$attrs.indent || 16) + 'px';
+    },
     setCurrentNode(id) {
       this.$refs.treeRef.setCurrentKey(id);
       let node = this.$refs.treeRef.getNode(id);
@@ -262,14 +309,11 @@ export default {
     },
     ellipsisHandler(node, data) {
       this.$emit('btnClick', node, data);
-      // this.$refs.dropdownRef.visible = false;
-      // this.$refs.dropdownRef.visible = true;
     },
     btnShowHandler(event, node, data) {
       if (event) {
         this.$emit('btnHandler', node, data);
       }
-      console.log('btnShowHandler', event, node, data);
     },
     // 表格confirmInfo判断函数还是String
     confirmInfoFn(confirmInfo, data) {
@@ -294,17 +338,10 @@ export default {
         return cont;
       }
     },
-    deleteRow() {},
-    editRow() {},
     // 创建目录
     create() {
       this.$emit('create');
     },
-
-    sleep(time = 0) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    },
-
     /**
      * 递归获取目录结构
      */
@@ -351,7 +388,6 @@ export default {
      * 树节点过滤函数
      */
     filterNode(value, data) {
-      console.log(value, data, this.treeProps.label);
       if (!value) return true;
       // return data.label.indexOf(value) !== -1;
       // 搜索不区分大小写
