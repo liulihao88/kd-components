@@ -1,7 +1,7 @@
 <template>
   <el-input
     v-bind="$attrs"
-    v-model="iptValue"
+    :value="iptValue"
     :placeholder="handlePlaceholder()"
     class="kd-ipt"
     :clearable="$attrs.clearable !== false"
