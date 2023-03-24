@@ -16,11 +16,12 @@
             <div class="searchopers f">
               <kd-input
                 v-model="search.word"
-                :width="500"
-                :clearable="clearable"
-                :placeholder="placeholder"
-                :disabled="advancedSearchFlag"
-                :title="searchTitle"
+                v-bind="searchAttrs"
+                :width="searchAttrs.width || 500"
+                :clearable="clearable || searchAttrs.clearable"
+                :placeholder="placeholder || searchAttrs.placeholder"
+                :disabled="advancedSearchFlag || searchAttrs.disabled"
+                :title="searchTitle || searchAttrs.title"
                 @clear="toClear"
                 @keyup.enter.native="toSearch"
               >
@@ -617,6 +618,12 @@ export default {
     echoFilterData: {
       type: Object,
       default: () => ({}),
+    },
+    searchAttrs: {
+      type: Object,
+      default: () => {
+        return {};
+      },
     },
   },
   data() {
