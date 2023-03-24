@@ -1,6 +1,8 @@
 ##### 用于记录版本更新的内容, 规范待定。可直接在这个文件，或者按照版本分类成多个md文档，每10个发版为一个md.
 
 - 【优化】kd-column-action: 逻辑优化，页面滚动、路由跳转时弹框及下拉框关闭；点击非popover 按钮时直接关闭下拉框
+- 【优化】element-variables.scss: 增加el-select下el-input的unset, 否则在form下, 设置宽度无效
+- 【优化】kd-filter-table: 增加searchAttrs, 更改search输入框的样式
 
 ### V2.0.26 (2023-3-22)
 - 【优化】kd-auto-search: 增加回车触发查询功能
