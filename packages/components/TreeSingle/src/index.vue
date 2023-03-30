@@ -121,6 +121,10 @@ export default {
         return {};
       },
     },
+    filterNodeMethod: {
+      type: [String, Function],
+      default: '',
+    },
   },
   data() {
     return {
@@ -202,19 +206,24 @@ export default {
   methods: {
     //节点点击事件
     handleClickNode(data, node) {
-      if (data.disabled) {
-        return;
+      // 给点击事件, 增加自定义方法
+      if (this.$listeners['node-click']) {
+        this.$emit('node-click', data, node);
+      } else {
+        if (data.disabled) {
+          return;
+        }
+        if (this.leafOnlyNode && node.childNodes.length > 0) {
+          return;
+        }
+        if (typeof this.disabledTreeCheck === 'function' && this.disabledTreeCheck(data, node)) {
+          return;
+        }
+        // var node = this.$refs.treeRef.getNode(node.key);
+        this.pId = node.data[this.mergedTreeAttrs.props.value];
+        // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
+        this.$refs.selectTree.blur();
       }
-      if (this.leafOnlyNode && node.childNodes.length > 0) {
-        return;
-      }
-      if (typeof this.disabledTreeCheck === 'function' && this.disabledTreeCheck(data, node)) {
-        return;
-      }
-      // var node = this.$refs.treeRef.getNode(node.key);
-      this.pId = node.data[this.mergedTreeAttrs.props.value];
-      // 选择器执行完成后，使其失去焦点隐藏下拉框的效果
-      this.$refs.selectTree.blur();
     },
     // 下拉框搜索
     filterMethod(query) {
@@ -222,10 +231,15 @@ export default {
     },
     // 筛选树
     filterNode(value, data) {
-      if (!value) return true;
-      // return data.name.indexOf(value) !== -1;
-      // 不区分大小写
-      return data[this.mergedTreeAttrs.props.label].toLowerCase().includes(value.toLowerCase());
+      // 自定义筛选树
+      if (typeof this.filterNodeMethod === 'function') {
+        return this.filterNodeMethod(value, data);
+      } else {
+        if (!value) return true;
+        // return data.name.indexOf(value) !== -1;
+        // 不区分大小写
+        return data[this.mergedTreeAttrs.props.label].toLowerCase().includes(value.toLowerCase());
+      }
     },
   },
 };
