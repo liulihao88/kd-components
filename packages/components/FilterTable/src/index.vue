@@ -588,7 +588,7 @@ export default {
     },
     maxHeight: {
       // 表格最大高度
-      type: Number,
+      type: [Number, String],
       default: 5000,
     },
     rowKeys: {
