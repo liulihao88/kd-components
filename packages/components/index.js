@@ -38,6 +38,7 @@ import StickyPage from './StickyPage';
 import scrollbar from './scrollbar';
 import cron from './cron';
 import Dev from './Dev';
+import Search from './Search';
 
 const components = [
   DetailBtn,
@@ -78,6 +79,7 @@ const components = [
   AutoSearch,
   StickyPage,
   Dev,
+  Search,
 ];
 
 const install = (app) => {
