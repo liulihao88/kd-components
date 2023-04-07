@@ -14,6 +14,7 @@
             v-model="item.value"
             :title="item.title"
             :placeholder="item.placeholder"
+            :disabled="item.disabled"
           ></component>
         </slot>
         <div>

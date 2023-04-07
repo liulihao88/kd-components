@@ -39,6 +39,7 @@ import scrollbar from './scrollbar';
 import cron from './cron';
 import Dev from './Dev';
 import Search from './Search';
+import SelectA from './SelectA';
 
 const components = [
   DetailBtn,
@@ -80,6 +81,7 @@ const components = [
   StickyPage,
   Dev,
   Search,
+  SelectA,
 ];
 
 const install = (app) => {
