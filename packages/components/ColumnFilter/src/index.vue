@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { assign, isEmpty } from 'lodash';
+import { assign, isEmpty, isPlainObject } from 'lodash';
 
 export default {
   name: 'KdColumnFilter',
@@ -102,8 +102,11 @@ export default {
   watch: {
     config: {
       handler(val) {
+        // 是否按状态样式展示单元格
         const showStatus = !this.noStatus,
+          // 是否按显示表头筛选
           showFilter = !this.noFilter,
+          // 是否不需要格式化单元格内容
           noFormat = this.formatter === false;
         let filters = [],
           styles = {},
@@ -111,31 +114,42 @@ export default {
 
         if (!isEmpty(val)) {
           Object.keys(val).forEach((key) => {
+            // 获取配置项
             const value = val[key];
+            // 如果需要展示状态，则把状态样式合并到styles中
             if (showStatus) {
               styles[key] = {
                 color: value.color,
                 background: value.bg,
               };
-              showFilter &&
+              // 如果需要展示筛选，则把筛选项合并到filters中
+              if (showFilter && value.filter !== false) {
+                // value.filter表示配置项是否需要出现在筛选项中
                 filters.push({
                   text: noFormat ? key : value.text || value.label,
                   value: key,
                 });
+              }
               formatter[key] = value.text || value.label;
             } else {
+              // 不需要展示状态，但需要展示筛选
+              // 这时配置项写法可以为对象、字符串
               if (showFilter) {
-                if (typeof value !== 'object') {
+                // 配置项为非对象
+                if (!isPlainObject(value)) {
                   filters.push({
                     text: noFormat ? key : value,
                     value: key,
                   });
                   formatter[key] = value;
                 } else {
-                  filters.push({
-                    text: noFormat ? key : value.text || value.label,
-                    value: key,
-                  });
+                  // 配置项为对象
+                  if (value.filter === false) {
+                    filters.push({
+                      text: noFormat ? key : value.text || value.label,
+                      value: key,
+                    });
+                  }
                   formatter[key] = value.text || value.label;
                 }
               }

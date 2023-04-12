@@ -75,6 +75,7 @@ export default {
           label: '失败',
           color: '#e94c35', // 状态列的文字颜色
           bg: '#fdecea', // 状态列的文字背景颜色
+          filter: false, // 筛选列是否显示该值
         },
       },
       statusConfig2: {
@@ -85,6 +86,7 @@ export default {
         FAILURE: {
           color: '#e94c35', // 状态列的文字颜色
           bg: '#fdecea', // 状态列的文字背景颜色
+          // filter:false
         },
       },
       filters: [

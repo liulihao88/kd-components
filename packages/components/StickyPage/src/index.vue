@@ -11,7 +11,7 @@
         height: sideHeight + 'px',
         ...sideStyle,
         width: sideWidth + 'px',
-        ['border-' + (sidePosition === 'left' ? 'right' : 'left')]: '1px solid var(--line-color)',
+        ['border-' + (sidePosition === 'left' ? 'right' : 'left')]: sideBorder ? '1px solid var(--line-color)' : 'none',
       }"
     >
       <kd-scrollbar>
@@ -26,15 +26,15 @@
 
 <script>
 import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-import get from 'lodash/get';
 
 export default {
   name: 'KdStickyPage',
-  props: {
+  inject: {
     scrollTop: {
-      type: Number,
-      default: 0,
+      default: () => {},
     },
+  },
+  props: {
     // 左侧吸顶区域宽度
     sideWidth: {
       type: Number,
@@ -46,6 +46,11 @@ export default {
       validator: (value) => {
         return ['left', 'right'].includes(value);
       },
+    },
+    // 是否显示侧边栏边框线
+    sideBorder: {
+      type: Boolean,
+      default: true,
     },
     // 是否显示顶部边框线
     topBorder: {
@@ -64,6 +69,7 @@ export default {
   },
   data() {
     return {
+      initToTop: null, // 初始距离顶部的距离
       minHeight: null,
       maxHeight: null,
       sideHeight: 0,
@@ -73,6 +79,9 @@ export default {
     };
   },
   computed: {
+    scrollTop2() {
+      return this.scrollTop() || 0;
+    },
     sideStyle() {
       const style = {
         position: this.isFixed ? 'fixed' : 'absolute',
@@ -91,18 +100,26 @@ export default {
     },
   },
   watch: {
-    scrollTop(val) {
-      this.isFixed = this.extTop + this.toTop - val < 0;
+    scrollTop2(val) {
+      this.isFixed = this.extTop + this.initToTop - val < 0;
       this.sideHeight = Math.min(this.minHeight + val, this.maxHeight);
     },
   },
   mounted() {
+    this.init();
     addResizeListener(this.$el, this.onResize);
   },
   beforeDestroy() {
     if (this.onResize) removeResizeListener(this.$el, this.onResize);
   },
   methods: {
+    init() {
+      let wrapRect;
+      if (this.$el && this.$el.getBoundingClientRect()) {
+        wrapRect = this.$el.getBoundingClientRect();
+      }
+      this.initToTop = wrapRect.top;
+    },
     onResize() {
       let wrapRect;
       if (this.$el && this.$el.getBoundingClientRect()) {
@@ -111,7 +128,7 @@ export default {
       this.wrapRect = { left: wrapRect.left, width: wrapRect.width };
       const winH = window.innerHeight; // 屏幕高度
       this.toTop = wrapRect.top;
-      this.sideHeight = this.minHeight = winH - wrapRect.top - this.extTop - this.bottom - 1;
+      this.sideHeight = this.minHeight = winH - (this.initToTop ?? 0) - this.extTop - this.bottom - 1;
       this.maxHeight = winH - 50 - this.extTop - this.bottom;
     },
   },
